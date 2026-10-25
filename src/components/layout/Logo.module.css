@@ -1,0 +1,11 @@
+.mark {
+  flex: none;
+}
+
+.ink {
+  stroke: currentColor;
+}
+
+.ray {
+  stroke: var(--color-accent);
+}

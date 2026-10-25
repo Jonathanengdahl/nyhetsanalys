@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>*,*::before,*::after{box-sizing:border-box}[hidden]{display:none!important}</style>
+<title>Nyhetsappens kostnadskalkyl</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: one working column of summary tiles, then a two-column body (tables left, assumptions right) that stacks on phones. */
+:root {
+  --bg: #F6F7F8;
+  --surface: #FFFFFF;
+  --soft: #F5F6F8;
+  --ink: #101317;
+  --ink2: #3D4450;
+  --ink3: #5B6370;
+  --line: #E1E4E8;
+  --line2: #E3E6EA;
+  --accent: #0B6E69;
+  --accent-ink: #FFFFFF;
+  --accent-soft: #DDEFEC;
+  --warn: #8A3F05;
+  --warn-soft: #FBEBD9;
+  --display: 'IBM Plex Sans Condensed', 'Arial Narrow', system-ui, sans-serif;
+  --body: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0E1114; --surface: #171B20; --soft: #1E242A; --ink: #EEF1F4; --ink2: #C3C9D1; --ink3: #9AA3AE;
+    --line: #2C333B; --line2: #252B32; --accent: #3FB7AE; --accent-ink: #0E1114; --accent-soft: #123532;
+    --warn: #F3B27A; --warn-soft: #3A2616; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0E1114; --surface: #171B20; --soft: #1E242A; --ink: #EEF1F4; --ink2: #C3C9D1; --ink3: #9AA3AE;
+  --line: #2C333B; --line2: #252B32; --accent: #3FB7AE; --accent-ink: #0E1114; --accent-soft: #123532;
+  --warn: #F3B27A; --warn-soft: #3A2616; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 15.5px; line-height: 1.55; }
+.wrap { max-width: 1120px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 32px 56px; display: flex; flex-direction: column; gap: 22px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 700; margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+h1 { font-size: clamp(34px, 6vw, 56px); line-height: 0.98; }
+h2 { font-size: 24px; line-height: 1.15; }
+h3 { font-size: 18px; line-height: 1.2; }
+p { margin: 0; }
+.kicker { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink2); }
+.lead { max-width: 62ch; color: var(--ink2); font-size: 17px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 20px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.controls { display: flex; flex-wrap: wrap; gap: 16px 28px; align-items: flex-end; }
+.ctrl { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.ctrl-label { font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink2); }
+.seg { display: flex; flex-wrap: wrap; gap: 4px; padding: 4px; background: var(--soft); border: 1px solid var(--line); border-radius: 8px; }
+.seg button { min-height: 44px; padding: 0 14px; border: 0; border-radius: 6px; background: transparent; color: var(--ink); font: 600 14.5px var(--body); cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
+.seg button:focus-visible, .btn:focus-visible, input:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.field { display: flex; align-items: center; gap: 8px; }
+input[type="number"] { width: 110px; min-height: 44px; padding: 0 10px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: 500 15px var(--mono); font-variant-numeric: tabular-nums; }
+.unit { font-size: 13.5px; color: var(--ink2); }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+.tile { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.tile.dark { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.tile .num { font-family: var(--display); font-weight: 700; font-size: 34px; line-height: 1.05; font-variant-numeric: tabular-nums; }
+.tile .lbl { font-size: 14px; line-height: 1.35; }
+.tile .sub { font-size: 12.5px; color: var(--ink3); }
+.tile.dark .sub { color: var(--line); }
+.cols { display: flex; flex-wrap: wrap; gap: 22px; align-items: flex-start; }
+.main { flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 22px; }
+.side { flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 22px; }
+.tbl-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+th, td { text-align: left; padding: 10px 8px; border-top: 1px solid var(--line2); vertical-align: top; }
+thead th { border-top: 0; font-family: var(--mono); font-size: 11.5px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink3); padding-top: 0; }
+td.amt, th.amt { text-align: right; white-space: nowrap; font-family: var(--mono); font-variant-numeric: tabular-nums; }
+td .note { display: block; font-size: 12.5px; color: var(--ink3); margin-top: 2px; }
+tr.total td { border-top: 2px solid var(--ink); font-weight: 600; }
+tr.muted td { color: var(--ink3); }
+.chip { display: inline-block; padding: 1px 8px; border-radius: 4px; font: 500 11px var(--mono); background: var(--soft); color: var(--ink2); border: 1px solid var(--line); margin-left: 6px; vertical-align: 1px; }
+.chip.ant { background: var(--warn-soft); color: var(--warn); border-color: transparent; }
+.chk { display: flex; align-items: flex-start; gap: 10px; }
+.chk input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--accent); flex: 0 0 auto; }
+.grid-in { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 12px; align-items: center; }
+.grid-in label { font-size: 14px; color: var(--ink); }
+.grid-in .hint { display: block; font-size: 12px; color: var(--ink3); }
+.timeline { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; }
+.phase { border-radius: 8px; padding: 14px; background: var(--soft); border: 1px solid var(--line); display: flex; flex-direction: column; gap: 2px; }
+.phase .num { font-family: var(--display); font-weight: 700; font-size: 24px; font-variant-numeric: tabular-nums; }
+.phase .lbl { font-size: 13px; color: var(--ink2); }
+.btn { min-height: 44px; padding: 0 16px; border-radius: 8px; border: 1px solid var(--ink); background: var(--surface); color: var(--ink); font: 600 14px var(--body); cursor: pointer; align-self: flex-start; }
+.small { font-size: 13px; color: var(--ink3); }
+.sources { font-size: 13px; color: var(--ink2); display: flex; flex-direction: column; gap: 4px; padding-left: 18px; margin: 0; }
+a { color: var(--accent); text-underline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header style="display:flex;flex-direction:column;gap:10px">
+    <p class="kicker">Kalkyl · priser hämtade 24 oktober 2026 · exkl. moms</p>
+    <h1>Nyhetsappens kostnadskalkyl</h1>
+    <p class="lead">Vad det kostar dig att starta och driva tjänsten: engångskostnader, löpande kostnad per fas och hur många premiumkunder som behövs för att täcka driften. Ändra antagandena till höger så räknas allt om.</p>
+  </header>
+
+  <section class="card" aria-label="Val">
+    <div class="controls">
+      <div class="ctrl">
+        <span class="ctrl-label" id="lbl-fas">Fas</span>
+        <div class="seg" role="group" aria-labelledby="lbl-fas" id="seg-phase"></div>
+      </div>
+      <div class="ctrl">
+        <label class="ctrl-label" for="in-price">Premiumpris</label>
+        <div class="field"><input type="number" id="in-price" min="0" step="1"><span class="unit">kr/mån <span class="chip ant">testvärde</span></span></div>
+      </div>
+      <div class="ctrl">
+        <label class="ctrl-label" for="in-rate">Växelkurs</label>
+        <div class="field"><input type="number" id="in-rate" min="1" step="0.01"><span class="unit">kr per dollar</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tiles" aria-label="Sammanfattning" id="tiles"></section>
+
+  <div class="cols">
+    <div class="main">
+      <section class="card" aria-labelledby="h-lop">
+        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 12px;align-items:baseline">
+          <h2 id="h-lop">Löpande kostnad per månad</h2>
+          <span class="small" id="lop-phase"></span>
+        </div>
+        <div class="tbl-wrap"><table id="tbl-monthly"></table></div>
+        <p class="small">AI-raderna är API-kostnader: Sonnet 5.5 för analysen och Haiku 5.5 för sortering och chatt. De betalas via ett API-konto, separat från ditt Claude Max. Max ingår inte här eftersom du redan har det. Allt i dollar räknas om med växelkursen ovan.</p>
+      </section>
+
+      <section class="card" aria-labelledby="h-upp">
+        <h2 id="h-upp">Uppstart, engångskostnader</h2>
+        <div class="tbl-wrap"><table id="tbl-startup"></table></div>
+      </section>
+
+      <section class="card" aria-labelledby="h-ar">
+        <h2 id="h-ar">Första året</h2>
+        <p class="small">Stängd beta i 2 månader, öppen beta i 4 månader och lansering med app i 6 månader.</p>
+        <div class="timeline" id="timeline"></div>
+      </section>
+    </div>
+
+    <aside class="side">
+      <section class="card" aria-labelledby="h-ant">
+        <div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap">
+          <h2 id="h-ant">Antaganden</h2>
+          <span class="small" id="ant-phase"></span>
+        </div>
+        <div class="grid-in" id="phase-inputs"></div>
+        <h3 style="margin-top:6px">Juridik</h3>
+        <div class="grid-in" id="dev-inputs"></div>
+        <h3 style="margin-top:6px">Tillval vid uppstart</h3>
+        <div style="display:flex;flex-direction:column;gap:10px" id="opt-inputs"></div>
+        <button type="button" class="btn" id="btn-reset">Återställ alla antaganden</button>
+      </section>
+
+      <section class="card" aria-labelledby="h-hur">
+        <h2 id="h-hur">Så räknas AI-kostnaden</h2>
+        <p class="small">Varje uppdatering av ett ämne läser artiklarna (20 st à cirka 1 500 tokens) och skriver om ämnessidan (cirka 6 000 tokens). Med Sonnet 5.5 blir det runt 1,20 kr per uppdatering.</p>
+        <p class="small">En chattfråga läser ämnets underlag från cache och svarar på cirka 150 ord. Med Haiku 5.5 kostar det under 1 öre per fråga.</p>
+        <p class="small">Sökning efter nya perspektiv kostar 10 dollar per 1 000 sökningar.</p>
+      </section>
+    </aside>
+  </div>
+
+  <section class="card" aria-labelledby="h-src">
+    <h2 id="h-src">Källor</h2>
+    <ol class="sources">
+      <li><a href="https://claude.com/pricing">Claude – priser för API och abonnemang</a></li>
+      <li><a href="https://platform.claude.com/docs/en/models/haiku-5-5/overview">Claude Haiku 5.5 – dokumentation</a> och <a href="https://platform.claude.com/docs/en/models/sonnet-5-5/overview">Claude Sonnet 5.5 – dokumentation</a></li>
+      <li><a href="https://tradingeconomics.com/sweden/currency">Trading Economics – USD/SEK 9,95 den 23 oktober 2026</a></li>
+      <li><a href="https://lagen.nu/2024:1170">Förordning (2024:1170) – avgift för utgivningsbevis, databas 4 000 kr</a></li>
+      <li><a href="https://www.Prv.SE/globalassets/dokument/avgifter/prv_avgiftslista.pdf">PRV – avgiftslista för varumärken</a></li>
+      <li><a href="https://studio.adalo.com/blog/apple-developer-program-guide">Apple Developer Program – 99 dollar per år</a></li>
+      <li><a href="https://support.google.com/googleplay/android-developer/answer/6112435?hl=en">Google Play – registrering 25 dollar en gång</a></li>
+      <li><a href="https://revenuecat.com/blog/engineering/small-business-program">RevenueCat – provision i App Store och Google Play</a></li>
+      <li><a href="https://vercel.com/docs/plans/pro">Vercel Pro</a> · <a href="https://makerkit.dev/blog/saas/supabase-pricing">Supabase Pro</a> · <a href="https://www.jetadmin.io/blog/make-pricing/">Make.com</a> · <a href="https://blog.groupmail.io/mailchimp-pricing-2026/">Mailchimp</a></li>
+      <li><a href="https://stripe.com/en-se/pricing">Stripe – avgifter i Sverige</a> · <a href="https://firebase.google.com/products/cloud-messaging">Firebase Cloud Messaging</a> · <a href="https://onesignal.com/blog/whats-changing-on-onesignals-free-plan/">OneSignal gratisnivå</a></li>
+    </ol>
+    <p class="small">Rader märkta <span class="chip ant">antagande</span> är uppskattningar, inte prisuppgifter. Byt dem mot riktiga offerter när du har dem.</p>
+  </section>
+</div>
+
+<script>
+(function () {
+  var USD = { sonnetIn: 2, sonnetOut: 10, haikuIn: 0.10, haikuOut: 0.50, haikuCache: 0.01, search: 10 / 1000,
+    vercel: 20, supabase: 25, make: 10.59, apple: 99, play: 25, claudeMax: 100 };
+  var PHASES = [
+    { id: 'beta', name: 'Stängd beta', months: 2 },
+    { id: 'open', name: 'Öppen beta', months: 4 },
+    { id: 'launch', name: 'Lansering med app', months: 6 }
+  ];
+  var PHASE_FIELDS = [
+    { k: 'topics', label: 'Aktiva ämnen samtidigt', hint: 'Heta ämnen som analyseras', step: 1 },
+    { k: 'updates', label: 'Uppdateringar per ämne och dag', step: 1 },
+    { k: 'scanned', label: 'Artiklar som sorteras per dag', hint: 'Allt som samlas in', step: 100 },
+    { k: 'searches', label: 'Sökningar per uppdatering', hint: 'Nya perspektiv utanför listan', step: 1 },
+    { k: 'mau', label: 'Aktiva läsare per månad', step: 100 },
+    { k: 'loggedIn', label: 'Andel med konto, %', step: 5 },
+    { k: 'qPerUser', label: 'Egna frågor per kontoläsare och månad', step: 1 },
+    { k: 'premiumPct', label: 'Andel som betalar, %', hint: 'Av aktiva läsare', step: 0.5 },
+    { k: 'newsletter', label: 'Prenumeranter på veckobrevet', step: 100 },
+    { k: 'appShare', label: 'Andel premium köpt i appen, %', hint: 'Resten köps på webben', step: 10 }
+  ];
+  var DEFAULTS = {
+    phase: 'launch', price: 59, rate: 9.95,
+    p: {
+      beta: { topics: 3, updates: 2, scanned: 800, searches: 3, mau: 75, loggedIn: 100, qPerUser: 15, premiumPct: 0, newsletter: 100, appShare: 0 },
+      open: { topics: 6, updates: 3, scanned: 1500, searches: 3, mau: 2000, loggedIn: 30, qPerUser: 10, premiumPct: 0, newsletter: 2500, appShare: 0 },
+      launch: { topics: 10, updates: 4, scanned: 3000, searches: 3, mau: 10000, loggedIn: 30, qPerUser: 10, premiumPct: 1.5, newsletter: 5000, appShare: 50 }
+    },
+    devIn: { juristHours: 2, juristRate: 2500 },
+    opt: { brand: true, designer: false, ads: false }
+  };
+  var KEY = 'nyhetsappens-kalkyl-v2';
+  function clone(o) { return JSON.parse(JSON.stringify(o)); }
+  var S = clone(DEFAULTS);
+  try { var raw = localStorage.getItem(KEY); if (raw) { var saved = JSON.parse(raw); if (saved && saved.p && saved.devIn && saved.opt) S = Object.assign(clone(DEFAULTS), saved); } } catch (e) {}
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
+
+  var nf = new Intl.NumberFormat('sv-SE', { maximumFractionDigits: 0 });
+  function kr(v) { return nf.format(Math.round(v)) + ' kr'; }
+  function sek(usd) { return usd * (Number(S.rate) || 0); }
+
+  function mailchimpUSD(n) { if (n <= 0) return 0; if (n <= 500) return 13; if (n <= 2500) return 45; if (n <= 5000) return 75; if (n <= 10000) return 110; return 110 + Math.ceil((n - 10000) / 5000) * 50; }
+
+  function monthly(pid) {
+    var a = S.p[pid];
+    var price = Number(S.price) || 0;
+    var updDay = a.topics * a.updates;
+    var perUpd = (20 * 1500 * USD.sonnetIn + 6000 * USD.sonnetOut) / 1e6;
+    var perScan = (600 * USD.haikuIn + 50 * USD.haikuOut) / 1e6;
+    var perQ = (6000 * USD.haikuCache + 530 * USD.haikuIn + 600 * USD.haikuOut) / 1e6;
+    var premiumSubs = Math.round(a.mau * a.premiumPct / 100);
+    var questions = a.mau * (a.loggedIn / 100) * a.qPerUser + premiumSubs * 60;
+    var appSubs = premiumSubs * a.appShare / 100;
+    var webSubs = premiumSubs - appSubs;
+    var rows = [
+      { name: 'AI-analys av ämnen', note: updDay + ' uppdateringar per dag med Sonnet 5.5', v: sek(updDay * 30 * perUpd), fixed: true },
+      { name: 'Sortering av nya artiklar', note: nf.format(a.scanned) + ' artiklar per dag med Haiku 5.5', v: sek(a.scanned * 30 * perScan), fixed: true },
+      { name: 'Sökning efter nya perspektiv', note: nf.format(updDay * a.searches * 30) + ' sökningar per månad', v: sek(updDay * a.searches * 30 * USD.search), fixed: true },
+      { name: 'AI-chatten', note: nf.format(questions) + ' egna frågor per månad med Haiku 5.5', v: sek(questions * perQ), fixed: true },
+      { name: 'Webbhotell, Vercel Pro', note: '20 dollar per månad', v: sek(USD.vercel), fixed: true },
+      { name: 'Databas och inloggning, Supabase', note: pid === 'beta' ? 'Gratisnivån räcker i betan' : 'Pro, 25 dollar per månad', v: pid === 'beta' ? 0 : sek(USD.supabase), fixed: true },
+      { name: 'Automatisering, Make', note: 'Core, månadsbetalning', v: sek(USD.make), fixed: true },
+      { name: 'Veckobrev, Mailchimp Essentials', note: nf.format(a.newsletter) + ' prenumeranter', v: sek(mailchimpUSD(a.newsletter)), fixed: true },
+      { name: 'Pushnotiser, Firebase', note: 'Firebase Cloud Messaging är gratis', v: 0, fixed: true },
+      { name: 'Apple-utvecklarkonto', note: pid === 'launch' ? '99 dollar per år' : 'Behövs först inför appen', v: pid === 'launch' ? sek(USD.apple / 12) : 0, fixed: true },
+      { name: 'Domän', note: 'Cirka 150 kr per år', ant: true, v: 150 / 12, fixed: true },
+      { name: 'Kortavgifter, Stripe', note: nf.format(Math.round(webSubs)) + ' webbkunder: 1,5 % + 1,80 kr plus 0,7 % för abonnemang', v: webSubs * (price * 0.022 + 1.8), fixed: false },
+      { name: 'Provision, App Store och Google Play', note: nf.format(Math.round(appSubs)) + ' appkunder: 15 % av priset', v: appSubs * price * 0.15, fixed: false }
+    ];
+    var cost = rows.reduce(function (s, r) { return s + r.v; }, 0);
+    var fixedCost = rows.filter(function (r) { return r.fixed; }).reduce(function (s, r) { return s + r.v; }, 0);
+    var revenue = premiumSubs * price;
+    var appFrac = a.appShare / 100;
+    var netPerSub = price * (1 - appFrac * 0.15 - (1 - appFrac) * 0.022) - (1 - appFrac) * 1.8;
+    var breakEven = netPerSub > 0 ? Math.ceil(fixedCost / netPerSub) : null;
+    return { rows: rows, cost: cost, revenue: revenue, premiumSubs: premiumSubs, breakEven: breakEven };
+  }
+
+  function startup() {
+    var d = S.devIn;
+    var rows = [
+      { name: 'Utgivningsbevis för webbplatsen', note: 'Avgift till Mediemyndigheten. Utgivaren måste bo i Sverige.', v: 4000 },
+      { name: 'Jurist', note: d.juristHours + ' timmar à ' + nf.format(d.juristRate) + ' kr: utgivningsbevis, upphovsrätt, GDPR och AI-märkning', ant: true, v: d.juristHours * d.juristRate },
+      { name: 'Google Play-konto', note: '25 dollar en gång', v: sek(USD.play) },
+      { name: 'Bygga webb, app och automatisering', note: 'Claude bygger, med ditt befintliga Max-abonnemang', v: 0 }
+    ];
+    if (S.opt.brand) rows.push({ name: 'Varumärkesskydd hos PRV', note: 'Två klasser: 2 400 kr + 1 000 kr', v: 3400 });
+    if (S.opt.designer) rows.push({ name: 'Logotyp och grafisk profil', note: 'Frilansande formgivare', ant: true, v: 10000 });
+    if (S.opt.ads) rows.push({ name: 'Annonsering vid lansering', note: 'Google och Meta, startbudget', ant: true, v: 10000 });
+    return { rows: rows, total: rows.reduce(function (s, r) { return s + r.v; }, 0) };
+  }
+
+  function el(tag, attrs, text) { var e = document.createElement(tag); if (attrs) Object.keys(attrs).forEach(function (k) { e.setAttribute(k, attrs[k]); }); if (text != null) e.textContent = text; return e; }
+
+  function renderSeg(id, items, current, onPick) {
+    var box = document.getElementById(id); box.textContent = '';
+    items.forEach(function (it) {
+      var b = el('button', { type: 'button', 'aria-pressed': String(it.id === current) }, it.name);
+      b.addEventListener('click', function () { onPick(it.id); });
+      box.appendChild(b);
+    });
+  }
+
+  function rowsTable(table, rows, totalLabel, total, extra) {
+    table.textContent = '';
+    var thead = el('thead'); var hr = el('tr');
+    hr.appendChild(el('th', { scope: 'col' }, 'Post')); hr.appendChild(el('th', { scope: 'col', class: 'amt' }, 'Kostnad'));
+    thead.appendChild(hr); table.appendChild(thead);
+    var tb = el('tbody');
+    rows.forEach(function (r) {
+      var tr = el('tr'); if (r.v === 0) tr.className = 'muted';
+      var td = el('td'); td.appendChild(document.createTextNode(r.name));
+      if (r.ant) td.appendChild(el('span', { class: 'chip ant' }, 'antagande'));
+      td.appendChild(el('span', { class: 'note' }, r.note));
+      tr.appendChild(td); tr.appendChild(el('td', { class: 'amt' }, kr(r.v))); tb.appendChild(tr);
+    });
+    var tt = el('tr', { class: 'total' }); tt.appendChild(el('td', null, totalLabel)); tt.appendChild(el('td', { class: 'amt' }, kr(total))); tb.appendChild(tt);
+    if (extra) extra.forEach(function (x) { var t = el('tr'); t.appendChild(el('td', null, x[0])); t.appendChild(el('td', { class: 'amt' }, x[1])); tb.appendChild(t); });
+    table.appendChild(tb);
+  }
+
+  function numberField(container, key, label, hint, value, step, onChange) {
+    var id = 'in-' + key;
+    var lab = el('label', { for: id }); lab.appendChild(document.createTextNode(label));
+    if (hint) lab.appendChild(el('span', { class: 'hint' }, hint));
+    var inp = el('input', { type: 'number', id: id, min: '0', step: String(step || 1) }); inp.value = value;
+    inp.addEventListener('input', function () { var v = parseFloat(inp.value); if (!isNaN(v) && v >= 0) { onChange(v); save(); renderNumbers(); } });
+    container.appendChild(lab); container.appendChild(inp);
+  }
+
+  function renderInputs() {
+    var pid = S.phase; var phase = PHASES.filter(function (p) { return p.id === pid; })[0];
+    document.getElementById('ant-phase').textContent = phase.name;
+    var box = document.getElementById('phase-inputs'); box.textContent = '';
+    PHASE_FIELDS.forEach(function (f) { numberField(box, pid + '-' + f.k, f.label, f.hint, S.p[pid][f.k], f.step, function (v) { S.p[pid][f.k] = v; }); });
+    var dev = document.getElementById('dev-inputs'); dev.textContent = '';
+    numberField(dev, 'juristHours', 'Timmar med jurist', null, S.devIn.juristHours, 1, function (v) { S.devIn.juristHours = v; });
+    numberField(dev, 'juristRate', 'Juristens timpris, kr', null, S.devIn.juristRate, 100, function (v) { S.devIn.juristRate = v; });
+    var opt = document.getElementById('opt-inputs'); opt.textContent = '';
+    [['brand', 'Varumärkesskydd hos PRV, 3 400 kr'], ['designer', 'Logotyp av formgivare, cirka 10 000 kr'], ['ads', 'Annonsering vid lansering, 10 000 kr']].forEach(function (o) {
+      var id = 'opt-' + o[0]; var wrap = el('div', { class: 'chk' });
+      var c = el('input', { type: 'checkbox', id: id }); c.checked = !!S.opt[o[0]];
+      c.addEventListener('change', function () { S.opt[o[0]] = c.checked; save(); renderNumbers(); });
+      wrap.appendChild(c); wrap.appendChild(el('label', { for: id }, o[1])); opt.appendChild(wrap);
+    });
+  }
+
+  function tile(box, num, lbl, sub, dark) {
+    var t = el('div', { class: 'tile' + (dark ? ' dark' : '') });
+    t.appendChild(el('span', { class: 'num' }, num)); t.appendChild(el('span', { class: 'lbl' }, lbl)); if (sub) t.appendChild(el('span', { class: 'sub' }, sub));
+    box.appendChild(t);
+  }
+
+  function renderNumbers() {
+    var pid = S.phase; var phase = PHASES.filter(function (p) { return p.id === pid; })[0];
+    var m = monthly(pid); var st = startup();
+    var year = st.total; var yearRev = 0;
+    var perPhase = PHASES.map(function (p) { var mm = monthly(p.id); year += mm.cost * p.months; yearRev += mm.revenue * p.months; return { p: p, m: mm }; });
+    var tiles = document.getElementById('tiles'); tiles.textContent = '';
+    tile(tiles, kr(st.total), 'Uppstart, engångskostnad', 'Claude bygger, ingen utvecklare');
+    tile(tiles, kr(m.cost), 'Löpande per månad', phase.name);
+    tile(tiles, kr(year), 'Kostnad första året', 'Intäkter första året: ' + kr(yearRev));
+    tile(tiles, m.breakEven == null ? '–' : nf.format(m.breakEven), 'Premiumkunder som täcker driften', 'Vid ' + kr(Number(S.price) || 0) + ' i månaden, ' + phase.name.toLowerCase(), true);
+    document.getElementById('lop-phase').textContent = phase.name;
+    rowsTable(document.getElementById('tbl-monthly'), m.rows, 'Summa per månad', m.cost, [
+      ['Premiumkunder i den här fasen', nf.format(m.premiumSubs)],
+      ['Intäkter per månad', kr(m.revenue)],
+      ['Resultat per månad', kr(m.revenue - m.cost)]
+    ]);
+    rowsTable(document.getElementById('tbl-startup'), st.rows, 'Summa uppstart', st.total);
+    var tl = document.getElementById('timeline'); tl.textContent = '';
+    perPhase.forEach(function (x) {
+      var d = el('div', { class: 'phase' });
+      d.appendChild(el('span', { class: 'lbl' }, x.p.name + ', ' + x.p.months + ' mån'));
+      d.appendChild(el('span', { class: 'num' }, kr(x.m.cost) + '/mån'));
+      d.appendChild(el('span', { class: 'lbl' }, 'Totalt ' + kr(x.m.cost * x.p.months)));
+      tl.appendChild(d);
+    });
+    var tot = el('div', { class: 'phase' });
+    tot.appendChild(el('span', { class: 'lbl' }, 'Hela året inklusive uppstart'));
+    tot.appendChild(el('span', { class: 'num' }, kr(year)));
+    tot.appendChild(el('span', { class: 'lbl' }, 'Resultat: ' + kr(yearRev - year)));
+    tl.appendChild(tot);
+  }
+
+  function renderAll() {
+    renderSeg('seg-phase', PHASES, S.phase, function (id) { S.phase = id; save(); renderAll(); });
+    var pr = document.getElementById('in-price'); if (document.activeElement !== pr) pr.value = S.price;
+    var ra = document.getElementById('in-rate'); if (document.activeElement !== ra) ra.value = S.rate;
+    renderInputs(); renderNumbers();
+  }
+
+  document.getElementById('in-price').addEventListener('input', function (e) { var v = parseFloat(e.target.value); if (!isNaN(v) && v >= 0) { S.price = v; save(); renderNumbers(); } });
+  document.getElementById('in-rate').addEventListener('input', function (e) { var v = parseFloat(e.target.value); if (!isNaN(v) && v > 0) { S.rate = v; save(); renderNumbers(); } });
+  document.getElementById('btn-reset').addEventListener('click', function () { S = clone(DEFAULTS); save(); renderAll(); });
+  renderAll();
+})();
+</script>
+</body>
+</html>

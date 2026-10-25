@@ -1,0 +1,23 @@
+.hero {
+  padding-block: var(--space-8);
+  background: var(--color-inverse-bg);
+  color: var(--color-inverse-ink);
+}
+
+.title {
+  max-width: 14ch;
+  font-size: var(--text-hero);
+}
+
+.lead {
+  max-width: 60ch;
+  color: var(--color-inverse-ink-2);
+  font-size: var(--text-md);
+}
+
+.note {
+  margin: 0;
+  color: var(--color-inverse-ink-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}

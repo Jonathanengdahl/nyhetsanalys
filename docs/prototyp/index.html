@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>*,*::before,*::after{box-sizing:border-box}[hidden]{display:none!important}</style>
+<title>Dagens heta ämnen</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&amp;display=swap">
+<link rel="stylesheet" href="app.css">
+<style>
+body{margin:0;background:#F6F7F8}
+a{color:#0B6E69;text-underline-offset:2px}
+a:hover{color:#08504C}
+button,input{font-family:inherit}
+</style>
+</head>
+<body>
+<div id="proto-root" data-page="idag">
+<div style="min-height: 100vh; background: #F6F7F8; color: #101317; font-family: 'IBM Plex Sans', system-ui, sans-serif; font-size: 16px; line-height: 1.55">
+
+<div style="background: #FBEBD9; color: #8A3F05; border-bottom: 1px solid #F3D3B3">
+<p style="max-width: 1160px; margin: 0 auto; padding: 10px 20px; font-size: 14px; line-height: 1.45">Det här är en klickbar prototyp av en AI-tjänst som analyserar heta nyhetsämnen. Öppna <a href="frankrike.html" style="color: #8A3F05; font-weight: 600">Protesterna i Frankrike</a> för en fullständig analys. Övriga ämnen är förhandsvisningar, och chatten svarar på de föreslagna frågorna.</p>
+</div>
+
+<header style="background: #FFFFFF; border-bottom: 1px solid #D5D9DE">
+<div style="max-width: 1160px; margin: 0 auto; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap">
+<a href="#idag" style="display: flex; align-items: center; gap: 10px; min-height: 44px; color: #101317; text-decoration: none">
+<svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M5 24 L13 6 L21 24 Z" stroke="#101317" stroke-width="2" stroke-linejoin="round"></path><path d="M1 15 H9" stroke="#101317" stroke-width="2" stroke-linecap="round"></path><path d="M16.5 13 L29 8" stroke="#0B6E69" stroke-width="2" stroke-linecap="round"></path><path d="M17.6 16 H29" stroke="#0B6E69" stroke-width="2" stroke-linecap="round"></path><path d="M18.8 19 L29 24" stroke="#0B6E69" stroke-width="2" stroke-linecap="round"></path></svg>
+<span style="font-family: 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 19px; letter-spacing: -0.01em">[Produktnamn]</span>
+</a>
+<nav aria-label="Huvudmeny" style="display: flex; align-items: center; gap: 4px; flex-wrap: wrap">
+<a href="#idag" aria-current="page" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px; color: #101317; font-weight: 600; font-size: 14.5px; text-decoration: none; border-bottom: 2px solid #101317">I dag</a>
+<a href="#amnen" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px; color: #3D4450; font-size: 14.5px; text-decoration: none">Ämnen</a>
+<a href="#sa-funkar-det" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px; color: #3D4450; font-size: 14.5px; text-decoration: none">Så funkar det</a>
+<a href="#premium" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px; color: #3D4450; font-size: 14.5px; text-decoration: none">Premium</a>
+<span style="margin-left: 6px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; padding: 4px 10px; border: 1px solid #E1E4E8; border-radius: 4px; color: #3D4450">Prototyp</span>
+<div data-if="isAnon" style="display: contents">
+<button type="button" data-action="openLoginHeader" style="margin-left: 6px; min-height: 44px; padding: 0 18px; border-radius: 8px; border: 0; background: #101317; color: #FFFFFF; font-size: 14.5px; font-weight: 600; cursor: pointer">Logga in</button>
+</div>
+<div data-if="isMember" style="display: contents">
+<span data-badge style="margin-left: 6px; display: inline-flex; align-items: center; gap: 8px; min-height: 36px; padding: 0 12px 0 5px; border-radius: 6px; background: #E6E9ED; color: #101317; font-size: 13.5px; font-weight: 600"><span aria-hidden="true" style="display: flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 999px; background: #FFFFFF; color: #101317; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500">DU</span><span data-bind="badgeLabel">Gratiskonto</span></span>
+<button type="button" data-action="logout" style="min-height: 44px; padding: 0 10px; border: 0; background: transparent; color: #3D4450; font-size: 14px; text-decoration: underline; cursor: pointer">Logga ut</button>
+</div>
+</nav>
+</div>
+</header>
+
+<section id="idag" aria-labelledby="h-idag" style="background: #101317; color: #FFFFFF">
+<div style="max-width: 1160px; margin: 0 auto; padding: 56px 20px 0; display: flex; flex-direction: column; gap: 22px">
+<p style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #B9C0CA">Lördag 24 oktober 2026 · Uppdaterad 18.08</p>
+<h1 id="h-idag" style="margin: 0; max-width: 900px; font-family: 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif; font-weight: 700; font-size: clamp(44px, 8vw, 92px); line-height: 1; letter-spacing: -0.025em">Vi analyserar dagens heta nyhetsämnen.</h1>
+<p style="margin: 0; max-width: 640px; font-size: 18.5px; line-height: 1.5; color: #D5D9DE">När många medier skriver om samma sak samlar vi artiklarna, jämför hur de beskriver händelsen och visar vad som saknas i debatten. Neutralt, i ditt tempo och alltid med källor.</p>
+
+<div style="max-width: 720px; display: flex; flex-direction: column; gap: 12px; margin-top: 6px">
+<button type="button" data-action="openChat" style="display: flex; align-items: center; gap: 12px; width: 100%; min-height: 60px; padding: 8px 8px 8px 18px; border-radius: 10px; border: 1px solid #3D4450; background: #1B2027; color: #D5D9DE; font-size: 16.5px; text-align: left; cursor: pointer">
+<svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true" style="flex: 0 0 auto"><path d="M4 5.5 C4 4.7 4.7 4 5.5 4 H16.5 C17.3 4 18 4.7 18 5.5 V13 C18 13.8 17.3 14.5 16.5 14.5 H10 L6 18 V14.5 H5.5 C4.7 14.5 4 13.8 4 13 Z" stroke="#FFFFFF" stroke-width="1.6" stroke-linejoin="round"></path><path d="M8 8.5 H14 M8 11 H12" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round"></path></svg>
+<span style="flex: 1 1 auto; min-width: 0">Fråga om dagens ämnen …</span>
+<span style="flex: 0 0 auto; display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 6px; background: #0B6E69; color: #FFFFFF; font-weight: 600; font-size: 15px">Fråga AI</span>
+</button>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<button type="button" data-action="ask1" style="min-height: 44px; padding: 0 14px; border-radius: 8px; border: 1px solid #3D4450; background: transparent; color: #FFFFFF; font-size: 14px; cursor: pointer">Vad är viktigast i dag?</button>
+<button type="button" data-action="ask2" style="min-height: 44px; padding: 0 14px; border-radius: 8px; border: 1px solid #3D4450; background: transparent; color: #FFFFFF; font-size: 14px; cursor: pointer">Vad händer i regeringsfrågan?</button>
+<button type="button" data-action="ask3" style="min-height: 44px; padding: 0 14px; border-radius: 8px; border: 1px solid #3D4450; background: transparent; color: #FFFFFF; font-size: 14px; cursor: pointer">Varför stiger inflationen?</button>
+</div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 12px 40px; padding: 20px 0 30px; margin-top: 10px; border-top: 1px solid #2A3038">
+<div style="display: flex; flex-direction: column"><span style="font-family: 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 34px; line-height: 1.05">6</span><span style="font-size: 13.5px; color: #B9C0CA">ämnen i dag</span></div>
+<div style="display: flex; flex-direction: column"><span style="font-family: 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 34px; line-height: 1.05">8</span><span style="font-size: 13.5px; color: #B9C0CA">artiklar analyserade om Frankrike</span></div>
+<div style="display: flex; flex-direction: column"><span style="font-family: 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 34px; line-height: 1.05">46</span><span style="font-size: 13.5px; color: #B9C0CA">källor bakom ämnessidan</span></div>
+</div>
+</div>
+<div aria-hidden="true" style="display: flex; height: 6px">
+<span style="flex: 1 1 0; background: #2A78D6"></span><span style="flex: 1 1 0; background: #1BAF7A"></span><span style="flex: 1 1 0; background: #EDA100"></span><span style="flex: 1 1 0; background: #EB6834"></span><span style="flex: 1 1 0; background: #E87BA4"></span><span style="flex: 1 1 0; background: #6250D6"></span>
+</div>
+</section>
+
+<main id="amnen" style="max-width: 1160px; margin: 0 auto; padding: 36px 20px 64px; display: flex; flex-direction: column; gap: 28px">
+
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 14px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h2 style="margin: 0; font-family: 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 34px; line-height: 1.05; letter-spacing: -0.01em">Dagens ämnen</h2>
+<p style="margin: 0; color: #3D4450">Artiklar om samma händelse samlas automatiskt till ett ämne.</p>
+</div>
+<div role="group" aria-label="Filtrera ämnen" style="display: flex; flex-wrap: wrap; gap: 6px">
+<button type="button" data-cat="alla" aria-pressed="false" style="min-height: 44px; padding: 0 16px; border-radius: 8px; border: 1px solid #D5D9DE; background: #FFFFFF; color: #101317; font-size: 14.5px; font-weight: 600; cursor: pointer">Alla <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 400">6</span></button>
+<button type="button" data-cat="inrikes" aria-pressed="false" style="min-height: 44px; padding: 0 16px; border-radius: 8px; border: 1px solid #D5D9DE; background: #FFFFFF; color: #101317; font-size: 14.5px; font-weight: 600; cursor: pointer">Inrikes <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 400">2</span></button>
+<button type="button" data-cat="utrikes" aria-pressed="false" style="min-height: 44px; padding: 0 16px; border-radius: 8px; border: 1px solid #D5D9DE; background: #FFFFFF; color: #101317; font-size: 14.5px; font-weight: 600; cursor: pointer">Utrikes <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 400">4</span></button>
+<button type="button" data-cat="ekonomi" aria-pressed="false" style="min-height: 44px; padding: 0 16px; border-radius: 8px; border: 1px solid #D5D9DE; background: #FFFFFF; color: #101317; font-size: 14.5px; font-weight: 600; cursor: pointer">Ekonomi <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 400">2</span></button>
+<button type="button" data-cat="politik" aria-pressed="false" style="min-height: 44px; padding: 0 16px; border-radius: 8px; border: 1px solid #D5D9DE; background: #FFFFFF; color: #101317; font-size: 14.5px; font-weight: 600; cursor: pointer">Politik <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 400">3</span></button>
+</div>
+</div>
+
+<article aria-labelledby="h-fr" data-topic="fr" style="display: flex; flex-wrap: wrap; background: #FFFFFF; border: 1px solid #E1E4E8; border-radius: 12px; overflow: hidden">
+<div style="flex: 999 1 520px; min-width: 0; padding: 30px 28px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #3D4450">Utrikes · Frankrike</span>
+<span style="display: inline-flex; align-items: center; gap: 7px; padding: 3px 9px; border-radius: 4px; background: #FBEBD9; color: #8A3F05; font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 500"><span aria-hidden="true" style="display: block; width: 7px; height: 7px; border-radius: 999px; background: #A84F06"></span>Pågår: akt II i dag</span>
+<span style="display: inline-flex; padding: 3px 9px; border-radius: 4px; background: #0B6E69; color: #FFFFFF; font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 500">Full analys</span>
+</div>
+<h3 id="h-fr" style="margin: 0; font-family: 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif; font-weight: 700; font-size: clamp(38px, 6vw, 60px); line-height: 1; letter-spacing: -0.02em">Protesterna i Frankrike</h3>
+<p style="margin: 0; max-width: 560px; font-size: 17.5px; line-height: 1.5; color: #3D4450">Från skolprotester till landets värsta oroligheter på flera år. Medierna är överens om vad som hände, men inte om varför.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<div style="flex: 1 1 150px; min-width: 0; background: #F5F6F8; border-radius: 8px; padding: 12px 14px; display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 26px; line-height: 1.05">550–800 tn</span><span style="font-size: 13px; line-height: 1.35; color: #3D4450">deltog 17 okt, beroende på vem som räknar</span></div>
+<div style="flex: 1 1 150px; min-width: 0; background: #F5F6F8; border-radius: 8px; padding: 12px 14px; display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 26px; line-height: 1.05">≈ 2 500</span><span style="font-size: 13px; line-height: 1.35; color: #3D4450">gripna och i polisförvar</span></div>
+<div style="flex: 1 1 150px; min-width: 0; background: #F5F6F8; border-radius: 8px; padding: 12px 14px; display: flex; flex-direction: column; gap: 2px"><span style="font-family: 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 26px; line-height: 1.05">70 000</span><span style="font-size: 13px; line-height: 1.35; color: #3D4450">poliser och gendarmer i tjänst i dag</span></div>
+</div>
+
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 10px">
+<figcaption style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; font-size: 14px; font-weight: 600">Vad artiklarna lyfter fram<span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 400; color: #5B6370">8 artiklar · andel av omnämnanden</span></figcaption>
+<div role="img" aria-label="Våld och ordning 39 procent, politiskt spel och valet 32 procent, ekonomiska och sociala orsaker 10 procent, polisens agerande 6 procent, marknad och statsskuld 6 procent, demonstranternas egna röster 6 procent" style="display: flex; gap: 2px; height: 16px">
+<span style="flex: 38.7 1 0; background: #2A78D6; border-radius: 4px 0 0 4px"></span><span style="flex: 32.2 1 0; background: #EB6834"></span><span style="flex: 9.7 1 0; background: #1BAF7A"></span><span style="flex: 6.5 1 0; background: #EDA100"></span><span style="flex: 6.5 1 0; background: #E87BA4"></span><span style="flex: 6.4 1 0; background: #6250D6; border-radius: 0 4px 4px 0"></span>
+</div>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: #3D4450">
+<li style="display: inline-flex; align-items: center; gap: 6px"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 3px; background: #2A78D6"></span>Våld och ordning <strong style="color: #101317">39 %</strong></li>
+<li style="display: inline-flex; align-items: center; gap: 6px"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 3px; background: #EB6834"></span>Politik och valet <strong style="color: #101317">32 %</strong></li>
+<li style="display: inline-flex; align-items: center; gap: 6px"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 3px; background: #1BAF7A"></span>Orsaker <strong style="color: #101317">10 %</strong></li>
+<li style="display: inline-flex; align-items: center; gap: 6px"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 3px; background: #EDA100"></span>Polisen <strong style="color: #101317">6 %</strong></li>
+<li style="display: inline-flex; align-items: center; gap: 6px"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 3px; background: #E87BA4"></span>Statsskulden <strong style="color: #101317">6 %</strong></li>
+<li style="display: inline-flex; align-items: center; gap: 6px"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 3px; background: #6250D6"></span>Demonstranternas röster <strong style="color: #101317">6 %</strong></li>
+</ul>
+</figure>
+
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding-top: 4px">
+<a href="frankrike.html" style="display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 22px; border-radius: 8px; background: #101317; color: #FFFFFF; font-weight: 600; font-size: 15px; text-decoration: none">Öppna ämnet<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8 H13 M9 4 L13 8 L9 12" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+<button type="button" data-action="openChatFr" style="display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 20px; border-radius: 8px; border: 1px solid #101317; background: #FFFFFF; color: #101317; font-weight: 600; font-size: 15px; cursor: pointer"><svg width="18" height="18" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M4 5.5 C4 4.7 4.7 4 5.5 4 H16.5 C17.3 4 18 4.7 18 5.5 V13 C18 13.8 17.3 14.5 16.5 14.5 H10 L6 18 V14.5 H5.5 C4.7 14.5 4 13.8 4 13 Z" stroke="#101317" stroke-width="1.8" stroke-linejoin="round"></path></svg>Fråga om ämnet</button>
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #5B6370">8 artiklar · 7 medier · 46 källor</span>
+</div>
+</div>
+
+<div style="flex: 1 1 340px; min-width: 0; background: #101317; color: #FFFFFF; padding: 26px 22px; display: flex; flex-direction: column; justify-content: space-between; gap: 12px">
+<svg viewBox="0 0 300 290" role="img" aria-label="Schematisk karta över Frankrike med orter som nämns i rapporteringen: Paris, Orléans, Limoges, Lyon, Saint-Étienne, Mulhouse, Montpellier och Marseille" style="width: 100%; height: auto; max-height: 420px">
+<path d="M150 20 L232 56 L264 118 L250 210 L190 262 L92 250 L60 188 L22 116 L88 66 Z" fill="#1B2027" stroke="#5B6370" stroke-width="2" stroke-linejoin="round"></path>
+<circle cx="156" cy="84" r="16" fill="#EB6834" opacity="0.25"></circle>
+<circle cx="156" cy="84" r="7" fill="#FFFFFF"></circle>
+<text x="168" y="80" fill="#FFFFFF" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="500">Paris</text>
+<circle cx="146" cy="112" r="4.5" fill="#FFFFFF"></circle>
+<text x="138" y="116" fill="#D5D9DE" font-family="IBM Plex Mono, monospace" font-size="11" text-anchor="end">Orléans</text>
+<circle cx="124" cy="168" r="4.5" fill="#FFFFFF"></circle>
+<text x="116" y="172" fill="#D5D9DE" font-family="IBM Plex Mono, monospace" font-size="11" text-anchor="end">Limoges</text>
+<circle cx="208" cy="166" r="4.5" fill="#FFFFFF"></circle>
+<text x="216" y="164" fill="#D5D9DE" font-family="IBM Plex Mono, monospace" font-size="11">Lyon</text>
+<circle cx="194" cy="182" r="4.5" fill="#FFFFFF"></circle>
+<text x="186" y="196" fill="#D5D9DE" font-family="IBM Plex Mono, monospace" font-size="11" text-anchor="end">Saint-Étienne</text>
+<circle cx="252" cy="132" r="4.5" fill="#FFFFFF"></circle>
+<text x="246" y="120" fill="#D5D9DE" font-family="IBM Plex Mono, monospace" font-size="11" text-anchor="end">Mulhouse</text>
+<circle cx="172" cy="232" r="4.5" fill="#FFFFFF"></circle>
+<text x="164" y="236" fill="#D5D9DE" font-family="IBM Plex Mono, monospace" font-size="11" text-anchor="end">Montpellier</text>
+<circle cx="214" cy="240" r="4.5" fill="#FFFFFF"></circle>
+<text x="222" y="244" fill="#D5D9DE" font-family="IBM Plex Mono, monospace" font-size="11">Marseille</text>
+</svg>
+<p style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 12px; line-height: 1.5; color: #B9C0CA">Orter som nämns i rapporteringen. Schematisk karta.</p>
+</div>
+</article>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px">
+
+<article aria-labelledby="h-reg" data-topic="reg" style="display: flex; flex-direction: column; background: #FFFFFF; border: 1px solid #E1E4E8; border-radius: 10px; overflow: hidden">
+<div style="height: 150px; background: #DDEFEC; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 240 140" role="img" aria-label="Stiliserad riksdagssal med 349 platser" style="height: 128px; width: auto">
+<path d="M80 128 A40 40 0 0 1 160 128" fill="none" stroke="#0B6E69" stroke-width="7" stroke-linecap="round" stroke-dasharray="0 10.5"></path>
+<path d="M64 128 A56 56 0 0 1 176 128" fill="none" stroke="#0B6E69" stroke-width="7" stroke-linecap="round" stroke-dasharray="0 10.5"></path>
+<path d="M48 128 A72 72 0 0 1 192 128" fill="none" stroke="#0B6E69" stroke-width="7" stroke-linecap="round" stroke-dasharray="0 10.5"></path>
+<path d="M32 128 A88 88 0 0 1 208 128" fill="none" stroke="#0B6E69" stroke-width="7" stroke-linecap="round" stroke-dasharray="0 10.5"></path>
+<path d="M16 128 A104 104 0 0 1 224 128" fill="none" stroke="#0B6E69" stroke-width="7" stroke-linecap="round" stroke-dasharray="0 10.5"></path>
+<text x="120" y="124" fill="#101317" font-family="IBM Plex Mono, monospace" font-size="11" text-anchor="middle">349</text>
+</svg>
+</div>
+<div style="flex: 1 1 auto; padding: 18px 18px 20px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #3D4450">Inrikes · Politik</span><span style="padding: 2px 8px; border-radius: 4px; border: 1px dashed #5B6370; color: #3D4450; font-family: 'IBM Plex Mono', monospace; font-size: 11.5px">Förhandsvisning</span></div>
+<h3 id="h-reg" style="margin: 0; font-family: 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 25px; line-height: 1.1">Regeringsbildningen</h3>
+<p style="margin: 0; color: #3D4450">Talmannen har gett C-ledaren Elisabeth Thand Ringqvist ett sonderingsuppdrag. Hon vill bidra till en mittenregering, men inte själv leda den.</p>
+<p style="margin: auto 0 0; font-size: 12.5px; color: #5B6370">Källor: <a href="https://www.placera.se/telegram/talmannen-ger-sonderingsuppdraget-till-elisabeth-thand-ringqvist-c-uppdatering-20261019">Placera/Finwire</a> · <a href="https://efn.se/c-ledaren-vill-bilda-mittenregering-men-inte-leda-den">EFN</a></p>
+</div>
+</article>
+
+<article aria-labelledby="h-inf" data-topic="inf" style="display: flex; flex-direction: column; background: #FFFFFF; border: 1px solid #E1E4E8; border-radius: 10px; overflow: hidden">
+<div style="height: 150px; background: #E3ECF8; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 240 140" role="img" aria-label="KPIF-inflation: 0,7 procent i augusti och 1,5 procent i september. Inflationsmålet är 2 procent." style="height: 128px; width: auto">
+<path d="M30 38 H210" stroke="#101317" stroke-width="1.5" stroke-dasharray="4 4"></path>
+<text x="210" y="32" fill="#101317" font-family="IBM Plex Mono, monospace" font-size="10.5" text-anchor="end">Mål 2 %</text>
+<path d="M30 118 H210" stroke="#5B6370" stroke-width="1.5"></path>
+<rect x="66" y="90" width="44" height="28" rx="4" fill="#8A929D"></rect>
+<rect x="130" y="58" width="44" height="60" rx="4" fill="#2A78D6"></rect>
+<text x="88" y="84" fill="#101317" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="500" text-anchor="middle">0,7</text>
+<text x="152" y="52" fill="#101317" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="500" text-anchor="middle">1,5</text>
+<text x="88" y="133" fill="#3D4450" font-family="IBM Plex Mono, monospace" font-size="10.5" text-anchor="middle">aug</text>
+<text x="152" y="133" fill="#3D4450" font-family="IBM Plex Mono, monospace" font-size="10.5" text-anchor="middle">sep</text>
+</svg>
+</div>
+<div style="flex: 1 1 auto; padding: 18px 18px 20px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #3D4450">Inrikes · Ekonomi</span><span style="padding: 2px 8px; border-radius: 4px; border: 1px dashed #5B6370; color: #3D4450; font-family: 'IBM Plex Mono', monospace; font-size: 11.5px">Förhandsvisning</span></div>
+<h3 id="h-inf" style="margin: 0; font-family: 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 25px; line-height: 1.1">Inflationen stiger igen</h3>
+<p style="margin: 0; color: #3D4450">KPIF-inflationen steg till 1,5 procent i september, från 0,7 procent i augusti. Dyrare el och drivmedel förklarar uppgången, enligt SCB.</p>
+<p style="margin: auto 0 0; font-size: 12.5px; color: #5B6370">Källa: <a href="https://www.scb.se/hitta-statistik/statistik-efter-amne/priser-och-ekonomiska-tendenser/priser/konsumentprisindex-kpi/pong/statistiknyhet/konsumentprisindex-kpi-september-2026/">SCB, 14 oktober</a></p>
+</div>
+</article>
+
+<article aria-labelledby="h-eu" data-topic="eu" style="display: flex; flex-direction: column; background: #FFFFFF; border: 1px solid #E1E4E8; border-radius: 10px; overflow: hidden">
+<div style="height: 150px; background: #FBEBD9; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 240 140" role="img" aria-label="Schematisk bild: protester i Frankrike, Belgien, Italien och Albanien" style="height: 128px; width: auto">
+<circle cx="70" cy="70" r="20" fill="#A84F06" opacity="0.18"></circle>
+<circle cx="70" cy="70" r="8" fill="#A84F06"></circle>
+<text x="70" y="102" fill="#101317" font-family="IBM Plex Mono, monospace" font-size="10.5" text-anchor="middle">Frankrike</text>
+<circle cx="92" cy="30" r="5.5" fill="#A84F06"></circle>
+<text x="102" y="34" fill="#101317" font-family="IBM Plex Mono, monospace" font-size="10.5">Belgien</text>
+<circle cx="146" cy="80" r="5.5" fill="#A84F06"></circle>
+<text x="146" y="66" fill="#101317" font-family="IBM Plex Mono, monospace" font-size="10.5" text-anchor="middle">Italien</text>
+<circle cx="188" cy="104" r="5.5" fill="#A84F06"></circle>
+<text x="188" y="124" fill="#101317" font-family="IBM Plex Mono, monospace" font-size="10.5" text-anchor="middle">Albanien</text>
+</svg>
+</div>
+<div style="flex: 1 1 auto; padding: 18px 18px 20px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #3D4450">Utrikes · Europa</span><span style="padding: 2px 8px; border-radius: 4px; border: 1px dashed #5B6370; color: #3D4450; font-family: 'IBM Plex Mono', monospace; font-size: 11.5px">Förhandsvisning</span></div>
+<h3 id="h-eu" style="margin: 0; font-family: 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 25px; line-height: 1.1">Oroligheterna sprids i Europa</h3>
+<p style="margin: 0; color: #3D4450">Protester har också förekommit i Italien, Belgien och Albanien. I Milano plundrades butiker två dagar i rad och premiärministern kallade till regeringsmöte.</p>
+<p style="margin: 0; display: flex; gap: 8px; align-items: flex-start; font-size: 13.5px; color: #3D4450"><span style="flex: 0 0 auto; padding: 1px 7px; border-radius: 4px; background: #E6E9ED; color: #101317; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500">Siffror skiljer sig</span>Antalet gripna i Milano anges olika av SVT och Reuters.</p>
+<p style="margin: auto 0 0; font-size: 12.5px; color: #5B6370">Källor: <a href="https://www.svt.se/nyheter/utrikes/protesterna-i-europa">SVT</a> · <a href="https://www.internazionale.it/ultime-notizie-reuters/2026/10/18/milan-police-clash-with-protesters-on-second-day-of-unrest">Reuters</a></p>
+</div>
+</article>
+
+<article aria-labelledby="h-ukr" data-topic="ukr" style="display: flex; flex-direction: column; background: #FFFFFF; border: 1px solid #E1E4E8; border-radius: 10px; overflow: hidden">
+<div style="height: 150px; background: #E9E6FA; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 240 140" role="img" aria-label="Tre parter, USA, Ukraina och Ryssland, möts i Abu Dhabi" style="height: 128px; width: auto">
+<path d="M56 32 L120 72 M184 32 L120 72 M120 112 L120 72" stroke="#6250D6" stroke-width="1.5" stroke-dasharray="3 4"></path>
+<rect x="110" y="62" width="20" height="20" rx="4" fill="#6250D6"></rect>
+<text x="138" y="90" fill="#101317" font-family="IBM Plex Mono, monospace" font-size="10.5">Abu Dhabi</text>
+<circle cx="56" cy="32" r="9" fill="#FFFFFF" stroke="#6250D6" stroke-width="2.5"></circle>
+<text x="56" y="56" fill="#101317" font-family="IBM Plex Mono, monospace" font-size="10.5" text-anchor="middle">USA</text>
+<circle cx="184" cy="32" r="9" fill="#FFFFFF" stroke="#6250D6" stroke-width="2.5"></circle>
+<text x="184" y="56" fill="#101317" font-family="IBM Plex Mono, monospace" font-size="10.5" text-anchor="middle">Ukraina</text>
+<circle cx="120" cy="112" r="9" fill="#FFFFFF" stroke="#6250D6" stroke-width="2.5"></circle>
+<text x="84" y="116" fill="#101317" font-family="IBM Plex Mono, monospace" font-size="10.5" text-anchor="end">Ryssland</text>
+</svg>
+</div>
+<div style="flex: 1 1 auto; padding: 18px 18px 20px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #3D4450">Utrikes · Politik</span><span style="padding: 2px 8px; border-radius: 4px; border: 1px dashed #5B6370; color: #3D4450; font-family: 'IBM Plex Mono', monospace; font-size: 11.5px">Förhandsvisning</span></div>
+<h3 id="h-ukr" style="margin: 0; font-family: 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 25px; line-height: 1.1">Nya samtal om Ukraina</h3>
+<p style="margin: 0; color: #3D4450">Ryssland uppger att nya förhandlingar med Ukraina och USA ska hållas i Abu Dhabi.</p>
+<p style="margin: 0; display: flex; gap: 8px; align-items: flex-start; font-size: 13.5px; color: #3D4450"><span style="flex: 0 0 auto; padding: 1px 7px; border-radius: 4px; background: #FFFFFF; border: 1px dashed #5B6370; color: #3D4450; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500">En källa</span>Uppgiften kommer från den ryska sidan.</p>
+<p style="margin: auto 0 0; font-size: 12.5px; color: #5B6370">Källa: <a href="https://fr.euronews.com/2026/10/23/la-russie-annonce-des-negociations-a-abou-dhabi-avec-lukraine-et-les-etats-unis">Euronews, 23 oktober</a></p>
+</div>
+</article>
+
+<article aria-labelledby="h-storm" data-topic="storm" style="display: flex; flex-direction: column; background: #FFFFFF; border: 1px solid #E1E4E8; border-radius: 10px; overflow: hidden">
+<div style="height: 150px; background: #E4E7EB; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 240 140" role="img" aria-label="Stiliserat lågtryck över nordvästra Frankrike" style="height: 128px; width: auto">
+<ellipse cx="96" cy="64" rx="22" ry="14" fill="none" stroke="#3D4450" stroke-width="1.6"></ellipse>
+<ellipse cx="98" cy="66" rx="44" ry="28" fill="none" stroke="#3D4450" stroke-width="1.6"></ellipse>
+<ellipse cx="100" cy="68" rx="68" ry="42" fill="none" stroke="#3D4450" stroke-width="1.6"></ellipse>
+<ellipse cx="102" cy="70" rx="92" ry="56" fill="none" stroke="#3D4450" stroke-width="1.6" opacity="0.6"></ellipse>
+<text x="96" y="69" fill="#101317" font-family="IBM Plex Sans Condensed, sans-serif" font-size="15" font-weight="700" text-anchor="middle">L</text>
+<path d="M150 104 C166 96 178 98 192 90 M188 84 L194 90 L186 94" stroke="#101317" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div style="flex: 1 1 auto; padding: 18px 18px 20px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #3D4450">Utrikes · Väder</span><span style="padding: 2px 8px; border-radius: 4px; border: 1px dashed #5B6370; color: #3D4450; font-family: 'IBM Plex Mono', monospace; font-size: 11.5px">Förhandsvisning</span></div>
+<h3 id="h-storm" style="margin: 0; font-family: 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 25px; line-height: 1.1">Stormen Austen</h3>
+<p style="margin: 0; color: #3D4450">Stormen drog in över nordvästra Frankrike och lämnade över 160 000 hushåll utan ström.</p>
+<p style="margin: 0; display: flex; gap: 8px; align-items: flex-start; font-size: 13.5px; color: #3D4450"><span style="flex: 0 0 auto; padding: 1px 7px; border-radius: 4px; background: #E6E9ED; color: #101317; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500">Ingen politisk vinkel</span>Här visar vi bara fakta, siffror och osäkerheter.</p>
+<p style="margin: auto 0 0; font-size: 12.5px; color: #5B6370">Källa: <a href="https://fr.euronews.com/2026/10/23/la-tempete-austen-frappe-le-nord-ouest-de-la-france-161000-foyers-sans-electricite">Euronews, 23 oktober</a></p>
+</div>
+</article>
+
+</div>
+<p style="margin: -8px 0 0; font-size: 13px; color: #5B6370">Förhandsvisningarna är inte analyserade ännu. I den färdiga appen får varje ämne samma djupa analys som Frankrike.</p>
+
+<section id="sa-funkar-det" aria-labelledby="h-hur" style="display: flex; flex-direction: column; gap: 16px; padding-top: 12px">
+<h2 id="h-hur" style="margin: 0; font-family: 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 34px; line-height: 1.05; letter-spacing: -0.01em">Så funkar det</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px">
+<div style="background: #FFFFFF; border: 1px solid #E1E4E8; border-radius: 10px; padding: 22px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: center; justify-content: space-between"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true"><rect x="7" y="9" width="18" height="22" rx="3" stroke="#101317" stroke-width="2"></rect><rect x="15" y="5" width="18" height="22" rx="3" fill="#DDEFEC" stroke="#0B6E69" stroke-width="2"></rect><path d="M19 12 H29 M19 16 H29 M19 20 H25" stroke="#0B6E69" stroke-width="2" stroke-linecap="round"></path></svg><span style="font-family: 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 40px; line-height: 1; color: #D5D9DE">1</span></div>
+<h3 style="margin: 0; font-family: 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 22px">Vi hittar de heta ämnena</h3>
+<p style="margin: 0; color: #3D4450">Vi bevakar medierna dygnet runt. När många oberoende medier skriver om samma händelse blir den ett ämne, och artiklarna samlas automatiskt.</p>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #E1E4E8; border-radius: 10px; padding: 22px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: center; justify-content: space-between"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="15" cy="20" r="9" stroke="#101317" stroke-width="2"></circle><circle cx="25" cy="20" r="9" fill="#E3ECF8" fill-opacity="0.8" stroke="#2A78D6" stroke-width="2"></circle></svg><span style="font-family: 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 40px; line-height: 1; color: #D5D9DE">2</span></div>
+<h3 style="margin: 0; font-family: 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 22px">Vi jämför</h3>
+<p style="margin: 0; color: #3D4450">Varje artikel analyseras för sig: fakta, röster, rubrik mot brödtext, siffror och källor. Ett medium är inte vänster eller höger, en enskild text kan vara det.</p>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #E1E4E8; border-radius: 10px; padding: 22px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: center; justify-content: space-between"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M8 10 C8 8.9 8.9 8 10 8 H30 C31.1 8 32 8.9 32 10 V24 C32 25.1 31.1 26 30 26 H19 L12 32 V26 H10 C8.9 26 8 25.1 8 24 Z" fill="#FBEBD9" stroke="#A84F06" stroke-width="2" stroke-linejoin="round"></path><path d="M14 15 H26 M14 19 H22" stroke="#A84F06" stroke-width="2" stroke-linecap="round"></path></svg><span style="font-family: 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 40px; line-height: 1; color: #D5D9DE">3</span></div>
+<h3 style="margin: 0; font-family: 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 22px">Du förstår</h3>
+<p style="margin: 0; color: #3D4450">En neutral sammanfattning i tre djup, det som saknas i debatten och en AI som svarar på dina följdfrågor, alltid med källor.</p>
+</div>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #E1E4E8; border-radius: 10px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+<h3 style="margin: 0; font-family: 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 22px">Våra urvalsregler</h3>
+<ul style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px 24px">
+<li style="display: flex; flex-direction: column; gap: 4px"><strong style="font-size: 15.5px">Bara heta ämnen</strong><span style="font-size: 15px; color: #3D4450">Ett ämne analyseras först när många oberoende medier skriver om det. Samma TT-text i flera tidningar räknas som en källa.</span></li>
+<li style="display: flex; flex-direction: column; gap: 4px"><strong style="font-size: 15.5px">Fler länder när ämnet är stort</strong><span style="font-size: 15px; color: #3D4450">Vi läser alltid medier i landet där det händer. Skrivs det mycket om ämnet i flera länder visar vi också hur de beskriver det.</span></li>
+<li style="display: flex; flex-direction: column; gap: 4px"><strong style="font-size: 15.5px">AI-chatten håller sig till våra ämnen</strong><span style="font-size: 15px; color: #3D4450">Den svarar bara utifrån källorna vi har analyserat. Frågar du om något annat säger den det.</span></li>
+</ul>
+<a href="metod.html" style="align-self: flex-start; display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; font-size: 15px">Läs hela metoden</a>
+</div>
+</section>
+
+<section id="premium" aria-labelledby="h-plan" style="display: flex; flex-direction: column; gap: 16px; padding-top: 12px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h2 id="h-plan" style="margin: 0; font-family: 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 34px; line-height: 1.05; letter-spacing: -0.01em">Gratis att läsa. Premium för fler frågor.</h2>
+<p style="margin: 0; color: #3D4450">Den neutrala grundbilden är alltid gratis. Du betalar för djupet och för att fråga mer.</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px">
+<div style="background: #FFFFFF; border: 1px solid #E1E4E8; border-radius: 10px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+<div><h3 style="margin: 0; font-family: 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 22px">Utan konto</h3><p style="margin: 2px 0 0; font-family: 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 34px; line-height: 1.1">0 kr</p></div>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 15px; color: #3D4450">
+<li style="display: flex; gap: 10px"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" style="flex: 0 0 auto; margin-top: 3px"><path d="M3.5 9.5 L7 13 L14.5 5" stroke="#0B6E69" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Alla ämnen på 30 sek och 5 min</li>
+<li style="display: flex; gap: 10px"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" style="flex: 0 0 auto; margin-top: 3px"><path d="M3.5 9.5 L7 13 L14.5 5" stroke="#0B6E69" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Föreslagna frågor i AI-chatten</li>
+<li style="display: flex; gap: 10px"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" style="flex: 0 0 auto; margin-top: 3px"><path d="M3.5 9.5 L7 13 L14.5 5" stroke="#0B6E69" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Veckobrevet varje söndag</li>
+</ul>
+<p style="margin: auto 0 0; font-size: 13.5px; color: #5B6370">Ingen inloggning behövs.</p>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #101317; border-radius: 10px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+<div><h3 style="margin: 0; font-family: 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 22px">Gratiskonto</h3><p style="margin: 2px 0 0; font-family: 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 34px; line-height: 1.1">0 kr</p></div>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 15px; color: #3D4450">
+<li style="display: flex; gap: 10px"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" style="flex: 0 0 auto; margin-top: 3px"><path d="M3.5 9.5 L7 13 L14.5 5" stroke="#0B6E69" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Allt i Utan konto</li>
+<li style="display: flex; gap: 10px"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" style="flex: 0 0 auto; margin-top: 3px"><path d="M3.5 9.5 L7 13 L14.5 5" stroke="#0B6E69" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span><strong style="color: #101317"><span data-bind="limit">5</span> egna frågor</strong> till AI:n per dag</span></li>
+<li style="display: flex; gap: 10px"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" style="flex: 0 0 auto; margin-top: 3px"><path d="M3.5 9.5 L7 13 L14.5 5" stroke="#0B6E69" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Följ ämnen och se vad som är nytt</li>
+</ul>
+<div data-if="isAnon" style="display: contents">
+<button type="button" data-action="openLoginSignup" style="margin-top: auto; min-height: 48px; border-radius: 8px; border: 1px solid #101317; background: #FFFFFF; color: #101317; font-size: 15px; font-weight: 600; cursor: pointer">Skapa gratis konto</button>
+</div>
+<div data-if="isMember" style="display: contents">
+<p style="margin: auto 0 0; font-size: 13.5px; font-weight: 600; color: #0B6E69">Du har ett konto</p>
+</div>
+</div>
+<div style="background: #101317; color: #FFFFFF; border-radius: 10px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+<div><h3 style="margin: 0; font-family: 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 22px">Premium</h3><p style="margin: 2px 0 0; font-family: 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 34px; line-height: 1.1">[Pris] <span style="font-size: 18px">kr/mån</span></p></div>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 15px; color: #D5D9DE">
+<li style="display: flex; gap: 10px"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" style="flex: 0 0 auto; margin-top: 3px"><path d="M3.5 9.5 L7 13 L14.5 5" stroke="#1BAF7A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Allt i Gratiskonto</li>
+<li style="display: flex; gap: 10px"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" style="flex: 0 0 auto; margin-top: 3px"><path d="M3.5 9.5 L7 13 L14.5 5" stroke="#1BAF7A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span><strong style="color: #FFFFFF">Så många frågor du vill</strong></span></li>
+<li style="display: flex; gap: 10px"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" style="flex: 0 0 auto; margin-top: 3px"><path d="M3.5 9.5 L7 13 L14.5 5" stroke="#1BAF7A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Djupdykning i alla ämnen</li>
+<li style="display: flex; gap: 10px"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" style="flex: 0 0 auto; margin-top: 3px"><path d="M3.5 9.5 L7 13 L14.5 5" stroke="#1BAF7A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>Notiser när ämnen du följer uppdateras</li>
+</ul>
+<div data-if="notPremium" style="display: contents">
+<button type="button" data-action="upgrade" style="margin-top: auto; min-height: 48px; border-radius: 8px; border: 0; background: #FFFFFF; color: #101317; font-size: 15px; font-weight: 700; cursor: pointer">Prova Premium</button>
+</div>
+<div data-if="isPremium" style="display: contents">
+<p style="margin: auto 0 0; font-size: 13.5px; font-weight: 600; color: #1BAF7A">Du har Premium</p>
+</div>
+</div>
+</div>
+<p style="margin: 0; font-size: 13px; color: #5B6370">Priset är inte bestämt. I Premium finns ett tak för rimlig användning, som stoppar robotar men inte vanliga läsare.</p>
+</section>
+
+<section id="veckobrev" aria-labelledby="h-brev" style="background: #0B3B38; color: #FFFFFF; border-radius: 12px; padding: 32px 28px; display: flex; flex-wrap: wrap; align-items: center; gap: 22px 40px">
+<div style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #BFE3DE">Veckobrev · varje söndag</p>
+<h2 id="h-brev" style="margin: 0; font-family: 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif; font-weight: 700; font-size: clamp(30px, 4.5vw, 44px); line-height: 1">Veckans viktigaste, på fem minuter.</h2>
+<p style="margin: 0; color: #D7EDEA">Fem ämnen, hur de beskrevs och vad som saknades. Inget brus.</p>
+</div>
+<div style="flex: 1 1 320px; min-width: 0">
+<div data-if="notSubscribed" style="display: contents">
+<form data-submit="subscribe" style="display: flex; flex-direction: column; gap: 8px">
+<label for="epost" style="font-size: 14px; font-weight: 600">Din e-postadress</label>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<input id="epost" type="email" required placeholder="namn@exempel.se" style="flex: 1 1 200px; min-width: 0; min-height: 48px; padding: 0 14px; border-radius: 8px; border: 1px solid #FFFFFF; background: #FFFFFF; color: #101317; font-size: 16px">
+<button type="submit" style="flex: 0 0 auto; min-height: 48px; padding: 0 20px; border-radius: 8px; border: 0; background: #FFFFFF; color: #0B3B38; font-size: 15px; font-weight: 700; cursor: pointer">Prenumerera</button>
+</div>
+<p style="margin: 0; font-size: 12.5px; color: #BFE3DE">Prototyp: inga riktiga utskick.</p>
+</form>
+</div>
+<div data-if="subscribed" style="display: contents">
+<p style="margin: 0; padding: 16px 18px; border-radius: 8px; background: #FFFFFF; color: #101317; font-size: 15px">Tack! Första brevet kommer på söndag. (I prototypen skickas inget.)</p>
+</div>
+</div>
+</section>
+
+</main>
+
+<footer style="border-top: 1px solid #D5D9DE; background: #FFFFFF">
+<div style="max-width: 1160px; margin: 0 auto; padding: 22px 20px 30px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; font-size: 13px; color: #5B6370">
+<p style="margin: 0">[Produktnamn] · Prototyp skapad 24 oktober 2026. Innehållet är AI-genererat och ogranskat.</p>
+<p style="margin: 0">Vi sammanfattar och länkar, vi återpublicerar inte.</p>
+</div>
+</footer>
+
+<div data-if="chatClosed" style="display: contents">
+<div style="position: sticky; bottom: 16px; z-index: 40; display: flex; justify-content: flex-end; padding: 0 16px; pointer-events: none">
+<button type="button" data-action="openChat" style="pointer-events: auto; display: inline-flex; align-items: center; gap: 10px; min-height: 54px; padding: 0 22px 0 18px; border-radius: 8px; border: 0; background: #101317; color: #FFFFFF; font-size: 15.5px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 14px rgba(16, 19, 23, 0.18)"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M4 5.5 C4 4.7 4.7 4 5.5 4 H16.5 C17.3 4 18 4.7 18 5.5 V13 C18 13.8 17.3 14.5 16.5 14.5 H10 L6 18 V14.5 H5.5 C4.7 14.5 4 13.8 4 13 Z" stroke="#FFFFFF" stroke-width="1.7" stroke-linejoin="round"></path><path d="M8 8.5 H14 M8 11 H12" stroke="#0B6E69" stroke-width="1.7" stroke-linecap="round"></path></svg>Fråga nyheterna</button>
+</div>
+</div>
+
+</div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
