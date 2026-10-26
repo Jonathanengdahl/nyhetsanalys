@@ -1,0 +1,127 @@
+.form {
+  display: grid;
+  gap: var(--space-4);
+  max-width: 34rem;
+}
+
+.light {
+  --form-ink: var(--color-ink);
+  --form-ink-2: var(--color-ink-2);
+  --form-field-bg: var(--color-surface);
+  --form-field-line: var(--color-line-strong);
+  --form-error: var(--color-warn-ink);
+  --form-link: var(--color-accent);
+}
+
+.dark {
+  --form-ink: var(--color-inverse-ink);
+  --form-ink-2: var(--color-inverse-ink-2);
+  --form-field-bg: var(--color-inverse-surface);
+  --form-field-line: var(--color-inverse-line);
+  --form-error: var(--color-warn-soft);
+  --form-link: var(--color-accent-soft);
+}
+
+.form a {
+  color: var(--form-link);
+}
+
+.field {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.label {
+  color: var(--form-ink);
+  font-weight: var(--weight-semibold);
+}
+
+.input {
+  min-height: var(--tap-target);
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--form-field-line);
+  border-radius: var(--radius-md);
+  background: var(--form-field-bg);
+  color: var(--form-ink);
+  font: inherit;
+}
+
+.input[aria-invalid="true"] {
+  border-color: var(--form-error);
+  border-width: 2px;
+}
+
+.check {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: var(--space-3);
+  color: var(--form-ink-2);
+  font-size: var(--text-sm);
+}
+
+.checkbox {
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  accent-color: var(--color-accent);
+}
+
+.fieldError,
+.formError {
+  margin: 0;
+  color: var(--form-error);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+}
+
+.formError:empty {
+  display: none;
+}
+
+.submit {
+  justify-self: start;
+  min-height: var(--tap-target);
+  padding: var(--space-2) var(--space-5);
+  border: 0;
+  border-radius: var(--radius-md);
+  background: var(--color-accent);
+  color: var(--color-accent-ink);
+  font: inherit;
+  font-weight: var(--weight-semibold);
+  cursor: pointer;
+}
+
+.submit:hover {
+  background: var(--color-accent-hover);
+}
+
+.submit:disabled {
+  cursor: progress;
+  opacity: 0.8;
+}
+
+.success {
+  margin: 0;
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  font-weight: var(--weight-semibold);
+}
+
+.success.light {
+  background: var(--color-accent-soft);
+  color: var(--color-ink);
+}
+
+.success.dark {
+  background: var(--color-inverse-surface);
+  color: var(--color-inverse-ink);
+}
+
+.honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}

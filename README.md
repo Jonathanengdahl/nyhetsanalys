@@ -40,6 +40,30 @@ Namnen finns i `.env.example`. Riktiga värden ligger bara i `.env.local` (som i
 | `SUPABASE_SECRET_KEY` | Supabase hemlig nyckel, bara på servern |
 | `ANTHROPIC_API_KEY`, `CRON_SECRET` | Används från fas 2 |
 
+## Databas (Supabase)
+
+Projektet ligger i Supabase i regionen North EU (Stockholm). Databasändringar görs bara som migrationsfiler i `supabase/migrations/` och versionshanteras i git.
+
+Första gången på en ny dator (kräver inloggning i webbläsaren och databaslösenordet):
+
+```bash
+npx supabase login
+```
+
+```bash
+npx supabase link --project-ref sceexddpqpzewpymuocz
+```
+
+Kör nya migrationer mot databasen:
+
+```bash
+npx supabase db push
+```
+
+Tabeller i fas 1:
+
+- `waitlist`: beta-anmälan och veckobrev. RLS är på utan publika policyer, så bara servern (hemlig nyckel) kan läsa och skriva.
+
 ## Struktur
 
 - `src/config/site.ts`: namn, domän, ägare, kontakt. Byt här.

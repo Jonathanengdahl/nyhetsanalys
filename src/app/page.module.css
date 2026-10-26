@@ -15,6 +15,26 @@
   font-size: var(--text-md);
 }
 
+.section {
+  padding-block: var(--space-7);
+}
+
+.sectionLead {
+  max-width: 60ch;
+  color: var(--color-ink-2);
+}
+
+.newsletter {
+  padding-block: var(--space-7);
+  background: var(--color-accent-deep);
+  color: var(--color-inverse-ink);
+}
+
+.newsletterLead {
+  max-width: 60ch;
+  color: var(--color-inverse-ink-2);
+}
+
 .note {
   margin: 0;
   color: var(--color-inverse-ink-3);

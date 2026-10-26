@@ -50,7 +50,7 @@ Analysen körs när något viktigt har ändrats (högst var 2–3 timme per ämn
 - `corrections`: ämne, datum, vad som ändrats och varför. Publik.
 - `profiles`: plan (gratis eller premium) och roll (läsare eller admin)
 - `chat_usage`: användare, dag, antal frågor, tokens
-- `waitlist`: e-post, samtycken, testläsare ja/nej. Testläsarnas känsliga uppgifter i en egen tabell med strängare åtkomst.
+- `waitlist`: e-post, samtycken, testläsare ja/nej. Testläsarnas känsliga uppgifter i en egen tabell med strängare åtkomst. Byggd redan i fas 1 (beslut 2026-10-26) så att beta-anmälan och veckobrevet sparas på riktigt. Bara servern skriver, via Server Action. IP-adresser sparas inte.
 - `ai_jobs`: logg med jobbtyp, status, tokens, kostnad och fel
 
 Ämnessidans JSON följer delarna i `docs/produkt.md`. Exempeldatan i fas 1 ska ha exakt samma form, så att bytet till Supabase bara byter datakälla.
