@@ -1,0 +1,36 @@
+.list {
+  --chip-bg: var(--color-line);
+  --chip-ink: var(--color-ink-3);
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: var(--space-1-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.list[data-tone="accent"] {
+  --chip-bg: var(--color-on-accent);
+  --chip-ink: var(--color-ink);
+}
+
+.link,
+.static {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  text-decoration: none;
+}
+
+.chip {
+  padding: 2px 9px;
+  border-radius: var(--radius-chip);
+  background: var(--chip-bg);
+  color: var(--chip-ink);
+  font-size: var(--text-xs);
+}
+
+.link:hover .chip {
+  color: var(--color-ink);
+  text-decoration: underline;
+}

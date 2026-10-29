@@ -1,32 +1,31 @@
 import type { Metadata, Viewport } from "next";
-import { IBM_Plex_Mono, IBM_Plex_Sans, IBM_Plex_Sans_Condensed } from "next/font/google";
+import localFont from "next/font/local";
+import "@/styles/globals.css";
+import { BetaBar } from "@/components/layout/BetaBar";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
+import { Toaster } from "@/components/ui/Toaster";
 import { site } from "@/config/site";
+import { organizationJsonLd, websiteJsonLd } from "@/lib/seo/json-ld";
 import { robotsMetadata } from "@/lib/seo/robots";
-import "@/styles/globals.css";
+import { JsonLd } from "@/components/seo/JsonLd";
 import styles from "./layout.module.css";
 
-const plexSans = IBM_Plex_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  style: ["normal", "italic"],
-  variable: "--font-plex-sans",
+// Self-hosted variable fonts (SIL Open Font License, see src/fonts/).
+const display = localFont({
+  src: "../fonts/big-shoulders-latin-wght.woff2",
+  weight: "100 900",
+  variable: "--font-big-shoulders",
   display: "swap",
+  fallback: ["Arial Narrow", "sans-serif"],
 });
 
-const plexCondensed = IBM_Plex_Sans_Condensed({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  variable: "--font-plex-condensed",
+const body = localFont({
+  src: "../fonts/onest-latin-wght.woff2",
+  weight: "100 900",
+  variable: "--font-onest",
   display: "swap",
-});
-
-const plexMono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-plex-mono",
-  display: "swap",
+  fallback: ["Helvetica Neue", "Arial", "sans-serif"],
 });
 
 // Robots is set here only. Child segments must not define `robots`,
@@ -34,34 +33,40 @@ const plexMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} – ${site.shortDescription}`,
-    template: `%s – ${site.name}`,
+    default: `${site.name}: ${site.shortDescription}`,
+    template: `%s | ${site.name}`,
   },
   description: site.description,
   robots: robotsMetadata(site.indexable),
+  openGraph: {
+    siteName: site.name,
+    locale: "sv_SE",
+    type: "website",
+  },
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#ffffff",
+  themeColor: site.themeColor,
+  colorScheme: "dark",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang={site.language}
-      className={`${plexSans.variable} ${plexCondensed.variable} ${plexMono.variable}`}
-    >
+    <html lang={site.language} className={`${display.variable} ${body.variable}`}>
       <body className={styles.body}>
         <a href="#innehall" className={styles.skipLink}>
           Hoppa till innehållet
         </a>
+        {site.beta.enabled && <BetaBar />}
         <SiteHeader />
         <main id="innehall" className={styles.main} tabIndex={-1}>
           {children}
         </main>
         <SiteFooter />
+        <Toaster />
+        <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
       </body>
     </html>
   );

@@ -1,0 +1,270 @@
+/* ---------- Shared ---------- */
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.tagDark,
+.tagLight {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 5px 11px;
+  border-radius: var(--radius-tag);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+}
+
+.tagDark {
+  background: var(--color-on-accent);
+  color: var(--color-ink);
+}
+
+.tagLight {
+  background: var(--color-white);
+  color: var(--color-on-accent);
+}
+
+.tagDarkSmall {
+  padding: var(--space-1) var(--space-2-5);
+  border-radius: var(--radius-chip);
+  background: var(--color-on-accent);
+  color: var(--color-ink);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+}
+
+/* ---------- Featured card ---------- */
+
+.featured {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-top: var(--space-1-5);
+  padding: var(--space-5-5) var(--space-4-5) var(--space-5);
+  border-radius: var(--radius-feature);
+  background: var(--card-accent);
+  color: var(--color-on-accent);
+}
+
+.featuredTitle {
+  font-family: var(--font-display);
+  font-size: var(--display-2xl);
+  font-weight: var(--weight-black);
+  line-height: 0.9;
+}
+
+.featuredText {
+  font-size: var(--text-md);
+}
+
+.frames {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-radius: var(--radius-card-md);
+  background: var(--color-on-accent);
+  color: var(--color-ink);
+}
+
+.framesTitle {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+}
+
+.frameBar {
+  display: flex;
+  gap: 3px;
+  height: 26px;
+}
+
+.frameSeg {
+  flex-basis: 0;
+  flex-shrink: 1;
+  border-radius: var(--radius-sm);
+  background: var(--seg);
+}
+
+.legend {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2) var(--space-3-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.swatch {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-xs);
+  background: var(--seg);
+}
+
+.highlights {
+  display: flex;
+  flex-direction: column;
+}
+
+.highlight {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1-5);
+  padding: var(--space-3) 0 var(--space-3-5);
+  border-top: 2px solid var(--color-on-accent);
+}
+
+.highlight:last-child {
+  border-bottom: 2px solid var(--color-on-accent);
+}
+
+.highlightValue {
+  order: -1;
+  font-family: var(--font-display);
+  font-size: var(--display-xl);
+  font-weight: var(--weight-black);
+  font-variant-numeric: tabular-nums;
+  line-height: var(--leading-none);
+}
+
+.highlightLabel {
+  font-size: var(--text-sm-plus);
+  line-height: 1.45;
+}
+
+.highlightBadge {
+  display: flex;
+  margin-top: var(--space-0-5);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2-5);
+}
+
+.primary,
+.secondary {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0 var(--space-3);
+  white-space: nowrap;
+  border-radius: var(--radius-control);
+  font-size: var(--text-base);
+  font-weight: var(--weight-bold);
+  text-decoration: none;
+}
+
+.primary {
+  background: var(--color-on-accent);
+  color: var(--color-ink);
+}
+
+.primary:hover {
+  color: var(--color-lime);
+}
+
+.secondary {
+  border: 2px solid var(--color-on-accent);
+  background: transparent;
+  color: var(--color-on-accent);
+}
+
+.counts {
+  font-size: var(--text-sm);
+}
+
+/* ---------- Tiles in the shelf ---------- */
+
+.tile {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  width: 300px;
+  min-height: 340px;
+  padding: var(--space-4-5);
+  border-radius: var(--radius-tile);
+  background: var(--card-accent);
+  color: var(--color-on-accent);
+  scroll-snap-align: start;
+  scroll-margin-left: var(--gutter);
+  transform-origin: left center;
+}
+
+.tileTitle {
+  font-family: var(--font-display);
+  font-size: var(--display-md);
+  font-weight: var(--weight-black);
+  line-height: 0.95;
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+
+.figure {
+  font-family: var(--font-display);
+  font-size: var(--display-number);
+  font-weight: var(--weight-black);
+  font-variant-numeric: tabular-nums;
+  line-height: var(--leading-none);
+}
+
+.tileText {
+  font-size: var(--text-sm-plus);
+  line-height: 1.45;
+}
+
+.pushDown {
+  margin-top: auto;
+}
+
+.badge {
+  align-self: flex-start;
+  padding: var(--space-1) var(--space-2-5);
+  border-radius: var(--radius-chip);
+  background: var(--color-white);
+  color: var(--color-on-accent);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+}
+
+.sourceLine {
+  font-size: var(--text-xs);
+}
+
+.tileLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  border-radius: var(--radius-control);
+  background: var(--color-on-accent);
+  color: var(--color-ink);
+  font-size: var(--text-base);
+  font-weight: var(--weight-bold);
+  text-decoration: none;
+}
+
+.tileLink:hover {
+  color: var(--color-lime);
+}
+
+.noPage {
+  font-size: var(--text-xs);
+  font-style: italic;
+}

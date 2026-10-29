@@ -1,0 +1,41 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10);
+  padding-top: var(--space-8);
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: var(--display-2xl);
+  font-weight: var(--weight-black);
+  line-height: var(--leading-display);
+}
+
+.lead {
+  color: var(--color-ink-3);
+  font-size: var(--text-md);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+  gap: var(--space-3);
+}
+
+.grid > article {
+  width: auto;
+  min-height: 0;
+}

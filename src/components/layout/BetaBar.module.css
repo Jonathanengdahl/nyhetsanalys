@@ -1,0 +1,29 @@
+.bar {
+  border-bottom: 1px solid var(--color-line);
+  background: var(--color-surface);
+  color: var(--color-ink-2);
+}
+
+.inner {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2-5);
+  padding-block: var(--space-2-5);
+  font-size: var(--text-sm);
+  line-height: 1.45;
+}
+
+.tag {
+  flex: none;
+  padding: 1px var(--space-2);
+  border-radius: var(--radius-badge);
+  background: var(--color-lime);
+  color: var(--color-on-accent);
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-bold);
+  line-height: 1.6;
+}
+
+.text {
+  min-width: 0;
+}

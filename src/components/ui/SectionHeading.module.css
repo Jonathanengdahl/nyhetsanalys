@@ -1,0 +1,28 @@
+.wrap {
+  display: block;
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-size: var(--display-xl);
+  font-weight: var(--weight-heavy);
+  line-height: var(--leading-none);
+  scroll-margin-top: calc(var(--header-height) + 80px);
+}
+
+.heading[data-size="medium"] {
+  font-size: var(--display-lg);
+}
+
+.line {
+  display: block;
+  width: 56px;
+  height: 4px;
+  margin-top: var(--space-2-5);
+  border-radius: var(--radius-xs);
+  background: var(--color-lime);
+}
+
+.line[data-size="medium"] {
+  width: 44px;
+}

@@ -33,7 +33,7 @@ Namnen finns i `.env.example`. Riktiga värden ligger bara i `.env.local` (som i
 
 | Variabel | Betyder |
 |---|---|
-| `SITE_URL` | Sajtens adress utan avslutande snedstreck, till exempel Vercel-adressen under betan |
+| `SITE_URL` | Sajtens adress utan avslutande snedstreck. Saknas den på Vercel används projektets produktionsadress (`VERCEL_PROJECT_PRODUCTION_URL`, som Vercel sätter själv) |
 | `SITE_INDEXABLE` | `true` låter sökmotorer indexera sajten. Allt annat (standard) skickar `noindex, nofollow` som meta-tagg och som `X-Robots-Tag` |
 | `NEXT_PUBLIC_SUPABASE_URL` | Supabase-projektets adress |
 | `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Supabase publik nyckel (får synas i webbläsaren) |
@@ -66,10 +66,26 @@ Tabeller i fas 1:
 
 ## Struktur
 
-- `src/config/site.ts`: namn, domän, ägare, kontakt. Byt här.
-- `src/styles/tokens.css`: alla färger, typsnitt, radier och avstånd. Komponenterna använder bara dessa variabler.
+- `src/config/site.ts`: namn, domän, ägare, kontakt och betatexten. Byt här.
+- `src/styles/tokens.css`: alla färger, typsnitt, radier och avstånd (designriktningen Nattpop). Komponenterna använder bara dessa variabler.
+- `src/styles/globals.css`: grundstil och alla animationer som globala klasser.
+- `src/fonts/`: typsnitten Big Shoulders och Onest (SIL Open Font License). De ligger i projektet så att bygget inte behöver nå Google.
+- `src/content/`: exempeldatan. `topics/` har de fyra ämnessidorna, `teasers.ts` exempelkorten utan egen sida.
+- `src/lib/topics/`: datalagret (`getPublishedTopics`, `getTopic` med flera) och typerna för ett ämne. Samma form som tabellen `topic_versions` får i Supabase.
 - `src/components/`: komponenter. `src/app/`: sidor.
-- `docs/`: produkt, teknik, SEO och prototyp.
+- `docs/`: produkt, teknik, SEO, prototyp och designen (`docs/design/nattpop-prototyp.html`).
+
+## Sidor
+
+| Adress | Innehåll |
+|---|---|
+| `/` | Startsidan: vad vi gör, dagens ämnen med filter, beta-anmälan och veckobrev |
+| `/amne/[slug]` | Ämnessida med djupnivåerna 30 sek, 5 min och Djupdykning |
+| `/amnen` | Alla ämnen |
+| `/metod` | Så arbetar vi |
+| `/om` | Om oss och kontakt |
+| `/rattelser` | Rättelser |
+| `/integritet`, `/kakor` | Integritetspolicy och kakor |
 
 ## Deploy
 

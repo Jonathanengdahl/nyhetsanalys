@@ -1,124 +1,168 @@
 /*
  * Design tokens. Every colour, font, radius, spacing and size used by
- * components is defined here. Components must only reference these variables.
- * Values follow the direction of the prototype in docs/prototyp/.
+ * components is defined here. Components only reference these variables, so
+ * the whole look can be replaced in this file.
+ *
+ * Direction: "Nattpop", a dark night-blue stage with bright accent blocks
+ * (see the design file and the prototype in docs/design/).
  */
 :root {
+  color-scheme: dark;
+
+  /* Base */
+  --color-bg: #1b1240;
+  --color-bg-glass: rgb(27 18 64 / 0.96);
+  --color-bg-clear: rgb(27 18 64 / 0);
+  --color-surface: #2a1f5c;
+  --color-surface-sunken: #221752;
+  --color-line: #3b2f73;
+  --color-line-strong: #5b4c9e;
+  --color-line-soft: rgb(91 76 158 / 0.45);
+  --color-dot: #6e64a8;
+  --color-dot-strong: #8c80c9;
+
   /* Ink (text) */
-  --color-ink: #101317;
-  --color-ink-2: #3d4450;
-  --color-ink-3: #5b6370;
-  --color-ink-4: #8a929d;
+  --color-ink: #ffffff;
+  --color-ink-2: #e4e0f7;
+  --color-ink-3: #c9c2ee;
+  --color-ink-4: #b3abdf;
+  /* Text on bright accent surfaces */
+  --color-on-accent: #1b1240;
 
-  /* Surfaces and lines */
-  --color-bg: #f6f7f8;
-  --color-surface: #ffffff;
-  --color-surface-soft: #f5f6f8;
-  --color-line: #e1e4e8;
-  --color-line-2: #e6e9ed;
-  --color-line-strong: #d5d9de;
+  /* Accents. Charts and categories use them, but never as the only carrier of meaning. */
+  --color-lime: #d7ff4f;
+  --color-coral: #ff7759;
+  --color-pink: #ff9be0;
+  --color-mint: #43e5c8;
+  --color-sun: #ffd447;
+  --color-sky: #8dbbff;
+  --color-white: #ffffff;
+  --color-muted: var(--color-dot-strong);
 
-  /* Inverted (dark hero areas) */
-  --color-inverse-bg: #101317;
-  --color-inverse-surface: #1b2027;
-  --color-inverse-line: #2a3038;
-  --color-inverse-ink: #ffffff;
-  --color-inverse-ink-2: #d5d9de;
-  --color-inverse-ink-3: #aeb5be;
+  /* Glows and light effects */
+  --glow-lime: rgb(215 255 79 / 0.22);
+  --glow-coral: rgb(255 119 89 / 0.34);
+  --glow-pink: rgb(255 155 224 / 0.24);
+  --glow-mint: rgb(67 229 200 / 0.22);
+  --glow-sun: rgb(255 212 71 / 0.24);
+  --glow-sky: rgb(141 187 255 / 0.24);
+  --glow-orb: rgb(255 119 89 / 0.38);
+  --glow-scan: rgb(215 255 79 / 0.55);
+  --shine: rgb(255 255 255 / 0.6);
+  --shine-clear: rgb(255 255 255 / 0);
+  --shadow-float: 0 12px 30px rgb(8 4 24 / 0.45);
 
-  /* Accent */
-  --color-accent: #0b6e69;
-  --color-accent-hover: #08504c;
-  --color-accent-ink: #ffffff;
-  --color-accent-soft: #ddefec;
-  --color-accent-soft-line: #bfe3de;
-  --color-accent-deep: #0b3b38;
-
-  /* Warning / live */
-  --color-warn: #a84f06;
-  --color-warn-ink: #8a3f05;
-  --color-warn-soft: #fbebd9;
-  --color-warn-soft-line: #f3d3b3;
-
-  /* Highlight section (e.g. "Det här saknas i debatten") */
-  --color-highlight-soft: #f1effc;
-  --color-highlight-line: #d9d4f5;
-
-  /* Categorical colours for charts. Never the only carrier of meaning. */
-  --color-cat-1: #2a78d6;
-  --color-cat-2: #1baf7a;
-  --color-cat-3: #eda100;
-  --color-cat-4: #eb6834;
-  --color-cat-5: #e87ba4;
-  --color-cat-6: #6250d6;
-  --color-cat-neutral: #8a929d;
-
-  /* Card tints */
-  --color-tint-blue: #e3ecf8;
-  --color-tint-violet: #e9e6fa;
-  --color-tint-grey: #e4e7eb;
+  /* Semantic roles */
+  --color-accent: var(--color-lime);
+  --color-link: var(--color-lime);
+  --color-link-hover: var(--color-ink);
+  --color-positive: var(--color-mint);
+  --color-negative: var(--color-pink);
+  --color-error: var(--color-coral);
 
   /* Uncertainty labels (always shown with their text) */
-  --label-confirmed-bg: #101317;
-  --label-confirmed-ink: #ffffff;
-  --label-neutral-bg: #e6e9ed;
-  --label-neutral-ink: #101317;
-  --label-disputed-bg: #fbebd9;
-  --label-disputed-ink: #8a3f05;
-  --label-unconfirmed-bg: #ffffff;
-  --label-unconfirmed-ink: #3d4450;
-  --label-unconfirmed-line: #5b6370;
-  --label-false-bg: #a84f06;
-  --label-false-ink: #ffffff;
+  --label-confirmed: var(--color-mint);
+  --label-differ: var(--color-sun);
+  --label-changes: var(--color-sky);
+  --label-estimate: var(--color-white);
+  --label-disputed: var(--color-pink);
+  --label-unconfirmed-line: var(--color-ink-3);
+  --label-false: var(--color-coral);
 
   /* Focus */
-  --focus-ring-color: #0b6e69;
+  --focus-ring-color: var(--color-lime);
   --focus-ring-width: 3px;
-  --focus-ring-offset: 2px;
+  --focus-ring-offset: 3px;
 
-  /* Typography (families are set by next/font in the root layout) */
-  --font-body: var(--font-plex-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-display: var(--font-plex-condensed), "Arial Narrow", system-ui, sans-serif;
-  --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
+  /* Typography (families are loaded with next/font in the root layout) */
+  --font-body: var(--font-onest), "Helvetica Neue", Arial, sans-serif;
+  --font-display: var(--font-big-shoulders), "Arial Narrow", sans-serif;
 
-  --text-xs: 0.75rem;
+  --text-2xs: 0.75rem;
+  --text-xs: 0.8125rem;
   --text-sm: 0.875rem;
+  --text-sm-plus: 0.9375rem;
   --text-base: 1rem;
-  --text-md: 1.125rem;
-  --text-lg: 1.375rem;
-  --text-xl: 1.75rem;
-  --text-2xl: clamp(2rem, 5vw, 2.75rem);
-  --text-hero: clamp(2.5rem, 9vw, 5.25rem);
+  --text-md: 1.0625rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
 
+  --display-xs: 1.375rem;
+  --display-sm: 1.625rem;
+  --display-brand: 1.75rem;
+  --display-md: 1.875rem;
+  --display-lg: 2.125rem;
+  --display-xl: 2.5rem;
+  --display-2xl: 3.5rem;
+  --display-3xl: 3.75rem;
+  --display-number: 5.25rem;
+  --display-hero: clamp(3rem, 13.5vw, 5.25rem);
+  --display-topic-large: clamp(3.375rem, 15.5vw, 6.5rem);
+  --display-topic-medium: clamp(3rem, 13.5vw, 5.75rem);
+
+  --leading-none: 1;
+  --leading-display: 0.92;
   --leading-tight: 1.1;
   --leading-snug: 1.3;
-  --leading-body: 1.55;
+  --leading-body: 1.5;
+  --leading-relaxed: 1.55;
 
   --weight-regular: 400;
   --weight-medium: 500;
   --weight-semibold: 600;
   --weight-bold: 700;
+  --weight-heavy: 800;
+  --weight-black: 900;
 
   /* Spacing scale */
+  --space-0-5: 0.125rem;
   --space-1: 0.25rem;
+  --space-1-5: 0.375rem;
   --space-2: 0.5rem;
+  --space-2-5: 0.625rem;
   --space-3: 0.75rem;
+  --space-3-5: 0.875rem;
   --space-4: 1rem;
-  --space-5: 1.5rem;
-  --space-6: 2rem;
-  --space-7: 3rem;
-  --space-8: 4rem;
+  --space-4-5: 1.125rem;
+  --space-5: 1.25rem;
+  --space-5-5: 1.375rem;
+  --space-6: 1.5rem;
+  --space-7: 1.75rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-14: 3.5rem;
+  --space-24: 6rem;
 
   /* Radii */
+  --radius-xs: 2px;
   --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 14px;
+  --radius-badge: 7px;
+  --radius-chip: 8px;
+  --radius-tag: 10px;
+  --radius-control-sm: 12px;
+  --radius-control: 14px;
+  --radius-card-sm: 16px;
+  --radius-card-md: 18px;
+  --radius-card: 20px;
+  --radius-tile: 22px;
+  --radius-panel: 24px;
+  --radius-feature: 26px;
   --radius-pill: 999px;
 
   /* Layout */
-  --width-text: 860px;
-  --width-wide: 1160px;
+  --width-content: 640px;
   --gutter: var(--space-4);
   --tap-target: 44px;
-  --header-height: 64px;
+  --header-height: 61px;
+  --stack-header: 30;
+  --stack-depth: 20;
+  --stack-fab: 40;
+  --stack-menu: 50;
+  --stack-toast: 70;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.2, 0.9, 0.1, 1);
+  --ease-ring: cubic-bezier(0.2, 0.6, 0.3, 1);
+  --ease-pop: cubic-bezier(0.2, 1.5, 0.4, 1);
 }

@@ -1,0 +1,53 @@
+.form {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1-5) var(--space-1-5) var(--space-1-5) var(--space-4);
+  border-radius: var(--radius-card-md);
+  background: var(--color-surface);
+  box-shadow: 0 0 0 1px var(--color-line);
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  min-height: var(--tap-target);
+  border: 0;
+  outline-offset: 4px;
+  background: transparent;
+  color: var(--color-ink);
+  font: inherit;
+  font-size: var(--text-base);
+}
+
+.submit {
+  min-height: var(--tap-target);
+  padding: 0 var(--space-5);
+  border: 0;
+  border-radius: calc(var(--radius-control) - 1px);
+  background: var(--color-lime);
+  color: var(--color-on-accent);
+  font-size: var(--text-base);
+  font-weight: var(--weight-bold);
+  --focus-ring-color: var(--color-ink);
+}
+
+.suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.suggestion {
+  min-height: var(--tap-target);
+  padding: 0 var(--space-3-5);
+  border: 1.5px solid var(--color-line-strong);
+  border-radius: var(--radius-control);
+  background: transparent;
+  color: var(--color-ink);
+  font-size: var(--text-sm-plus);
+}
+
+.suggestion:hover {
+  border-color: var(--color-ink);
+}

@@ -1,0 +1,36 @@
+.topic {
+  position: relative;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-14);
+  padding-top: var(--space-8);
+}
+
+.back {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--tap-target);
+  color: var(--color-ink);
+  font-weight: var(--weight-bold);
+  text-decoration: none;
+}
+
+/*
+ * Depth levels. The radio buttons in DepthSwitch decide what is shown.
+ * Everything is in the HTML; without :has() support the whole page shows.
+ */
+.topic:has(input[data-depth-choice="0"]:checked) [data-depth="1"],
+.topic:has(input[data-depth-choice="0"]:checked) [data-depth="2"],
+.topic:has(input[data-depth-choice="1"]:checked) [data-depth="2"] {
+  display: none;
+}
+
+.topic:has(input[data-depth-choice="0"]:checked) [data-only="0"],
+.topic:has(input[data-depth-choice="1"]:checked) [data-only="1"] {
+  display: flex;
+}

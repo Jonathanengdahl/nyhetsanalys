@@ -1,11 +1,31 @@
 .mark {
+  display: flex;
   flex: none;
+  flex-direction: column;
+  gap: var(--radius-xs);
+  width: 26px;
 }
 
-.ink {
-  stroke: currentColor;
+.bar {
+  display: block;
+  height: 6px;
+  border-radius: var(--radius-xs);
 }
 
-.ray {
-  stroke: var(--color-accent);
+.mark > .one {
+  width: 26px;
+  background: var(--color-coral);
+  animation-delay: 0ms, 1300ms;
+}
+
+.mark > .two {
+  width: 18px;
+  background: var(--color-lime);
+  animation-delay: 120ms, 1750ms;
+}
+
+.mark > .three {
+  width: 11px;
+  background: var(--color-pink);
+  animation-delay: 240ms, 1500ms;
 }
