@@ -1,5 +1,7 @@
 import Link from "next/link";
-import type { CSSProperties } from "react";
+import { ViewTransition, type CSSProperties } from "react";
+import { ChatButton } from "@/components/chat/ChatButton";
+import { topicTitleTransition } from "@/components/home/TopicIndex";
 import { ComingSoonButton } from "@/components/ui/ComingSoonButton";
 import { Odometer } from "@/components/ui/Odometer";
 import { formatDateTime } from "@/lib/format";
@@ -11,9 +13,9 @@ const delay = (ms: number) => ({ animationDelay: `${ms}ms` }) as CSSProperties;
 export function TopicHero({ topic }: { topic: Topic }) {
   return (
     <header className={styles.hero}>
-      <div className={`container ${styles.inner}`}>
-        <nav aria-label="Brödsmulor" className="rise">
-          <Link href="/amnen" className={styles.back}>
+      <div className={`container-wide ${styles.inner}`}>
+        <nav aria-label="Brödsmulor" className={`rise ${styles.crumbs}`}>
+          <Link href="/amnen" className={styles.back} transitionTypes={["nav-back"]}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M15 6l-6 6 6 6" />
             </svg>
@@ -33,16 +35,17 @@ export function TopicHero({ topic }: { topic: Topic }) {
           </span>
         </div>
 
-        <h1 className={styles.title} data-size={topic.titleSize}>
-          <span className="sr-only">{topic.title}</span>
-          {topic.titleLines.map((line, index) => (
-            <span key={line} className={styles.line} aria-hidden="true">
-              <span className="lineup" style={delay(140 + index * 130)}>
+        {/* The title flies here from the list on the start page (a shared view transition). */}
+        <ViewTransition name={topicTitleTransition(topic.slug)} share="morph" default="none">
+          <h1 className={styles.title} data-size={topic.titleSize}>
+            <span className="sr-only">{topic.title}</span>
+            {topic.titleLines.map((line) => (
+              <span key={line} className={styles.line} aria-hidden="true">
                 {line}
               </span>
-            </span>
-          ))}
-        </h1>
+            ))}
+          </h1>
+        </ViewTransition>
 
         <p className={`rise ${styles.dek}`} style={delay(480)}>
           {topic.dek}
@@ -56,12 +59,12 @@ export function TopicHero({ topic }: { topic: Topic }) {
         </p>
 
         <div className={`rise ${styles.actions}`} style={delay(680)}>
-          <ComingSoonButton feature="chat" className={styles.ask}>
+          <ChatButton className={styles.ask}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M5 18.5V6.5A2.5 2.5 0 0 1 7.5 4h9A2.5 2.5 0 0 1 19 6.5v6a2.5 2.5 0 0 1-2.5 2.5H9z" />
             </svg>
             Fråga om ämnet
-          </ComingSoonButton>
+          </ChatButton>
           <ComingSoonButton feature="follow" className={styles.follow}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true">
               <path d="M12 5v14M5 12h14" />

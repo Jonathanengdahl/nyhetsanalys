@@ -38,7 +38,10 @@ Namnen finns i `.env.example`. Riktiga värden ligger bara i `.env.local` (som i
 | `NEXT_PUBLIC_SUPABASE_URL` | Supabase-projektets adress |
 | `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Supabase publik nyckel (får synas i webbläsaren) |
 | `SUPABASE_SECRET_KEY` | Supabase hemlig nyckel, bara på servern |
-| `ANTHROPIC_API_KEY`, `CRON_SECRET` | Används från fas 2 |
+| `ANTHROPIC_API_KEY` | Nyckel till Claude API för AI-chatten. Utan den svarar chatten att den inte är påslagen |
+| `CHAT_SECRET` | Valfri. Nyckel för den dagliga koden som räknar frågor per besökare. Saknas den används `SUPABASE_SECRET_KEY` |
+| `CHAT_MOCK` | Bara lokalt: `1` ger ett fast testsvar i stället för att anropa API:t. Ignoreras på Vercel |
+| `CRON_SECRET` | Används från fas 2 |
 
 ## Databas (Supabase)
 
@@ -60,16 +63,28 @@ Kör nya migrationer mot databasen:
 npx supabase db push
 ```
 
-Tabeller i fas 1:
+Migrationen för chatten (`20261031120000_chat_limits.sql`) kan också klistras in i Supabase SQL Editor och köras där. Den går att köra flera gånger utan fel.
+
+Tabeller:
 
 - `waitlist`: beta-anmälan och veckobrev. RLS är på utan publika policyer, så bara servern (hemlig nyckel) kan läsa och skriva.
+- `ai_usage`: tokenförbrukning och kostnad per AI-anrop. Frågor och svar sparas inte. Dagsbudgeten räknas härifrån.
+- `chat_quota`: antal chattfrågor per besökare och dag. Besökaren är en kod som byts varje dag, aldrig IP-adressen. Raderna tas bort efter två dygn.
+
+## AI-chatten
+
+Chatten finns på startsidan (om dagens ämnen) och på varje ämnessida (om det ämnet). Den svarar med `claude-haiku-5-5` och bara utifrån samma underlag som sidorna visar (`src/lib/chat/material.ts`). Reglerna står i `src/lib/chat/prompt.ts`.
+
+- Gränser och budget står i `src/config/ai.ts`: 10 egna frågor per besökare och dag, och en dagsbudget på 20 kronor för hela sajten. Når kostnaden budgeten pausar chatten till midnatt.
+- Svaren strömmas från `/api/chat`. Källhänvisningar som [2] blir länkar till källan.
+- Lokalt utan API-nyckel: sätt `CHAT_MOCK=1` i `.env.local` för att testa panelen med ett fast svar.
 
 ## Struktur
 
 - `src/config/site.ts`: namn, domän, ägare, kontakt och betatexten. Byt här.
 - `src/styles/tokens.css`: alla färger, typsnitt, radier och avstånd (designriktningen Ljus). Komponenterna använder bara dessa variabler.
 - `src/styles/globals.css`: grundstil och alla animationer som globala klasser.
-- `src/fonts/`: typsnittet Onest (SIL Open Font License). Det ligger i projektet så att bygget inte behöver nå Google.
+- `src/fonts/`: typsnitten Onest och Geist Mono (SIL Open Font License). De ligger i projektet så att bygget inte behöver nå Google.
 - `src/content/`: exempeldatan. `topics/` har de fyra ämnessidorna, `teasers.ts` exempelkorten utan egen sida.
 - `src/lib/topics/`: datalagret (`getPublishedTopics`, `getTopic` med flera) och typerna för ett ämne. Samma form som tabellen `topic_versions` får i Supabase. Datalagret ser också till att tal som 550 000 aldrig delas mellan två rader.
 - `src/components/`: komponenter. `src/app/`: sidor.

@@ -127,6 +127,7 @@ Märkningen visas alltid som text, inte bara som färg eller ikon.
 - Svaren hänvisar till källor med nummer, till exempel [2], som blir länkar.
 - Feedbackläge: läsaren kan rapportera ett fel eller ett perspektiv som saknas. AI:n ber om källa, sparar ärendet och tackar. Den lovar aldrig att något ändras.
 - Skydd: begränsa längden på frågor och historik, begränsa antal anrop per användare och IP-adress, logga kostnaden.
+- Under betan (beslut 2026-10-31): chatten finns utan konto. Varje besökare får 10 egna frågor per dag, räknade under en kod som byts varje dag och inte går att föra tillbaka till IP-adressen. Hela sajten har en dagsbudget på 20 kr, och chatten pausar till midnatt om den nås. Föreslagna frågor går också via AI och räknas mot kvoten, eftersom färdiga svar tas fram först i fas 2. Frågor och svar sparas inte.
 
 Utkast till instruktion, från prototypen:
 

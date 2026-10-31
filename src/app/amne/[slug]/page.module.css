@@ -2,11 +2,65 @@
   position: relative;
 }
 
+/* One reading column; on large screens a rail beside it that follows the reader. */
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, var(--width-text));
+  justify-content: center;
+  padding-top: var(--space-8);
+}
+
+.rail {
+  display: none;
+}
+
+@media (min-width: 1180px) {
+  .layout {
+    grid-template-columns: var(--width-rail) minmax(0, var(--width-text));
+    column-gap: var(--space-16);
+    padding-top: var(--space-10);
+  }
+
+  .rail {
+    position: sticky;
+    top: calc(var(--header-height) + 88px);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    align-self: start;
+    max-height: calc(100dvh - var(--header-height) - 104px);
+    overflow-y: auto;
+    scrollbar-width: thin;
+  }
+
+  .overview {
+    display: none;
+  }
+}
+
+.railAsk {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--tap-target);
+  border: 0;
+  border-radius: var(--radius-control);
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  font-size: var(--text-sm-plus);
+  font-weight: var(--weight-semibold);
+}
+
+.railAsk:hover {
+  background: var(--color-accent-strong);
+}
+
 .body {
   display: flex;
   flex-direction: column;
   gap: var(--space-16);
-  padding-top: var(--space-10);
+  min-width: 0;
 }
 
 .back {

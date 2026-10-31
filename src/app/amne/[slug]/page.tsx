@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import type { CSSProperties } from "react";
+import { ViewTransition, type CSSProperties } from "react";
+import { ChatButton } from "@/components/chat/ChatButton";
+import { ChatProvider } from "@/components/chat/ChatProvider";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { DepthSwitch } from "@/components/topic/DepthSwitch";
 import { MediaSection } from "@/components/topic/MediaSection";
@@ -19,14 +21,24 @@ import {
   UpdatesSection,
 } from "@/components/topic/sections";
 import { TopicHero } from "@/components/topic/TopicHero";
+import { TopicNav } from "@/components/topic/TopicNav";
 import { AskFab } from "@/components/ui/AskFab";
+import { topicMaterial } from "@/lib/chat/material";
 import { topicJsonLd } from "@/lib/seo/json-ld";
 import { getTopic, getTopicSlugs, topicPath } from "@/lib/topics";
+import { topicOutline } from "@/lib/topics/outline";
 import styles from "./page.module.css";
 
 // Topic pages must stay fully static. Unknown slugs are then rendered before
 // the response starts, so notFound() can still answer with a real 404.
 export const ensureStatic = "navigation";
+
+const SUGGESTIONS = ["Sammanfatta läget", "Vad är osäkert eller omstritt?", "Hur skiljer sig medierna åt?", "Vad saknas i debatten?"];
+
+const TRANSITION = {
+  enter: { "nav-forward": "nav-forward", "nav-back": "nav-back", default: "none" },
+  exit: { "nav-forward": "nav-forward", "nav-back": "nav-back", default: "none" },
+} as const;
 
 export async function generateStaticParams() {
   const slugs = await getTopicSlugs();
@@ -58,33 +70,53 @@ export default async function TopicPage({ params }: PageProps<"/amne/[slug]">) {
   if (!topic) notFound();
 
   const accent = { "--topic-accent": `var(--color-${topic.accent})` } as CSSProperties;
+  const outline = topicOutline(topic);
+  const chat = topicMaterial(topic);
 
   return (
-    <article className={styles.topic} style={accent}>
-      <TopicHero topic={topic} />
-      <DepthSwitch scope={topic.slug} />
-      <div className={`container ${styles.body}`}>
-        <SummarySection topic={topic} />
-        <UpdatesSection topic={topic} />
-        <TimelineSection topic={topic} data-depth="1" />
-        <FactsSection topic={topic} data-depth="1" />
-        <MediaSection topic={topic} data-depth="1" />
-        <BlameSection topic={topic} data-depth="2" />
-        <ModelsSection topic={topic} data-depth="1" />
-        <NumbersSection topic={topic} data-depth="1" />
-        <MissingSection topic={topic} data-depth="1" />
-        <PanelSection topic={topic} data-depth="2" />
-        <MethodSection topic={topic} />
-        <SourcesSection topic={topic} />
-        <Link href="/amnen" className={styles.back}>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <path d="M15 6l-6 6 6 6" />
-          </svg>
-          Till alla ämnen
-        </Link>
-      </div>
-      <AskFab label="Fråga om ämnet" />
-      <JsonLd data={topicJsonLd(topic)} />
-    </article>
+    <ChatProvider scope={topic.slug} label={chat.label} suggestions={SUGGESTIONS} sources={chat.sources}>
+      <ViewTransition enter={TRANSITION.enter} exit={TRANSITION.exit} default="none">
+        <article className={styles.topic} style={accent}>
+          <TopicHero topic={topic} />
+          <DepthSwitch scope={topic.slug} />
+          <div className={`container-wide ${styles.layout}`}>
+            <aside className={styles.rail} aria-label="Innehåll och frågor">
+              <TopicNav items={outline} variant="rail" />
+              <ChatButton className={styles.railAsk}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M5 18.5V6.5A2.5 2.5 0 0 1 7.5 4h9A2.5 2.5 0 0 1 19 6.5v6a2.5 2.5 0 0 1-2.5 2.5H9z" />
+                </svg>
+                Fråga om ämnet
+              </ChatButton>
+            </aside>
+            <div className={styles.body}>
+              <div className={styles.overview}>
+                <TopicNav items={outline} variant="overview" />
+              </div>
+              <SummarySection topic={topic} />
+              <UpdatesSection topic={topic} />
+              <TimelineSection topic={topic} data-depth="1" />
+              <FactsSection topic={topic} data-depth="1" />
+              <MediaSection topic={topic} data-depth="1" />
+              <BlameSection topic={topic} data-depth="2" />
+              <ModelsSection topic={topic} data-depth="1" />
+              <NumbersSection topic={topic} data-depth="1" />
+              <MissingSection topic={topic} data-depth="1" />
+              <PanelSection topic={topic} data-depth="2" />
+              <MethodSection topic={topic} />
+              <SourcesSection topic={topic} />
+              <Link href="/amnen" className={styles.back} transitionTypes={["nav-back"]}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M15 6l-6 6 6 6" />
+                </svg>
+                Till alla ämnen
+              </Link>
+            </div>
+          </div>
+          <AskFab label="Fråga om ämnet" />
+          <JsonLd data={topicJsonLd(topic)} />
+        </article>
+      </ViewTransition>
+    </ChatProvider>
   );
 }

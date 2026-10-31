@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { chatConfig } from "@/config/ai";
 import { site } from "@/config/site";
 import styles from "../prose.module.css";
 
@@ -33,6 +34,19 @@ export default function PrivacyPage() {
         rad.
       </p>
 
+      <h2 id="chatten">Chatten</h2>
+      <p>
+        När du ställer en fråga i chatten skickas frågan, de tidigare frågorna i samma samtal och ämnets underlag
+        till vår AI-leverantör Anthropic, som skriver svaret. Skriv därför inga personuppgifter i frågan. Vi sparar
+        inte frågorna eller svaren.
+      </p>
+      <p>
+        För att varje besökare ska få högst {chatConfig.questionsPerDay} frågor per dag räknar vi frågorna under en
+        kod som skapas av din IP-adress och dagens datum. Koden går inte att föra tillbaka till IP-adressen och byts
+        varje dag. Vi raderar räkningen efter två dygn. För varje svar sparar vi också hur mycket det kostade, utan
+        koppling till dig.
+      </p>
+
       <h2 id="varfor">Varför</h2>
       <p>
         Vi använder e-postadressen för att kontakta dig om betan och, om du valt det, för att skicka
@@ -42,7 +56,8 @@ export default function PrivacyPage() {
 
       <h2 id="var">Var uppgifterna finns</h2>
       <p>
-        Uppgifterna lagras i en databas hos Supabase i Stockholm, inom EU. Sajten drivs av Vercel.
+        Uppgifterna lagras i en databas hos Supabase i Stockholm, inom EU. Sajten drivs av Vercel. Frågor till
+        chatten behandlas av Anthropic, ett amerikanskt företag, när svaret skrivs.
       </p>
 
       <h2 id="hur-lange">Hur länge</h2>

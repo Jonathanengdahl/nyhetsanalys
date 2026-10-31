@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { comingSoon, showToast } from "@/components/ui/toast";
+import { useChat } from "@/components/chat/ChatProvider";
 import styles from "./AskForm.module.css";
 
 const PLACEHOLDER = "Fråga om dagens ämnen";
@@ -13,12 +13,13 @@ const EXAMPLES = [
 ];
 
 /**
- * Question field for the coming chat. Example questions type themselves into
- * the placeholder until the reader focuses the field.
+ * Question field that opens the chat with the question. Example questions
+ * type themselves into the placeholder until the reader focuses the field.
  */
 export function AskForm({ suggestions }: { suggestions: string[] }) {
   const inputRef = useRef<HTMLInputElement>(null);
   const timerRef = useRef<number | undefined>(undefined);
+  const { open } = useChat();
 
   const stopTyping = () => {
     window.clearInterval(timerRef.current);
@@ -64,7 +65,10 @@ export function AskForm({ suggestions }: { suggestions: string[] }) {
         style={{ animationDelay: "1050ms" }}
         onSubmit={(event) => {
           event.preventDefault();
-          showToast(comingSoon.chat);
+          const input = inputRef.current;
+          const question = input?.value.trim() ?? "";
+          if (input) input.value = "";
+          open(question || undefined);
         }}
       >
         <label htmlFor="fraga-live" className="sr-only">
@@ -86,7 +90,7 @@ export function AskForm({ suggestions }: { suggestions: string[] }) {
       </form>
       <div className={`rise ${styles.suggestions}`} style={{ animationDelay: "1180ms" }}>
         {suggestions.map((question) => (
-          <button key={question} type="button" className={styles.suggestion} onClick={() => showToast(comingSoon.chat)}>
+          <button key={question} type="button" className={styles.suggestion} onClick={() => open(question)}>
             {question}
           </button>
         ))}

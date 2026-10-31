@@ -7,7 +7,7 @@ export function showToast(message: string) {
 
 /** Messages for features that are planned but not built yet. */
 export const comingSoon = {
-  chat: "Chatten öppnar senare under betan.",
+  chat: "Chatten finns på startsidan och på varje ämnessida.",
   follow: "Att följa ämnen kräver ett konto. Det kommer senare under betan.",
 } as const;
 

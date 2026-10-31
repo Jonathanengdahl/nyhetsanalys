@@ -41,13 +41,32 @@
   background: var(--color-accent-strong);
 }
 
+/* One row that scrolls sideways on phones, so today's topics come up sooner. */
 .suggestions {
+  position: relative;
   display: flex;
-  flex-wrap: wrap;
   gap: var(--space-2);
+  margin: 0 calc(-1 * var(--gutter));
+  padding: 0 var(--gutter);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.suggestions::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .suggestions {
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+  }
 }
 
 .suggestion {
+  flex: none;
   min-height: var(--tap-target);
   padding: 0 var(--space-3-5);
   border: 1px solid var(--color-line-strong);

@@ -30,3 +30,10 @@
   --fab-from: 500px;
   --fab-to: 700px;
 }
+
+/* On large topic pages the rail beside the text has its own ask button. */
+@media (min-width: 1180px) {
+  .topic {
+    display: none;
+  }
+}

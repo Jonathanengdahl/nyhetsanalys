@@ -63,3 +63,65 @@
   background: var(--color-mark);
   transform-origin: left center;
 }
+
+/* Links in a row on large screens, the menu button on small ones. */
+.nav {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .nav {
+    display: block;
+    margin-left: auto;
+  }
+
+  .menu {
+    display: none;
+  }
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.navLink {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: var(--tap-target);
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-pill);
+  color: var(--color-ink-2);
+  font-size: var(--text-sm-plus);
+  font-weight: var(--weight-medium);
+  text-decoration: none;
+  transition:
+    color 0.2s,
+    background-color 0.2s;
+}
+
+.navLink:hover {
+  background: var(--color-surface);
+  color: var(--color-ink);
+}
+
+.navLink[aria-current="page"] {
+  color: var(--color-ink);
+  font-weight: var(--weight-semibold);
+}
+
+.navLink[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  right: var(--space-3);
+  bottom: 6px;
+  left: var(--space-3);
+  height: 2px;
+  border-radius: 2px;
+  background: var(--color-accent);
+}

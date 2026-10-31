@@ -7,7 +7,7 @@ import styles from "./SiteFooter.module.css";
 export function SiteFooter() {
   return (
     <footer className={styles.footer}>
-      <div className={`container ${styles.inner}`}>
+      <div className={`container-wide ${styles.inner}`}>
         <p className={styles.brand}>
           <Logo />
           <span>{site.name}</span>

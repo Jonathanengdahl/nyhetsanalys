@@ -66,3 +66,39 @@
 .facts dd {
   margin: 0;
 }
+
+.links {
+  flex-direction: row;
+}
+
+@media (min-width: 1024px) {
+  .inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: var(--space-12);
+    align-items: start;
+  }
+
+  .brand,
+  .text {
+    grid-column: 1;
+  }
+
+  .inner > nav {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+
+  .links {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .facts {
+    grid-column: 3;
+    grid-row: 1 / span 2;
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+  }
+}

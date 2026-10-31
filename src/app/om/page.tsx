@@ -48,7 +48,8 @@ export default function AboutPage() {
       <h2 id="betan">Betan</h2>
       <p>
         Det här är en betaversion. Ämnessidorna är exempel från 24 oktober. De är skrivna och faktakontrollerade med hjälp
-        av AI, men de har inte granskats av en redaktör. Chatten, konton och notiser kommer senare.
+        av AI, men de har inte granskats av en redaktör. Chatten finns i en första version med ett begränsat antal
+        frågor per dag. Konton och notiser kommer senare.
       </p>
       <p>
         Hur vi väljer ämnen och analyserar artiklar står på sidan <Link href="/metod">Så arbetar vi</Link>. Ser du ett fel

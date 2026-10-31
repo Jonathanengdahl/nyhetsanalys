@@ -75,7 +75,7 @@ export function ClusterField() {
   const label = `Artiklar som prickar som dras ihop till ${names.length} ämnen: ${names.slice(0, -1).join(", ")} och ${names.at(-1)}. Grå prickar är ämnen som bevakas.`;
 
   return (
-    <figure className={`rise ${styles.figure}`} style={{ animationDelay: "200ms" }}>
+    <figure className={`reveal converge-on-view ${styles.figure}`}>
       <div className={styles.field} role="img" aria-label={label}>
         <span className={styles.legend}>
           <span className={styles.legendDot} />

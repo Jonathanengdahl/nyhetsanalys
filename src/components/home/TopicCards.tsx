@@ -1,7 +1,6 @@
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import { frameSeries } from "@/components/topic/MediaSection";
-import { ComingSoonButton } from "@/components/ui/ComingSoonButton";
 import { Odometer } from "@/components/ui/Odometer";
 import { UncertaintyBadge } from "@/components/ui/UncertaintyBadge";
 import { topicPath } from "@/lib/topics";
@@ -17,7 +16,7 @@ const SEGMENT_RANGES = ["entry 40% cover 36%", "entry 50% cover 39%", "entry 60%
 export function FeaturedTopic({ topic }: { topic: Topic }) {
   const frames = frameSeries(topic.media.frames);
   return (
-    <article className={`settle ${styles.featured}`} style={accentVars(topic.accent)} data-categories={topic.categories.join(" ")}>
+    <article className={`settle ${styles.featured}`} style={accentVars(topic.accent)} data-categories={topic.categories.join(" ")} data-spotlight>
       <div className={styles.tags}>
         <span className={styles.tag}>
           <span className={styles.dot} aria-hidden="true" />
@@ -70,12 +69,12 @@ export function FeaturedTopic({ topic }: { topic: Topic }) {
       )}
 
       <div className={styles.actions}>
-        <Link href={topicPath(topic.slug)} className={styles.primary}>
+        <Link href={topicPath(topic.slug)} className={styles.primary} transitionTypes={["nav-forward"]}>
           Läs analysen<span className="sr-only">: {topic.title}</span>
         </Link>
-        <ComingSoonButton feature="chat" className={styles.secondary}>
-          Fråga om ämnet
-        </ComingSoonButton>
+        <Link href={`${topicPath(topic.slug)}#fraga`} className={styles.secondary} transitionTypes={["nav-forward"]}>
+          Fråga om ämnet<span className="sr-only">: {topic.title}</span>
+        </Link>
       </div>
       <p className={styles.counts}>{topic.counts}</p>
     </article>
@@ -99,7 +98,7 @@ export function TopicTile({
   href?: string;
 }) {
   return (
-    <article className={`slide-in ${styles.tile}`} style={accentVars(accent)} data-categories={categories.join(" ")} data-key={id}>
+    <article className={`slide-in ${styles.tile}`} style={accentVars(accent)} data-categories={categories.join(" ")} data-key={id} data-spotlight>
       <span className={styles.tag}>
         <span className={styles.dot} aria-hidden="true" />
         {card.tags.join(", ")}
@@ -115,7 +114,7 @@ export function TopicTile({
       {card.badge && <span className={`${styles.badge} ${styles.pushDown}`}>{card.badge}</span>}
       {card.sourceLine && <p className={styles.sourceLine}>{card.sourceLine}</p>}
       {href ? (
-        <Link href={href} className={styles.tileLink}>
+        <Link href={href} className={styles.tileLink} transitionTypes={["nav-forward"]}>
           Läs analysen<span className="sr-only">: {title}</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <path d="M5 12h14M13 6l6 6-6 6" />

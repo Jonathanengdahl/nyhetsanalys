@@ -40,8 +40,8 @@ En svensk webbtjänst (app senare) som bevakar nyhetsmedier, hittar dagens heta 
 - Claude API: `claude-sonnet-5-5` för analys, `claude-haiku-5-5` för sortering och chatt. Prompt caching och Batch API där det går.
 - Sidor renderas på servern (statiskt eller ISR) så att all text och metadata finns i HTML:en. Viktigt innehåll får aldrig kräva JavaScript.
 - Innehåll är data, inte hårdkodad text. Sidmallarna läser ämnen från ett datalager: först lokala filer, sedan Supabase, med samma form.
-- Design: alla färger, typsnitt, radier och avstånd som CSS-variabler (design tokens) i `src/styles/tokens.css`. Inga hårdkodade färger i komponenter. Designen ska kunna bytas på ett ställe. Riktningen är Ljus (beslut 2026-10-31, ersätter Nattpop): vit sida, mörk text och en lila accentfärg. Färg används bara i diagram och små markeringar, aldrig i stora block. Typsnittet Onest för både rubriker och text ligger i `src/fonts/` (inga anrop till Google).
-- Rörelse: animationerna bor som globala klasser i `src/styles/globals.css`. Grundstilen är slutläget, så allt syns när animationer är avstängda. Följ `prefers-reduced-motion`. Inget som syns medan man läser en ämnessida får loopa.
+- Design: alla färger, typsnitt, radier och avstånd som CSS-variabler (design tokens) i `src/styles/tokens.css`. Inga hårdkodade färger i komponenter. Designen ska kunna bytas på ett ställe. Riktningen är Ljus (beslut 2026-10-31, ersätter Nattpop): vit sida, mörk text och en lila accentfärg. Färg används bara i diagram och små markeringar, aldrig i stora block. Bred ram på datorn (upp till 1 200 px) för startsida, arkiv, sidhuvud och sidfot, men brödtext högst cirka 70 tecken per rad. Typsnittet Onest för rubriker och text, Geist Mono bara för små tekniska etiketter. Båda ligger i `src/fonts/` (inga anrop till Google).
+- Rörelse: animationerna bor som globala klasser i `src/styles/globals.css`. Grundstilen är slutläget, så allt syns när animationer är avstängda. Följ `prefers-reduced-motion`. Inget som syns medan man läser en ämnessida får loopa. Loopar finns bara på startsidan och kan pausas med en knapp. Sidbyten använder React `ViewTransition` (sidan glider framåt eller bakåt, ämnets rubrik flyger från listan på startsidan till ämnessidan).
 - Djupnivåerna och filtren på startsidan är radioknappar och CSS (`:has()`), utan JavaScript. All text ligger alltid i HTML:en.
 - Next.js behåller tidigare sidor dolda i DOM:en efter navigering. Id:n som etiketter pekar på måste därför vara unika per ämne.
 - Tillgänglighet: WCAG 2.2 AA, mobil först, tryckytor minst 44 px, semantisk HTML, synligt fokus. Färg bär aldrig information ensam.
@@ -51,7 +51,7 @@ En svensk webbtjänst (app senare) som bevakar nyhetsmedier, hittar dagens heta 
 
 - Hemligheter (API-nycklar, Supabase-nycklar) finns bara i `.env.local` och i Vercels miljövariabler. Aldrig i koden, i git, i loggar eller i chatten. Håll `.env.example` uppdaterad med namn men utan värden.
 - Fråga Jonathan innan du gör något som kostar pengar, raderar data, ändrar produktionsdatabasen, rör domän eller DNS, eller gör något publikt utanför betan.
-- Logga tokenförbrukning per AI-jobb och ha en dagsbudget som pausar jobben om den överskrids.
+- Logga tokenförbrukning per AI-jobb och ha en dagsbudget som pausar jobben om den överskrids. Chatten loggar i tabellen `ai_usage` och har en dagsbudget på 20 kr (beslut 2026-10-31, i `src/config/ai.ts`).
 
 ## Betan
 
@@ -77,6 +77,8 @@ Fas 1: betasajten med exempeldata, ingen AI ännu
 2. Sidor med ämnet Protesterna i Frankrike från prototypen som exempeldata: startsida (vad vi gör, dagens ämnen, beta-anmälan), ämnessida `/amne/[slug]`, ämnesarkiv `/amnen`, Så arbetar vi `/metod`, Om oss och kontakt, Rättelser, Integritetspolicy och Kakor. Övriga ämnen i prototypen får visas som exempelkort utan egen sida.
    - Klart 2026-10-29, med fyra faktagranskade ämnen som exempeldata i `src/content/topics/` (Frankrike, Regeringsbildningen, Inflationen, Europa). Chatt, följ och konton visar ett meddelande om att de kommer senare.
    - 2026-10-31: designen bytt från Nattpop till Ljus, eftersom Nattpop gav för mycket intryck och var svår att läsa länge i.
+   - 2026-10-31: bredare layout på datorn, alla dagens ämnen som lista högst upp på startsidan, översikt över delarna på ämnessidan, levande medieremsa med riktiga rubriker (inga medieloggor: de är varumärken och kan se ut som samarbete eller omdöme om hela medier), mer rörelse.
+   - 2026-10-31: AI-chatten tidigarelagd till betan, utan konton: `claude-haiku-5-5`, 10 egna frågor per besökare och dag, dagsbudget 20 kr. Se README.
 3. SEO- och GEO-grunden enligt `docs/seo-geo.md`. Redan på plats: metadata, kanonisk adress, JSON-LD (organisation, webbplats, ämnessida, brödsmulor), sitemap och 404-sida. Kvar: delningsbilder, IndexNow, regler för AI-robotar, llms.txt.
 
 Fas 2: riktiga data
@@ -86,7 +88,7 @@ Fas 2: riktiga data
 7. Admin: godkänn, slå ihop och dela ämnen, granska utkast, rättelser, feedback, kostnader.
 
 Fas 3: konton och chatt
-8. Inloggning (Supabase Auth), gratiskonto med 5 egna frågor per dag, chatt som bara svarar utifrån underlaget, feedbackläge i chatten.
+8. Inloggning (Supabase Auth), gratiskonto med 5 egna frågor per dag, chatt som bara svarar utifrån underlaget, feedbackläge i chatten. Chatten finns redan i betan utan konton (se fas 1), så här återstår konton, kvoter per konto och feedbackläget.
 
 Senare: morgonbrief, läsmeny (ordförklaringar, lättläst, mörkt läge, textstorlek), Premium och betalning, app, företag (B2B), skolor.
 
