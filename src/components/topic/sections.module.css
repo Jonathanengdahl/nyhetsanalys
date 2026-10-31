@@ -18,12 +18,6 @@
   gap: var(--space-1);
 }
 
-.stack2 {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-0-5);
-}
-
 .stack10 {
   display: flex;
   flex-direction: column;
@@ -33,7 +27,8 @@
 .stackInner {
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: var(--space-10);
+  margin-top: var(--space-4);
 }
 
 .plainList {
@@ -42,11 +37,30 @@
   list-style: none;
 }
 
-.card {
+/* Text lists are separated by hairlines instead of boxes. */
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
-  padding: var(--space-4);
+  padding: var(--space-4-5) 0;
+  border-top: 1px solid var(--color-line);
+}
+
+.list > .item:last-child {
+  border-bottom: 1px solid var(--color-line);
+}
+
+/* Soft boxes are kept for charts and figures. */
+.box {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-4) var(--space-4-5);
   border-radius: var(--radius-card);
   background: var(--color-surface);
 }
@@ -63,6 +77,7 @@
 
 .intro {
   color: var(--color-ink-3);
+  line-height: var(--leading-relaxed);
 }
 
 .small {
@@ -78,43 +93,40 @@
 
 .bodyText {
   color: var(--color-ink-2);
+  font-size: var(--text-md);
   line-height: var(--leading-relaxed);
 }
 
 .bodySmall {
   color: var(--color-ink-2);
   font-size: var(--text-sm-plus);
+  line-height: var(--leading-body);
 }
 
-.cardTitle {
-  font-size: var(--text-xl);
-  font-weight: var(--weight-bold);
-  line-height: 1.25;
-}
-
-.cardText {
-  color: var(--color-ink-2);
-  line-height: var(--leading-relaxed);
-}
-
-.boxTitle {
-  font-size: var(--text-lg);
-  font-weight: var(--weight-bold);
+.itemTitle {
+  font-family: var(--font-display);
+  font-size: var(--display-sm);
+  font-weight: var(--display-weight);
+  letter-spacing: var(--display-tracking);
   line-height: var(--leading-snug);
 }
 
-.displayTitle {
-  font-family: var(--font-display);
-  font-size: var(--display-sm);
-  font-weight: var(--weight-heavy);
-  line-height: 1.05;
+.chartTitle {
+  font-size: var(--text-md);
+  font-weight: var(--weight-bold);
 }
 
+.kicker,
 .kickerPositive,
-.kickerNegative,
-.kickerAccent {
-  font-size: var(--text-xs);
+.kickerNegative {
+  font-size: var(--text-2xs);
   font-weight: var(--weight-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.kicker {
+  color: var(--color-ink-3);
 }
 
 .kickerPositive {
@@ -125,17 +137,13 @@
   color: var(--color-negative);
 }
 
-.kickerAccent {
-  color: var(--color-lime);
-}
-
 .textLink {
   align-self: flex-start;
   display: inline-flex;
   align-items: center;
   min-height: var(--tap-target);
-  color: var(--color-lime);
-  font-weight: var(--weight-bold);
+  color: var(--color-accent-strong);
+  font-weight: var(--weight-semibold);
   text-underline-offset: 4px;
 }
 
@@ -146,21 +154,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 52px;
+  min-height: 50px;
   border-radius: var(--radius-control);
-  font-size: var(--text-md);
-  font-weight: var(--weight-bold);
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
   cursor: pointer;
 }
 
 .primaryButton {
-  background: var(--color-lime);
+  background: var(--color-accent);
   color: var(--color-on-accent);
 }
 
 .outlineButton {
-  border: 2px solid var(--color-lime);
-  color: var(--color-lime);
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent-strong);
 }
 
 /* Shown by the topic page for one depth only. */
@@ -173,7 +181,7 @@
   align-items: center;
   min-height: var(--tap-target);
   padding: 0 var(--space-4);
-  border: 1.5px solid var(--color-line-strong);
+  border: 1px solid var(--color-line-strong);
   border-radius: var(--radius-control-sm);
   color: var(--color-ink);
   font-size: var(--text-sm-plus);
@@ -182,6 +190,7 @@
 
 .ghostButton:hover {
   border-color: var(--color-ink);
+  color: var(--color-ink);
 }
 
 /* ---------- På 30 sekunder ---------- */
@@ -189,27 +198,38 @@
 .summary {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3-5);
 }
 
 .summaryRow {
   display: grid;
-  grid-template-columns: 74px minmax(0, 1fr);
-  gap: var(--space-3);
-  padding-top: var(--space-3-5);
+  gap: var(--space-1-5);
+  padding: var(--space-4) 0;
   border-top: 1px solid var(--color-line);
 }
 
+/* Side by side only when the text column stays wide enough to read comfortably. */
+@media (min-width: 560px) {
+  .summaryRow {
+    grid-template-columns: 96px minmax(0, 1fr);
+    gap: var(--space-4);
+  }
+
+  .summaryRow dt {
+    padding-top: 4px;
+  }
+}
+
 .summaryRow dt {
-  color: var(--topic-accent);
-  font-family: var(--font-display);
-  font-size: var(--display-xs);
-  font-weight: var(--weight-heavy);
-  line-height: 1.2;
+  color: var(--color-ink-3);
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .summaryRow dd {
   margin: 0;
+  color: var(--color-ink-2);
   font-size: var(--text-md);
   line-height: var(--leading-relaxed);
 }
@@ -219,7 +239,6 @@
 .updates {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2-5);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -229,18 +248,17 @@
   display: flex;
   align-items: flex-start;
   gap: var(--space-3);
-  padding: var(--space-3-5);
-  border-radius: var(--radius-card-sm);
-  background: var(--color-surface);
+  padding: var(--space-3-5) 0;
+  border-top: 1px solid var(--color-line);
 }
 
 .updateMark {
   flex: none;
-  width: 10px;
-  height: 10px;
-  margin-top: 7px;
-  border-radius: 3px;
-  background: var(--color-lime);
+  width: 8px;
+  height: 8px;
+  margin-top: 9px;
+  border-radius: 50%;
+  background: var(--color-mark);
 }
 
 /* ---------- Vad har hänt ---------- */
@@ -253,10 +271,10 @@
   position: absolute;
   top: var(--space-2);
   bottom: var(--space-2);
-  left: 6px;
+  left: 5px;
   width: 2px;
   border-radius: 1px;
-  background: var(--color-line-strong);
+  background: var(--color-line);
 }
 
 .timelineList {
@@ -268,22 +286,23 @@
 
 .event {
   position: relative;
-  padding: 0 0 var(--space-5) 6px;
+  padding: 0 0 var(--space-6) 4px;
 }
 
 .eventDot {
   position: absolute;
-  top: 6px;
+  top: 7px;
   left: -26px;
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--color-line-strong);
   border-radius: 50%;
-  background: var(--color-dot-strong);
-  box-shadow: 0 0 0 4px var(--color-bg);
+  background: var(--color-bg);
 }
 
 .eventDot[data-tagged="true"] {
-  background: var(--color-lime);
+  border-color: var(--color-mark);
+  background: var(--color-mark);
 }
 
 .eventHead {
@@ -296,21 +315,25 @@
 .eventDate {
   font-family: var(--font-display);
   font-size: var(--display-xs);
-  font-weight: var(--weight-heavy);
+  font-weight: var(--display-weight);
+  letter-spacing: var(--display-tracking);
   line-height: var(--leading-tight);
 }
 
 .eventTag {
-  padding: 2px var(--space-2);
-  border-radius: var(--radius-badge);
-  background: var(--color-lime);
-  color: var(--color-on-accent);
+  padding: 1px var(--space-2);
+  border-radius: var(--radius-pill);
+  background: var(--color-accent-soft);
+  color: var(--color-accent-strong);
   font-size: var(--text-2xs);
   font-weight: var(--weight-bold);
 }
 
 .eventText {
   margin: var(--space-1) 0 var(--space-0-5);
+  color: var(--color-ink-2);
+  font-size: var(--text-md);
+  line-height: var(--leading-relaxed);
 }
 
 /* ---------- Mediebilden ---------- */
@@ -318,10 +341,13 @@
 .iconList {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
-  margin: 0;
+  gap: var(--space-2-5);
+  margin: var(--space-1) 0 0;
   padding: 0;
   list-style: none;
+  color: var(--color-ink-2);
+  font-size: var(--text-md);
+  line-height: var(--leading-relaxed);
 }
 
 .iconList li {
@@ -332,7 +358,7 @@
 
 .iconList svg {
   flex: none;
-  margin-top: 3px;
+  margin-top: 5px;
 }
 
 .agreeIcon {
@@ -345,15 +371,16 @@
 
 .frameBar {
   display: flex;
-  gap: 3px;
-  height: 30px;
+  gap: 2px;
+  height: 12px;
+  margin-top: var(--space-1);
 }
 
 .frameSeg {
   flex-basis: 0;
   flex-shrink: 1;
   border-radius: var(--radius-sm);
-  background: var(--accent);
+  background: var(--seg);
 }
 
 .legend {
@@ -363,6 +390,7 @@
   margin: 0;
   padding: 0;
   list-style: none;
+  color: var(--color-ink-2);
   font-size: var(--text-sm);
   line-height: var(--leading-snug);
 }
@@ -378,13 +406,19 @@
   width: 10px;
   height: 10px;
   border-radius: var(--radius-xs);
-  background: var(--accent);
+  background: var(--seg);
+}
+
+.matrixBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
 }
 
 .matrixKey {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-1-5) var(--space-3-5);
+  gap: var(--space-1-5) var(--space-4);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -398,38 +432,23 @@
   gap: var(--space-1-5);
 }
 
-.keyFull,
-.keyRing,
-.keyEmpty {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-}
-
-.keyFull {
-  background: var(--color-ink);
-}
-
-.keyRing {
-  border: 3px solid var(--color-ink);
-}
-
-.keyEmpty {
-  border: 2px solid var(--color-line-strong);
+.tableScroll {
+  overflow-x: auto;
 }
 
 .matrix {
   width: 100%;
+  min-width: 340px;
   border-collapse: collapse;
   table-layout: fixed;
 }
 
 .matrix thead th {
   padding: 0 0 var(--space-2);
-  border-bottom: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line-strong);
   color: var(--color-ink-3);
   font-size: 0.6875rem;
-  font-weight: var(--weight-regular);
+  font-weight: var(--weight-medium);
   line-height: var(--leading-tight);
   text-align: center;
   vertical-align: bottom;
@@ -441,7 +460,7 @@
 }
 
 .matrix thead th:not(:first-child) {
-  width: 38px;
+  width: 40px;
 }
 
 .matrix abbr[title] {
@@ -453,8 +472,9 @@
 }
 
 .matrix tbody th {
-  height: 40px;
+  height: 42px;
   padding: var(--space-1) var(--space-1) var(--space-1) 0;
+  color: var(--color-ink);
   font-size: var(--text-sm);
   font-weight: var(--weight-semibold);
   text-align: left;
@@ -465,29 +485,35 @@
   vertical-align: middle;
 }
 
+/* Harvey balls: filled for main focus, ring for mentioned, faint ring for missing. */
 .dot {
   display: inline-block;
-  width: 18px;
-  height: 18px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   vertical-align: middle;
 }
 
 .dot[data-level="2"] {
-  background: var(--accent);
+  background: var(--color-ink);
 }
 
 .dot[data-level="1"] {
-  border: 3px solid var(--accent);
+  border: 2.5px solid var(--color-ink);
 }
 
 .dot[data-level="0"] {
-  border: 2px solid var(--color-line-strong);
+  border: 1.5px solid var(--color-line-strong);
+}
+
+.articles {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--color-line);
 }
 
 .article {
-  border-radius: var(--radius-card-md);
-  background: var(--color-surface);
+  border-top: 1px solid var(--color-line);
 }
 
 .articleSummary {
@@ -496,12 +522,13 @@
   justify-content: space-between;
   gap: var(--space-3);
   min-height: var(--tap-target);
-  padding: var(--space-3-5) var(--space-4);
+  padding: var(--space-3-5) 0;
 }
 
 .articleSummary svg {
   flex: none;
   margin-top: var(--space-0-5);
+  color: var(--color-ink-3);
 }
 
 .articleHead {
@@ -516,52 +543,33 @@
 }
 
 .genre {
-  padding: 1px var(--space-2);
-  border-radius: var(--radius-badge);
-  background: var(--color-line);
-  color: var(--color-ink-2);
+  padding: 0 var(--space-2);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  color: var(--color-ink-3);
   font-size: var(--text-2xs);
   font-weight: var(--weight-semibold);
 }
 
 .articleTitle {
+  color: var(--color-ink-2);
   line-height: 1.4;
 }
 
 .articleBody {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2-5);
-  padding: 0 var(--space-4) var(--space-4);
+  gap: var(--space-3);
+  padding: 0 0 var(--space-4-5);
 }
 
 .placement {
   display: flex;
   flex-direction: column;
   gap: var(--space-0-5);
-  padding: var(--space-2-5) var(--space-3);
+  padding: var(--space-3);
   border-radius: var(--radius-control-sm);
-  background: var(--color-bg);
-}
-
-/* ---------- Vem pekar ut vem? ---------- */
-
-.blame {
-  display: grid;
-  grid-template-columns: 6px minmax(0, 1fr);
-  gap: var(--space-3-5);
-  padding: var(--space-3-5) 0;
-  border-top: 1px solid var(--color-line);
-}
-
-.blameBar {
-  border-radius: 3px;
-  background: var(--color-pink);
-}
-
-.blameWho {
-  font-size: var(--text-md);
-  font-weight: var(--weight-bold);
+  background: var(--color-surface);
 }
 
 /* ---------- Siffrorna bakom ---------- */
@@ -577,27 +585,23 @@
   flex-direction: column;
   gap: var(--space-1-5);
   padding: var(--space-3-5);
-  border-radius: var(--radius-card-md);
+  border-radius: var(--radius-card);
   background: var(--color-surface);
 }
 
 .tileValue {
-  color: var(--topic-accent);
-  font-family: var(--font-display);
-  font-size: var(--display-xl);
-  font-weight: var(--weight-black);
+  font-family: var(--font-figure);
+  font-size: var(--display-stat);
+  font-weight: var(--display-weight);
   font-variant-numeric: tabular-nums;
+  letter-spacing: var(--display-tracking);
   line-height: var(--leading-none);
 }
 
 .tileLabel {
+  color: var(--color-ink-2);
   font-size: var(--text-sm);
   line-height: 1.4;
-}
-
-.chartTitle {
-  font-size: var(--text-md);
-  font-weight: var(--weight-bold);
 }
 
 .chart {
@@ -609,6 +613,7 @@
 .chart th {
   width: 104px;
   padding: var(--space-1) var(--space-2) var(--space-1) 0;
+  color: var(--color-ink-2);
   font-size: var(--text-sm);
   font-weight: var(--weight-regular);
   text-align: left;
@@ -621,9 +626,9 @@
 .chartTrack {
   position: relative;
   display: block;
-  height: 14px;
+  height: 10px;
   overflow: clip;
-  border-radius: 7px;
+  border-radius: 5px;
   background: var(--color-bg);
 }
 
@@ -632,7 +637,7 @@
   top: 0;
   bottom: 0;
   left: 0;
-  border-radius: 7px;
+  border-radius: 5px;
   background: var(--accent);
 }
 
@@ -659,14 +664,14 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  border-left: 2px dashed var(--color-sun);
+  border-left: 1.5px dashed var(--color-ink-3);
 }
 
 .chartRefLabel {
   position: absolute;
   top: 0;
   padding-left: var(--space-1-5);
-  color: var(--color-sun);
+  color: var(--color-ink-3);
   font-size: var(--text-2xs);
   white-space: nowrap;
 }
@@ -677,24 +682,15 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
-  padding: var(--space-4);
+  padding: var(--space-4) var(--space-4) var(--space-3);
   border-radius: var(--radius-card);
-  background: var(--color-lime);
-  color: var(--color-on-accent);
-  line-height: var(--leading-relaxed);
-}
-
-.missingTitle {
-  font-family: var(--font-display);
-  font-size: var(--display-sm);
-  font-weight: var(--weight-black);
-  line-height: 1.05;
+  background: var(--color-accent-soft);
 }
 
 .missingNote {
+  color: var(--color-ink-2);
   font-size: var(--text-sm);
   font-weight: var(--weight-semibold);
-  line-height: var(--leading-body);
 }
 
 /* ---------- Perspektivpanelen ---------- */
@@ -765,17 +761,15 @@
 .plotPill {
   display: flex;
   align-items: center;
+  gap: var(--space-1-5);
   padding: var(--space-1) var(--space-2-5);
   border-radius: var(--radius-pill);
-  background: var(--accent);
-  color: var(--color-on-accent);
+  background: var(--color-bg);
+  box-shadow: var(--shadow-raised);
+  color: var(--color-ink);
   font-size: var(--text-xs);
-  font-weight: var(--weight-bold);
+  font-weight: var(--weight-semibold);
   white-space: nowrap;
-}
-
-.voice {
-  transform-origin: left center;
 }
 
 .voiceHead {
@@ -786,16 +780,17 @@
 
 .voiceDot {
   flex: none;
-  width: 14px;
-  height: 14px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: var(--accent);
 }
 
 .quote {
+  color: var(--color-ink);
   font-size: var(--text-lg);
-  font-weight: var(--weight-semibold);
-  line-height: 1.45;
+  font-weight: var(--weight-medium);
+  line-height: 1.5;
 }
 
 /* ---------- Så är sidan gjord ---------- */
@@ -809,14 +804,15 @@
 .methodLinks {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-2-5);
+  align-items: center;
+  gap: var(--space-2-5) var(--space-4);
 }
 
 /* ---------- Källor och rättelser ---------- */
 
 .sources {
-  border-radius: var(--radius-card-md);
-  background: var(--color-surface);
+  border-top: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
 }
 
 .sourcesSummary {
@@ -824,23 +820,28 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-3);
-  min-height: 52px;
-  padding: 0 var(--space-4);
+  min-height: 56px;
   font-size: var(--text-md);
   font-weight: var(--weight-bold);
+}
+
+.sourcesSummary svg {
+  color: var(--color-ink-3);
 }
 
 .sourcesBody {
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
-  padding: 0 var(--space-4) var(--space-4);
+  gap: var(--space-5);
+  padding: 0 0 var(--space-5);
 }
 
 .sourcesGroup {
-  color: var(--color-lime);
-  font-size: var(--text-sm-plus);
+  color: var(--color-ink-3);
+  font-size: var(--text-2xs);
   font-weight: var(--weight-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .sourceList {
@@ -874,11 +875,12 @@
   min-width: 0;
   color: var(--color-ink);
   overflow-wrap: anywhere;
+  text-decoration-color: var(--color-line-strong);
   text-underline-offset: 3px;
 }
 
 .sourceLink:hover {
-  color: var(--color-lime);
+  color: var(--color-accent-strong);
 }
 
 .corrections {
@@ -886,7 +888,7 @@
   flex-direction: column;
   gap: var(--space-1);
   padding: var(--space-4);
-  border-radius: var(--radius-card-md);
+  border-radius: var(--radius-card);
   background: var(--color-surface);
 }
 

@@ -5,8 +5,9 @@
 .heading {
   font-family: var(--font-display);
   font-size: var(--display-xl);
-  font-weight: var(--weight-heavy);
-  line-height: var(--leading-none);
+  font-weight: var(--display-weight);
+  letter-spacing: var(--display-tracking);
+  line-height: var(--display-leading);
   scroll-margin-top: calc(var(--header-height) + 80px);
 }
 
@@ -16,13 +17,13 @@
 
 .line {
   display: block;
-  width: 56px;
-  height: 4px;
+  width: 40px;
+  height: 3px;
   margin-top: var(--space-2-5);
   border-radius: var(--radius-xs);
-  background: var(--color-lime);
+  background: var(--color-mark);
 }
 
 .line[data-size="medium"] {
-  width: 44px;
+  width: 32px;
 }

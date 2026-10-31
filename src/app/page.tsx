@@ -1,5 +1,4 @@
 import Link from "next/link";
-import type { CSSProperties } from "react";
 import { AskForm } from "@/components/home/AskForm";
 import { ClusterField } from "@/components/home/ClusterField";
 import { DecodeHeadline } from "@/components/home/DecodeHeadline";
@@ -20,9 +19,9 @@ const SUGGESTIONS = ["Vad är viktigast i dag?", "Varför stiger inflationen?"];
 const FILTERS: ("alla" | TopicCategory)[] = ["alla", "inrikes", "utrikes", "ekonomi", "politik"];
 
 const STEPS = [
-  { title: "Vi hittar ämnena", text: "som många medier skriver om just nu.", accent: "lime" },
-  { title: "Vi jämför", text: "hur medierna beskriver dem, artikel för artikel.", accent: "pink" },
-  { title: "Du får helheten", text: "med källor och osäkerheter tydligt märkta.", accent: "mint" },
+  { title: "Vi hittar ämnena", text: "som många medier skriver om just nu." },
+  { title: "Vi jämför", text: "hur medierna beskriver dem, artikel för artikel." },
+  { title: "Du får helheten", text: "med källor och osäkerheter tydligt märkta." },
 ] as const;
 
 export default async function HomePage() {
@@ -131,12 +130,8 @@ export default async function HomePage() {
         <SectionHeading id="sa-funkar-det">Så funkar det</SectionHeading>
         <ol className={styles.steps}>
           {STEPS.map((step, index) => (
-            <li key={step.title} className={styles.step}>
-              <span
-                className={`num-flip ${styles.stepNumber}`}
-                style={{ "--step": `var(--color-${step.accent})` } as CSSProperties}
-                aria-hidden="true"
-              >
+            <li key={step.title} className={`reveal ${styles.step}`}>
+              <span className={styles.stepNumber} aria-hidden="true">
                 {index + 1}
               </span>
               <span className={styles.stepText}>
@@ -162,17 +157,17 @@ export default async function HomePage() {
           <p className={styles.signupLead}>
             Vi testar tjänsten med en mindre grupp läsare. Anmäl dig så hör vi av oss.
           </p>
-          <SignupForm kind="beta" tone="dark" />
+          <SignupForm kind="beta" />
         </div>
       </section>
 
       <section className={`container ${styles.signup}`} aria-labelledby="veckobrevet">
-        <div className={`on-accent ${styles.newsletterCard}`}>
+        <div className={styles.newsletterCard}>
           <h2 id="veckobrevet" className={styles.newsletterTitle}>
             Veckans viktigaste, på fem minuter.
           </h2>
           <p className={styles.newsletterLead}>Varje söndag: fem ämnen, hur de beskrevs och vad som saknades.</p>
-          <SignupForm kind="newsletter" tone="light" />
+          <SignupForm kind="newsletter" />
         </div>
       </section>
 

@@ -11,7 +11,6 @@ const delay = (ms: number) => ({ animationDelay: `${ms}ms` }) as CSSProperties;
 export function TopicHero({ topic }: { topic: Topic }) {
   return (
     <header className={styles.hero}>
-      <span className={styles.glow} aria-hidden="true" />
       <div className={`container ${styles.inner}`}>
         <nav aria-label="Brödsmulor" className="rise">
           <Link href="/amnen" className={styles.back}>
@@ -28,8 +27,8 @@ export function TopicHero({ topic }: { topic: Topic }) {
               {tag}
             </span>
           ))}
-          <span className={`on-accent ${styles.status}`}>
-            <span className="pulse pulse-dark" aria-hidden="true" />
+          <span className={styles.status}>
+            <span className={styles.statusDot} aria-hidden="true" />
             {topic.status}
           </span>
         </div>
@@ -57,17 +56,17 @@ export function TopicHero({ topic }: { topic: Topic }) {
         </p>
 
         <div className={`rise ${styles.actions}`} style={delay(680)}>
-          <ComingSoonButton feature="follow" className={styles.follow}>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" aria-hidden="true">
-              <path d="M12 5v14M5 12h14" />
-            </svg>
-            Följ ämnet
-          </ComingSoonButton>
           <ComingSoonButton feature="chat" className={styles.ask}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M5 18.5V6.5A2.5 2.5 0 0 1 7.5 4h9A2.5 2.5 0 0 1 19 6.5v6a2.5 2.5 0 0 1-2.5 2.5H9z" />
             </svg>
             Fråga om ämnet
+          </ComingSoonButton>
+          <ComingSoonButton feature="follow" className={styles.follow}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true">
+              <path d="M12 5v14M5 12h14" />
+            </svg>
+            Följ ämnet
           </ComingSoonButton>
         </div>
 

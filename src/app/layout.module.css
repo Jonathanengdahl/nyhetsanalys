@@ -20,7 +20,7 @@
   z-index: var(--stack-toast);
   padding: var(--space-3) var(--space-4);
   border-radius: var(--radius-control);
-  background: var(--color-lime);
+  background: var(--color-accent);
   color: var(--color-on-accent);
   font-weight: var(--weight-bold);
   transform: translateY(-200%);

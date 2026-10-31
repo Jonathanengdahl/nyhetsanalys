@@ -80,7 +80,7 @@ export function AskForm({ suggestions }: { suggestions: string[] }) {
           onFocus={stopTyping}
           className={styles.input}
         />
-        <button type="submit" className={`shine ${styles.submit}`}>
+        <button type="submit" className={styles.submit}>
           Fråga
         </button>
       </form>

@@ -2,8 +2,10 @@
   position: sticky;
   top: 0;
   z-index: var(--stack-header);
+  border-bottom: 1px solid var(--color-line);
   background: var(--color-bg-glass);
-  border-bottom: 1px solid var(--color-line-soft);
+  -webkit-backdrop-filter: saturate(1.4) blur(10px);
+  backdrop-filter: saturate(1.4) blur(10px);
 }
 
 .inner {
@@ -37,18 +39,19 @@
 .name {
   font-family: var(--font-display);
   font-size: var(--display-brand);
-  font-weight: var(--weight-heavy);
+  font-weight: var(--display-weight);
+  letter-spacing: var(--display-tracking);
   line-height: var(--leading-none);
-  letter-spacing: 0.01em;
 }
 
 .beta {
-  padding: 3px 9px;
-  border-radius: var(--radius-chip);
-  background: var(--color-lime);
-  color: var(--color-on-accent);
-  font-size: var(--text-xs);
+  padding: 2px var(--space-2);
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-pill);
+  color: var(--color-ink-3);
+  font-size: var(--text-2xs);
   font-weight: var(--weight-semibold);
+  line-height: 1.5;
 }
 
 .progress {
@@ -57,6 +60,6 @@
   bottom: -1px;
   left: 0;
   height: 2px;
-  background: var(--color-lime);
+  background: var(--color-mark);
   transform-origin: left center;
 }

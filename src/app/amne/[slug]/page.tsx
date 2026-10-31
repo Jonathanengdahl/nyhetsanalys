@@ -57,10 +57,7 @@ export default async function TopicPage({ params }: PageProps<"/amne/[slug]">) {
   const topic = await getTopic(slug);
   if (!topic) notFound();
 
-  const accent = {
-    "--topic-accent": `var(--color-${topic.accent})`,
-    "--topic-glow": `var(--glow-${topic.accent})`,
-  } as CSSProperties;
+  const accent = { "--topic-accent": `var(--color-${topic.accent})` } as CSSProperties;
 
   return (
     <article className={styles.topic} style={accent}>

@@ -19,7 +19,7 @@ const copy: Record<SignupKind, { submit: string; consent: string }> = {
   },
 };
 
-export function SignupForm({ kind, tone = "light" }: { kind: SignupKind; tone?: "light" | "dark" }) {
+export function SignupForm({ kind }: { kind: SignupKind }) {
   const [state, formAction, pending] = useActionState(submitSignup, initialState);
   const id = useId();
   const emailId = `${id}-email`;
@@ -31,7 +31,7 @@ export function SignupForm({ kind, tone = "light" }: { kind: SignupKind; tone?: 
 
   if (state.status === "success") {
     return (
-      <p className={`${styles.success} ${styles[tone]}`} role="status">
+      <p className={styles.success} role="status">
         {state.message}
       </p>
     );
@@ -42,7 +42,7 @@ export function SignupForm({ kind, tone = "light" }: { kind: SignupKind; tone?: 
     <form
       key={values?.attempt ?? "initial"}
       action={formAction}
-      className={`${styles.form} ${styles[tone]}`}
+      className={styles.form}
       noValidate
     >
       <input type="hidden" name="kind" value={kind} />

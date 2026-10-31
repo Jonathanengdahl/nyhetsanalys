@@ -77,7 +77,6 @@ export function ClusterField() {
   return (
     <figure className={`rise ${styles.figure}`} style={{ animationDelay: "200ms" }}>
       <div className={styles.field} role="img" aria-label={label}>
-        <span className={`anim-orb ${styles.orb}`} />
         <span className={styles.legend}>
           <span className={styles.legendDot} />
           Bevakas

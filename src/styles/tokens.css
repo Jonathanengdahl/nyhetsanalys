@@ -3,80 +3,121 @@
  * components is defined here. Components only reference these variables, so
  * the whole look can be replaced in this file.
  *
- * Direction: "Nattpop", a dark night-blue stage with bright accent blocks
- * (see the design file and the prototype in docs/design/).
+ * Direction: light and minimal. White page, dark ink, one brand accent.
+ * Colour is used for data (charts, labels) and small markers, not for blocks.
  */
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 
-  /* Base */
-  --color-bg: #1b1240;
-  --color-bg-glass: rgb(27 18 64 / 0.96);
-  --color-bg-clear: rgb(27 18 64 / 0);
-  --color-surface: #2a1f5c;
-  --color-surface-sunken: #221752;
-  --color-line: #3b2f73;
-  --color-line-strong: #5b4c9e;
-  --color-line-soft: rgb(91 76 158 / 0.45);
-  --color-dot: #6e64a8;
-  --color-dot-strong: #8c80c9;
+  /* Surfaces and lines */
+  --color-bg: #ffffff;
+  --color-bg-glass: rgb(255 255 255 / 0.92);
+  --color-bg-clear: rgb(255 255 255 / 0);
+  --color-surface: #f6f5f9;
+  --color-surface-strong: #edecf3;
+  --color-surface-sunken: #fafafc;
+  --color-line: #e8e6ef;
+  --color-line-strong: #cfccdb;
+  --color-grid: #e4e2eb;
+  --color-dot: #cfccdb;
 
   /* Ink (text) */
-  --color-ink: #ffffff;
-  --color-ink-2: #e4e0f7;
-  --color-ink-3: #c9c2ee;
-  --color-ink-4: #b3abdf;
-  /* Text on bright accent surfaces */
-  --color-on-accent: #1b1240;
+  --color-ink: #16141f;
+  --color-ink-2: #2f2c3b;
+  --color-ink-3: #5c586c;
+  --color-ink-4: #767289;
+  --color-inverse: #ffffff;
+  --color-inverse-surface: #16141f;
 
-  /* Accents. Charts and categories use them, but never as the only carrier of meaning. */
-  --color-lime: #d7ff4f;
-  --color-coral: #ff7759;
-  --color-pink: #ff9be0;
-  --color-mint: #43e5c8;
-  --color-sun: #ffd447;
-  --color-sky: #8dbbff;
-  --color-white: #ffffff;
-  --color-muted: var(--color-dot-strong);
+  /* Brand accent: links, primary buttons, selected states, small marks */
+  --color-accent: #5b3fd9;
+  --color-accent-strong: #4a30c0;
+  --color-accent-soft: #f1eeff;
+  --color-on-accent: #ffffff;
+  --color-mark: var(--color-accent);
+  --logo-1: #5b3fd9;
+  --logo-2: #8c79e8;
+  --logo-3: #c2b8f3;
 
-  /* Glows and light effects */
-  --glow-lime: rgb(215 255 79 / 0.22);
-  --glow-coral: rgb(255 119 89 / 0.34);
-  --glow-pink: rgb(255 155 224 / 0.24);
-  --glow-mint: rgb(67 229 200 / 0.22);
-  --glow-sun: rgb(255 212 71 / 0.24);
-  --glow-sky: rgb(141 187 255 / 0.24);
-  --glow-orb: rgb(255 119 89 / 0.38);
-  --glow-scan: rgb(215 255 79 / 0.55);
-  --shine: rgb(255 255 255 / 0.6);
-  --shine-clear: rgb(255 255 255 / 0);
-  --shadow-float: 0 12px 30px rgb(8 4 24 / 0.45);
+  /* Data colours, in a validated order for a white surface. Always shown with labels. */
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --series-3: #1baf7a;
+  --series-4: #eda100;
+  --series-5: #e87ba4;
+  --series-6: #008300;
 
-  /* Semantic roles */
-  --color-accent: var(--color-lime);
-  --color-link: var(--color-lime);
-  --color-link-hover: var(--color-ink);
-  --color-positive: var(--color-mint);
-  --color-negative: var(--color-pink);
-  --color-error: var(--color-coral);
+  /* Named colours for topics, highlighted chart rows and the perspective panel */
+  --color-coral: #eb6834;
+  --color-lime: #008300;
+  --color-pink: #e87ba4;
+  --color-mint: #1baf7a;
+  --color-sun: #eda100;
+  --color-sky: #2a78d6;
+  --color-muted: #aaa6bb;
+  --tint-coral: #fdece5;
+  --tint-lime: #e2f1e2;
+  --tint-pink: #fcebf2;
+  --tint-mint: #e1f5ee;
+  --tint-sun: #fdf2d9;
+  --tint-sky: #e5eefa;
+  --tint-muted: #f1f0f5;
 
-  /* Uncertainty labels (always shown with their text) */
-  --label-confirmed: var(--color-mint);
-  --label-differ: var(--color-sun);
-  --label-changes: var(--color-sky);
-  --label-estimate: var(--color-white);
-  --label-disputed: var(--color-pink);
-  --label-unconfirmed-line: var(--color-ink-3);
-  --label-false: var(--color-coral);
+  /* Text colours with meaning (all at least 4.5:1 on white) */
+  --color-positive: #0b7a57;
+  --color-negative: #a3326b;
+  --color-error: #b3261e;
+
+  /* Uncertainty labels: tint plus dark text, always together with the label text */
+  --label-confirmed-bg: #e1f5ee;
+  --label-confirmed-ink: #0b6448;
+  --label-differ-bg: #fdf1d6;
+  --label-differ-ink: #7a5300;
+  --label-changes-bg: #e5eefa;
+  --label-changes-ink: #1d4f93;
+  --label-estimate-bg: #f1f0f5;
+  --label-estimate-ink: #2f2c3b;
+  --label-disputed-bg: #fcebf2;
+  --label-disputed-ink: #8e2a5c;
+  --label-unconfirmed-line: #8a869b;
+  --label-unconfirmed-ink: #2f2c3b;
+  --label-false-bg: #fde9e3;
+  --label-false-ink: #9c2f12;
+
+  /* Shadows */
+  --shadow-float: 0 10px 30px rgb(22 20 31 / 0.14);
+  --shadow-raised: 0 1px 3px rgb(22 20 31 / 0.12), 0 0 0 1px rgb(22 20 31 / 0.04);
+  --glow-scan: rgb(91 63 217 / 0.28);
 
   /* Focus */
-  --focus-ring-color: var(--color-lime);
+  --focus-ring-color: var(--color-accent);
   --focus-ring-width: 3px;
   --focus-ring-offset: 3px;
 
   /* Typography (families are loaded with next/font in the root layout) */
   --font-body: var(--font-onest), "Helvetica Neue", Arial, sans-serif;
-  --font-display: var(--font-big-shoulders), "Arial Narrow", sans-serif;
+  --font-display: var(--font-onest), "Helvetica Neue", Arial, sans-serif;
+  --font-figure: var(--font-display);
+
+  --display-weight: 700;
+  --display-weight-strong: 750;
+  --display-tracking: -0.02em;
+  --display-leading: 1.08;
+  --display-leading-tight: 1.02;
+
+  --display-hero: clamp(2.375rem, 10.5vw, 3.5rem);
+  --display-topic: clamp(2.25rem, 10vw, 3.375rem);
+  --display-topic-medium: clamp(2rem, 9vw, 3rem);
+  --display-page: 2.25rem;
+  --display-xl: 1.75rem;
+  --display-lg: 1.5rem;
+  --display-md: 1.375rem;
+  --display-sm: 1.25rem;
+  --display-xs: 1.0625rem;
+  --display-brand: 1.25rem;
+  --display-step: 2.5rem;
+  --display-number: 3.5rem;
+  --display-stat: 2rem;
 
   --text-2xs: 0.75rem;
   --text-xs: 0.8125rem;
@@ -85,34 +126,18 @@
   --text-base: 1rem;
   --text-md: 1.0625rem;
   --text-lg: 1.125rem;
-  --text-xl: 1.25rem;
-
-  --display-xs: 1.375rem;
-  --display-sm: 1.625rem;
-  --display-brand: 1.75rem;
-  --display-md: 1.875rem;
-  --display-lg: 2.125rem;
-  --display-xl: 2.5rem;
-  --display-2xl: 3.5rem;
-  --display-3xl: 3.75rem;
-  --display-number: 5.25rem;
-  --display-hero: clamp(3rem, 13.5vw, 5.25rem);
-  --display-topic-large: clamp(3.375rem, 15.5vw, 6.5rem);
-  --display-topic-medium: clamp(3rem, 13.5vw, 5.75rem);
+  --text-xl: 1.1875rem;
 
   --leading-none: 1;
-  --leading-display: 0.92;
-  --leading-tight: 1.1;
+  --leading-tight: 1.15;
   --leading-snug: 1.3;
-  --leading-body: 1.5;
-  --leading-relaxed: 1.55;
+  --leading-body: 1.55;
+  --leading-relaxed: 1.65;
 
   --weight-regular: 400;
   --weight-medium: 500;
   --weight-semibold: 600;
   --weight-bold: 700;
-  --weight-heavy: 800;
-  --weight-black: 900;
 
   /* Spacing scale */
   --space-0-5: 0.125rem;
@@ -132,6 +157,7 @@
   --space-10: 2.5rem;
   --space-12: 3rem;
   --space-14: 3.5rem;
+  --space-16: 4rem;
   --space-24: 6rem;
 
   /* Radii */
@@ -142,12 +168,8 @@
   --radius-tag: 10px;
   --radius-control-sm: 12px;
   --radius-control: 14px;
-  --radius-card-sm: 16px;
-  --radius-card-md: 18px;
-  --radius-card: 20px;
-  --radius-tile: 22px;
+  --radius-card: 18px;
   --radius-panel: 24px;
-  --radius-feature: 26px;
   --radius-pill: 999px;
 
   /* Layout */

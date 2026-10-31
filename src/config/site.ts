@@ -30,7 +30,7 @@ export const site = {
   language: "sv",
   timeZone: "Europe/Stockholm",
   /** Browser UI colour. Mirrors --color-bg in src/styles/tokens.css. */
-  themeColor: "#1b1240",
+  themeColor: "#ffffff",
   owner: {
     name: "Ascenddigital OÜ",
   },
@@ -44,8 +44,7 @@ export const site = {
   beta: {
     enabled: true,
     label: "Beta",
-    notice:
-      "Betaversion med exempelinnehåll från 24 oktober. Texterna är skrivna med AI och har inte granskats av en redaktör.",
+    notice: "Beta med exempel från 24 oktober. Texterna är skrivna av AI och har inte granskats av en redaktör.",
   },
 } as const;
 

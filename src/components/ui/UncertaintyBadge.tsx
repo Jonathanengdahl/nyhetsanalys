@@ -11,22 +11,11 @@ const variants: Record<UncertaintyLabel, { key: string; icon: string }> = {
   Falskt: { key: "false", icon: "M6 6l12 12M18 6 6 18" },
 };
 
-/**
- * Uncertainty label. The text is always shown; colour and icon only repeat it.
- * `tone="accent"` is for bright accent surfaces.
- */
-export function UncertaintyBadge({
-  label,
-  tone = "dark",
-  className,
-}: {
-  label: UncertaintyLabel;
-  tone?: "dark" | "accent";
-  className?: string;
-}) {
+/** Uncertainty label. The text is always shown; colour and icon only repeat it. */
+export function UncertaintyBadge({ label, className }: { label: UncertaintyLabel; className?: string }) {
   const variant = variants[label];
   return (
-    <span className={`${styles.badge} ${className ?? ""}`} data-label={variant.key} data-tone={tone}>
+    <span className={`${styles.badge} ${className ?? ""}`} data-label={variant.key}>
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d={variant.icon} />
       </svg>

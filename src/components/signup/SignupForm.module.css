@@ -4,37 +4,8 @@
   max-width: 34rem;
 }
 
-/* On a bright accent card. */
-.light {
-  --form-ink: var(--color-on-accent);
-  --form-ink-2: var(--color-on-accent);
-  --form-field-bg: var(--color-white);
-  --form-field-ink: var(--color-on-accent);
-  --form-field-line: var(--color-on-accent);
-  --form-error: var(--color-on-accent);
-  --form-link: var(--color-on-accent);
-  --form-submit-bg: var(--color-on-accent);
-  --form-submit-ink: var(--color-ink);
-  --form-check: var(--color-on-accent);
-  --focus-ring-color: var(--color-on-accent);
-}
-
-/* On the dark stage. */
-.dark {
-  --form-ink: var(--color-ink);
-  --form-ink-2: var(--color-ink-2);
-  --form-field-bg: var(--color-bg);
-  --form-field-ink: var(--color-ink);
-  --form-field-line: var(--color-line-strong);
-  --form-error: var(--color-error);
-  --form-link: var(--color-lime);
-  --form-submit-bg: var(--color-lime);
-  --form-submit-ink: var(--color-on-accent);
-  --form-check: var(--color-lime);
-}
-
 .form a {
-  color: var(--form-link);
+  color: var(--color-accent-strong);
 }
 
 .field {
@@ -43,28 +14,29 @@
 }
 
 .label {
-  color: var(--form-ink);
+  color: var(--color-ink);
   font-weight: var(--weight-semibold);
 }
 
 .input {
   min-height: var(--tap-target);
   padding: var(--space-2) var(--space-3);
-  border: 1.5px solid var(--form-field-line);
+  border: 1px solid var(--color-line-strong);
   border-radius: var(--radius-control-sm);
-  background: var(--form-field-bg);
-  color: var(--form-field-ink);
+  background: var(--color-bg);
+  color: var(--color-ink);
   font: inherit;
   font-size: var(--text-base);
 }
 
-.light .input::placeholder {
-  color: var(--color-line-strong);
+.input:focus-visible {
+  border-color: var(--color-accent);
+  outline-offset: 1px;
 }
 
 .input[aria-invalid="true"] {
-  border-width: 3px;
-  border-color: var(--form-error);
+  border-width: 2px;
+  border-color: var(--color-error);
 }
 
 .check {
@@ -72,23 +44,23 @@
   grid-template-columns: auto 1fr;
   align-items: start;
   gap: var(--space-3);
-  color: var(--form-ink-2);
+  color: var(--color-ink-2);
   font-size: var(--text-sm);
 }
 
 .checkbox {
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   margin: 0;
-  accent-color: var(--form-check);
+  accent-color: var(--color-accent);
 }
 
 .fieldError,
 .formError {
   margin: 0;
-  color: var(--form-error);
+  color: var(--color-error);
   font-size: var(--text-sm);
-  font-weight: var(--weight-bold);
+  font-weight: var(--weight-semibold);
 }
 
 .formError:empty {
@@ -101,11 +73,15 @@
   padding: var(--space-2) var(--space-5);
   border: 0;
   border-radius: var(--radius-control);
-  background: var(--form-submit-bg);
-  color: var(--form-submit-ink);
+  background: var(--color-accent);
+  color: var(--color-on-accent);
   font: inherit;
-  font-weight: var(--weight-bold);
+  font-weight: var(--weight-semibold);
   cursor: pointer;
+}
+
+.submit:hover {
+  background: var(--color-accent-strong);
 }
 
 .submit:disabled {
@@ -117,17 +93,9 @@
   margin: 0;
   padding: var(--space-4);
   border-radius: var(--radius-control);
+  background: var(--label-confirmed-bg);
+  color: var(--label-confirmed-ink);
   font-weight: var(--weight-semibold);
-}
-
-.success.light {
-  background: var(--color-white);
-  color: var(--color-on-accent);
-}
-
-.success.dark {
-  background: var(--color-bg);
-  color: var(--color-ink);
 }
 
 .honeypot {

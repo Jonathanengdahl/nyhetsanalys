@@ -10,7 +10,9 @@ import type { Accent, Chart, Topic } from "@/lib/topics/types";
 import { depthInputId } from "./DepthSwitch";
 import styles from "./sections.module.css";
 
-export const accentStyle = (accent: Accent) => ({ "--accent": `var(--color-${accent})` }) as CSSProperties;
+/** Sets --accent and --accent-tint for one named colour. */
+export const accentStyle = (accent: Accent) =>
+  ({ "--accent": `var(--color-${accent})`, "--accent-tint": `var(--tint-${accent})` }) as CSSProperties;
 
 /** Which depth a section belongs to. The topic page hides deeper sections with CSS. */
 type Depth = { "data-depth"?: "1" | "2" };
@@ -42,8 +44,8 @@ export function UpdatesSection({ topic }: { topic: Topic }) {
         {topic.updates.items.map((item) => (
           <li key={item.text} className={`reveal ${styles.update}`}>
             <span className={styles.updateMark} aria-hidden="true" />
-            <div className={styles.stack2}>
-              <span>{item.text}</span>
+            <div className={styles.stack1}>
+              <span className={styles.bodyText}>{item.text}</span>
               <SourceChips refs={item.sources} sources={topic.sources} />
             </div>
           </li>
@@ -87,14 +89,16 @@ export function FactsSection({ topic, ...depth }: { topic: Topic } & Depth) {
       <p className={styles.intro}>
         Siffror ändras ofta de första dagarna. Varje uppgift har en märkning, så att du ser hur säker den är.
       </p>
-      {topic.facts.map((fact) => (
-        <article key={fact.title} className={`reveal ${styles.card}`}>
-          <UncertaintyBadge label={fact.label} className="stamp" />
-          <h3 className={styles.cardTitle}>{fact.title}</h3>
-          <p className={styles.cardText}>{fact.text}</p>
-          <SourceChips refs={fact.sources} sources={topic.sources} />
-        </article>
-      ))}
+      <div className={styles.list}>
+        {topic.facts.map((fact) => (
+          <article key={fact.title} className={`reveal ${styles.item}`}>
+            <UncertaintyBadge label={fact.label} className="stamp" />
+            <h3 className={styles.itemTitle}>{fact.title}</h3>
+            <p className={styles.bodyText}>{fact.text}</p>
+            <SourceChips refs={fact.sources} sources={topic.sources} />
+          </article>
+        ))}
+      </div>
     </section>
   );
 }
@@ -104,15 +108,12 @@ export function BlameSection({ topic, ...depth }: { topic: Topic } & Depth) {
     <section className={styles.section} {...depth}>
       <SectionHeading id="vem-pekar-ut-vem">{topic.blame.title}</SectionHeading>
       <p className={styles.intro}>{topic.blame.intro}</p>
-      <ul className={styles.plainList}>
+      <ul className={`${styles.plainList} ${styles.list}`}>
         {topic.blame.items.map((item) => (
-          <li key={item.who} className={`reveal ${styles.blame}`}>
-            <span className={styles.blameBar} aria-hidden="true" />
-            <div className={styles.stack1}>
-              <span className={styles.blameWho}>{item.who}</span>
-              <span className={styles.small}>{item.role}</span>
-              <span className={styles.cardText}>{item.text}</span>
-            </div>
+          <li key={item.who} className={`reveal ${styles.item}`}>
+            <span className={styles.itemTitle}>{item.who}</span>
+            <span className={styles.small}>{item.role}</span>
+            <span className={styles.bodyText}>{item.text}</span>
           </li>
         ))}
       </ul>
@@ -129,20 +130,22 @@ export function ModelsSection({ topic, ...depth }: { topic: Topic } & Depth) {
         En förklaringsmodell är en tolkning, inte ett bevisat orsakssamband. Flera kan gälla samtidigt och ingen
         förklarar allt. Därför visar vi vad som talar för och emot varje modell.
       </p>
-      {topic.models.items.map((model) => (
-        <article key={model.name} className={`reveal ${styles.card} ${styles.gap10}`}>
-          <h3 className={styles.displayTitle}>{model.name}</h3>
-          <div className={styles.stack0}>
-            <span className={styles.kickerPositive}>Talar för</span>
-            <span className={styles.bodySmall}>{model.pro}</span>
-          </div>
-          <div className={styles.stack0}>
-            <span className={styles.kickerNegative}>Talar emot</span>
-            <span className={styles.bodySmall}>{model.con}</span>
-          </div>
-          <span className={styles.small}>Lyfts främst av {model.by}</span>
-        </article>
-      ))}
+      <div className={styles.list}>
+        {topic.models.items.map((model) => (
+          <article key={model.name} className={`reveal ${styles.item} ${styles.gap10}`}>
+            <h3 className={styles.itemTitle}>{model.name}</h3>
+            <div className={styles.stack0}>
+              <span className={styles.kickerPositive}>Talar för</span>
+              <span className={styles.bodySmall}>{model.pro}</span>
+            </div>
+            <div className={styles.stack0}>
+              <span className={styles.kickerNegative}>Talar emot</span>
+              <span className={styles.bodySmall}>{model.con}</span>
+            </div>
+            <span className={styles.small}>Lyfts främst av {model.by}</span>
+          </article>
+        ))}
+      </div>
       <SourceChips refs={topic.models.sources} sources={topic.sources} />
     </section>
   );
@@ -152,7 +155,7 @@ function ChartFigure({ chart, topic }: { chart: Chart; topic: Topic }) {
   const max = chart.max ?? Math.max(...chart.rows.map((row) => row.value));
   const refLeft = chart.refLine ? `${((chart.refLine.value / max) * 100).toFixed(1)}%` : undefined;
   return (
-    <figure className={`reveal ${styles.card} ${styles.gap10}`}>
+    <figure className={`reveal ${styles.box} ${styles.gap10}`}>
       <figcaption className={styles.chartTitle}>{chart.title}</figcaption>
       <table className={styles.chart}>
         <caption className="sr-only">{chart.title}</caption>
@@ -222,11 +225,11 @@ export function MissingSection({ topic, ...depth }: { topic: Topic } & Depth) {
         Frågor som är viktiga för att förstå händelsen men som knappt tas upp i de artiklar vi har analyserat.
       </p>
       {topic.missing.map((item) => (
-        <article key={item.title} className={`reveal on-accent ${styles.missing}`}>
-          <h3 className={styles.missingTitle}>{item.title}</h3>
-          <p>{item.text}</p>
+        <article key={item.title} className={`reveal ${styles.missing}`}>
+          <h3 className={styles.itemTitle}>{item.title}</h3>
+          <p className={styles.bodyText}>{item.text}</p>
           {item.note && <p className={styles.missingNote}>{item.note}</p>}
-          <SourceChips refs={item.sources} sources={topic.sources} tone="accent" />
+          <SourceChips refs={item.sources} sources={topic.sources} />
         </article>
       ))}
       <label htmlFor={depthInputId(topic.slug, 2)} className={`${styles.outlineButton} ${styles.onlyAt}`} data-only="1">
@@ -250,28 +253,33 @@ export function PanelSection({ topic, ...depth }: { topic: Topic } & Depth) {
         <span className={styles.plotRight}>Höger</span>
         {topic.panel.items.map((voice) => (
           <span key={voice.name} className={styles.plotPoint} style={{ left: voice.x, top: voice.y, ...accentStyle(voice.accent) }}>
-            <span className={`cell ${styles.plotPill}`}>{voice.name}</span>
+            <span className={`cell ${styles.plotPill}`}>
+              <span className={styles.voiceDot} />
+              {voice.name}
+            </span>
           </span>
         ))}
       </div>
-      {topic.panel.items.map((voice) => (
-        <article key={voice.name} className={`flip-in ${styles.card} ${styles.gap10} ${styles.voice}`} style={accentStyle(voice.accent)}>
-          <div className={styles.voiceHead}>
-            <span className={styles.voiceDot} aria-hidden="true" />
-            <h3 className={styles.displayTitle}>{voice.name}</h3>
-          </div>
-          <span className={styles.note}>{voice.axes}</span>
-          <p className={styles.quote}>”{voice.quote}”</p>
-          <div className={styles.stack0}>
-            <span className={styles.kickerPositive}>Lyfter fram</span>
-            <span className={styles.bodySmall}>{voice.up}</span>
-          </div>
-          <div className={styles.stack0}>
-            <span className={styles.kickerNegative}>Tonar ner</span>
-            <span className={styles.bodySmall}>{voice.down}</span>
-          </div>
-        </article>
-      ))}
+      <div className={styles.list}>
+        {topic.panel.items.map((voice) => (
+          <article key={voice.name} className={`settle ${styles.item} ${styles.gap10}`} style={accentStyle(voice.accent)}>
+            <div className={styles.voiceHead}>
+              <span className={styles.voiceDot} aria-hidden="true" />
+              <h3 className={styles.itemTitle}>{voice.name}</h3>
+            </div>
+            <span className={styles.small}>{voice.axes}</span>
+            <p className={styles.quote}>”{voice.quote}”</p>
+            <div className={styles.stack0}>
+              <span className={styles.kickerPositive}>Lyfter fram</span>
+              <span className={styles.bodySmall}>{voice.up}</span>
+            </div>
+            <div className={styles.stack0}>
+              <span className={styles.kickerNegative}>Tonar ner</span>
+              <span className={styles.bodySmall}>{voice.down}</span>
+            </div>
+          </article>
+        ))}
+      </div>
       <p className={styles.small}>
         Arketyperna och deras citat är fiktiva och skrivna av AI för att visa hur olika hållningar läser samma fakta.
       </p>
@@ -368,7 +376,7 @@ export function SourcesSection({ topic }: { topic: Topic }) {
 
 export function Chevron() {
   return (
-    <svg className="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg className="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="m6 9 6 6 6-6" />
     </svg>
   );

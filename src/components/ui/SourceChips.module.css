@@ -1,17 +1,10 @@
 .list {
-  --chip-bg: var(--color-line);
-  --chip-ink: var(--color-ink-3);
   display: flex;
   flex-wrap: wrap;
   column-gap: var(--space-1-5);
   margin: 0;
   padding: 0;
   list-style: none;
-}
-
-.list[data-tone="accent"] {
-  --chip-bg: var(--color-on-accent);
-  --chip-ink: var(--color-ink);
 }
 
 .link,
@@ -23,14 +16,15 @@
 }
 
 .chip {
-  padding: 2px 9px;
+  padding: 1px var(--space-2);
+  border: 1px solid var(--color-line);
   border-radius: var(--radius-chip);
-  background: var(--chip-bg);
-  color: var(--chip-ink);
+  background: var(--color-bg);
+  color: var(--color-ink-3);
   font-size: var(--text-xs);
 }
 
 .link:hover .chip {
+  border-color: var(--color-line-strong);
   color: var(--color-ink);
-  text-decoration: underline;
 }

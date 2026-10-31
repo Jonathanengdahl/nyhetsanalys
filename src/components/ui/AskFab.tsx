@@ -6,7 +6,7 @@ export function AskFab({ label, appearAt = "topic" }: { label: string; appearAt?
   return (
     <ComingSoonButton
       feature="chat"
-      className={`fab-in fab-ring ${styles.fab} ${appearAt === "start" ? styles.start : styles.topic}`}
+      className={`fab-in ${styles.fab} ${appearAt === "start" ? styles.start : styles.topic}`}
       ariaLabel={`${label} (chatten öppnar senare under betan)`}
     >
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

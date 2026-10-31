@@ -1,18 +1,18 @@
 .badge {
-  --badge-bg: var(--color-white);
-  --badge-ink: var(--color-on-accent);
+  --badge-bg: var(--label-estimate-bg);
+  --badge-ink: var(--label-estimate-ink);
   --badge-line: transparent;
   align-self: flex-start;
   display: inline-flex;
   align-items: center;
   gap: var(--space-1-5);
   padding: 2px var(--space-2);
-  border: 2px solid var(--badge-line);
+  border: 1.5px solid var(--badge-line);
   border-radius: var(--radius-chip);
   background: var(--badge-bg);
   color: var(--badge-ink);
   font-size: var(--text-xs);
-  font-weight: var(--weight-bold);
+  font-weight: var(--weight-semibold);
   line-height: var(--leading-body);
 }
 
@@ -20,46 +20,34 @@
   flex: none;
 }
 
-/* On the dark stage each label has its own colour. */
-.badge[data-tone="dark"][data-label="confirmed"] {
-  --badge-bg: var(--label-confirmed);
+.badge[data-label="confirmed"] {
+  --badge-bg: var(--label-confirmed-bg);
+  --badge-ink: var(--label-confirmed-ink);
 }
 
-.badge[data-tone="dark"][data-label="differ"] {
-  --badge-bg: var(--label-differ);
+.badge[data-label="differ"] {
+  --badge-bg: var(--label-differ-bg);
+  --badge-ink: var(--label-differ-ink);
 }
 
-.badge[data-tone="dark"][data-label="changes"] {
-  --badge-bg: var(--label-changes);
+.badge[data-label="changes"] {
+  --badge-bg: var(--label-changes-bg);
+  --badge-ink: var(--label-changes-ink);
 }
 
-.badge[data-tone="dark"][data-label="estimate"] {
-  --badge-bg: var(--label-estimate);
+.badge[data-label="disputed"] {
+  --badge-bg: var(--label-disputed-bg);
+  --badge-ink: var(--label-disputed-ink);
 }
 
-.badge[data-tone="dark"][data-label="disputed"] {
-  --badge-bg: var(--label-disputed);
+.badge[data-label="false"] {
+  --badge-bg: var(--label-false-bg);
+  --badge-ink: var(--label-false-ink);
 }
 
-.badge[data-tone="dark"][data-label="false"] {
-  --badge-bg: var(--label-false);
-}
-
-.badge[data-tone="dark"][data-label="unconfirmed"] {
+.badge[data-label="unconfirmed"] {
   --badge-bg: transparent;
-  --badge-ink: var(--color-ink);
+  --badge-ink: var(--label-unconfirmed-ink);
   --badge-line: var(--label-unconfirmed-line);
-  border-style: dashed;
-}
-
-/* On bright accent cards: night for confirmed, dashed for unconfirmed, white for the rest. */
-.badge[data-tone="accent"][data-label="confirmed"] {
-  --badge-bg: var(--color-on-accent);
-  --badge-ink: var(--color-ink);
-}
-
-.badge[data-tone="accent"][data-label="unconfirmed"] {
-  --badge-bg: transparent;
-  --badge-line: var(--color-on-accent);
   border-style: dashed;
 }

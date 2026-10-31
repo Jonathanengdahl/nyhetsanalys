@@ -3,9 +3,15 @@
   align-items: center;
   gap: var(--space-2);
   padding: var(--space-1-5) var(--space-1-5) var(--space-1-5) var(--space-4);
-  border-radius: var(--radius-card-md);
-  background: var(--color-surface);
-  box-shadow: 0 0 0 1px var(--color-line);
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-card);
+  background: var(--color-bg);
+  box-shadow: 0 1px 2px rgb(22 20 31 / 0.04);
+}
+
+.form:focus-within {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-accent-soft);
 }
 
 .input {
@@ -13,7 +19,7 @@
   min-width: 0;
   min-height: var(--tap-target);
   border: 0;
-  outline-offset: 4px;
+  outline: none;
   background: transparent;
   color: var(--color-ink);
   font: inherit;
@@ -24,12 +30,15 @@
   min-height: var(--tap-target);
   padding: 0 var(--space-5);
   border: 0;
-  border-radius: calc(var(--radius-control) - 1px);
-  background: var(--color-lime);
+  border-radius: var(--radius-control-sm);
+  background: var(--color-accent);
   color: var(--color-on-accent);
   font-size: var(--text-base);
-  font-weight: var(--weight-bold);
-  --focus-ring-color: var(--color-ink);
+  font-weight: var(--weight-semibold);
+}
+
+.submit:hover {
+  background: var(--color-accent-strong);
 }
 
 .suggestions {
@@ -41,13 +50,14 @@
 .suggestion {
   min-height: var(--tap-target);
   padding: 0 var(--space-3-5);
-  border: 1.5px solid var(--color-line-strong);
-  border-radius: var(--radius-control);
-  background: transparent;
-  color: var(--color-ink);
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-pill);
+  background: var(--color-bg);
+  color: var(--color-ink-2);
   font-size: var(--text-sm-plus);
 }
 
 .suggestion:hover {
   border-color: var(--color-ink);
+  color: var(--color-ink);
 }
