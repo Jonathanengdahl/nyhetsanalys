@@ -18,7 +18,8 @@ En svensk webbtjänst (app senare) som bevakar nyhetsmedier, hittar dagens heta 
 - `docs/teknik.md`: arkitektur, flödet från artikel till sida, datamodell, schemaläggning, kostnader
 - `docs/seo-geo.md`: synlighet i Google och AI-sök. Läs den innan du bygger eller ändrar en sidmall.
 - `docs/prototyp/`: klickbar prototyp, öppna `index.html` i en webbläsare. Facit för innehåll, struktur och ton, inte kod att kopiera.
-- `docs/design/nattpop-prototyp.html`: designriktningen Nattpop (vald 2026-10-29), startsidan och fyra ämnessidor. Facit för utseende och rörelse. Öppna i en webbläsare.
+- `docs/design/ljus.md`: designriktningen Ljus (vald 2026-10-31). Regler för färg, typsnitt, ytor och rörelse. Läs den innan du ändrar utseendet.
+- `docs/design/nattpop-prototyp.html`: den tidigare riktningen Nattpop (2026-10-29, ersatt 2026-10-31). Visar fortfarande animationerna, men färger och typsnitt gäller inte längre.
 - `docs/kalkyl.html`: kostnadskalkyl med antaganden om volymer och tokens
 
 ## Principer som aldrig får brytas
@@ -39,8 +40,8 @@ En svensk webbtjänst (app senare) som bevakar nyhetsmedier, hittar dagens heta 
 - Claude API: `claude-sonnet-5-5` för analys, `claude-haiku-5-5` för sortering och chatt. Prompt caching och Batch API där det går.
 - Sidor renderas på servern (statiskt eller ISR) så att all text och metadata finns i HTML:en. Viktigt innehåll får aldrig kräva JavaScript.
 - Innehåll är data, inte hårdkodad text. Sidmallarna läser ämnen från ett datalager: först lokala filer, sedan Supabase, med samma form.
-- Design: alla färger, typsnitt, radier och avstånd som CSS-variabler (design tokens) i `src/styles/tokens.css`. Inga hårdkodade färger i komponenter. Designen ska kunna bytas på ett ställe. Riktningen är Nattpop (beslut 2026-10-29): mörk nattblå scen med starka färgblock, typsnitten Big Shoulders och Onest, som ligger i `src/fonts/` (inga anrop till Google).
-- Rörelse: animationerna bor som globala klasser i `src/styles/globals.css`. Grundstilen är slutläget, så allt syns när animationer är avstängda. Följ `prefers-reduced-motion`.
+- Design: alla färger, typsnitt, radier och avstånd som CSS-variabler (design tokens) i `src/styles/tokens.css`. Inga hårdkodade färger i komponenter. Designen ska kunna bytas på ett ställe. Riktningen är Ljus (beslut 2026-10-31, ersätter Nattpop): vit sida, mörk text och en lila accentfärg. Färg används bara i diagram och små markeringar, aldrig i stora block. Typsnittet Onest för både rubriker och text ligger i `src/fonts/` (inga anrop till Google).
+- Rörelse: animationerna bor som globala klasser i `src/styles/globals.css`. Grundstilen är slutläget, så allt syns när animationer är avstängda. Följ `prefers-reduced-motion`. Inget som syns medan man läser en ämnessida får loopa.
 - Djupnivåerna och filtren på startsidan är radioknappar och CSS (`:has()`), utan JavaScript. All text ligger alltid i HTML:en.
 - Next.js behåller tidigare sidor dolda i DOM:en efter navigering. Id:n som etiketter pekar på måste därför vara unika per ämne.
 - Tillgänglighet: WCAG 2.2 AA, mobil först, tryckytor minst 44 px, semantisk HTML, synligt fokus. Färg bär aldrig information ensam.
@@ -74,7 +75,8 @@ Fas 1: betasajten med exempeldata, ingen AI ännu
    - `create-next-app` vägrar köra i en mapp som innehåller den här filen. Skapa projektet i en tillfällig undermapp och flytta upp filerna (`docs/` och `.git` får ligga kvar).
    - Den skapar en `AGENTS.md` med Next.js-regler. Lägg då till en rad med `@AGENTS.md` (utan backticks) överst i den här filen så att reglerna läses in.
 2. Sidor med ämnet Protesterna i Frankrike från prototypen som exempeldata: startsida (vad vi gör, dagens ämnen, beta-anmälan), ämnessida `/amne/[slug]`, ämnesarkiv `/amnen`, Så arbetar vi `/metod`, Om oss och kontakt, Rättelser, Integritetspolicy och Kakor. Övriga ämnen i prototypen får visas som exempelkort utan egen sida.
-   - Klart 2026-10-29 i Nattpop-designen, med fyra faktagranskade ämnen som exempeldata i `src/content/topics/` (Frankrike, Regeringsbildningen, Inflationen, Europa). Chatt, följ och konton visar ett meddelande om att de kommer senare.
+   - Klart 2026-10-29, med fyra faktagranskade ämnen som exempeldata i `src/content/topics/` (Frankrike, Regeringsbildningen, Inflationen, Europa). Chatt, följ och konton visar ett meddelande om att de kommer senare.
+   - 2026-10-31: designen bytt från Nattpop till Ljus, eftersom Nattpop gav för mycket intryck och var svår att läsa länge i.
 3. SEO- och GEO-grunden enligt `docs/seo-geo.md`. Redan på plats: metadata, kanonisk adress, JSON-LD (organisation, webbplats, ämnessida, brödsmulor), sitemap och 404-sida. Kvar: delningsbilder, IndexNow, regler för AI-robotar, llms.txt.
 
 Fas 2: riktiga data

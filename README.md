@@ -67,13 +67,13 @@ Tabeller i fas 1:
 ## Struktur
 
 - `src/config/site.ts`: namn, domän, ägare, kontakt och betatexten. Byt här.
-- `src/styles/tokens.css`: alla färger, typsnitt, radier och avstånd (designriktningen Nattpop). Komponenterna använder bara dessa variabler.
+- `src/styles/tokens.css`: alla färger, typsnitt, radier och avstånd (designriktningen Ljus). Komponenterna använder bara dessa variabler.
 - `src/styles/globals.css`: grundstil och alla animationer som globala klasser.
-- `src/fonts/`: typsnitten Big Shoulders och Onest (SIL Open Font License). De ligger i projektet så att bygget inte behöver nå Google.
+- `src/fonts/`: typsnittet Onest (SIL Open Font License). Det ligger i projektet så att bygget inte behöver nå Google.
 - `src/content/`: exempeldatan. `topics/` har de fyra ämnessidorna, `teasers.ts` exempelkorten utan egen sida.
-- `src/lib/topics/`: datalagret (`getPublishedTopics`, `getTopic` med flera) och typerna för ett ämne. Samma form som tabellen `topic_versions` får i Supabase.
+- `src/lib/topics/`: datalagret (`getPublishedTopics`, `getTopic` med flera) och typerna för ett ämne. Samma form som tabellen `topic_versions` får i Supabase. Datalagret ser också till att tal som 550 000 aldrig delas mellan två rader.
 - `src/components/`: komponenter. `src/app/`: sidor.
-- `docs/`: produkt, teknik, SEO, prototyp och designen (`docs/design/nattpop-prototyp.html`).
+- `docs/`: produkt, teknik, SEO, prototyp och designen (`docs/design/ljus.md`, och den tidigare riktningen i `docs/design/nattpop-prototyp.html`).
 
 ## Sidor
 

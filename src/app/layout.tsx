@@ -11,16 +11,9 @@ import { robotsMetadata } from "@/lib/seo/robots";
 import { JsonLd } from "@/components/seo/JsonLd";
 import styles from "./layout.module.css";
 
-// Self-hosted variable fonts (SIL Open Font License, see src/fonts/).
-const display = localFont({
-  src: "../fonts/big-shoulders-latin-wght.woff2",
-  weight: "100 900",
-  variable: "--font-big-shoulders",
-  display: "swap",
-  fallback: ["Arial Narrow", "sans-serif"],
-});
-
-const body = localFont({
+// Self-hosted variable font (SIL Open Font License, see src/fonts/).
+// Headings and body text share it; tokens.css decides where it is used.
+const onest = localFont({
   src: "../fonts/onest-latin-wght.woff2",
   weight: "100 900",
   variable: "--font-onest",
@@ -54,7 +47,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang={site.language} className={`${display.variable} ${body.variable}`}>
+    <html lang={site.language} className={onest.variable}>
       <body className={styles.body}>
         <a href="#innehall" className={styles.skipLink}>
           Hoppa till innehållet
