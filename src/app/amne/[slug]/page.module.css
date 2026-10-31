@@ -63,6 +63,11 @@
   min-width: 0;
 }
 
+/* While the reader writes in Tyck till, the floating ask button steps aside so it never covers the field. */
+.topic:has(:is(textarea, input[type="url"]):focus) :global(.fab-in) {
+  visibility: hidden;
+}
+
 /* Ordlista and Källor: two closed lists that share the line between them. */
 .lists {
   display: flex;
