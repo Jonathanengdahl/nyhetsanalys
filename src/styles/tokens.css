@@ -188,3 +188,39 @@
   --ease-ring: cubic-bezier(0.2, 0.6, 0.3, 1);
   --ease-pop: cubic-bezier(0.2, 1.5, 0.4, 1);
 }
+
+/* Variant B (proposal): black and white, condensed headings. */
+:root {
+  --color-accent: #16141f;
+  --color-accent-strong: #16141f;
+  --color-accent-soft: #f1f0f5;
+  --color-on-accent: #ffffff;
+  --color-mark: #16141f;
+  --logo-1: #16141f;
+  --logo-2: #5c586c;
+  --logo-3: #aaa6bb;
+  --glow-scan: rgb(22 20 31 / 0.18);
+  --focus-ring-color: #16141f;
+
+  --font-display: var(--font-big-shoulders), "Arial Narrow", sans-serif;
+  --font-figure: var(--font-big-shoulders), "Arial Narrow", sans-serif;
+  --display-weight: 800;
+  --display-weight-strong: 900;
+  --display-tracking: 0;
+  --display-leading: 0.98;
+  --display-leading-tight: 0.92;
+
+  --display-hero: clamp(3rem, 13.5vw, 5.25rem);
+  --display-topic: clamp(3.25rem, 15vw, 6.25rem);
+  --display-topic-medium: clamp(2.875rem, 13vw, 5.5rem);
+  --display-page: 3rem;
+  --display-xl: 2.375rem;
+  --display-lg: 2rem;
+  --display-md: 1.75rem;
+  --display-sm: 1.5rem;
+  --display-xs: 1.375rem;
+  --display-brand: 1.75rem;
+  --display-step: 3.5rem;
+  --display-number: 5rem;
+  --display-stat: 2.5rem;
+}
