@@ -3,8 +3,8 @@ import styles from "./BetaBar.module.css";
 
 export function BetaBar() {
   return (
-    <div className={styles.bar}>
+    <aside className={styles.bar} aria-label="Om betan">
       <p className={`container ${styles.inner}`}>{site.beta.notice}</p>
-    </div>
+    </aside>
   );
 }

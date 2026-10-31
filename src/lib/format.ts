@@ -30,6 +30,14 @@ export function odometerParts(value: string): OdometerPart[] {
   return Array.from(value).map((char) => (char >= "0" && char <= "9" ? { digit: Number(char) } : { text: char }));
 }
 
+/**
+ * Joins digit groups with a no-break space ("550 000" stays on one line), so
+ * a number is never split across two lines. Content can use ordinary spaces.
+ */
+export function keepNumbersTogether(text: string): string {
+  return text.replace(/(\d) (?=\d{3}(?!\d))/g, "$1 ");
+}
+
 /** "1 ämne", "6 ämnen". */
 export function countTopics(n: number) {
   return n === 1 ? "1 ämne" : `${n} ämnen`;

@@ -8,19 +8,26 @@ import styles from "./Odometer.module.css";
  */
 export function Odometer({ value, delay }: { value: string; delay?: string }) {
   const style = delay ? ({ "--od": delay } as CSSProperties) : undefined;
+  // A range ("550 000–800 000") may wrap after the dash on narrow screens,
+  // but a single number never wraps.
+  const groups = value.split(/(?<=–)/);
   return (
     <>
       <span className="sr-only">{value}</span>
       <span aria-hidden="true" className={styles.row} style={style}>
-        {odometerParts(value).map((part, index) =>
-          "digit" in part ? (
-            <span key={index} className="odo">
-              <span style={{ "--d": part.digit } as CSSProperties} />
-            </span>
-          ) : (
-            <span key={index}>{/\s/.test(part.text) ? " " : part.text}</span>
-          ),
-        )}
+        {groups.map((group, groupIndex) => (
+          <span key={groupIndex} className={styles.group}>
+            {odometerParts(group).map((part, index) =>
+              "digit" in part ? (
+                <span key={index} className="odo">
+                  <span style={{ "--d": part.digit } as CSSProperties} />
+                </span>
+              ) : (
+                <span key={index}>{/\s/.test(part.text) ? " " : part.text}</span>
+              ),
+            )}
+          </span>
+        ))}
       </span>
     </>
   );

@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { teasers } from "@/content/teasers";
 import { topics } from "@/content/topics";
+import { getPublishedTopics, getTeasers } from ".";
 import { uncertaintyLabels, type Topic } from "./types";
 
 // The same checks must hold for AI-generated topics later, before they are published.
@@ -60,5 +61,21 @@ describe("topic list", () => {
     expect(new Set(slugs).size).toBe(slugs.length);
     const ranks = [...topics, ...teasers].map((item) => item.rank);
     expect(new Set(ranks).size).toBe(ranks.length);
+  });
+});
+
+describe("data layer", () => {
+  it("never lets a number split across lines", async () => {
+    const text = JSON.stringify([await getPublishedTopics(), await getTeasers()]);
+    expect(text).toContain("550 000");
+    expect(text).not.toMatch(/\d \d{3}(?!\d)/);
+  });
+
+  it("keeps everything else as it is", async () => {
+    const [first] = await getPublishedTopics();
+    const source = topics.find((topic) => topic.slug === first.slug);
+    expect(first.slug).toBe(source?.slug);
+    expect(first.updatedAt).toBe(source?.updatedAt);
+    expect(first.media.frames.map((frame) => frame.weight)).toEqual(source?.media.frames.map((frame) => frame.weight));
   });
 });

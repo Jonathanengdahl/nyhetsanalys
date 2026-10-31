@@ -93,7 +93,8 @@ export function MediaSection({ topic, "data-depth": depth }: { topic: Topic; "da
               Saknas
             </li>
           </ul>
-          <div className={styles.tableScroll}>
+          {/* Focusable, so the table can be scrolled sideways with the keyboard on narrow screens. */}
+          <div className={styles.tableScroll} tabIndex={0} role="region" aria-label="Vad varje artikel lyfter fram">
             <table className={styles.matrix}>
               <caption className="sr-only">Vad varje artikel lyfter fram</caption>
               <thead>

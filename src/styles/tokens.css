@@ -85,6 +85,7 @@
   --label-false-ink: #9c2f12;
 
   /* Shadows */
+  --shadow-soft: 0 1px 2px rgb(22 20 31 / 0.04);
   --shadow-float: 0 10px 30px rgb(22 20 31 / 0.14);
   --shadow-raised: 0 1px 3px rgb(22 20 31 / 0.12), 0 0 0 1px rgb(22 20 31 / 0.04);
   --glow-scan: rgb(91 63 217 / 0.28);

@@ -70,7 +70,10 @@
   display: none;
 }
 
+/* Scroll rows are positioned, so absolutely positioned children (such as
+ * .sr-only text) are clipped by them instead of widening the page. */
 .filters {
+  position: relative;
   display: flex;
   gap: var(--space-2);
   min-inline-size: 0;
@@ -157,6 +160,7 @@
 }
 
 .shelf {
+  position: relative;
   display: flex;
   gap: var(--space-3);
   margin: 0 calc(-1 * var(--gutter));

@@ -1,4 +1,12 @@
+/* The row wraps between groups (after a dash), never inside a number. */
 .row {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  row-gap: 0.12em;
+}
+
+.group {
   display: inline-flex;
   align-items: flex-start;
 }

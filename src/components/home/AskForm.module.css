@@ -6,7 +6,7 @@
   border: 1px solid var(--color-line-strong);
   border-radius: var(--radius-card);
   background: var(--color-bg);
-  box-shadow: 0 1px 2px rgb(22 20 31 / 0.04);
+  box-shadow: var(--shadow-soft);
 }
 
 .form:focus-within {
