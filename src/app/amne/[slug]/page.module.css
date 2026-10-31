@@ -63,6 +63,16 @@
   min-width: 0;
 }
 
+/* Ordlista and Källor: two closed lists that share the line between them. */
+.lists {
+  display: flex;
+  flex-direction: column;
+}
+
+.lists > section + section > details {
+  border-top: 0;
+}
+
 .back {
   align-self: flex-start;
   display: inline-flex;

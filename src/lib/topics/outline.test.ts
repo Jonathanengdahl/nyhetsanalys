@@ -3,7 +3,13 @@ import { describe, expect, it } from "vitest";
 import { topics } from "@/content/topics";
 import { topicOutline } from "./outline";
 
-const sectionSources = ["src/components/topic/sections.tsx", "src/components/topic/MediaSection.tsx"]
+const sectionSources = [
+  "src/components/topic/sections.tsx",
+  "src/components/topic/MediaSection.tsx",
+  "src/components/topic/Faq.tsx",
+  "src/components/topic/Glossary.tsx",
+  "src/components/topic/TopicFeedback.tsx",
+]
   .map((file) => readFileSync(file, "utf8"))
   .join("\n");
 

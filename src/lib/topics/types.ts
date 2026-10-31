@@ -95,6 +95,21 @@ export interface PanelVoice {
   down: string;
 }
 
+/** A short question with an answer from the topic's own material. Shown on the page and used as a ready chat answer. */
+export interface FaqItem {
+  question: string;
+  answer: string;
+  label?: UncertaintyLabel;
+  sources: SourceRef[];
+}
+
+/** A word explained on the page. `match` is the start of the word in the text, when it differs from `term`. */
+export interface GlossaryItem {
+  term: string;
+  match?: string;
+  explanation: string;
+}
+
 /** How the topic is shown on the start page and in the archive. */
 export interface TopicCard {
   tags: string[];
@@ -151,6 +166,8 @@ export interface Topic {
   missing: { title: string; text: string; note?: string; sources: SourceRef[] }[];
   panel: { intro: string; items: PanelVoice[] };
   method: string[];
+  faq: FaqItem[];
+  glossary: GlossaryItem[];
   sources: Source[];
   sourceGroups: { title: string; ids: SourceRef[] }[];
   corrections: { date: string; text: string }[];

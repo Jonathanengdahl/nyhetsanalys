@@ -8,6 +8,7 @@ import { UncertaintyBadge } from "@/components/ui/UncertaintyBadge";
 import { formatDate } from "@/lib/format";
 import type { Accent, Chart, Topic } from "@/lib/topics/types";
 import { depthInputId } from "./DepthSwitch";
+import { glosser } from "./Glossary";
 import styles from "./sections.module.css";
 
 /** Sets --accent and --accent-tint for one named colour. */
@@ -18,6 +19,7 @@ export const accentStyle = (accent: Accent) =>
 type Depth = { "data-depth"?: "1" | "2" };
 
 export function SummarySection({ topic }: { topic: Topic }) {
+  const gloss = glosser(topic, "sammanfattning");
   return (
     <section className={styles.section}>
       <SectionHeading id="pa-30-sekunder">På 30 sekunder</SectionHeading>
@@ -25,7 +27,7 @@ export function SummarySection({ topic }: { topic: Topic }) {
         {topic.summary.map((item) => (
           <div key={item.key} className={`reveal ${styles.summaryRow}`}>
             <dt>{item.key}</dt>
-            <dd>{item.text}</dd>
+            <dd>{gloss(item.text)}</dd>
           </div>
         ))}
       </dl>
@@ -34,6 +36,7 @@ export function SummarySection({ topic }: { topic: Topic }) {
 }
 
 export function UpdatesSection({ topic }: { topic: Topic }) {
+  const gloss = glosser(topic, "nytt");
   return (
     <section className={styles.section}>
       <SectionHeading id="nytt" size="medium">
@@ -45,7 +48,7 @@ export function UpdatesSection({ topic }: { topic: Topic }) {
           <li key={item.text} className={`reveal ${styles.update}`}>
             <span className={styles.updateMark} aria-hidden="true" />
             <div className={styles.stack1}>
-              <span className={styles.bodyText}>{item.text}</span>
+              <span className={styles.bodyText}>{gloss(item.text)}</span>
               <SourceChips refs={item.sources} sources={topic.sources} />
             </div>
           </li>
@@ -59,6 +62,7 @@ export function UpdatesSection({ topic }: { topic: Topic }) {
 }
 
 export function TimelineSection({ topic, ...depth }: { topic: Topic } & Depth) {
+  const gloss = glosser(topic, "tidslinje");
   return (
     <section className={styles.section} {...depth}>
       <SectionHeading id="vad-har-hant">Vad har hänt</SectionHeading>
@@ -72,7 +76,7 @@ export function TimelineSection({ topic, ...depth }: { topic: Topic } & Depth) {
                 <span className={styles.eventDate}>{event.date}</span>
                 {event.tag && <span className={styles.eventTag}>{event.tag}</span>}
               </div>
-              <p className={styles.eventText}>{event.text}</p>
+              <p className={styles.eventText}>{gloss(event.text)}</p>
               <SourceChips refs={event.sources} sources={topic.sources} />
             </li>
           ))}
@@ -83,6 +87,7 @@ export function TimelineSection({ topic, ...depth }: { topic: Topic } & Depth) {
 }
 
 export function FactsSection({ topic, ...depth }: { topic: Topic } & Depth) {
+  const gloss = glosser(topic, "fakta");
   return (
     <section className={styles.section} {...depth}>
       <SectionHeading id="fakta">Fakta och osäkerhet</SectionHeading>
@@ -94,7 +99,7 @@ export function FactsSection({ topic, ...depth }: { topic: Topic } & Depth) {
           <article key={fact.title} className={`reveal ${styles.item}`}>
             <UncertaintyBadge label={fact.label} className="stamp" />
             <h3 className={styles.itemTitle}>{fact.title}</h3>
-            <p className={styles.bodyText}>{fact.text}</p>
+            <p className={styles.bodyText}>{gloss(fact.text)}</p>
             <SourceChips refs={fact.sources} sources={topic.sources} />
           </article>
         ))}
@@ -193,6 +198,7 @@ function ChartFigure({ chart, topic }: { chart: Chart; topic: Topic }) {
 }
 
 export function NumbersSection({ topic, ...depth }: { topic: Topic } & Depth) {
+  const gloss = glosser(topic, "siffror");
   return (
     <section className={styles.section} {...depth}>
       <SectionHeading id="siffrorna">Siffrorna bakom</SectionHeading>
@@ -203,7 +209,7 @@ export function NumbersSection({ topic, ...depth }: { topic: Topic } & Depth) {
             <span className={styles.tileValue}>
               <Odometer value={tile.value} />
             </span>
-            <span className={styles.tileLabel}>{tile.label}</span>
+            <span className={styles.tileLabel}>{gloss(tile.label)}</span>
             <span className={styles.note}>{tile.sub}</span>
             <SourceChips refs={tile.sources} sources={topic.sources} />
           </div>
@@ -218,6 +224,7 @@ export function NumbersSection({ topic, ...depth }: { topic: Topic } & Depth) {
 }
 
 export function MissingSection({ topic, ...depth }: { topic: Topic } & Depth) {
+  const gloss = glosser(topic, "saknas");
   return (
     <section className={styles.section} {...depth}>
       <SectionHeading id="det-som-saknas">Det här saknas i debatten</SectionHeading>
@@ -227,7 +234,7 @@ export function MissingSection({ topic, ...depth }: { topic: Topic } & Depth) {
       {topic.missing.map((item) => (
         <article key={item.title} className={`reveal ${styles.missing}`}>
           <h3 className={styles.itemTitle}>{item.title}</h3>
-          <p className={styles.bodyText}>{item.text}</p>
+          <p className={styles.bodyText}>{gloss(item.text)}</p>
           {item.note && <p className={styles.missingNote}>{item.note}</p>}
           <SourceChips refs={item.sources} sources={topic.sources} />
         </article>

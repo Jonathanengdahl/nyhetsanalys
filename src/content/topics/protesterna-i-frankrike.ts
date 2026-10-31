@@ -1056,6 +1056,85 @@ export const protesternaIFrankrike: Topic = {
     "Varje artikel bedöms för sig på genre, fakta, urval, röster, språk, rubrik mot brödtext, siffror och källkvalitet. Politisk placering görs bara när en text tar ställning, och alltid med motivering. Axlarna är ekonomisk vänster–höger och GAL–TAN.",
     "Nyhetsbyråtexter som publiceras i flera tidningar räknas som en källa. Flera texter ligger bakom betalvägg och har analyserats via rubrik och ingress eller via pressöversikter, vilket då står på kortet."
   ],
+  "faq": [
+    {
+      "question": "Hur många demonstrerade den 17 oktober?",
+      "answer": "Det beror på vem som räknar. Inrikesministeriet uppger 550 000, varav 110 000 i Paris, och facket CGT 800 000. Ministeriet hade räknat med 150 000.",
+      "label": "Siffror skiljer sig",
+      "sources": [
+        28,
+        9,
+        7
+      ]
+    },
+    {
+      "question": "Vem låg bakom våldet och plundringen?",
+      "answer": "Det är omstritt. Regeringen pekar ut ultravänstern. Enligt en säkerhetskälla som AFP citerar låg ultravänstern i täten för våldet men inte bakom plundringen. Paris chefsåklagare kan inte bekräfta regeringens bild, och de flesta gripna uppger inga politiska motiv.",
+      "label": "Omstritt",
+      "sources": [
+        15,
+        20
+      ]
+    },
+    {
+      "question": "Varför protesterar så många?",
+      "answer": "Protesterna gäller höga levnadskostnader, dyrt bränsle och underfinansierade skolor. Diesel kostade 2,36 euro litern i början av oktober, 0,68 euro mer än i februari, och hushållens köpkraft minskade med 0,6 procent under andra kvartalet.",
+      "sources": [
+        45,
+        44
+      ]
+    },
+    {
+      "question": "Hur många har gripits?",
+      "answer": "Siffran har stigit i takt med att bilden klarnat: från omkring 400 i ett första besked till omkring 2 500 i polisförvar. Av dem har 917 förts inför åklagare eller domare.",
+      "label": "Ändras över tid",
+      "sources": [
+        28,
+        31,
+        12,
+        14,
+        15
+      ]
+    },
+    {
+      "question": "Stämmer videon om våldet som spreds på X?",
+      "answer": "Nej. Klippet sågs närmare sex miljoner gånger men var filmat i Georgien 2024. EU undersöker om utländska aktörer har spridit desinformation.",
+      "label": "Falskt",
+      "sources": [
+        30
+      ]
+    }
+  ],
+  "glossary": [
+    {
+      "term": "Gendarmer",
+      "match": "gendarm",
+      "explanation": "En fransk polisstyrka med militär status. Den arbetar främst på landsbygden och i mindre orter."
+    },
+    {
+      "term": "CGT",
+      "explanation": "Confédération générale du travail, en av Frankrikes största fackliga centralorganisationer."
+    },
+    {
+      "term": "Ultravänstern",
+      "match": "ultravänster",
+      "explanation": "Samlingsnamn för politiska grupper längst ut till vänster som står utanför de etablerade partierna."
+    },
+    {
+      "term": "Gula västarna",
+      "match": "gula väst",
+      "explanation": "En fransk proteströrelse som startade 2018, först mot höjda bränsleskatter. Namnet kommer från de gula varselvästar som deltagarna bär."
+    },
+    {
+      "term": "iFRAP",
+      "explanation": "En fransk tankesmedja som granskar den offentliga sektorns kostnader."
+    },
+    {
+      "term": "Statslåneränta",
+      "match": "statslåneränt",
+      "explanation": "Räntan som staten betalar när den lånar pengar. När den stiger blir det dyrare för staten att låna."
+    }
+  ],
   "sources": [
     {
       "name": "SVT Nyheter",

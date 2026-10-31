@@ -25,7 +25,12 @@ type Message = {
   role: "user" | "assistant";
   text: string;
   state: "streaming" | "done" | "error";
+  /** A ready answer from Frågor och svar on the page. It costs nothing and does not count against the quota. */
+  ready?: boolean;
 };
+
+/** Questions match ready answers regardless of case, spaces and a final question mark. */
+const normalize = (question: string) => question.trim().replace(/\s+/g, " ").replace(/\?+$/, "").toLowerCase();
 
 type ChatApi = {
   /** Opens the chat. With a question, it is asked right away. */
@@ -84,12 +89,15 @@ export function ChatProvider({
   scope,
   label,
   suggestions,
+  readyAnswers,
   sources,
   children,
 }: {
   scope: string;
   label: string;
   suggestions: string[];
+  /** Questions that already have an answer on the page, with that answer. */
+  readyAnswers?: Record<string, string>;
   sources: ChatSource[];
   children: ReactNode;
 }) {
@@ -107,6 +115,10 @@ export function ChatProvider({
   const titleId = useId();
   const inputId = useId();
   const sourceMap = useMemo(() => new Map(sources.map((source) => [source.n, source])), [sources]);
+  const readyMap = useMemo(
+    () => new Map(Object.entries(readyAnswers ?? {}).map(([question, answer]) => [normalize(question), answer])),
+    [readyAnswers],
+  );
 
   useEffect(() => {
     messagesRef.current = messages;
@@ -129,6 +141,20 @@ export function ChatProvider({
     async (question: string) => {
       const text = question.trim().slice(0, chatConfig.maxQuestionLength);
       if (!text || busyRef.current) return;
+
+      const ready = readyMap.get(normalize(text));
+      if (ready) {
+        setDraft("");
+        const questionId = nextId.current++;
+        const answerId = nextId.current++;
+        setMessages((current) => [
+          ...current,
+          { id: questionId, role: "user", text, state: "done" },
+          { id: answerId, role: "assistant", text: ready, state: "done", ready: true },
+        ]);
+        return;
+      }
+
       busyRef.current = true;
       setBusy(true);
       setDraft("");
@@ -181,7 +207,7 @@ export function ChatProvider({
         setBusy(false);
       }
     },
-    [scope, update],
+    [readyMap, scope, update],
   );
 
   const open = useCallback(
@@ -280,7 +306,7 @@ export function ChatProvider({
                   </p>
                 ) : (
                   <div key={message.id} className={styles.answer} data-state={message.state}>
-                    <span className={`mono ${styles.aiTag}`}>AI-svar</span>
+                    <span className={`mono ${styles.aiTag}`}>{message.ready ? "AI-svar · från sidan" : "AI-svar"}</span>
                     {message.text ? (
                       <AnswerText text={message.text} sources={sourceMap} />
                     ) : (

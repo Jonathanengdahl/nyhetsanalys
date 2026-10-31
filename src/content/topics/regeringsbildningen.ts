@@ -1029,6 +1029,87 @@ export const regeringsbildningen: Topic = {
     "Varje artikel bedöms för sig på genre, fakta, urval, röster, språk, rubrik mot brödtext, siffror och källkvalitet. Politisk placering görs bara när en text tar ställning, och alltid med motivering. Axlarna är ekonomisk vänster–höger och GAL–TAN.",
     "Nyhetsbyråtexter som publiceras i flera tidningar räknas som en källa. SVT, Sveriges Radio, DN och SvD saknas i urvalet eftersom vi inte kunde läsa deras texter om sonderingen när exemplet togs fram. Det begränsar analysen."
   ],
+  "faq": [
+    {
+      "question": "Varför har Sverige ingen ny regering?",
+      "answer": "Oppositionen, alltså S, V, MP och C, har 176 mandat och Tidöpartierna, alltså M, SD, KD och L, har 173. Det krävs 175 mandat för egen majoritet, men partiernas röda linjer gör att ingen sida har kunnat enas om en regering.",
+      "sources": [
+        9,
+        20
+      ]
+    },
+    {
+      "question": "Hur gick omröstningen om Magdalena Andersson?",
+      "answer": "Riksdagen röstade nej till Magdalena Andersson (S) som statsminister den 15 oktober, med 248 nej mot 99 ja. Ingen avstod och två var frånvarande. Bara S röstade ja.",
+      "label": "Bekräftat",
+      "sources": [
+        20,
+        22,
+        17,
+        19
+      ]
+    },
+    {
+      "question": "Blir det extra val?",
+      "answer": "Det kan bli det. Talmannen kan lägga fram högst fyra förslag till statsminister. Röstar riksdagen nej till alla fyra ska ett extra val hållas inom tre månader. Ett förslag har hittills röstats ned.",
+      "label": "Bekräftat",
+      "sources": [
+        20
+      ]
+    },
+    {
+      "question": "Vad gör Elisabeth Thand Ringqvist nu?",
+      "answer": "Talmannen har gett C-ledaren i uppdrag att pröva om en regering över mitten är möjlig. Hon säger att ett mittenalternativ finns rent matematiskt, men MP kallar det en återvändsgränd och varken KD eller L har ställt sig bakom det. Hon ska rapportera till talmannen senast den 26 oktober.",
+      "label": "Omstritt",
+      "sources": [
+        2,
+        7,
+        3,
+        19
+      ]
+    },
+    {
+      "question": "Vad händer med budgeten för 2027?",
+      "answer": "Finns ingen ny regering lägger övergångsregeringen fram en budget den 12 november. Riksdagen röstar om budgeten den 9 december.",
+      "label": "Bekräftat",
+      "sources": [
+        16,
+        21
+      ]
+    }
+  ],
+  "glossary": [
+    {
+      "term": "Tidöpartierna",
+      "match": "tidöparti",
+      "explanation": "Samlingsnamn för M, SD, KD och L. Namnet kommer från Tidöavtalet, som partierna slöt på Tidö slott 2022."
+    },
+    {
+      "term": "Talman",
+      "match": "talman",
+      "explanation": "Riksdagens ordförande. Efter ett val leder talmannen arbetet med att bilda regering och föreslår statsminister."
+    },
+    {
+      "term": "Övergångsregering",
+      "match": "övergångsregering",
+      "explanation": "Den avgående regeringen, som sköter landet tills en ny regering är på plats."
+    },
+    {
+      "term": "Sondering",
+      "match": "sondering",
+      "explanation": "När talmannen ger en partiledare i uppdrag att undersöka vilken regering som kan få stöd i riksdagen."
+    },
+    {
+      "term": "Mandat",
+      "match": "mandat",
+      "explanation": "En plats i riksdagen. Riksdagen har 349 mandat, så 175 krävs för egen majoritet."
+    },
+    {
+      "term": "Statsministeromröstning",
+      "match": "omröstning",
+      "explanation": "Riksdagens omröstning om talmannens förslag till statsminister. Förslaget faller om mer än hälften av ledamöterna röstar nej."
+    }
+  ],
   "sources": [
     {
       "name": "TT via TV4",

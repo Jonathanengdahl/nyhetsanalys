@@ -47,11 +47,23 @@ export default function PrivacyPage() {
         koppling till dig.
       </p>
 
+      <h2 id="synpunkter">Synpunkter och förslag på ämnessidor</h2>
+      <p>
+        Längst ned på varje ämnessida kan du svara på om sidan var tydlig och föreslå ett perspektiv som saknas. Vi
+        sparar ditt svar, din kommentar eller ditt förslag, länken till källan, vilket ämne det gäller och när du
+        skickade det. Vi sparar inte namn, e-postadress eller IP-adress. Skriv därför inga personuppgifter i texten,
+        varken om dig själv eller om andra. En människa läser allt som kommer in.
+      </p>
+
       <h2 id="varfor">Varför</h2>
       <p>
         Vi använder e-postadressen för att kontakta dig om betan och, om du valt det, för att skicka
         veckobrevet. Den rättsliga grunden är ditt samtycke. Vi säljer aldrig uppgifterna och delar dem
         inte med annonsörer.
+      </p>
+      <p>
+        Synpunkter och förslag använder vi bara för att rätta och förbättra ämnessidorna. Om en text ändå innehåller
+        en personuppgift är den rättsliga grunden vårt berättigade intresse av att granska och förbättra innehållet.
       </p>
 
       <h2 id="var">Var uppgifterna finns</h2>
@@ -63,7 +75,7 @@ export default function PrivacyPage() {
       <h2 id="hur-lange">Hur länge</h2>
       <p>
         Vi sparar uppgifterna så länge du vill vara med. Betans anmälningslista raderas senast när betan
-        är slut.
+        är slut. Synpunkter och förslag från ämnessidorna raderas också senast när betan är slut.
       </p>
 
       <h2 id="dina-rattigheter">Dina rättigheter</h2>

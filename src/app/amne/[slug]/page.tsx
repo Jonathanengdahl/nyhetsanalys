@@ -6,6 +6,8 @@ import { ChatButton } from "@/components/chat/ChatButton";
 import { ChatProvider } from "@/components/chat/ChatProvider";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { DepthSwitch } from "@/components/topic/DepthSwitch";
+import { FaqSection } from "@/components/topic/Faq";
+import { GlossaryList } from "@/components/topic/Glossary";
 import { MediaSection } from "@/components/topic/MediaSection";
 import {
   BlameSection,
@@ -20,13 +22,16 @@ import {
   TimelineSection,
   UpdatesSection,
 } from "@/components/topic/sections";
+import { TopicFeedback } from "@/components/topic/TopicFeedback";
 import { TopicHero } from "@/components/topic/TopicHero";
 import { TopicNav } from "@/components/topic/TopicNav";
 import { AskFab } from "@/components/ui/AskFab";
 import { topicMaterial } from "@/lib/chat/material";
+import { readyAnswer } from "@/lib/chat/ready";
 import { topicJsonLd } from "@/lib/seo/json-ld";
 import { getTopic, getTopicSlugs, topicPath } from "@/lib/topics";
 import { topicOutline } from "@/lib/topics/outline";
+import type { Topic } from "@/lib/topics/types";
 import styles from "./page.module.css";
 
 // Topic pages must stay fully static. Unknown slugs are then rendered before
@@ -34,6 +39,15 @@ import styles from "./page.module.css";
 export const ensureStatic = "navigation";
 
 const SUGGESTIONS = ["Sammanfatta läget", "Vad är osäkert eller omstritt?", "Hur skiljer sig medierna åt?", "Vad saknas i debatten?"];
+
+/** The chat suggests the first questions from Frågor och svar. They are answered right away from the page, without AI. */
+function chatSuggestions(topic: Topic) {
+  if (topic.faq.length === 0) return { suggestions: SUGGESTIONS, readyAnswers: {} };
+  return {
+    suggestions: [...topic.faq.slice(0, 3).map((item) => item.question), "Vad saknas i debatten?"],
+    readyAnswers: Object.fromEntries(topic.faq.map((item) => [item.question, readyAnswer(item)])),
+  };
+}
 
 const TRANSITION = {
   enter: { "nav-forward": "nav-forward", "nav-back": "nav-back", default: "none" },
@@ -72,9 +86,16 @@ export default async function TopicPage({ params }: PageProps<"/amne/[slug]">) {
   const accent = { "--topic-accent": `var(--color-${topic.accent})` } as CSSProperties;
   const outline = topicOutline(topic);
   const chat = topicMaterial(topic);
+  const { suggestions, readyAnswers } = chatSuggestions(topic);
 
   return (
-    <ChatProvider scope={topic.slug} label={chat.label} suggestions={SUGGESTIONS} sources={chat.sources}>
+    <ChatProvider
+      scope={topic.slug}
+      label={chat.label}
+      suggestions={suggestions}
+      readyAnswers={readyAnswers}
+      sources={chat.sources}
+    >
       <ViewTransition enter={TRANSITION.enter} exit={TRANSITION.exit} default="none">
         <article className={styles.topic} style={accent}>
           <TopicHero topic={topic} />
@@ -103,8 +124,13 @@ export default async function TopicPage({ params }: PageProps<"/amne/[slug]">) {
               <NumbersSection topic={topic} data-depth="1" />
               <MissingSection topic={topic} data-depth="1" />
               <PanelSection topic={topic} data-depth="2" />
+              <FaqSection topic={topic} />
               <MethodSection topic={topic} />
-              <SourcesSection topic={topic} />
+              <div className={styles.lists}>
+                <GlossaryList topic={topic} />
+                <SourcesSection topic={topic} />
+              </div>
+              <TopicFeedback topic={topic.slug} />
               <Link href="/amnen" className={styles.back} transitionTypes={["nav-back"]}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M15 6l-6 6 6 6" />

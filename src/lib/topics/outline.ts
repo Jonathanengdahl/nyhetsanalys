@@ -36,8 +36,15 @@ export function topicOutline(topic: Topic): OutlineItem[] {
     },
     { id: "det-som-saknas", title: "Det här saknas i debatten", depth: 1, detail: count(topic.missing.length, "perspektiv", "perspektiv"), overview: true },
     { id: "perspektivpanelen", title: "Perspektivpanelen", depth: 2, detail: count(topic.panel.items.length, "röst", "röster"), overview: true },
+    ...(topic.faq.length
+      ? [{ id: "fragor-och-svar", title: "Frågor och svar", depth: 0, detail: count(topic.faq.length, "fråga", "frågor"), overview: true } as const]
+      : []),
     { id: "sa-ar-sidan-gjord", title: "Så är sidan gjord", depth: 0, detail: "Metod och rättelser", overview: false },
+    ...(topic.glossary.length
+      ? [{ id: "ordlista", title: "Ordlista", depth: 0, detail: count(topic.glossary.length, "ord", "ord"), overview: true } as const]
+      : []),
     { id: "kallor", title: "Källor", depth: 0, detail: count(topic.sources.length, "källa", "källor"), overview: true },
+    { id: "tyck-till", title: "Tyck till", depth: 0, detail: "Förslag med källa", overview: true },
   ];
 }
 

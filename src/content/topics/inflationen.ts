@@ -1047,6 +1047,85 @@ export const inflationen: Topic = {
     "Varje artikel bedöms för sig på genre, fakta, urval, röster, språk, rubrik mot brödtext, siffror och källkvalitet. Politisk placering görs bara när en text tar ställning, och alltid med motivering. Axlarna är ekonomisk vänster–höger och GAL–TAN.",
     "Urvalet består bara av nyhetstexter från ekonomisajter och nyhetsbyråer. Public service, de stora morgontidningarna och Dagens industri saknas eftersom vi inte kunde läsa deras texter när exemplet togs fram. Det begränsar analysen."
   ],
+  "faq": [
+    {
+      "question": "Varför steg inflationen i september?",
+      "answer": "El och drivmedel blev dyrare. El var 17,0 procent och drivmedel 20,0 procent dyrare än för ett år sedan. Utan energi låg inflationen kvar på 0,5 procent.",
+      "label": "Bekräftat",
+      "sources": [
+        9
+      ]
+    },
+    {
+      "question": "Varför har maten blivit billigare?",
+      "answer": "Matmomsen halverades den 1 april. Livsmedel var 6,5 procent billigare än för ett år sedan, och enligt regeringens uppföljning sjönk matpriserna med 5,5 procent mellan mars och april.",
+      "label": "Bekräftat",
+      "sources": [
+        9,
+        14
+      ]
+    },
+    {
+      "question": "Höjer Riksbanken räntan i november?",
+      "answer": "Det är inte bestämt. Styrräntan är 1,75 procent och nästa besked kommer den 4 november. Riksbankschefen Erik Thedéen anser att det är rimligt att höja då, och Anna Seim vill föreslå en höjning om inget oväntat inträffar. Aino Bunge vill vänta.",
+      "label": "Omstritt",
+      "sources": [
+        11,
+        16,
+        2
+      ]
+    },
+    {
+      "question": "Hur mycket håller skattesänkningarna nere inflationen?",
+      "answer": "Bedömningarna skiljer sig. Konjunkturinstitutet räknar med omkring en procentenhet i år och LO med cirka två procentenheter totalt, utspritt över tid. Enligt Anna Seim på Riksbanken var KPIF-inflationen i augusti 2,2 procent utan åtgärdernas direkta effekter, mot uppmätta 0,7 procent.",
+      "label": "Siffror skiljer sig",
+      "sources": [
+        17,
+        16
+      ]
+    },
+    {
+      "question": "När upphör skattesänkningarna?",
+      "answer": "Den sänkta energiskatten på bensin och diesel återställdes den 1 oktober. Den sänkta koldioxidskatten gäller till och med den 30 november och de halverade månadskorten till årsskiftet. Den halverade matmomsen gäller till och med 2027.",
+      "label": "Ändras över tid",
+      "sources": [
+        7,
+        15,
+        13,
+        14
+      ]
+    }
+  ],
+  "glossary": [
+    {
+      "term": "KPIF",
+      "explanation": "Konsumentprisindex med fast ränta. Det mått på inflationen som Riksbanken styr mot, där effekten av ändrade bolåneräntor räknas bort."
+    },
+    {
+      "term": "KPI",
+      "explanation": "Konsumentprisindex. SCB:s mått på hur priserna på det hushållen köper förändras."
+    },
+    {
+      "term": "Styrränta",
+      "match": "styrränt",
+      "explanation": "Räntan som Riksbanken bestämmer. Den påverkar vilka räntor banker, företag och hushåll får."
+    },
+    {
+      "term": "Matmoms",
+      "match": "matmoms",
+      "explanation": "Momsen på livsmedel. Den halverades den 1 april."
+    },
+    {
+      "term": "Procentenhet",
+      "match": "procentenhet",
+      "explanation": "Skillnaden mellan två procenttal. Från 0,7 till 1,5 procent är en ökning med 0,8 procentenheter."
+    },
+    {
+      "term": "Koldioxidskatt",
+      "match": "koldioxidskatt",
+      "explanation": "En skatt på bränslen som beror på hur mycket koldioxid de släpper ut."
+    }
+  ],
   "sources": [
     {
       "name": "TT via TV4",

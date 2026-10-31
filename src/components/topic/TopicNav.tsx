@@ -28,9 +28,15 @@ function jump(event: MouseEvent<HTMLAnchorElement>, item: OutlineItem) {
   if (currentDepth(article) < item.depth) {
     article.querySelector<HTMLInputElement>(`input[data-depth-choice="${item.depth}"]`)?.click();
   }
+  // Parts behind a visually hidden heading (Ordlista, Källor) are a closed list. Open it.
+  const hidden = heading.classList.contains("sr-only");
+  if (hidden) {
+    const details = heading.parentElement?.querySelector(":scope > details");
+    if (details instanceof HTMLDetailsElement) details.open = true;
+  }
   requestAnimationFrame(() => {
-    // Visually hidden headings (Källor) are positioned off the flow, so use their section.
-    const target = heading.classList.contains("sr-only") ? (heading.parentElement ?? heading) : heading;
+    // Visually hidden headings are positioned off the flow, so use their section.
+    const target = hidden ? (heading.parentElement ?? heading) : heading;
     const margin = parseFloat(getComputedStyle(heading).scrollMarginTop) || OFFSET;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - margin, behavior: reduce ? "auto" : "smooth" });
@@ -72,6 +78,20 @@ export function TopicNav({ items, variant }: { items: OutlineItem[]; variant: "o
       cancelAnimationFrame(frame);
     };
   }, [items, variant]);
+
+  // When the rail is taller than the window, keep the marked part in view.
+  useEffect(() => {
+    if (variant !== "rail" || !active) return;
+    const root = rootRef.current;
+    const box = root?.parentElement;
+    const link = root?.querySelector<HTMLElement>(`a[href="#${active}"]`);
+    if (!box || !link || box.scrollHeight <= box.clientHeight) return;
+    const outer = box.getBoundingClientRect();
+    const inner = link.getBoundingClientRect();
+    if (inner.top >= outer.top && inner.bottom <= outer.bottom) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    box.scrollTo({ top: box.scrollTop + inner.top - outer.top - outer.height / 3, behavior: reduce ? "auto" : "smooth" });
+  }, [active, variant]);
 
   if (variant === "overview") {
     const parts = items.filter((item) => item.overview);

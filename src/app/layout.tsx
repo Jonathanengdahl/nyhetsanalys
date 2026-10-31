@@ -47,6 +47,10 @@ export const metadata: Metadata = {
     locale: "sv_SE",
     type: "website",
   },
+  // Large share images on X too. The images themselves come from opengraph-image.tsx.
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export const viewport: Viewport = {

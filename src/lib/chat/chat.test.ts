@@ -5,6 +5,7 @@ import { costSek } from "./cost";
 import { startOfSwedishDay, swedishDay } from "./day";
 import { startMaterial, topicMaterial } from "./material";
 import { chatInstructions } from "./prompt";
+import { readyAnswer } from "./ready";
 import { splitReferences } from "./references";
 import { chatRequestSchema, trimHistory } from "./schema";
 
@@ -33,6 +34,20 @@ describe("chat material", () => {
     expect(material.sources).toHaveLength(total);
     expect(material.sources.map((source) => source.n)).toEqual(Array.from({ length: total }, (_, i) => i + 1));
     for (const topic of topics) expect(material.text).toContain(`ÄMNE: ${topic.title}`);
+  });
+
+  it("includes Frågor och svar and the glossary", () => {
+    const material = topicMaterial(first);
+    expect(material.text).toContain("FRÅGOR OCH SVAR");
+    for (const item of first.faq) expect(material.text).toContain(item.answer);
+    for (const item of first.glossary) expect(material.text).toContain(`${item.term}: ${item.explanation}`);
+  });
+
+  it("writes ready answers the way the chat cites sources", () => {
+    const [item] = first.faq;
+    const answer = readyAnswer(item);
+    expect(answer.startsWith(item.answer)).toBe(true);
+    expect(splitReferences(answer).filter((part) => part.type === "ref")).toHaveLength(item.sources.length);
   });
 
   it("puts the rules before the material", () => {

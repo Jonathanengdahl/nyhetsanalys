@@ -51,7 +51,7 @@ En svensk webbtjänst (app senare) som bevakar nyhetsmedier, hittar dagens heta 
 
 - Hemligheter (API-nycklar, Supabase-nycklar) finns bara i `.env.local` och i Vercels miljövariabler. Aldrig i koden, i git, i loggar eller i chatten. Håll `.env.example` uppdaterad med namn men utan värden.
 - Fråga Jonathan innan du gör något som kostar pengar, raderar data, ändrar produktionsdatabasen, rör domän eller DNS, eller gör något publikt utanför betan.
-- Logga tokenförbrukning per AI-jobb och ha en dagsbudget som pausar jobben om den överskrids. Chatten loggar i tabellen `ai_usage` och har en dagsbudget på 20 kr (beslut 2026-10-31, i `src/config/ai.ts`).
+- Logga tokenförbrukning per AI-jobb och ha en dagsbudget som pausar jobben om den överskrids. Chatten loggar i tabellen `ai_usage` och har en dagsbudget på 20 kr (beslut 2026-10-31, i `src/config/ai.ts`). AI-jobben i fas 2 (sortering och analys) får en egen dagsbudget på 40 kr (beslut 2026-10-31).
 
 ## Betan
 
@@ -79,11 +79,12 @@ Fas 1: betasajten med exempeldata, ingen AI ännu
    - 2026-10-31: designen bytt från Nattpop till Ljus, eftersom Nattpop gav för mycket intryck och var svår att läsa länge i.
    - 2026-10-31: bredare layout på datorn, alla dagens ämnen som lista högst upp på startsidan, översikt över delarna på ämnessidan, levande medieremsa med riktiga rubriker (inga medieloggor: de är varumärken och kan se ut som samarbete eller omdöme om hela medier), mer rörelse.
    - 2026-10-31: AI-chatten tidigarelagd till betan, utan konton: `claude-haiku-5-5`, 10 egna frågor per besökare och dag, dagsbudget 20 kr. Se README.
-3. SEO- och GEO-grunden enligt `docs/seo-geo.md`. Redan på plats: metadata, kanonisk adress, JSON-LD (organisation, webbplats, ämnessida, brödsmulor), sitemap och 404-sida. Kvar: delningsbilder, IndexNow, regler för AI-robotar, llms.txt.
+   - 2026-10-31: Frågor och svar, ordförklaringar (prickig understrykning, förklaring vid tryck, ordlista längst ned), delningsbilder och Tyck till på ämnessidorna. Chattens föreslagna frågor kommer från Frågor och svar och besvaras direkt utan AI-anrop. Tyck till: "Var sidan tydlig?" och förslag på perspektiv som saknas, där en länk till en källa krävs och en människa granskar allt. Tabellerna `topic_feedback` och `topic_suggestions`.
+3. SEO- och GEO-grunden enligt `docs/seo-geo.md`. Redan på plats: metadata, kanonisk adress, JSON-LD (organisation, webbplats, ämnessida, brödsmulor), sitemap, 404-sida och delningsbilder (2026-10-31). Kvar: IndexNow, regler för AI-robotar, llms.txt.
 
 Fas 2: riktiga data
 4. Supabase: tabeller, RLS, migrationer och seed med exempeldatan.
-5. Insamling via RSS, sortering med Haiku, beräkning av hetta, ämneskö.
+5. Insamling via RSS, sortering med Haiku, beräkning av hetta, ämneskö. Supabase Cron startar jobben (beslut 2026-10-31), så Vercel kan stå kvar på Hobby.
 6. Analys med Sonnet, utkast, granskning, publicering.
 7. Admin: godkänn, slå ihop och dela ämnen, granska utkast, rättelser, feedback, kostnader.
 

@@ -127,7 +127,7 @@ Märkningen visas alltid som text, inte bara som färg eller ikon.
 - Svaren hänvisar till källor med nummer, till exempel [2], som blir länkar.
 - Feedbackläge: läsaren kan rapportera ett fel eller ett perspektiv som saknas. AI:n ber om källa, sparar ärendet och tackar. Den lovar aldrig att något ändras.
 - Skydd: begränsa längden på frågor och historik, begränsa antal anrop per användare och IP-adress, logga kostnaden.
-- Under betan (beslut 2026-10-31): chatten finns utan konto. Varje besökare får 10 egna frågor per dag, räknade under en kod som byts varje dag och inte går att föra tillbaka till IP-adressen. Hela sajten har en dagsbudget på 20 kr, och chatten pausar till midnatt om den nås. Föreslagna frågor går också via AI och räknas mot kvoten, eftersom färdiga svar tas fram först i fas 2. Frågor och svar sparas inte.
+- Under betan (beslut 2026-10-31): chatten finns utan konto. Varje besökare får 10 egna frågor per dag, räknade under en kod som byts varje dag och inte går att föra tillbaka till IP-adressen. Hela sajten har en dagsbudget på 20 kr, och chatten pausar till midnatt om den nås. På ämnessidorna är tre av de föreslagna frågorna hämtade från Frågor och svar. De besvaras direkt med sidans färdiga svar, märkt "AI-svar · från sidan", och räknas inte mot kvoten. Frågor och svar i chatten sparas inte.
 
 Utkast till instruktion, från prototypen:
 
@@ -143,7 +143,7 @@ Utkast till instruktion, från prototypen:
 
 ## Feedback och rättelser
 
-1. Läsaren säger till i chatten eller via formulär, gärna med källa.
+1. Läsaren säger till i chatten eller via Tyck till längst ned på ämnessidan: "Var sidan tydlig?" (ja eller nej, frivillig kommentar) och "Saknas ett perspektiv?". Ett förslag på perspektiv går inte att skicka utan en länk till en källa (beslut 2026-10-31). Inget läggs till automatiskt, och vi lovar aldrig att sidan ändras.
 2. AI:n grupperar liknande synpunkter och kontrollerar dem mot källorna. Redaktionen får en sammanfattning varje dag.
 3. En människa beslutar. Ingen ändring görs bara för att många skriver samma sak.
 4. Rättelser och viktiga ändringar visas med datum på ämnessidan och samlat på `/rattelser`.
@@ -157,7 +157,7 @@ Utkast till instruktion, från prototypen:
 ## Senare: bygg inte nu, men stäng inte dörren
 
 - Morgonbrief kl. 06.30: 3–5 ämnen, cirka 3 minuter, uppläst av en AI-röst som märks som AI. I appen, som poddflöde och som pushnotis.
-- Läsmeny (Aa): Ordförklaringar av/på (prickig understrykning, förklaring vid tryck), Lättläst av/på, mörkt läge, textstorlek. Planera redan nu för att ord att förklara och en lättläst version är data som analysen kan ta fram.
+- Läsmeny (Aa): Ordförklaringar av/på, Lättläst av/på, mörkt läge, textstorlek. Ordförklaringarna finns sedan 2026-10-31 (prickig understrykning, förklaring vid tryck, ordlista längst ned) och kommer från ämnets data. Menyn behövs för att kunna stänga av dem. Planera för att en lättläst version också är data som analysen kan ta fram.
 - Premium och betalning: Stripe på webben, appbutikernas köp i appen.
 - App för iOS och Android.
 - Företag (B2B): inramningsanalys för pr- och kommunikationsbyråer. Helt skild från redaktionen. Kunder kan aldrig påverka ämnessidorna.

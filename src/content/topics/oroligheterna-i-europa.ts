@@ -997,6 +997,82 @@ export const oroligheternaIEuropa: Topic = {
     "Varje artikel bedöms för sig på genre, fakta, urval, röster, språk, rubrik mot brödtext, siffror och källkvalitet. Politisk placering görs bara när en text tar ställning, och alltid med motivering. Axlarna är ekonomisk vänster–höger och GAL–TAN.",
     "Urvalet består av tre svenska och tre internationella medier. SVT:s direktrapport ingår inte eftersom den uppdateras löpande, och Sveriges Radio och de stora morgontidningarna saknas. Händelserna i Frankrike beskrivs på en egen ämnessida."
   ],
+  "faq": [
+    {
+      "question": "I vilka länder har det varit oroligheter?",
+      "answer": "I Italien, Belgien och Albanien, efter protesterna i Frankrike. I Milano omhändertog polisen 271 personer den 18 oktober, i Bryssel demonstrerade omkring 30 000 mot sparplaner den 9 oktober enligt polisen och i Albanien har 272 personer skadats sedan den 13 oktober.",
+      "sources": [
+        6,
+        11,
+        8
+      ]
+    },
+    {
+      "question": "Hänger protesterna ihop?",
+      "answer": "Det är omstritt. Elever i Italien och unga i Bryssel säger att de inspireras av Frankrike, men protesterna har olika orsaker. Enligt HurBra började missnöjet i Belgien före protesterna i Frankrike, och artiklarna om Albanien nämner inte Frankrike.",
+      "label": "Omstritt",
+      "sources": [
+        1,
+        11,
+        12,
+        4,
+        8
+      ]
+    },
+    {
+      "question": "Hur många greps i Milano?",
+      "answer": "Siffrorna skiljer sig. Polisen uppgav att 271 personer fördes till polisstationer den 18 oktober och att 32 av dem greps. AP skrev att omkring 50 greps under helgen. Källorna räknar delvis olika saker och olika dagar.",
+      "label": "Siffror skiljer sig",
+      "sources": [
+        6,
+        13,
+        14,
+        7
+      ]
+    },
+    {
+      "question": "Vad gör Italiens regering?",
+      "answer": "Regeringen beslutade den 20 oktober om 500 extra soldater i Milano året ut, ett nytt brott för våldsamt deltagande i demonstrationer med upp till fem års fängelse och ansvar för föräldrar när minderåriga orsakar skador. Parlamentet måste godkänna beslutet inom 60 dagar.",
+      "label": "Bekräftat",
+      "sources": [
+        7
+      ]
+    },
+    {
+      "question": "Vem står bakom våldet i Albanien?",
+      "answer": "Det är omstritt. Premiärminister Edi Rama säger att krafter utifrån ligger bakom oroligheterna. Studenter säger att de protesterar mot korruption och dåliga villkor.",
+      "label": "Omstritt",
+      "sources": [
+        3,
+        2,
+        10
+      ]
+    }
+  ],
+  "glossary": [
+    {
+      "term": "Tårgas",
+      "match": "tårgas",
+      "explanation": "En gas som irriterar ögon och luftvägar. Polis använder den för att skingra folkmassor."
+    },
+    {
+      "term": "Omhändertagen",
+      "match": "omhändert",
+      "explanation": "När polisen för med sig någon, till exempel till en polisstation. En gripen person är däremot misstänkt för brott."
+    },
+    {
+      "term": "ANSA",
+      "explanation": "Italiens största nyhetsbyrå."
+    },
+    {
+      "term": "AAP",
+      "explanation": "Australian Associated Press, en australisk nyhetsbyrå."
+    },
+    {
+      "term": "ABVV",
+      "explanation": "En av Belgiens stora fackliga centralorganisationer. På franska heter den FGTB."
+    }
+  ],
   "sources": [
     {
       "name": "TT via TV4",

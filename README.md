@@ -63,13 +63,17 @@ Kör nya migrationer mot databasen:
 npx supabase db push
 ```
 
-Migrationen för chatten (`20261031120000_chat_limits.sql`) kan också klistras in i Supabase SQL Editor och köras där. Den går att köra flera gånger utan fel.
+Migrationerna för chatten (`20261031120000_chat_limits.sql`) och för läsarnas synpunkter (`20261031150000_reader_feedback.sql`) kan också klistras in i Supabase SQL Editor och köras där. De går att köra flera gånger utan fel.
 
 Tabeller:
 
 - `waitlist`: beta-anmälan och veckobrev. RLS är på utan publika policyer, så bara servern (hemlig nyckel) kan läsa och skriva.
 - `ai_usage`: tokenförbrukning och kostnad per AI-anrop. Frågor och svar sparas inte. Dagsbudgeten räknas härifrån.
 - `chat_quota`: antal chattfrågor per besökare och dag. Besökaren är en kod som byts varje dag, aldrig IP-adressen. Raderna tas bort efter två dygn.
+- `topic_feedback`: svaren på "Var sidan tydlig?" längst ned på ämnessidorna, med frivillig kommentar.
+- `topic_suggestions`: förslag på perspektiv som saknas. Länk till en källa krävs. Status är `ny`, `godkänd` eller `avböjd`, och en människa granskar varje förslag. Läs dem i Supabase Table Editor tills admin finns.
+
+Tabellerna för läsarnas synpunkter sparar inte namn, e-post eller IP-adress. Utan Supabase lokalt skriver formulären bara en rad i loggen, så att de går att prova.
 
 ## AI-chatten
 
@@ -77,6 +81,7 @@ Chatten finns på startsidan (om dagens ämnen) och på varje ämnessida (om det
 
 - Gränser och budget står i `src/config/ai.ts`: 10 egna frågor per besökare och dag, och en dagsbudget på 20 kronor för hela sajten. Når kostnaden budgeten pausar chatten till midnatt.
 - Svaren strömmas från `/api/chat`. Källhänvisningar som [2] blir länkar till källan.
+- På ämnessidorna kommer tre av de föreslagna frågorna från Frågor och svar. De besvaras direkt i webbläsaren med sidans färdiga svar och kostar inget.
 - Lokalt utan API-nyckel: sätt `CHAT_MOCK=1` i `.env.local` för att testa panelen med ett fast svar.
 
 ## Struktur
@@ -86,7 +91,9 @@ Chatten finns på startsidan (om dagens ämnen) och på varje ämnessida (om det
 - `src/styles/globals.css`: grundstil och alla animationer som globala klasser.
 - `src/fonts/`: typsnitten Onest och Geist Mono (SIL Open Font License). De ligger i projektet så att bygget inte behöver nå Google.
 - `src/content/`: exempeldatan. `topics/` har de fyra ämnessidorna, `teasers.ts` exempelkorten utan egen sida.
-- `src/lib/topics/`: datalagret (`getPublishedTopics`, `getTopic` med flera) och typerna för ett ämne. Samma form som tabellen `topic_versions` får i Supabase. Datalagret ser också till att tal som 550 000 aldrig delas mellan två rader.
+- `src/lib/topics/`: datalagret (`getPublishedTopics`, `getTopic` med flera) och typerna för ett ämne. Samma form som tabellen `topic_versions` får i Supabase. Datalagret ser också till att tal som 550 000 aldrig delas mellan två rader. Varje ämne har också `faq` (Frågor och svar) och `glossary` (ord att förklara).
+- `src/lib/og/`: delningsbilderna (`opengraph-image.tsx` på startsidan och ämnessidorna). De byggs i förväg och läser färgerna från `tokens.css`.
+- `src/lib/feedback/`: Tyck till på ämnessidorna (schema och Server Actions).
 - `src/components/`: komponenter. `src/app/`: sidor.
 - `docs/`: produkt, teknik, SEO, prototyp och designen (`docs/design/ljus.md`, och den tidigare riktningen i `docs/design/nattpop-prototyp.html`).
 
@@ -95,7 +102,7 @@ Chatten finns på startsidan (om dagens ämnen) och på varje ämnessida (om det
 | Adress | Innehåll |
 |---|---|
 | `/` | Startsidan: vad vi gör, dagens ämnen med filter, beta-anmälan och veckobrev |
-| `/amne/[slug]` | Ämnessida med djupnivåerna 30 sek, 5 min och Djupdykning |
+| `/amne/[slug]` | Ämnessida med djupnivåerna 30 sek, 5 min och Djupdykning, Frågor och svar, ordlista och Tyck till |
 | `/amnen` | Alla ämnen |
 | `/metod` | Så arbetar vi |
 | `/om` | Om oss och kontakt |

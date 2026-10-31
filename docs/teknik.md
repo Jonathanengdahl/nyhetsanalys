@@ -12,7 +12,7 @@ Beslut och riktlinjer. Detaljerna bestämmer du (Claude Code) när vi kommer dit
 ## Vercel-plan
 
 - Hobby räcker för den första statiska betan, men planen är bara för icke-kommersiellt bruk och tillåter cron-jobb högst en gång per dygn.
-- Innan insamlingen startar: byt till Pro (cron varje minut) eller låt Supabase Cron starta jobben. Fråga Jonathan först, det kostar pengar.
+- Beslut 2026-10-31: Supabase Cron (`pg_cron` och `pg_net`) startar jobben genom att anropa våra skyddade API-vägar med `CRON_SECRET`. Då räcker Vercel Hobby under betan. Byt till Pro först när tjänsten blir kommersiell, och fråga Jonathan innan, det kostar pengar.
 - Dela upp långa jobb i steg, till exempel en artikel per anrop, så att varje funktion håller sig inom Vercels tidsgränser.
 
 ## Från artikel till publicerad sida
@@ -32,7 +32,8 @@ Analysen körs när något viktigt har ändrats (högst var 2–3 timme per ämn
 
 - Prompt caching för allt som är lika mellan anrop: instruktioner, källistan, ämnets underlag i chatten.
 - Batch API för det som inte är bråttom, till exempel omanalys av äldre artiklar.
-- Logga tokens och kostnad per jobb och per ämne. Dagsbudget som pausar AI-jobben och varnar Jonathan.
+- Logga tokens och kostnad per jobb och per ämne. Dagsbudget som pausar AI-jobben och varnar Jonathan: 40 kr per dag för sortering och analys (beslut 2026-10-31), skild från chattens 20 kr.
+- Uppskattning 2026-10-31: AI-jobb ungefär 6 gånger per dag, där bara nya artiklar och ändrade ämnen analyseras, kostar ungefär 400–700 kr i månaden.
 - Jonathan sätter ett utgiftstak i Anthropic Console.
 - Riktpriser per miljon tokens, kontrollera aktuella priser innan du räknar: Haiku 5.5 0,10 USD in och 0,50 USD ut, Sonnet 5.5 2 USD in och 10 USD ut. Webbsökning kostar 10 USD per 1 000 sökningar. Antaganden om volymer finns i `docs/kalkyl.html`.
 
@@ -46,7 +47,9 @@ Analysen körs när något viktigt har ändrats (högst var 2–3 timme per ämn
 - `topic_versions`: hela ämnessidans innehåll som JSON per version, status (utkast, publicerad, tillbakadragen), modell, kostnad, granskad av, tider
 - `topic_updates`: punkterna i "Nytt sedan ditt senaste besök", med tid
 - `redirects`: gammal slug till ny slug (301)
-- `feedback`: ämne, text, källa, grupp, status, beslut
+- `topic_feedback`: ämne, om sidan var tydlig (ja eller nej), frivillig kommentar. Byggd i fas 1 (2026-10-31).
+- `topic_suggestions`: ämne, perspektiv som saknas, länk till källa (krävs), status (ny, godkänd, avböjd), granskad, anteckning. Byggd i fas 1 (2026-10-31). Gruppering av liknande förslag kommer med admin.
+- Båda tabellerna har RLS utan publika policyer: bara servern läser och skriver. Inga namn, e-postadresser eller IP-adresser sparas.
 - `corrections`: ämne, datum, vad som ändrats och varför. Publik.
 - `profiles`: plan (gratis eller premium) och roll (läsare eller admin)
 - `chat_usage`: användare, dag, antal frågor, tokens
