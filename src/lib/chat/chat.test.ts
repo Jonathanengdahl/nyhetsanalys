@@ -5,7 +5,7 @@ import { costSek } from "./cost";
 import { startOfSwedishDay, swedishDay } from "./day";
 import { startMaterial, topicMaterial } from "./material";
 import { chatInstructions } from "./prompt";
-import { readyAnswer } from "./ready";
+import { MEDIA_QUESTION, MISSING_QUESTION, readyAnswer, topicReadyAnswers, topicSuggestions } from "./ready";
 import { splitReferences } from "./references";
 import { chatRequestSchema, trimHistory } from "./schema";
 
@@ -48,6 +48,26 @@ describe("chat material", () => {
     const answer = readyAnswer(item);
     expect(answer.startsWith(item.answer)).toBe(true);
     expect(splitReferences(answer).filter((part) => part.type === "ref")).toHaveLength(item.sources.length);
+  });
+
+  it("suggests questions that all have ready answers from the page", () => {
+    for (const topic of topics) {
+      const suggestions = topicSuggestions(topic);
+      const answers = topicReadyAnswers(topic);
+      expect(suggestions).toHaveLength(4);
+      expect(suggestions).toContain(MEDIA_QUESTION);
+      expect(suggestions).toContain(MISSING_QUESTION);
+      for (const question of suggestions) expect(answers[question], question).toBeTruthy();
+    }
+  });
+
+  it("builds the media answers from the page, with sources that exist", () => {
+    const answers = topicReadyAnswers(first);
+    for (const item of first.media.differ) expect(answers[MEDIA_QUESTION]).toContain(item);
+    for (const item of first.missing) expect(answers[MISSING_QUESTION]).toContain(item.text);
+    const refs = splitReferences(answers[MISSING_QUESTION]).flatMap((part) => (part.type === "ref" ? [part.n] : []));
+    expect(refs.length).toBeGreaterThan(0);
+    for (const n of refs) expect(n).toBeLessThanOrEqual(first.sources.length);
   });
 
   it("puts the rules before the material", () => {

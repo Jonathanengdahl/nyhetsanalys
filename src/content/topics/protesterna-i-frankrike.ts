@@ -487,11 +487,8 @@ export const protesternaIFrankrike: Topic = {
       "genre": "Nyhet",
       "title": "Protesterna i Europa",
       "meta": "Direktrapport, 19–23 oktober",
+      "angle": "Följer oroligheterna som en europeisk våg och lägger tyngdpunkten på myndigheternas åtgärder: förbud, utegångsförbud, militär och polisstyrkor.",
       "rows": [
-        {
-          "key": "Vinkel",
-          "text": "Följer oroligheterna som en europeisk våg och lägger tyngdpunkten på myndigheternas åtgärder: förbud, utegångsförbud, militär och polisstyrkor."
-        },
         {
           "key": "Röster",
           "text": "Främst ministrar och myndigheter via nyhetsbyråer, samt SVT:s egna korrespondenter."
@@ -519,11 +516,8 @@ export const protesternaIFrankrike: Topic = {
       "genre": "Analys",
       "title": "Därför slutar de franska protesterna så ofta i våld",
       "meta": "Jennifer Paterson, 17 oktober",
+      "angle": "Förklarar våldet med en blandning av fransk protestkultur och utanförskap bland unga män, och påpekar att protester ofta har lönat sig i Frankrike.",
       "rows": [
-        {
-          "key": "Vinkel",
-          "text": "Förklarar våldet med en blandning av fransk protestkultur och utanförskap bland unga män, och påpekar att protester ofta har lönat sig i Frankrike."
-        },
         {
           "key": "Röster",
           "text": "Reporterns egna samtal med unga och föräldrar i Paris. Inga namngivna experter."
@@ -551,11 +545,8 @@ export const protesternaIFrankrike: Topic = {
       "genre": "Nyhetsanalys",
       "title": "Franska upplopp bäddar för Le Pen",
       "meta": "I bland annat Ystads Allehanda och Nerikes Allehanda, 22 oktober",
+      "angle": "De politiska följderna: våldet kan stärka ytterhögern inför presidentvalet.",
       "rows": [
-        {
-          "key": "Vinkel",
-          "text": "De politiska följderna: våldet kan stärka ytterhögern inför presidentvalet."
-        },
         {
           "key": "Språk och rubrik",
           "text": "Ingressen målar upp plundrade butiker och brinnande stadshus innan den kommer till sin tes."
@@ -578,11 +569,8 @@ export const protesternaIFrankrike: Topic = {
       "genre": "Ekonomianalys",
       "title": "Frankrike brinner – eurokris dröjer, men klockan tickar",
       "meta": "20 oktober",
+      "angle": "Marknadens perspektiv: vad oroligheterna betyder för räntorna och risken för en ny eurokris.",
       "rows": [
-        {
-          "key": "Vinkel",
-          "text": "Marknadens perspektiv: vad oroligheterna betyder för räntorna och risken för en ny eurokris."
-        },
         {
           "key": "Röster",
           "text": "En Europaekonom på analysfirman Gavekal."
@@ -610,11 +598,8 @@ export const protesternaIFrankrike: Topic = {
       "genre": "Reportage",
       "title": "Skyddar sin butik från plundring – då blir Pierre sparkad i ryggen",
       "meta": "Malte Tallberg, 19 oktober",
+      "angle": "Ett personligt öde: en butiksägare angrips av maskerade män när han försöker skydda sin butik.",
       "rows": [
-        {
-          "key": "Vinkel",
-          "text": "Ett personligt öde: en butiksägare angrips av maskerade män när han försöker skydda sin butik."
-        },
         {
           "key": "Röster",
           "text": "Den drabbade butiksägaren."
@@ -642,11 +627,8 @@ export const protesternaIFrankrike: Topic = {
       "genre": "Ledare",
       "title": "La France défigurée (Det vanställda Frankrike)",
       "meta": "Vincent Trémolet de Villers, 18 oktober",
+      "angle": "Ser våldet som ett angrepp på statens auktoritet och kritiserar ett rättsväsende som skribenten anser vara för milt mot brottslingar.",
       "rows": [
-        {
-          "key": "Vinkel",
-          "text": "Ser våldet som ett angrepp på statens auktoritet och kritiserar ett rättsväsende som skribenten anser vara för milt mot brottslingar."
-        },
         {
           "key": "Röster",
           "text": "Skribentens egen, eftersom det är en ledare."
@@ -670,11 +652,8 @@ export const protesternaIFrankrike: Topic = {
       "genre": "Granskning",
       "title": "Granskning av polisinsatsen den 17 oktober",
       "meta": "19 oktober",
+      "angle": "Granskar polisinsatsen: enligt tidningen blev deltagarna fem gånger fler än de 150 000 som inrikesministern hade räknat med, och tidiga ingripanden ska ha splittrat demonstrationstågen.",
       "rows": [
-        {
-          "key": "Vinkel",
-          "text": "Granskar polisinsatsen: enligt tidningen blev deltagarna fem gånger fler än de 150 000 som inrikesministern hade räknat med, och tidiga ingripanden ska ha splittrat demonstrationstågen."
-        },
         {
           "key": "Röster",
           "text": "Polisforskaren Sebastian Roché."
@@ -694,11 +673,8 @@ export const protesternaIFrankrike: Topic = {
       "genre": "Förklarande",
       "title": "Förklarar begreppet ultravänster",
       "meta": "19 oktober",
+      "angle": "Reder ut vad ultravänstern är, eftersom flera politiker pekar ut den som ansvarig.",
       "rows": [
-        {
-          "key": "Vinkel",
-          "text": "Reder ut vad ultravänstern är, eftersom flera politiker pekar ut den som ansvarig."
-        },
         {
           "key": "Röster",
           "text": "Historikerna Sylvain Boulouque och Gilles Candar. Candar varnar för att jämställa ultravänster och ultrahöger."

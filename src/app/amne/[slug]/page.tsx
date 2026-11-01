@@ -5,6 +5,7 @@ import { ViewTransition, type CSSProperties } from "react";
 import { ChatButton } from "@/components/chat/ChatButton";
 import { ChatProvider } from "@/components/chat/ChatProvider";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { AnglesSection } from "@/components/topic/AnglesSection";
 import { DepthSwitch } from "@/components/topic/DepthSwitch";
 import { FaqSection } from "@/components/topic/Faq";
 import { GlossaryList } from "@/components/topic/Glossary";
@@ -27,7 +28,7 @@ import { TopicHero } from "@/components/topic/TopicHero";
 import { TopicNav } from "@/components/topic/TopicNav";
 import { AskFab } from "@/components/ui/AskFab";
 import { topicMaterial } from "@/lib/chat/material";
-import { readyAnswer } from "@/lib/chat/ready";
+import { topicReadyAnswers, topicSuggestions } from "@/lib/chat/ready";
 import { topicJsonLd } from "@/lib/seo/json-ld";
 import { getTopic, getTopicSlugs, topicPath } from "@/lib/topics";
 import { topicOutline } from "@/lib/topics/outline";
@@ -40,13 +41,10 @@ export const ensureStatic = "navigation";
 
 const SUGGESTIONS = ["Sammanfatta läget", "Vad är osäkert eller omstritt?", "Hur skiljer sig medierna åt?", "Vad saknas i debatten?"];
 
-/** The chat suggests the first questions from Frågor och svar. They are answered right away from the page, without AI. */
+/** Suggested chat questions. Those from the page (Frågor och svar, the media) are answered right away, without AI. */
 function chatSuggestions(topic: Topic) {
-  if (topic.faq.length === 0) return { suggestions: SUGGESTIONS, readyAnswers: {} };
-  return {
-    suggestions: [...topic.faq.slice(0, 3).map((item) => item.question), "Vad saknas i debatten?"],
-    readyAnswers: Object.fromEntries(topic.faq.map((item) => [item.question, readyAnswer(item)])),
-  };
+  const suggestions = topicSuggestions(topic);
+  return { suggestions: suggestions.length >= 2 ? suggestions : SUGGESTIONS, readyAnswers: topicReadyAnswers(topic) };
 }
 
 const TRANSITION = {
@@ -115,6 +113,7 @@ export default async function TopicPage({ params }: PageProps<"/amne/[slug]">) {
                 <TopicNav items={outline} variant="overview" />
               </div>
               <SummarySection topic={topic} />
+              <AnglesSection topic={topic} />
               <UpdatesSection topic={topic} />
               <TimelineSection topic={topic} data-depth="1" />
               <FactsSection topic={topic} data-depth="1" />

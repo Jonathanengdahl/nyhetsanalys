@@ -424,11 +424,8 @@ export const oroligheternaIEuropa: Topic = {
       "genre": "Nyhet",
       "title": "Protester i Europa: ”Vi gör som i Frankrike”",
       "meta": "Publicerad hos TV4, 17 oktober",
+      "angle": "Att elever och studenter i flera länder protesterar för mer resurser till skolan, med Frankrike som förebild.",
       "rows": [
-        {
-          "key": "Vinkel",
-          "text": "Att elever och studenter i flera länder protesterar för mer resurser till skolan, med Frankrike som förebild."
-        },
         {
           "key": "Röster",
           "text": "Ett upprop från gymnasieelever i Turin, via Corriere della Sera, och en albansk demonstrant, via Reuters. Ingen från regeringar eller polis citeras."
@@ -456,11 +453,8 @@ export const oroligheternaIEuropa: Topic = {
       "genre": "Nyhet",
       "title": "Rama uppmanar till lugn efter våldsamma protester",
       "meta": "Publicerad hos TV4, 16 oktober",
+      "angle": "Premiärministerns uppmaning till lugn och hans påstående om utländska krafter.",
       "rows": [
-        {
-          "key": "Vinkel",
-          "text": "Premiärministerns uppmaning till lugn och hans påstående om utländska krafter."
-        },
         {
           "key": "Röster",
           "text": "En 18-årig demonstrant, via AFP. Edi Rama återges men citeras inte direkt."
@@ -488,11 +482,8 @@ export const oroligheternaIEuropa: Topic = {
       "genre": "Nyhet",
       "title": "Albaniens Tirana brinner i nya kravaller",
       "meta": "Publicerad hos TV4, 18 oktober",
+      "angle": "Våldet under den sjätte dagen med protester, med attacker mot regeringsbyggnader, banker och butiker.",
       "rows": [
-        {
-          "key": "Vinkel",
-          "text": "Våldet under den sjätte dagen med protester, med attacker mot regeringsbyggnader, banker och butiker."
-        },
         {
           "key": "Röster",
           "text": "Bara premiärminister Edi Rama, som säger att krafter utifrån står bakom och att han inte avgår. Inga demonstranter citeras."
@@ -520,11 +511,8 @@ export const oroligheternaIEuropa: Topic = {
       "genre": "Nyhet",
       "title": "Tårgas vid studentprotest i Bryssel – här är kraven bakom oron",
       "meta": "Hanna Hellman, 17 oktober",
+      "angle": "Kraven bakom studentprotesten: en utbildningsreform och nya avgifter för högre studier.",
       "rows": [
-        {
-          "key": "Vinkel",
-          "text": "Kraven bakom studentprotesten: en utbildningsreform och nya avgifter för högre studier."
-        },
         {
           "key": "Röster",
           "text": "Inga direkta citat. Inrikesministern Bernard Quintin återges."
@@ -552,11 +540,8 @@ export const oroligheternaIEuropa: Topic = {
       "genre": "Nyhet",
       "title": "Hundratals gripna efter kravaller i Milano",
       "meta": "19 oktober",
+      "angle": "Antalet gripna efter helgens kravaller i Milano.",
       "rows": [
-        {
-          "key": "Vinkel",
-          "text": "Antalet gripna efter helgens kravaller i Milano."
-        },
         {
           "key": "Röster",
           "text": "Inga citat. Giorgia Meloni återges."
@@ -584,11 +569,8 @@ export const oroligheternaIEuropa: Topic = {
       "genre": "Nyhet",
       "title": "Milan luxury shops close for fear of new unrest as government prepares to deploy troops",
       "meta": "Elisa Anzolin, publicerad hos Internazionale, 19 oktober",
+      "angle": "Att lyxbutiker stänger av rädsla för nya oroligheter och att regeringen förbereder att skicka soldater.",
       "rows": [
-        {
-          "key": "Vinkel",
-          "text": "Att lyxbutiker stänger av rädsla för nya oroligheter och att regeringen förbereder att skicka soldater."
-        },
         {
           "key": "Röster",
           "text": "Vice premiärministrarna Matteo Salvini och Antonio Tajani. Inga demonstranter eller butiksägare citeras."
@@ -616,11 +598,8 @@ export const oroligheternaIEuropa: Topic = {
       "genre": "Nyhet",
       "title": "Italy’s Meloni approves tougher measures to crack down on protests after Milan riots",
       "meta": "Publicerad hos NY1, 20 oktober",
+      "angle": "Regeringens nya regler efter kravallerna i Milano.",
       "rows": [
-        {
-          "key": "Vinkel",
-          "text": "Regeringens nya regler efter kravallerna i Milano."
-        },
         {
           "key": "Röster",
           "text": "Bara premiärminister Giorgia Meloni. Ingen från oppositionen, demonstranterna eller rättighetsorganisationer."
@@ -648,11 +627,8 @@ export const oroligheternaIEuropa: Topic = {
       "genre": "Nyhet",
       "title": "Tirana sees sixth day of violent protests as Albania’s PM refuses to resign",
       "meta": "Muamer Tanovic, 18 oktober",
+      "angle": "Att premiärministern vägrar avgå trots sex dagar av våldsamma protester.",
       "rows": [
-        {
-          "key": "Vinkel",
-          "text": "Att premiärministern vägrar avgå trots sex dagar av våldsamma protester."
-        },
         {
           "key": "Röster",
           "text": "Edi Rama, en tv-journalist och en politisk analytiker i Tirana. Inga demonstranter citeras."

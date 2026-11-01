@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { teasers } from "@/content/teasers";
 import { topics } from "@/content/topics";
 import { getPublishedTopics, getTeasers } from ".";
+import { mainFocus } from "./angles";
 import { glossaryPattern } from "./glossary";
 import { uncertaintyLabels, type Topic } from "./types";
 
@@ -96,6 +97,15 @@ describe.each(topics.map((topic) => [topic.slug, topic] as const))("topic %s", (
       expect(row.values).toHaveLength(topic.media.matrixColumns.length);
       for (const value of row.values) expect([0, 1, 2]).toContain(value);
     }
+  });
+
+  it("gives every article an angle and one row in the article matrix", () => {
+    expect(topic.media.matrix).toHaveLength(topic.articles.length);
+    topic.articles.forEach((article, index) => {
+      expect(article.angle.length, article.outlet).toBeGreaterThan(20);
+      expect(article.rows.some((row) => row.key === "Vinkel")).toBe(false);
+      expect(mainFocus(topic, index).length, `${article.outlet}: huvudfokus`).toBeGreaterThan(0);
+    });
   });
 
   it("has frame shares that add up to about 100 percent", () => {

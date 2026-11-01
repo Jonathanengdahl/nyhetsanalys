@@ -456,11 +456,8 @@ export const inflationen: Topic = {
       "genre": "Nyhet",
       "title": "Högre energipriser ger kraftigt inflationslyft",
       "meta": "Publicerad hos TV4, 7 oktober",
+      "angle": "Att inflationen mer än fördubblades i september, och att energipriserna låg bakom.",
       "rows": [
-        {
-          "key": "Vinkel",
-          "text": "Att inflationen mer än fördubblades i september, och att energipriserna låg bakom."
-        },
         {
           "key": "Röster",
           "text": "Carl Holmberg, prisstatistiker på SCB. Inga andra röster."
@@ -488,11 +485,8 @@ export const inflationen: Topic = {
       "genre": "Nyhet",
       "title": "Inflationstakten stiger i linje med prognos",
       "meta": "Publicerad hos EFN, 7 oktober",
+      "angle": "Att utfallet blev som analytikerna och Riksbanken räknat med.",
       "rows": [
-        {
-          "key": "Vinkel",
-          "text": "Att utfallet blev som analytikerna och Riksbanken räknat med."
-        },
         {
           "key": "Röster",
           "text": "Inga. Texten återger SCB:s siffror, en prognosenkät från Infront och Riksbankens prognos."
@@ -520,11 +514,8 @@ export const inflationen: Topic = {
       "genre": "Nyhet",
       "title": "Inflationen stiger – energipriser driver uppgången",
       "meta": "Alva Bergland, 7 oktober",
+      "angle": "Energipriserna som förklaring till uppgången.",
       "rows": [
-        {
-          "key": "Vinkel",
-          "text": "Energipriserna som förklaring till uppgången."
-        },
         {
           "key": "Röster",
           "text": "Carl Holmberg, prisstatistiker på SCB."
@@ -552,11 +543,8 @@ export const inflationen: Topic = {
       "genre": "Nyhet",
       "title": "Inflationen stiger till 1,5 procent – energipriserna driver uppgången",
       "meta": "Hans Bergman, 7 oktober",
+      "angle": "Vad siffran betyder för hushåll och för räntan.",
       "rows": [
-        {
-          "key": "Vinkel",
-          "text": "Vad siffran betyder för hushåll och för räntan."
-        },
         {
           "key": "Röster",
           "text": "Inga citat. Skribenten förklarar själv."
@@ -584,11 +572,8 @@ export const inflationen: Topic = {
       "genre": "Nyhet",
       "title": "El och drivmedel lyfter inflationen",
       "meta": "Publicerad hos TV4, 14 oktober",
+      "angle": "SCB:s slutliga siffror, och att el och drivmedel drev uppgången.",
       "rows": [
-        {
-          "key": "Vinkel",
-          "text": "SCB:s slutliga siffror, och att el och drivmedel drev uppgången."
-        },
         {
           "key": "Röster",
           "text": "Sofie Öhman, prisstatistiker på SCB, via ett pressmeddelande."
@@ -616,11 +601,8 @@ export const inflationen: Topic = {
       "genre": "Nyhet",
       "title": "Lägre matpriser i september",
       "meta": "Elin Hanspers, 14 oktober",
+      "angle": "Att maten blev billigare samtidigt som inflationen steg.",
       "rows": [
-        {
-          "key": "Vinkel",
-          "text": "Att maten blev billigare samtidigt som inflationen steg."
-        },
         {
           "key": "Röster",
           "text": "Sofie Öhman och Caroline Neander, prisstatistiker på SCB."
@@ -648,11 +630,8 @@ export const inflationen: Topic = {
       "genre": "Nyhet",
       "title": "Dubbel prissmäll för drivmedel väntar: ”Orolig”",
       "meta": "Hannes Lännerholm, 30 september",
+      "angle": "Att de tillfälliga skattesänkningarna på bensin och diesel tas bort i två steg i höst.",
       "rows": [
-        {
-          "key": "Vinkel",
-          "text": "Att de tillfälliga skattesänkningarna på bensin och diesel tas bort i två steg i höst."
-        },
         {
           "key": "Röster",
           "text": "Jens Magnusson, chefsekonom på SEB, och Mattias Persson, chefsekonom på Swedbank. Inga hushåll, företag eller politiker."
@@ -680,11 +659,8 @@ export const inflationen: Topic = {
       "genre": "Nyhet",
       "title": "Frida Bratt: ”Det osar mardrömsår 2022”",
       "meta": "Joakim Ryttersson, 30 september",
+      "angle": "Att hushållen kan få det tufft när räntor, elpriser och drivmedelspriser stiger samtidigt.",
       "rows": [
-        {
-          "key": "Vinkel",
-          "text": "Att hushållen kan få det tufft när räntor, elpriser och drivmedelspriser stiger samtidigt."
-        },
         {
           "key": "Röster",
           "text": "Frida Bratt, sparekonom på Nordnet, och Johan Sigvardsson, elmarknadsanalytiker på Bixia."

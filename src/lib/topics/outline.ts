@@ -21,6 +21,7 @@ export function topicOutline(topic: Topic): OutlineItem[] {
   const charts = topic.numbers.charts.length;
   return [
     { id: "pa-30-sekunder", title: "På 30 sekunder", depth: 0, detail: count(topic.summary.length, "punkt", "punkter"), overview: false },
+    { id: "sa-vinklade-medierna", title: "Så vinklade medierna", depth: 0, detail: count(topic.articles.length, "artikel", "artiklar"), overview: true },
     { id: "nytt", title: "Nytt sedan sist", depth: 0, detail: count(topic.updates.items.length, "nyhet", "nyheter"), overview: false },
     { id: "vad-har-hant", title: "Vad har hänt", depth: 1, detail: count(topic.timeline.length, "händelse", "händelser"), overview: true },
     { id: "fakta", title: "Fakta och osäkerhet", depth: 1, detail: count(topic.facts.length, "uppgift", "uppgifter"), overview: true },
@@ -41,7 +42,7 @@ export function topicOutline(topic: Topic): OutlineItem[] {
       : []),
     { id: "sa-ar-sidan-gjord", title: "Så är sidan gjord", depth: 0, detail: "Metod och rättelser", overview: false },
     ...(topic.glossary.length
-      ? [{ id: "ordlista", title: "Ordlista", depth: 0, detail: count(topic.glossary.length, "ord", "ord"), overview: true } as const]
+      ? [{ id: "ordlista", title: "Ordlista", depth: 0, detail: count(topic.glossary.length, "ord", "ord"), overview: false } as const]
       : []),
     { id: "kallor", title: "Källor", depth: 0, detail: count(topic.sources.length, "källa", "källor"), overview: true },
     { id: "tyck-till", title: "Tyck till", depth: 0, detail: "Förslag med källa", overview: true },

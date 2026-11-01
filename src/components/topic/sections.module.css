@@ -902,3 +902,9 @@
   font-weight: var(--weight-bold);
   scroll-margin-top: calc(var(--header-height) + 80px);
 }
+
+.inlineLink {
+  color: var(--color-accent-strong);
+  font-weight: var(--weight-semibold);
+  text-underline-offset: 3px;
+}

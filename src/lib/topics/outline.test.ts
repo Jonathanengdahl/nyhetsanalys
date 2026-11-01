@@ -9,6 +9,7 @@ const sectionSources = [
   "src/components/topic/Faq.tsx",
   "src/components/topic/Glossary.tsx",
   "src/components/topic/TopicFeedback.tsx",
+  "src/components/topic/AnglesSection.tsx",
 ]
   .map((file) => readFileSync(file, "utf8"))
   .join("\n");

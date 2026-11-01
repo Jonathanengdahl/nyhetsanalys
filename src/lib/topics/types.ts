@@ -59,6 +59,8 @@ export interface ArticleAnalysis {
   genre: string;
   title: string;
   meta: string;
+  /** What the article puts at the centre, in one sentence. Shown under Så vinklade medierna. */
+  angle: string;
   rows: { key: string; text: string }[];
   /** Political placement, or why the text is not placed. */
   placement: string;

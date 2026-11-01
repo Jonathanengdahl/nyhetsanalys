@@ -450,11 +450,8 @@ export const regeringsbildningen: Topic = {
       "genre": "Nyhet",
       "title": "Thand Ringqvist utesluter samarbete högerut",
       "meta": "Publicerad hos TV4, 19 oktober",
+      "angle": "C-ledarens nya uppdrag och hennes gränser: inget samarbete högerut och ingen regering med V.",
       "rows": [
-        {
-          "key": "Vinkel",
-          "text": "C-ledarens nya uppdrag och hennes gränser: inget samarbete högerut och ingen regering med V."
-        },
         {
           "key": "Röster",
           "text": "Elisabeth Thand Ringqvist (C). Inga andra partier kommer till tals."
@@ -482,11 +479,8 @@ export const regeringsbildningen: Topic = {
       "genre": "Nyhet",
       "title": "Vädjar om tålamod – för att undvika extra val: Det behövs",
       "meta": "Petter Bodelsson, 20 oktober",
+      "angle": "Risken för extra val och C-ledarens vädjan om tålamod.",
       "rows": [
-        {
-          "key": "Vinkel",
-          "text": "Risken för extra val och C-ledarens vädjan om tålamod."
-        },
         {
           "key": "Röster",
           "text": "Elisabeth Thand Ringqvist (C), i TV4:s Nyhetsmorgon."
@@ -514,11 +508,8 @@ export const regeringsbildningen: Topic = {
       "genre": "Analys",
       "title": "Nu ställs vågmästaren mot väggen",
       "meta": "Magnus Wennerberg, 19 oktober",
+      "angle": "Spelet: talmannens val beskrivs som ett sätt att pröva och avfärda mittenalternativet och öka trycket på C att välja sida.",
       "rows": [
-        {
-          "key": "Vinkel",
-          "text": "Spelet: talmannens val beskrivs som ett sätt att pröva och avfärda mittenalternativet och öka trycket på C att välja sida."
-        },
         {
           "key": "Röster",
           "text": "Skribentens egen bedömning. Partiledare citeras bara med enstaka ord, som Kristerssons icke-socialistiska majoritet."
@@ -546,11 +537,8 @@ export const regeringsbildningen: Topic = {
       "genre": "Krönika",
       "title": "Den pinsamma cirkusen i riksdagen fortsätter – ingen statsminister i sikte",
       "meta": "Viggo Cavling, 19 oktober",
+      "angle": "Processen beskrivs som en cirkus, och skribenten tror på extra val.",
       "rows": [
-        {
-          "key": "Vinkel",
-          "text": "Processen beskrivs som en cirkus, och skribenten tror på extra val."
-        },
         {
           "key": "Röster",
           "text": "Skribenten själv. Hänvisar till DN:s ledarsida, till en krönika av Alex Schulman i DN och till en fråga från SvD:s reporter."
@@ -578,11 +566,8 @@ export const regeringsbildningen: Topic = {
       "genre": "Nyhet",
       "title": "C-ledaren Elisabeth Thand Ringqvist får sonderingsuppdrag",
       "meta": "19 oktober",
+      "angle": "Själva beskedet och tidplanen, med rapport till talmannen senast den 26 oktober.",
       "rows": [
-        {
-          "key": "Vinkel",
-          "text": "Själva beskedet och tidplanen, med rapport till talmannen senast den 26 oktober."
-        },
         {
           "key": "Röster",
           "text": "Talmannen via Expressen, Thand Ringqvist via Aftonbladet och Ulf Kristersson (M) via SVT."
@@ -610,11 +595,8 @@ export const regeringsbildningen: Topic = {
       "genre": "Nyhet",
       "title": "Talmannen ger sonderingsuppdraget till Elisabeth Thand Ringqvist (C)",
       "meta": "Publicerad hos Placera, 19 oktober",
+      "angle": "Talmannens sätt att leda processen: telefonsamtal i stället för nya talmansrundor.",
       "rows": [
-        {
-          "key": "Vinkel",
-          "text": "Talmannens sätt att leda processen: telefonsamtal i stället för nya talmansrundor."
-        },
         {
           "key": "Röster",
           "text": "Talmannen Andreas Norlén, Elisabeth Thand Ringqvist (C) och Ulf Kristersson (M)."
@@ -642,11 +624,8 @@ export const regeringsbildningen: Topic = {
       "genre": "Nyhet",
       "title": "Så reagerar partiledarna på beskedet: Logiskt",
       "meta": "19 oktober",
+      "angle": "Partiledarnas reaktioner på talmannens beslut.",
       "rows": [
-        {
-          "key": "Vinkel",
-          "text": "Partiledarnas reaktioner på talmannens beslut."
-        },
         {
           "key": "Röster",
           "text": "S, M, V, KD, MP och L. SD:s reaktion saknas."
@@ -674,11 +653,8 @@ export const regeringsbildningen: Topic = {
       "genre": "Nyhet",
       "title": "Åkesson bjuder in Centerpartiets ledare till samtal om regeringsbildningen",
       "meta": "Publicerad hos Placera, 19 oktober",
+      "angle": "SD:s inbjudan till C och partiets linje i regeringsfrågan.",
       "rows": [
-        {
-          "key": "Vinkel",
-          "text": "SD:s inbjudan till C och partiets linje i regeringsfrågan."
-        },
         {
           "key": "Röster",
           "text": "Jimmie Åkesson (SD), via ett öppet brev. Inga reaktioner från C."

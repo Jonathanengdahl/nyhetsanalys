@@ -77,7 +77,7 @@ function topicSections(topic: Topic, number: Numbering, full: boolean): string {
     bullets(
       topic.articles.map(
         (article) =>
-          `${article.outlet} (${article.genre}), "${article.title}". ${article.rows.map((row) => `${row.key}: ${row.text}`).join(" ")} Politisk placering: ${article.placement}`,
+          `${article.outlet} (${article.genre}), "${article.title}". Vinkel: ${article.angle} ${article.rows.map((row) => `${row.key}: ${row.text}`).join(" ")} Politisk placering: ${article.placement}`,
       ),
     ),
     "",
