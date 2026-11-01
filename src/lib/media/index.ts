@@ -1,6 +1,7 @@
 import { media } from "@/content/media";
+import { keepNumbersTogether } from "@/lib/format";
 import type { Topic } from "@/lib/topics/types";
-import type { MediaOutlet } from "./types";
+import type { MediaFact, MediaOutlet } from "./types";
 
 export type { MediaFact, MediaOutlet } from "./types";
 
@@ -9,8 +10,24 @@ for (const outlet of media) {
   for (const name of [outlet.name, ...outlet.aliases]) byName.set(name.toLowerCase(), outlet);
 }
 
+function together<T extends MediaFact | undefined>(fact: T): T {
+  return (fact ? { ...fact, text: keepNumbersTogether(fact.text) } : fact) as T;
+}
+
+/** The register as the page shows it. Numbers like 70 000 never split across two lines. */
+const prepared: MediaOutlet[] = media.map((outlet) => ({
+  ...outlet,
+  publisher: together(outlet.publisher),
+  owner: together(outlet.owner),
+  ownerType: together(outlet.ownerType),
+  funding: together(outlet.funding),
+  mediaSupport: together(outlet.mediaSupport),
+  editorialLabel: together(outlet.editorialLabel),
+  changes: together(outlet.changes),
+}));
+
 export async function getMediaOutlets(): Promise<MediaOutlet[]> {
-  return media;
+  return prepared;
 }
 
 /** The medium behind an outlet name in the article data, if we have it. */

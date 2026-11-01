@@ -24,13 +24,25 @@ const slugify = (text: string) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "");
 
-/** Swedish media first, then the other countries in alphabetical order. */
+/** Countries with several media get their own group. The rest share one, and each card names its country. */
+const OWN_GROUP = ["Sverige", "Frankrike"];
+const OTHERS = "Andra länder";
+
 function byCountry(outlets: MediaOutlet[]) {
   const groups = new Map<string, MediaOutlet[]>();
-  for (const outlet of outlets) groups.set(outlet.country, [...(groups.get(outlet.country) ?? []), outlet]);
+  for (const outlet of outlets) {
+    const group = OWN_GROUP.includes(outlet.country) ? outlet.country : OTHERS;
+    groups.set(group, [...(groups.get(group) ?? []), outlet]);
+  }
+  const order = [...OWN_GROUP, OTHERS];
   return [...groups.entries()]
-    .sort(([a], [b]) => (a === "Sverige" ? -1 : b === "Sverige" ? 1 : a.localeCompare(b, "sv")))
-    .map(([country, items]) => ({ country, id: slugify(country), outlets: items.sort((a, b) => a.name.localeCompare(b.name, "sv")) }));
+    .sort(([a], [b]) => order.indexOf(a) - order.indexOf(b))
+    .map(([country, items]) => ({
+      country,
+      id: slugify(country),
+      showCountry: country === OTHERS,
+      outlets: items.sort((a, b) => a.name.localeCompare(b.name, "sv")),
+    }));
 }
 
 function Fact({ label, fact, sources, note }: { label: string; fact?: MediaFact; sources: Source[]; note?: string }) {
@@ -39,10 +51,9 @@ function Fact({ label, fact, sources, note }: { label: string; fact?: MediaFact;
     <div>
       <dt>{label}</dt>
       <dd className={styles.fact}>
-        {fact.label && <UncertaintyBadge label={fact.label} />}
-        <span>{fact.text}</span>
+        {fact.label && <UncertaintyBadge label={fact.label} className={styles.badge} />}
+        <span>{fact.text}</span> <SourceChips refs={fact.sources} sources={sources} />
         {note && <span className={styles.factNote}>{note}</span>}
-        <SourceChips refs={fact.sources} sources={sources} />
       </dd>
     </div>
   );
@@ -65,7 +76,15 @@ function Usage({ uses }: { uses?: { topic: Topic; articles: number }[] }) {
   );
 }
 
-function OutletCard({ outlet, uses }: { outlet: MediaOutlet; uses?: { topic: Topic; articles: number }[] }) {
+function OutletCard({
+  outlet,
+  uses,
+  showCountry,
+}: {
+  outlet: MediaOutlet;
+  uses?: { topic: Topic; articles: number }[];
+  showCountry: boolean;
+}) {
   const headingId = `medium-${outlet.slug}`;
   const sameAsPublisher = outlet.owner.text === outlet.publisher.text;
   return (
@@ -75,6 +94,7 @@ function OutletCard({ outlet, uses }: { outlet: MediaOutlet; uses?: { topic: Top
           {outlet.name}
         </h3>
         <span className={styles.kind}>{outlet.kind}</span>
+        {showCountry && <span className={styles.country}>{outlet.country}</span>}
       </div>
       <dl className={`${prose.facts} ${styles.facts}`}>
         <Fact label="Utgivare" fact={outlet.publisher} sources={outlet.sources} />
@@ -152,7 +172,7 @@ export default async function MediaPage() {
           <h2 id={group.id}>{group.country}</h2>
           <div className={styles.cards}>
             {group.outlets.map((outlet) => (
-              <OutletCard key={outlet.slug} outlet={outlet} uses={usage.get(outlet.slug)} />
+              <OutletCard key={outlet.slug} outlet={outlet} uses={usage.get(outlet.slug)} showCountry={group.showCountry} />
             ))}
           </div>
         </section>
