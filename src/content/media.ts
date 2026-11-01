@@ -28,15 +28,15 @@ export const media: MediaOutlet[] = [
     kind: "Nyhetsmedium",
     publisher: { text: "Al Jazeera Media Network", sources: [1] },
     owner: {
-      text: "Enligt egen uppgift en privat stiftelse för allmännyttiga ändamål enligt qatarisk lag. Nätverket uppger att det inte ägs av staten Qatar och att innehållet inte styrs av Qatars regering.",
-      sources: [1],
+      text: "Enligt egen uppgift en privat stiftelse för allmännyttiga ändamål enligt qatarisk lag. Nätverket uppger att det inte ägs av staten Qatar och att innehållet inte styrs av Qatars regering. Enligt forskningsprojektet State Media Monitor 2026 ägs nätverket helt av Qatars emir.",
+      sources: [1, 3],
     },
     ownerType: {
-      text: "Stiftelse enligt qatarisk lag. Styrelsen utses av Qatars regering, enligt USA:s justitiedepartement 2020 och forskningsprojektet State Media Monitor 2024.",
+      text: "Stiftelse enligt qatarisk lag. USA:s justitiedepartement skrev 2020 att Qatars regering utser styrelsen. Enligt State Media Monitor 2026 utses styrelsen av Qatars ministerråd och godkänns av emiren.",
       sources: [2, 3],
     },
     funding: {
-      text: "Staten Qatar står för hela eller delar av finansieringen, enligt samma källor. Nätverket redovisar inte sin ekonomi i detalj.",
+      text: "Staten Qatar står för hela eller delar av finansieringen, enligt USA:s justitiedepartement 2020 och State Media Monitor 2026. Nätverket redovisar inte sin ekonomi i detalj.",
       sources: [2, 3],
     },
     sources: [
@@ -46,7 +46,7 @@ export const media: MediaOutlet[] = [
         title: "Al Jazeera condemns AJ+ FARA registration order in US, 17 september 2020",
         url: "https://www.aljazeera.com/news/2020/09/17/al-jazeera-condemns-aj-fara-registration-order-in-us/",
       },
-      { name: "State Media Monitor", title: "Al Jazeera Media Network (AJMN), juli 2024", url: "https://statemediamonitor.com/2024/07/al-jazeera-media-network-ajmn/" },
+      { name: "State Media Monitor", title: "Al Jazeera Media Network (AJMN), juni 2026", url: "https://statemediamonitor.com/2024/07/al-jazeera-media-network-ajmn/" },
     ],
     checked: CHECKED,
   },
@@ -58,12 +58,12 @@ export const media: MediaOutlet[] = [
     kind: "Nyhetsbyrå",
     publisher: { text: "The Associated Press", sources: [1] },
     owner: {
-      text: "Ingen enskild ägare. AP är ett ideellt kooperativ. Medlemmarna är nyhetsorganisationer som använder AP:s material, och de väljer styrelsen.",
+      text: "Ingen enskild ägare. AP är ett ideellt kooperativ. Medlemmarna är nyhetsorganisationer som licensierar AP:s material. Styrelsen väljs av medlemmarna eller utses av styrelsen själv.",
       sources: [2, 1],
     },
     ownerType: { text: "Ideellt kooperativ som styrs av sina medlemsmedier", sources: [2, 1] },
     funding: {
-      text: "Licensierar nyheter till medier, som stod för 82 procent av intäkterna 2023, och till teknik- och AI-företag. Annonser och donationer på apnews.com och bidrag från stiftelser.",
+      text: "Licensierar nyheter till medier och till teknik- och AI-företag. Licensiering stod för 82 procent av intäkterna 2023. Annonser och donationer på apnews.com och bidrag från stiftelser.",
       sources: [3, 4, 2],
     },
     sources: [
@@ -92,14 +92,14 @@ export const media: MediaOutlet[] = [
     aliases: [],
     country: "Frankrike",
     kind: "Nyhetsmedium",
-    publisher: { text: "Société du Figaro", sources: [1] },
+    publisher: { text: "Société du Figaro", sources: [1, 7] },
     owner: {
       text: "Groupe Figaro, som ingår i Dassaultkoncernen sedan 2004. Koncernens holdingbolag, Groupe Industriel Marcel Dassault, kontrolleras av familjen Dassault.",
       sources: [2, 3, 4],
     },
     ownerType: { text: "Familjeägd industrikoncern", sources: [2, 3] },
     funding: {
-      text: "Prenumerationer och annonser. År 2024 kom 60 procent av dagstidningens intäkter från prenumeranter och 40 procent från annonser. Tidningen får också statligt presstöd i Frankrike, 10,6 miljoner euro 2023.",
+      text: "Prenumerationer och annonser. Enligt koncernens vd i februari 2025 kommer 60 procent av dagstidningens intäkter från prenumeranter och 40 procent från annonser. Tidningen fick också statligt presstöd i Frankrike, 10,6 miljoner euro 2023.",
       sources: [5, 6],
     },
     sources: [
@@ -121,6 +121,7 @@ export const media: MediaOutlet[] = [
         title: "Près de 205 millions d'euros d'aides à la presse octroyées par le ministère de la Culture en 2023, 9 juli 2024",
         url: "https://www.cbnews.fr/medias/image-pres-205-millions-euros-aides-presse-octroyees-ministere-culture-2023-86081",
       },
+      { name: "App Store", title: "Le Figaro Actualités en direct, utvecklare Société du Figaro", url: "https://apps.apple.com/FR/app/id319557427" },
     ],
     checked: CHECKED,
   },
@@ -130,15 +131,15 @@ export const media: MediaOutlet[] = [
     aliases: [],
     country: "Frankrike",
     kind: "Nyhetsmedium",
-    publisher: { text: "Société éditrice du Monde, i koncernen Groupe Le Monde", sources: [1] },
+    publisher: { text: "Société éditrice du Monde, i koncernen Groupe Le Monde", sources: [1, 3] },
     owner: {
-      text: "Fonds pour l'indépendance de la presse, en ideell fond som bildades 2021, äger omkring 53 procent via holdingbolagen NJJ Presse och Le Monde Libre. Pôle d'indépendance, där journalisternas, de anställdas och läsarnas föreningar ingår, äger omkring 25 procent.",
+      text: "Fonds pour l'indépendance de la presse, en ideell fond som bildades 2021, är största ägare med 53 procent (december 2024). Fonden äger nästan hela holdingbolaget NJJ Presse. Pôle d'indépendance, som främst består av journalisternas och de anställdas föreningar, äger 25 procent.",
       sources: [2, 3, 4],
     },
     ownerType: { text: "Ideell fond för pressens oberoende", sources: [3, 2] },
     funding: { text: "Prenumerationer och annonser. Licensavtal med AI-företag. Statligt presstöd i Frankrike.", sources: [5, 6, 7] },
     changes: {
-      text: "I april 2024 överlät Xavier Niel nästan hela holdingbolaget NJJ Presse till fonden för en symbolisk euro. Enligt uppgifter i oktober 2026 ska även spanska Prisas andel föras över till fonden, men det har vi inte kunnat bekräfta.",
+      text: "I april 2024 överlät Xavier Niel nästan hela holdingbolaget NJJ Presse till fonden för en euro. I oktober 2026 rapporterades att spanska Prisa ska sälja sin andel på 20 procent i holdingbolaget Le Monde Libre till fonden för en symbolisk euro. Prisas chef har bekräftat uppgiften för andra medier, men avtalet var inte undertecknat den 26 oktober 2026.",
       sources: [3, 4, 8],
     },
     sources: [
@@ -171,7 +172,7 @@ export const media: MediaOutlet[] = [
     aliases: [],
     country: "Frankrike",
     kind: "Nyhetsmedium",
-    publisher: { text: "Libération, som ägs av holdingbolaget Presse indépendante", sources: [1] },
+    publisher: { text: "Presse indépendante SAS, tidningens holdingbolag och utgivare", sources: [1, 6] },
     owner: {
       text: "Fonds de dotation pour une presse indépendante, en ideell fond som bildades 2020, är majoritetsägare i holdingbolaget Presse indépendante.",
       sources: [2, 3, 1],
@@ -182,7 +183,7 @@ export const media: MediaOutlet[] = [
       sources: [8, 4, 5, 6, 7],
     },
     changes: {
-      text: "Telekomkoncernen Altice lämnade ägandet 2020 och skapade då fonden. I juli 2024 slöts ett avtal om redaktionens oberoende mellan ägarbolaget, tidningens ledning och de anställda.",
+      text: "Altice lämnade ägandet 2020 och skapade då fonden. I juli 2024 slöts ett avtal om redaktionens oberoende mellan holdingbolaget, tidningens ledning och de anställdas förening.",
       sources: [3, 2],
     },
     sources: [
@@ -205,12 +206,12 @@ export const media: MediaOutlet[] = [
     kind: "Nyhetsbyrå",
     publisher: { text: "Reuters, en del av Thomson Reuters", sources: [1] },
     owner: {
-      text: "Thomson Reuters Corporation, som är börsnoterat. Familjen Thomson kontrollerar omkring 71 procent av aktierna genom sina investeringsbolag, främst The Woodbridge Company (31 mars 2026). En särskild aktie, Founders Share, ska enligt bolagets principer skydda nyhetsverksamhetens oberoende.",
+      text: "Thomson Reuters Corporation, som är börsnoterat. Familjen Thomson kontrollerar omkring 71 procent av aktierna genom sina investeringsbolag, främst The Woodbridge Company (9 april 2026). En särskild aktie, Founders Share, ska enligt bolagets principer skydda nyhetsverksamhetens oberoende.",
       sources: [2, 1, 4],
     },
     ownerType: { text: "Börsnoterat bolag med en kontrollerande familjeägare", sources: [2, 1] },
     funding: {
-      text: "Säljer nyheter till andra medier och till finanskoncernen LSEG. Licensierar innehåll, bland annat till AI-företag. Prenumerationer, annonser och evenemang.",
+      text: "Säljer nyheter till andra medier och till finanskoncernen LSEG. Licensierar innehåll, bland annat till AI-företag. Har också nyhetssajten Reuters.com och evenemang.",
       sources: [1, 3],
     },
     sources: [
@@ -227,10 +228,10 @@ export const media: MediaOutlet[] = [
     aliases: [],
     country: "Sverige",
     kind: "Medlemstidning",
-    publisher: { text: "Sveriges Aktiesparares Riksförbund, som ger ut aktiespararna.se och medlemstidningen Aktiespararen", sources: [2] },
+    publisher: { text: "Sveriges Aktiesparares Riksförbund, som ger ut aktiespararna.se. Medlemmarna får tidningen Aktiespararen.", sources: [2, 3] },
     owner: { text: "Förbundet självt, en medlemsorganisation med omkring 70 000 medlemmar", sources: [1] },
     ownerType: { text: "Medlemsorganisation", sources: [1] },
-    funding: { text: "Medlemsavgifter", sources: [3] },
+    funding: { text: "Medlemsavgifter, 59 eller 99 kronor i månaden. Om förbundet har fler intäkter framgår inte av källorna.", sources: [3] },
     mediaSupport: { text: NO_MEDIA_SUPPORT_2026, sources: [4] },
     sources: [
       { name: "Aktiespararna", title: "Om Aktiespararna", url: "https://www.aktiespararna.se/om-oss" },
@@ -255,7 +256,7 @@ export const media: MediaOutlet[] = [
       text: "Privatpersoner. Enligt Mediemyndigheten ägdes bolaget 2024 till lika delar av vd:n och chefredaktören. Privata investerare gick in med kapital 2022 och 2025. Hur ägandet är fördelat i dag har vi inte kunnat bekräfta.",
       sources: [2, 3, 4],
     },
-    ownerType: { text: "Privatpersoner", sources: [2] },
+    ownerType: { text: "Privatpersoner (2024)", sources: [2] },
     funding: { text: "Prenumerationer och kapital från privata investerare", sources: [3, 4] },
     mediaSupport: {
       text: "Fick mediestöd för 2024, 2 733 000 kronor. Sökte för 2026 men finns inte med bland dem som har beviljats stöd.",
@@ -327,7 +328,7 @@ export const media: MediaOutlet[] = [
     owner: { text: "Förvaltningsstiftelsen för Sveriges Radio AB, Sveriges Television AB och Sveriges Utbildningsradio AB", sources: [1] },
     ownerType: { text: "Stiftelse", sources: [1] },
     funding: { text: "Public service-avgiften. Små övriga intäkter, till exempel sponsring och visningsrätter.", sources: [1, 2] },
-    mediaSupport: { text: "Får inte mediestöd. Lagen om mediestöd gäller inte public service-företag.", sources: [3, 4] },
+    mediaSupport: { text: "Får inte mediestöd. Enligt lagen om mediestöd får stöd inte lämnas till public service-företag.", sources: [3, 4] },
     sources: [
       {
         name: "SVT",
@@ -375,9 +376,9 @@ export const media: MediaOutlet[] = [
     publisher: { text: "TV4 AB", sources: [1] },
     owner: {
       text: "TV4 Media AB, som ingår i mediekoncernen Schibsted Media. Schibsted Media ägs helt av den norska stiftelsen Tinius genom bolaget Blommenholm Industrier.",
-      sources: [1, 2, 4],
+      sources: [1, 2, 4, 6],
     },
-    ownerType: { text: "Mediekoncern som ägs av en stiftelse", sources: [2, 4] },
+    ownerType: { text: "Mediekoncern som ägs av en stiftelse", sources: [2, 4, 6] },
     funding: { text: "Reklam och abonnemang på betal-tv och TV4 Play", sources: [2] },
     mediaSupport: { text: NO_MEDIA_SUPPORT_2026, sources: [5] },
     changes: { text: "Schibsted Media köpte TV4 från Telia Company. Affären slutfördes den 1 juli 2025.", sources: [2, 3] },
@@ -395,6 +396,11 @@ export const media: MediaOutlet[] = [
       { name: "Telia Company", title: "Telia Company completes divestment of TV & Media, 1 juli 2025", url: "https://news.cision.com/telia-company/r/telia-company-completes-divestment-of-tv---media,c4171721" },
       { name: "Nordicom", title: "Faktablad 2025:4, de största mediebolagen", url: "https://www.nordicom.gu.se/sites/default/files/faktablad/2025-4-storsta-mediebolag.pdf" },
       mediestod2026,
+      {
+        name: "Schibsted",
+        title: "Schibsted and Tinius Trust sign final agreement on sale of news media operations, 22 mars 2024",
+        url: "https://vend.com/news/schibsted-and-tinius-trust-sign-final-agreement-on-sale-of-news-media-operations",
+      },
     ],
     checked: CHECKED,
   },
@@ -406,7 +412,7 @@ export const media: MediaOutlet[] = [
     kind: "Nyhetsmedium",
     publisher: { text: "Börskollen Sverige AB", sources: [1] },
     owner: {
-      text: "FairValue FV AB, som köpte Börskollen i maj 2026. FairValue står också bakom analyshuset Kalqyl och plattformen TradeVenue. Vilka som äger FairValue framgår inte av källorna.",
+      text: "FairValue FV AB, som köpte Börskollen i maj 2026. FairValue står också bakom analyshuset Kalqyl och plattformen TradeVenue. Börskollens grundare Kristoffer Matsson och Daniel Åstrand är delägare i FairValue. Vilka som äger resten och hur stora andelarna är framgår inte av källorna.",
       sources: [2, 1],
     },
     ownerType: { text: "Företag inom finansmedia och kommunikation för börsbolag", sources: [2] },
@@ -432,7 +438,7 @@ export const media: MediaOutlet[] = [
     kind: "Nyhetsbyrå",
     publisher: { text: "Nyhetsbyrån Direkt, en del av Infront News", sources: [1] },
     owner: {
-      text: "Infront, en koncern inom finansdata med huvudkontor i Oslo. Infront ägs sedan 2021 av det brittiska riskkapitalbolaget Inflexion.",
+      text: "Infront, en koncern inom finansdata med huvudkontor i Oslo. Infront ägs sedan juni 2021 av riskkapitalbolaget Inflexion.",
       sources: [1, 2, 3],
     },
     ownerType: { text: "Riskkapitalbolag", sources: [2] },
@@ -514,15 +520,15 @@ export const media: MediaOutlet[] = [
     aliases: ["Nyhetsbyrån Finwire"],
     country: "Sverige",
     kind: "Nyhetsbyrå",
-    publisher: { text: "FinWire AB, Göteborg", sources: [1] },
+    publisher: { text: "FinWire AB", sources: [1] },
     owner: {
       text: "Inte kontrollerat för 2026. Den senaste uppgiften vi har hittat är från 2020. Då ägdes bolaget av grundarna, kommunikationskoncernen Nowa Kommunikation och en privat investerare.",
       label: "Obekräftat",
       sources: [2, 3],
     },
     funding: {
-      text: "Säljer nyheter till medier, banker, nätmäklare och fondbolag. Säljer också tjänster för investerarkommunikation till börsbolag.",
-      sources: [2, 4],
+      text: "Nyhetsbyrå vars nyheter publiceras hos andra medier, till exempel Placera. Säljer också tjänster för investerarkommunikation till börsbolag, till exempel filmade intervjuer och webbsändningar.",
+      sources: [6, 4],
     },
     mediaSupport: { text: NO_MEDIA_SUPPORT_2026, sources: [5] },
     sources: [
@@ -535,6 +541,11 @@ export const media: MediaOutlet[] = [
       { name: "Realtid", title: "Nowagruppen blir ny ägare i Finwire, 12 september 2019", url: "https://www.realtid.se/bors-finans/nowagruppen-blir-ny-agare-i-finwire/" },
       { name: "Finwire TV", title: "Produkter", url: "https://www.finwire.tv/produkter/" },
       mediestod2026,
+      {
+        name: "Placera",
+        title: "Telegram från Nyhetsbyrån Finwire, 20 augusti 2026",
+        url: "https://www.placera.se/telegram/bonnier-news-koper-ny-teknik-group-ska-starka-di-s-bevakning-20260820",
+      },
     ],
     checked: CHECKED,
   },
@@ -563,11 +574,11 @@ export const media: MediaOutlet[] = [
     kind: "Nyhetsmedium",
     publisher: { text: "Placera Media AB. Tidningen drivs av Nya Klara Publishing AB, som också gör Affärsvärlden.", sources: [1] },
     owner: { text: "Avanza Bank Holding AB, genom det helägda dotterbolaget Placera Media AB", sources: [1, 2] },
-    ownerType: { text: "Börsnoterad bank", sources: [1, 3] },
+    ownerType: { text: "Börsnoterat bolag inom sparande och investeringar", sources: [1, 3] },
     funding: { text: "Ingår i Avanzas tjänster och är gratis att läsa. Annonser.", sources: [2, 1] },
     mediaSupport: { text: NO_MEDIA_SUPPORT_2026, sources: [6] },
     changes: {
-      text: "Sedan november 2024 kommer det redaktionella innehållet från Affärsvärlden. Placeras egen redaktion lades ned.",
+      text: "Sedan den 4 november 2024 görs Placera av bolaget bakom Affärsvärlden, som en systertidning med egen chefredaktör. Placeras tidigare redaktion lades ned.",
       sources: [4, 5],
     },
     sources: [
