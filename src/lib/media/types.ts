@@ -1,4 +1,4 @@
-import type { Source, SourceRef } from "@/lib/topics/types";
+import type { Source, SourceRef, UncertaintyLabel } from "@/lib/topics/types";
 
 /**
  * A medium whose articles are in our material, with facts about who owns it
@@ -11,6 +11,8 @@ import type { Source, SourceRef } from "@/lib/topics/types";
 export interface MediaFact {
   text: string;
   sources: SourceRef[];
+  /** Set when the fact is not confirmed, for example an owner we only know from an old source. */
+  label?: UncertaintyLabel;
 }
 
 export interface MediaOutlet {
@@ -24,7 +26,8 @@ export interface MediaOutlet {
   /** The company or organisation that publishes it. */
   publisher: MediaFact;
   owner: MediaFact;
-  ownerType: MediaFact;
+  /** Left out when we do not know who the owner is. */
+  ownerType?: MediaFact;
   funding: MediaFact;
   /** Swedish state media support (mediestöd) from Mediemyndigheten. Only for Swedish media. */
   mediaSupport?: MediaFact;

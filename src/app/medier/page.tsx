@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SourceChips } from "@/components/ui/SourceChips";
+import { UncertaintyBadge } from "@/components/ui/UncertaintyBadge";
 import { site } from "@/config/site";
 import { formatDate } from "@/lib/format";
 import { getMediaOutlets, mediaUsage, type MediaFact, type MediaOutlet } from "@/lib/media";
@@ -38,6 +39,7 @@ function Fact({ label, fact, sources, note }: { label: string; fact?: MediaFact;
     <div>
       <dt>{label}</dt>
       <dd className={styles.fact}>
+        {fact.label && <UncertaintyBadge label={fact.label} />}
         <span>{fact.text}</span>
         {note && <span className={styles.factNote}>{note}</span>}
         <SourceChips refs={fact.sources} sources={sources} />
