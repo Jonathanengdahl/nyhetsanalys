@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { CSSProperties } from "react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import type { Frame, MatrixValue, Topic } from "@/lib/topics/types";
@@ -162,6 +163,14 @@ export function MediaSection({ topic, "data-depth": depth }: { topic: Topic; "da
           </div>
         </div>
       </div>
+
+      <p className={styles.small}>
+        Vem som ger ut, äger och finansierar medierna står på{" "}
+        <Link href="/medier" className={styles.inlineLink}>
+          Medierna vi läser
+        </Link>
+        .
+      </p>
     </section>
   );
 }

@@ -3,11 +3,13 @@ export const mainNavigation = [
   { href: "/amnen", label: "Alla ämnen" },
   { href: "/metod", label: "Så arbetar vi" },
   { href: "/om", label: "Om oss och kontakt" },
+  { href: "/medier", label: "Medierna vi läser" },
   { href: "/rattelser", label: "Rättelser" },
 ] as const;
 
 export const footerNavigation = [
   { href: "/metod", label: "Så arbetar vi" },
+  { href: "/medier", label: "Medierna vi läser" },
   { href: "/om", label: "Om oss och kontakt" },
   { href: "/rattelser", label: "Rättelser" },
   { href: "/integritet", label: "Integritetspolicy" },

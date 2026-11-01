@@ -20,7 +20,7 @@ Beslut och riktlinjer. Detaljerna bestämmer du (Claude Code) när vi kommer dit
 1. Insamling, var 15:e minut: läs RSS från källistan. Spara rubrik, ingress, länk, källa och publiceringstid. Ingen fulltext. Ta bort dubbletter: samma adress räknas en gång, och samma TT-text i flera tidningar räknas som en källa. Identifiera oss med en egen user agent och följ robots.txt.
 2. Sortering med `claude-haiku-5-5`: kategori, land och genre. Jämför mot listan över bevakade ämnen (kärnfråga och nyckelord) och föreslå ett befintligt ämne eller ett nytt. Embeddings med pgvector kan läggas till senare om träffsäkerheten behöver det.
 3. Hetta, varje timme: räkna oberoende källor, mediehus och rikstäckande medier de senaste 48 timmarna mot tröskeln i `docs/produkt.md`. Uppdatera status och lägg nya heta ämnen i ämneskön i admin.
-4. Analys med `claude-sonnet-5-5`: först varje artikel för sig (åtta delar, politisk placering bara för texter som tar ställning), sedan hela ämnet: sidans delar, föreslagna frågor med svar, frågor och svar, ord att förklara. Utdata är JSON som valideras mot ett schema innan den sparas. Ogiltig utdata sparas aldrig.
+4. Analys med `claude-sonnet-5-5`: först varje artikel för sig (åtta delar, politisk placering bara för texter som tar ställning), sedan hela ämnet: sidans delar, vinkeln i varje artikel i en mening, föreslagna frågor med svar, frågor och svar, ord att förklara. Utdata är JSON som valideras mot ett schema innan den sparas. Ogiltig utdata sparas aldrig.
 5. Granskning: utkastet visas i admin bredvid den publicerade versionen, med skillnaderna markerade.
 6. Publicering: sparas som ny version och sidan byggs om direkt (on-demand revalidation).
 
@@ -39,7 +39,7 @@ Analysen körs när något viktigt har ändrats (högst var 2–3 timme per ämn
 
 ## Datamodell (utkast)
 
-- `sources`: medier med namn, mediehus, typ, land, språk, RSS-adress, rikstäckande ja/nej
+- `sources`: medier med namn, andra namn i artikeldatan, mediehus, typ, land, språk, RSS-adress, rikstäckande ja/nej. Dessutom utgivare, ägare, typ av ägare, finansiering, mediestöd, ledarsidans egen beteckning och ändringar i ägandet, varje uppgift med källor, samt datum när uppgifterna kontrollerades. Samma form som `src/content/media.ts` (2026-11-01).
 - `articles`: adress, källa, rubrik, ingress, publiceringstid, språk, genre, fingeravtryck för TT-text, huvudämne
 - `topics`: slug, titel, kärnfråga, status (bevakas, het, svalnar, arkiverad), kategori, länder, föräldraämne för delämnen, tider
 - `topic_articles`: koppling mellan ämne och artikel, huvudämne ja/nej

@@ -94,6 +94,7 @@ Chatten finns på startsidan (om dagens ämnen) och på varje ämnessida (om det
 - `src/lib/topics/`: datalagret (`getPublishedTopics`, `getTopic` med flera) och typerna för ett ämne. Samma form som tabellen `topic_versions` får i Supabase. Datalagret ser också till att tal som 550 000 aldrig delas mellan två rader. Varje ämne har också `faq` (Frågor och svar) och `glossary` (ord att förklara).
 - `src/lib/og/`: delningsbilderna (`opengraph-image.tsx` på startsidan och ämnessidorna). De byggs i förväg och läser färgerna från `tokens.css`.
 - `src/lib/feedback/`: Tyck till på ämnessidorna (schema och Server Actions).
+- `src/content/media.ts` och `src/lib/media/`: medieregistret bakom Medierna vi läser. Varje uppgift pekar på sina källor, och `checked` är datumet då uppgifterna kontrollerades. Samma form som tabellen `sources` får i Supabase.
 - `src/components/`: komponenter. `src/app/`: sidor.
 - `docs/`: produkt, teknik, SEO, prototyp och designen (`docs/design/ljus.md`, och den tidigare riktningen i `docs/design/nattpop-prototyp.html`).
 
@@ -105,6 +106,7 @@ Chatten finns på startsidan (om dagens ämnen) och på varje ämnessida (om det
 | `/amne/[slug]` | Ämnessida med djupnivåerna 30 sek, 5 min och Djupdykning, Frågor och svar, ordlista och Tyck till |
 | `/amnen` | Alla ämnen |
 | `/metod` | Så arbetar vi |
+| `/medier` | Medierna vi läser: utgivare, ägare, finansiering, mediestöd och ledarsidans egen beteckning, med källa för varje uppgift |
 | `/om` | Om oss och kontakt |
 | `/rattelser` | Rättelser |
 | `/integritet`, `/kakor` | Integritetspolicy och kakor |

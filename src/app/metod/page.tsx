@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { UncertaintyBadge } from "@/components/ui/UncertaintyBadge";
 import { site } from "@/config/site";
 import type { UncertaintyLabel } from "@/lib/topics/types";
@@ -80,8 +81,9 @@ export default function MethodPage() {
         <div>
           <dt>Källistan</dt>
           <dd>
-            Svenska nyhetsmedier: public service, rikstäckande och regionala tidningar samt TT. Hela listan publiceras
-            när insamlingen startar.
+            Svenska nyhetsmedier: public service, rikstäckande och regionala tidningar samt TT. Medierna i dagens underlag,
+            med vem som äger och finansierar dem, står på <Link href="/medier">Medierna vi läser</Link>. Hela källistan
+            publiceras där när insamlingen startar.
           </dd>
         </div>
         <div>

@@ -35,8 +35,10 @@ Tak: högst cirka 10 aktiva ämnen samtidigt. Ämnen under tröskeln har status 
 
 ## Var vi hämtar materialet
 
-- Källistan: svenska nyhetsmedier, public service, rikstäckande och regionala tidningar samt TT. Hela listan publiceras på sajten.
-- Varje källa har en etikett för typ (till exempel public service, kommersiellt nyhetsmedium, nyhetsbyrå, åsiktsmaterial), aldrig en politisk etikett.
+- Källistan: svenska nyhetsmedier, public service, rikstäckande och regionala tidningar samt TT. Hela listan publiceras på sajten, på sidan Medierna vi läser (`/medier`).
+- Varje källa har en etikett för typ (till exempel public service, kommersiellt nyhetsmedium, nyhetsbyrå, åsiktsmaterial), aldrig en politisk etikett från oss.
+- Medierna vi läser (beslut 2026-11-01): för varje medium visas utgivare, ägare, typ av ägare, hur mediet finansieras och om det får statligt mediestöd, med källa för varje uppgift och datum när vi kontrollerade den. Vi skriver aldrig om ägarnas åsikter eller avsikter, och ägaren visas inte vid de enskilda artiklarna.
+- Ledarsidans egen beteckning (beslut 2026-11-01): när en tidning själv anger en politisk beteckning för sin ledarsida visas den på Medierna vi läser, med tidningens egna ord och källa, märkt "Ledarsidans egen beteckning" och med en rad om att den inte gäller nyhetsjournalistiken. Det är inte vår placering.
 - Landet där det händer: vi läser alltid medier i det landet.
 - Andra länder: när ett ämne är stort i minst tre länder visar vi hur två eller tre av dem beskriver det.
 - Bredare sökning när ett ämne är hett: myndigheter, forskare, domstolar och andra primärkällor.
@@ -57,6 +59,7 @@ Läsaren väljer djupnivå: 30 sekunder, 5 minuter eller Djupdykning. All text l
 Delarna i ordning:
 - Sidhuvud: rubrik, ingress, status (till exempel Pågår), senast uppdaterad, följ-knapp, "Fråga om ämnet", karta och nyckeltal.
 - På 30 sekunder: 2–4 meningar som besvarar kärnfrågan och går att läsa fristående.
+- Så vinklade medierna (beslut 2026-11-01): där artiklarna skiljer sig, och en rad per artikel med medium, genre, huvudfokus, rubrik och vinkel i en mening. Syns på alla djupnivåer. På 30 sekunder visas bara medium, genre och huvudfokus.
 - Nytt sedan ditt senaste besök: tidsstämplade punkter.
 - 01 Vad har hänt
 - 02 Fakta och osäkerhet: varje uppgift med märkning och källor
@@ -127,7 +130,7 @@ Märkningen visas alltid som text, inte bara som färg eller ikon.
 - Svaren hänvisar till källor med nummer, till exempel [2], som blir länkar.
 - Feedbackläge: läsaren kan rapportera ett fel eller ett perspektiv som saknas. AI:n ber om källa, sparar ärendet och tackar. Den lovar aldrig att något ändras.
 - Skydd: begränsa längden på frågor och historik, begränsa antal anrop per användare och IP-adress, logga kostnaden.
-- Under betan (beslut 2026-10-31): chatten finns utan konto. Varje besökare får 10 egna frågor per dag, räknade under en kod som byts varje dag och inte går att föra tillbaka till IP-adressen. Hela sajten har en dagsbudget på 20 kr, och chatten pausar till midnatt om den nås. På ämnessidorna är tre av de föreslagna frågorna hämtade från Frågor och svar. De besvaras direkt med sidans färdiga svar, märkt "AI-svar · från sidan", och räknas inte mot kvoten. Frågor och svar i chatten sparas inte.
+- Under betan (beslut 2026-10-31): chatten finns utan konto. Varje besökare får 10 egna frågor per dag, räknade under en kod som byts varje dag och inte går att föra tillbaka till IP-adressen. Hela sajten har en dagsbudget på 20 kr, och chatten pausar till midnatt om den nås. På ämnessidorna är de föreslagna frågorna två från Frågor och svar samt "Hur skiljer sig medierna åt?" och "Vad saknas i debatten?". Alla fyra besvaras direkt med sidans färdiga svar, märkt "AI-svar · från sidan", och räknas inte mot kvoten. Frågor och svar i chatten sparas inte.
 
 Utkast till instruktion, från prototypen:
 

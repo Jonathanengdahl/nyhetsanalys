@@ -25,7 +25,7 @@ En svensk webbtjänst (app senare) som bevakar nyhetsmedier, hittar dagens heta 
 ## Principer som aldrig får brytas
 
 1. Neutralitet. Vi tar aldrig politisk ställning. Olika perspektiv redovisas sida vid sida.
-2. Vi bedömer artiklar, aldrig hela medier. Politisk placering görs bara för texter som tar ställning (ledare, debatt, krönika), alltid med motivering, på två axlar: ekonomisk vänster–höger och GAL–TAN. Nyhetsartiklar placeras aldrig.
+2. Vi bedömer artiklar, aldrig hela medier. Politisk placering görs bara för texter som tar ställning (ledare, debatt, krönika), alltid med motivering, på två axlar: ekonomisk vänster–höger och GAL–TAN. Nyhetsartiklar placeras aldrig. En tidnings egen beteckning för sin ledarsida får visas på Medierna vi läser, i tidningens egna ord och med källa (beslut 2026-11-01). Det är inte vår placering.
 3. Vi sammanfattar och länkar. Vi återpublicerar aldrig artiklar och visar aldrig fulltext. Korta citat med källa är okej.
 4. Varje uppgift har källa och osäkerhetsmärkning: Bekräftat, Siffror skiljer sig, Ändras över tid, Uppskattning, Omstritt, Obekräftat, Falskt. Hellre "det vet vi inte än" än en gissning.
 5. Allt AI-skrivet märks som AI-skrivet. En människa godkänner nya ämnen och ansvarar för det som publiceras.
@@ -80,6 +80,7 @@ Fas 1: betasajten med exempeldata, ingen AI ännu
    - 2026-10-31: bredare layout på datorn, alla dagens ämnen som lista högst upp på startsidan, översikt över delarna på ämnessidan, levande medieremsa med riktiga rubriker (inga medieloggor: de är varumärken och kan se ut som samarbete eller omdöme om hela medier), mer rörelse.
    - 2026-10-31: AI-chatten tidigarelagd till betan, utan konton: `claude-haiku-5-5`, 10 egna frågor per besökare och dag, dagsbudget 20 kr. Se README.
    - 2026-10-31: Frågor och svar, ordförklaringar (prickig understrykning, förklaring vid tryck, ordlista längst ned), delningsbilder och Tyck till på ämnessidorna. Chattens föreslagna frågor kommer från Frågor och svar och besvaras direkt utan AI-anrop. Tyck till: "Var sidan tydlig?" och förslag på perspektiv som saknas, där en länk till en källa krävs och en människa granskar allt. Tabellerna `topic_feedback` och `topic_suggestions`.
+   - 2026-11-01: Så vinklade medierna på ämnessidan (där artiklarna skiljer sig, och huvudfokus, rubrik och vinkel per artikel) och sidan Medierna vi läser (`/medier`) med utgivare, ägare, typ av ägare, finansiering, mediestöd och ledarsidans egen beteckning, varje uppgift med källa. Vi skriver aldrig om ägarnas åsikter eller avsikter.
 3. SEO- och GEO-grunden enligt `docs/seo-geo.md`. Redan på plats: metadata, kanonisk adress, JSON-LD (organisation, webbplats, ämnessida, brödsmulor), sitemap, 404-sida och delningsbilder (2026-10-31). Kvar: IndexNow, regler för AI-robotar, llms.txt.
 
 Fas 2: riktiga data
