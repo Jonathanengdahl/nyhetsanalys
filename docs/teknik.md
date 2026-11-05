@@ -42,7 +42,8 @@ Analysen körs när något viktigt har ändrats (högst var 2–3 timme per ämn
 ## Datamodell (utkast)
 
 - `sources`: medier med namn, andra namn i artikeldatan, mediehus, typ, land, språk, RSS-adress, rikstäckande ja/nej. Dessutom utgivare, ägare, typ av ägare, finansiering, mediestöd, ledarsidans egen beteckning och ändringar i ägandet, varje uppgift med källor, samt datum när uppgifterna kontrollerades. Samma form som `src/content/media.ts` (2026-11-01).
-- `articles`: adress, källa, rubrik, ingress, publiceringstid, språk, genre, fingeravtryck för TT-text, huvudämne
+- `articles`: adress, källa, flödet den kom från, rubrik, ingress, publiceringstid, hämtad, språk, fingeravtryck för TT-text och om flödet är nyheter eller åsikt. Byggd 2026-11-05 (migrationen `20261106090000_collection.sql`). Genre och huvudämne läggs till med sorteringen.
+- `feed_status`: senaste svaret per RSS-flöde, med cachehuvuden, robots.txt, förbehåll mot textutvinning och antal fel i rad. Själva listan över flöden ligger i `src/content/feeds.ts`.
 - `topics`: slug, titel, kärnfråga, status (bevakas, het, svalnar, arkiverad), kategori, länder, föräldraämne för delämnen, tider
 - `topic_articles`: koppling mellan ämne och artikel, huvudämne ja/nej
 - `article_analyses`: analys per artikel, med politisk placering och motivering när den görs
@@ -58,7 +59,7 @@ Analysen körs när något viktigt har ändrats (högst var 2–3 timme per ämn
 - `profiles`: plan (gratis eller premium) och roll (läsare eller admin)
 - `chat_usage`: användare, dag, antal frågor, tokens
 - `waitlist`: e-post, samtycken, testläsare ja/nej. Testläsarnas känsliga uppgifter i en egen tabell med strängare åtkomst. Byggd redan i fas 1 (beslut 2026-10-26) så att beta-anmälan och veckobrevet sparas på riktigt. Bara servern skriver, via Server Action. IP-adresser sparas inte.
-- `ai_jobs`: logg med jobbtyp, status, tokens, kostnad och fel
+- `job_runs`: varje körning av ett jobb (insamling nu, sortering och analys senare) med antal och fel. Tokens och kostnad per AI-anrop loggas i `ai_usage` med jobbets namn.
 
 Ämnessidans JSON följer delarna i `docs/produkt.md`. Exempeldatan i fas 1 ska ha exakt samma form, så att bytet till Supabase bara byter datakälla.
 
