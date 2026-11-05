@@ -32,7 +32,9 @@ export const feeds: FeedConfig[] = [
   { ...news, source: "gp", name: "Göteborgs-Posten", house: "stampen", national: false, url: "https://www.gp.se/rss", foundAt: "codeberg.org/solarchemist/svenska-tidskrifter-rss" },
   { ...news, source: "altinget", name: "Altinget", house: "altinget", url: "https://www.altinget.se/rss", foundAt: "codeberg.org/solarchemist/svenska-tidskrifter-rss" },
   // Opinion feeds. Political placement is only ever made for opinion texts, never for news.
-  { ...opinion, source: "svd", name: "SvD Ledare", house: "schibsted-media", url: "https://www.svd.se/feed/articles/category/ledare.rss", foundAt: "feeder.co" },
-  { ...opinion, source: "expressen", name: "Expressen Ledare", house: "bonnier-news", url: "https://feeds.expressen.se/ledare/", foundAt: "feeder.co" },
+  // The two editorial pages are off until we also read editorial pages from other directions
+  // (for example Aftonbladet Ledare), so the opinion texts we read stay balanced.
+  { ...opinion, active: false, source: "svd", name: "SvD Ledare", house: "schibsted-media", url: "https://www.svd.se/feed/articles/category/ledare.rss", foundAt: "feeder.co" },
+  { ...opinion, active: false, source: "expressen", name: "Expressen Ledare", house: "bonnier-news", url: "https://feeds.expressen.se/ledare/", foundAt: "feeder.co" },
   { ...opinion, source: "aftonbladet", name: "Aftonbladet Debatt", house: "schibsted-media", url: "https://rss.aftonbladet.se/rss2/small/pages/sections/debatt", foundAt: "feedspot.com" },
 ];
