@@ -108,7 +108,8 @@ function toRows(feed: FeedConfig, xml: string, now: Date, config: Config): { row
       continue;
     }
     const url = canonicalUrl(absolute);
-    const title = cleanText(item.title);
+    // The table allows 500 characters. A headline longer than that is broken, so it is cut.
+    const title = cleanText(item.title).slice(0, 300);
     if (!url || !title) continue;
     const publishedAt = parseDate(item.published);
     if (publishedAt && Date.parse(publishedAt) < oldest) continue;
