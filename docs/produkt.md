@@ -149,12 +149,22 @@ Utkast till instruktion, från prototypen:
 > - Högst 150 ord, enkel svenska, inga rubriker, ingen markdown. Punktlistor med tecknet • bara när det hjälper.
 > - Lägg inte till egna uppgifter om händelser efter underlagets datum.
 
+## Kvalitet i piloten (beslut 2026-11-05)
+
+1. Bara heta ämnen av allmänintresse som klarar tröskeln.
+2. Varje uppgift har en källa, annars publiceras den inte.
+3. En andra AI-körning granskar utkastet uppgift för uppgift mot källorna. Det som inte håller stryks eller märks Obekräftat.
+4. Samma kontroller som testerna för exempeldatan (källor finns, giltig märkning, ord i ordlistan används, tal delas inte) är en spärr före publicering.
+5. Jonathan godkänner varje nytt ämne. Uppdateringar av godkända ämnen publiceras automatiskt om de klarar kontrollerna och går att backa.
+6. Läsarnas synpunkter och rapporterade fel går till en kö, och rättelser syns med datum.
+
 ## Feedback och rättelser
 
 1. Läsaren säger till i chatten eller via Tyck till längst ned på ämnessidan: "Var sidan tydlig?" (ja eller nej, frivillig kommentar) och "Saknas ett perspektiv?". Ett förslag på perspektiv går inte att skicka utan en länk till en källa (beslut 2026-10-31). Inget läggs till automatiskt, och vi lovar aldrig att sidan ändras.
 2. AI:n grupperar liknande synpunkter och kontrollerar dem mot källorna. Redaktionen får en sammanfattning varje dag.
 3. En människa beslutar. Ingen ändring görs bara för att många skriver samma sak.
 4. Rättelser och viktiga ändringar visas med datum på ämnessidan och samlat på `/rattelser`.
+5. Fel i uppgiften? (beslut 2026-11-05): en liten länk vid varje uppgift där läsaren kan säga att något är fel, gärna med en länk till en källa. Det hamnar i samma kö som Tyck till.
 
 ## Testläsare under betan
 

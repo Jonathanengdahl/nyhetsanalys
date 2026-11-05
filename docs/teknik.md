@@ -18,10 +18,11 @@ Beslut och riktlinjer. Detaljerna bestämmer du (Claude Code) när vi kommer dit
 ## Från artikel till publicerad sida
 
 1. Insamling, var 15:e minut: läs RSS från källistan. Spara rubrik, ingress, länk, källa och publiceringstid. Ingen fulltext. Ta bort dubbletter: samma adress räknas en gång, och samma TT-text i flera tidningar räknas som en källa. Identifiera oss med en egen user agent och följ robots.txt.
+   Innan en källa hämtas kontrolleras robots.txt och förbehåll mot textutvinning. Källor som inte tillåter oss hoppas över och visas så i admin.
 2. Sortering med `claude-haiku-5-5`: kategori, land och genre. Jämför mot listan över bevakade ämnen (kärnfråga och nyckelord) och föreslå ett befintligt ämne eller ett nytt. Embeddings med pgvector kan läggas till senare om träffsäkerheten behöver det.
 3. Hetta, varje timme: räkna oberoende källor, mediehus och rikstäckande medier de senaste 48 timmarna mot tröskeln i `docs/produkt.md`. Uppdatera status och lägg nya heta ämnen i ämneskön i admin.
 4. Analys med `claude-sonnet-5-5`: först varje artikel för sig (åtta delar, politisk placering bara för texter som tar ställning), sedan hela ämnet: sidans delar, vinkeln i varje artikel i en mening, föreslagna frågor med svar, frågor och svar, ord att förklara, frågor vi väntar svar på (med dag när den är känd, och svar när det kommer). Varje skillnad i mediebilden börjar med en fråga, som kortläget visar. Utdata är JSON som valideras mot ett schema innan den sparas. Ogiltig utdata sparas aldrig.
-5. Granskning: utkastet visas i admin bredvid den publicerade versionen, med skillnaderna markerade.
+5. Granskning: först en faktagranskning, där en andra körning kontrollerar varje uppgift mot källorna och flaggar det som inte stöds. Sedan visas utkastet i admin bredvid den publicerade versionen, med skillnaderna markerade.
 6. Publicering: sparas som ny version och sidan byggs om direkt (on-demand revalidation).
 
 Nya ämnen publiceras först när Jonathan godkänt dem. Uppdateringar av godkända ämnen publiceras automatiskt om de klarar de automatiska kontrollerna och granskas löpande i efterhand. Automatisk publicering ska gå att stänga av per ämne, och varje ämne ska gå att backa till en tidigare version med ett klick.
@@ -35,6 +36,7 @@ Analysen körs när något viktigt har ändrats (högst var 2–3 timme per ämn
 - Logga tokens och kostnad per jobb och per ämne. Dagsbudget som pausar AI-jobben och varnar Jonathan: 40 kr per dag för sortering och analys (beslut 2026-10-31), skild från chattens 20 kr.
 - Uppskattning 2026-10-31: AI-jobb ungefär 6 gånger per dag, där bara nya artiklar och ändrade ämnen analyseras, kostar ungefär 400–700 kr i månaden.
 - Jonathan sätter ett utgiftstak i Anthropic Console.
+- Research för fakta och siffror görs med Claude API:s webbsökning (alltid med källhänvisningar, kan låsas till vissa domäner) och webbhämtning, inte med Perplexity. Perplexity har anklagats för att kringgå spärrar mot sökrobotar, vilket krockar med vår princip om robots.txt (beslut 2026-11-05). Vi kan jämföra kvaliteten i piloten om Claudes sökning inte räcker för svenska källor.
 - Riktpriser per miljon tokens, kontrollera aktuella priser innan du räknar: Haiku 5.5 0,10 USD in och 0,50 USD ut, Sonnet 5.5 2 USD in och 10 USD ut. Webbsökning kostar 10 USD per 1 000 sökningar. Antaganden om volymer finns i `docs/kalkyl.html`.
 
 ## Datamodell (utkast)

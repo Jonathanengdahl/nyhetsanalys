@@ -82,6 +82,7 @@ Fas 1: betasajten med exempeldata, ingen AI ännu
    - 2026-10-31: Frågor och svar, ordförklaringar (prickig understrykning, förklaring vid tryck, ordlista längst ned), delningsbilder och Tyck till på ämnessidorna. Chattens föreslagna frågor kommer från Frågor och svar och besvaras direkt utan AI-anrop. Tyck till: "Var sidan tydlig?" och förslag på perspektiv som saknas, där en länk till en källa krävs och en människa granskar allt. Tabellerna `topic_feedback` och `topic_suggestions`.
    - 2026-11-01: Så vinklade medierna på ämnessidan (där artiklarna skiljer sig, och huvudfokus, rubrik och vinkel per artikel) och sidan Medierna vi läser (`/medier`) med utgivare, ägare, typ av ägare, finansiering, mediestöd och ledarsidans egen beteckning, varje uppgift med källa. Vi skriver aldrig om ägarnas åsikter eller avsikter.
    - 2026-11-05: Frågor vi väntar svar på (dag då svaret väntas, nedräkning, Lägg i kalendern, Nu vet vi), Följ ämnet utan konto (sparas bara i webbläsaren, Ämnen du följer på startsidan, Nytt sedan du läste senast) och Kortläget (`/amne/[slug]/kort`, fem kort att svepa mellan). Se `docs/produkt.md`.
+   - 2026-11-05: beslut om pilot. Vi lanserar på egen domän med riktiga ämnen så snart insamling, analys och granskning fungerar (målet är ungefär en månad), i stället för en lång stängd beta. De första dagarna skriver systemet bara utkast som Jonathan tittar på. Sedan publiceras godkända ämnen, och indexeringen slås på. Sajten märks som pilot. De fyra exempelämnena får ligga kvar i arkivet, exempelkorten utan egen sida tas bort. Namnet ska vara engelskt så att tjänsten kan växa till fler länder (förslag: Crossread, Sidelight, Fullframe).
 3. SEO- och GEO-grunden enligt `docs/seo-geo.md`. Redan på plats: metadata, kanonisk adress, JSON-LD (organisation, webbplats, ämnessida, brödsmulor), sitemap, 404-sida och delningsbilder (2026-10-31). Kvar: IndexNow, regler för AI-robotar, llms.txt.
 
 Fas 2: riktiga data
@@ -97,7 +98,7 @@ Senare: morgonbrief, läsmeny (ordförklaringar, lättläst, mörkt läge, texts
 
 ## Juridik att bygga in
 
-- Utgivningsbevis söks före lansering. Ansvarig utgivare och rättelser ska synas på sajten.
+- Utgivningsbevis söks när utgivaren har hemvist i Sverige, alltså efter Jonathans flytt i februari 2027 (beslut 2026-11-05). Utgivaren ska vara en fysisk person med hemvist i Sverige, och överföringarna ska utgå från Sverige (YGL 1 kap. 5 § och 4 kap. 2 §). Ansökan kostar 4 000 kr. Piloten startar utan, och då gäller vanliga lagar: Jonathan och bolaget ansvarar ändå för det som publiceras. Den som driver tjänsten söker, så det svenska bolaget bör vara ägare först. Ansvarig utgivare och rättelser ska synas på sajten.
 - GDPR: data i EU, integritetspolicy, samtycke innan icke-nödvändiga kakor sätts (till exempel GA4).
 - Testläsarnas politiska självskattning är en känslig personuppgift: frivillig, uttryckligt samtycke, egen tabell med minimal åtkomst, raderas efter betan.
-- Upphovsrätt: hämta bara rubrik, ingress och länk tills en jurist sagt annat. Respektera robots.txt och förbehåll mot textutvinning (TDM).
+- Upphovsrätt: hämta bara rubrik, ingress och länk tills en jurist sagt annat. Respektera robots.txt och förbehåll mot textutvinning (TDM). Insamlingen kontrollerar det för varje källa innan den hämtar något. Därför blir analysen av varje enskild artikel tunnare än i exemplen. Fakta och siffror hämtas i stället från primärkällor (myndigheter, SCB, Riksbanken, riksdagen) med Claude API:s webbsökning, låst till de webbplatserna.
