@@ -57,10 +57,11 @@ Tak: högst cirka 10 aktiva ämnen samtidigt. Ämnen under tröskeln har status 
 Läsaren väljer djupnivå: 30 sekunder, 5 minuter eller Djupdykning. All text ligger i HTML:en oavsett vald nivå. Vilka delar som syns på vilken nivå framgår av prototypen (`docs/prototyp/frankrike.html`).
 
 Delarna i ordning:
-- Sidhuvud: rubrik, ingress, status (till exempel Pågår), senast uppdaterad, följ-knapp, "Fråga om ämnet", karta och nyckeltal.
+- Sidhuvud: rubrik, ingress, status (till exempel Pågår), senast uppdaterad, följ-knapp, "Fråga om ämnet", "Läs i fem kort", karta och nyckeltal.
 - På 30 sekunder: 2–4 meningar som besvarar kärnfrågan och går att läsa fristående.
 - Så vinklade medierna (beslut 2026-11-01): där artiklarna skiljer sig, och en rad per artikel med medium, genre, huvudfokus, rubrik och vinkel i en mening. Syns på alla djupnivåer. På 30 sekunder visas bara medium, genre och huvudfokus.
-- Nytt sedan ditt senaste besök: tidsstämplade punkter.
+- Nytt sedan ditt senaste besök: tidsstämplade punkter. För den som följer ämnet står det om ämnet har uppdaterats sedan läsaren läste det senast, och punkter med en tid efter det märks Nytt för dig.
+- Frågor vi väntar svar på (beslut 2026-11-05): det vi inte vet än, med det vi vet hittills, märkning, källor och dagen då svaret väntas om den är känd. Dagen går att lägga i kalendern, som kalenderfil (Apple Kalender, Outlook) eller länk till Google Kalender. Nedräkningen räknas fram på läsarens enhet, eftersom sidan byggs i förväg. Har dagen passerat utan svar står det, och om ämnet inte har uppdaterats sedan dess. När svaret finns visas frågan under Nu vet vi, med svar och källor. På 30 sekunder visas bara frågan och dagen.
 - 01 Vad har hänt
 - 02 Fakta och osäkerhet: varje uppgift med märkning och källor
 - 03 Mediebilden: det källorna är överens om, där de skiljer sig, vinkelfördelningen i alla artiklar och artikel för artikel
@@ -72,6 +73,8 @@ Delarna i ordning:
 - 09 Så är sidan gjord: antal analyserade artiklar, händelser, data och länk till metoden
 - Källor: numrerade, med medium, rubrik, datum och länk
 - Nytt jämfört med prototypen: Frågor och svar (synliga frågor med korta svar, samma som chattens föreslagna frågor) och Rättelser (datum och vad som ändrats)
+
+Kortläget (`/amne/[slug]/kort`, beslut 2026-11-05): ämnet i fem kort att svepa mellan, ett i taget. Läget (På 30 sekunder), Säkert och osäkert (varje uppgifts rubrik med märkning), Här skiljer sig medierna (frågan i början av varje skillnad), Det här saknas i debatten och Det här väntar vi på (frågorna med dag och nedräkning, och Följ ämnet). Varje kort länkar till hela delen på ämnessidan. Utan JavaScript går korten att svepa ändå. Den kanoniska adressen är ämnessidan.
 
 ## Så analyseras en artikel
 
@@ -105,7 +108,8 @@ Märkningen visas alltid som text, inte bara som färg eller ikon.
 
 - Överst och tydligt: "Vi analyserar dagens heta nyhetsämnen." och en mening om vad det innebär (se prototypen).
 - Frågefält till AI-chatten med föreslagna frågor.
-- Dagens ämnen med filter: alla, inrikes, utrikes, ekonomi, politik.
+- Dagens ämnen med filter: alla, inrikes, utrikes, ekonomi, politik. Varje ämne visar nästa dag ämnet väntar på, till exempel "12 nov, om 7 dagar · Budgeten för 2027 läggs fram".
+- Ämnen du följer, under frågefältet, när läsaren följer något. Ämnen som har uppdaterats sedan läsaren läste dem märks Nytt.
 - Så funkar det, våra urvalsregler och länk till metoden.
 - Planerna, veckobrevet (söndagar: fem ämnen, hur de beskrevs och vad som saknades) och beta-anmälan.
 
@@ -117,6 +121,7 @@ Märkningen visas alltid som text, inte bara som färg eller ikon.
 | AI-chatten | föreslagna frågor | plus 5 egna frågor per dag | så många frågor man vill, med tak för rimlig användning |
 | Övrigt | veckobrev | följa ämnen och se vad som är nytt | notiser när följda ämnen uppdateras |
 
+- Under betan (beslut 2026-11-05) går det att följa ämnen utan konto. Vilka ämnen läsaren följer, och vilken version av varje ämne läsaren läste senast, sparas bara i webbläsaren (localStorage) och skickas aldrig till oss. Inget sparas förrän läsaren trycker på Följ ämnet. När konton kommer flyttas följda ämnen till kontot, så att de finns på alla enheter.
 - Priset för Premium är inte bestämt. Visa "[Pris] kr/mån" tills vidare.
 - Under betan är allt gratis och ingen betalning byggs.
 - Kvoten för egna frågor nollställs vid midnatt svensk tid.

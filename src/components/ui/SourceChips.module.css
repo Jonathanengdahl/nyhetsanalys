@@ -28,3 +28,11 @@
   border-color: var(--color-line-strong);
   color: var(--color-ink);
 }
+
+/* Several articles from one outlet in the same list: TV4 1, TV4 2. */
+.nth {
+  margin-left: 0.4em;
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  font-variant-numeric: tabular-nums;
+}

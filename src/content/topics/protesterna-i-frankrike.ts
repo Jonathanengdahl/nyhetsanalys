@@ -79,7 +79,7 @@ export const protesternaIFrankrike: Topic = {
     }
   ],
   "updates": {
-    "intro": "Sedan ditt senaste besök i torsdags, 22 oktober",
+    "intro": "Sedan torsdagen den 22 oktober",
     "items": [
       {
         "text": "Polisen flyttade dagens marschväg i Paris till stadens utkant. En förvaltningsdomstol avvisade ett överklagande av den nya marschvägen.",
@@ -113,6 +113,45 @@ export const protesternaIFrankrike: Topic = {
       }
     ]
   },
+  "openQuestions": [
+    {
+      "id": "aktionsdagen",
+      "question": "Hur många strejkar och demonstrerar den 5 november?",
+      "status": "Facken håller fast vid aktionsdagen den 5 november, som de utlyste i början av oktober, och CGT uppmanar till strejk från den dagen.",
+      "sources": [
+        10,
+        19
+      ],
+      "expected": {
+        "date": "2026-11-05",
+        "event": "Fackens aktionsdag och strejk"
+      }
+    },
+    {
+      "id": "plundringen",
+      "question": "Vem låg bakom våldet och plundringen?",
+      "status": "Regeringen pekar ut ultravänstern. Enligt en säkerhetskälla som AFP citerar låg ultravänstern i täten för våldet men inte bakom plundringen. Paris chefsåklagare kan inte bekräfta regeringens bild.",
+      "label": "Omstritt",
+      "sources": [
+        15,
+        20
+      ]
+    },
+    {
+      "id": "kreditbetyget",
+      "question": "Sänker Moody's Frankrikes kreditbetyg?",
+      "status": "Den franska tioårsräntan nådde 5 procent den 21 oktober, den högsta nivån sedan 2002.",
+      "sources": [
+        46
+      ],
+      "answer": {
+        "text": "Nej. Kreditvärderaren Moody's sänkte inte Frankrikes kreditbetyg.",
+        "sources": [
+          17
+        ]
+      }
+    }
+  ],
   "timeline": [
     {
       "date": "28 februari",

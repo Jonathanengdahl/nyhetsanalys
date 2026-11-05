@@ -4,6 +4,7 @@ import { ChatProvider } from "@/components/chat/ChatProvider";
 import { AskForm } from "@/components/home/AskForm";
 import { ClusterField } from "@/components/home/ClusterField";
 import { DecodeHeadline } from "@/components/home/DecodeHeadline";
+import { FollowedTopics } from "@/components/home/FollowedTopics";
 import { Ticker, type TickerItem } from "@/components/home/Ticker";
 import { FeaturedTopic, TopicTile } from "@/components/home/TopicCards";
 import { TopicIndex, type TopicIndexItem } from "@/components/home/TopicIndex";
@@ -14,6 +15,7 @@ import { site } from "@/config/site";
 import { startMaterial } from "@/lib/chat/material";
 import { countTopics, formatDayAndTime } from "@/lib/format";
 import { categoryLabels, getLatestUpdate, getPublishedTopics, getTeasers, topicPath } from "@/lib/topics";
+import { expectedEvents } from "@/lib/topics/questions";
 import type { Topic, TopicCategory } from "@/lib/topics/types";
 import styles from "./page.module.css";
 
@@ -35,6 +37,12 @@ function tickerItems(topics: Topic[]): TickerItem[] {
     for (const queue of queues) if (queue[round]) items.push(queue[round]);
   }
   return items;
+}
+
+/** The days a topic waits for, for the countdown in the list. */
+function nextEvents(topic: Topic): TopicIndexItem["next"] {
+  const events = expectedEvents(topic);
+  return events.length ? { events, from: topic.updatedAt.slice(0, 10) } : undefined;
 }
 
 const TRANSITION = {
@@ -78,6 +86,7 @@ export default async function HomePage() {
       tags: topic.card.tags,
       status: topic.status,
       detail: topic.counts,
+      next: nextEvents(topic),
     })),
     ...teasers.map((teaser) => ({
       id: teaser.key,
@@ -126,6 +135,14 @@ export default async function HomePage() {
                 Neutralt och alltid med källor.
               </p>
               <AskForm suggestions={SUGGESTIONS} />
+              <FollowedTopics
+                topics={topics.map((topic) => ({
+                  slug: topic.slug,
+                  title: topic.title,
+                  href: topicPath(topic.slug),
+                  updatedAt: topic.updatedAt,
+                }))}
+              />
             </section>
 
             <section className={`rise ${styles.index}`} style={{ animationDelay: "300ms" }} aria-labelledby="dagens-amnen">

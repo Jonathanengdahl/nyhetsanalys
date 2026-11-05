@@ -71,7 +71,7 @@ export const inflationen: Topic = {
     }
   ],
   "updates": {
-    "intro": "Sedan ditt senaste besök den 7 oktober",
+    "intro": "Sedan den 7 oktober",
     "items": [
       {
         "text": "SCB bekräftade den 14 oktober att KPIF-inflationen var 1,5 procent i september, samma som snabbsiffran.",
@@ -101,6 +101,57 @@ export const inflationen: Topic = {
       }
     ]
   },
+  "openQuestions": [
+    {
+      "id": "rantebesked-november",
+      "question": "Höjer Riksbanken räntan den 4 november?",
+      "status": "Det är inte bestämt. Styrräntan är 1,75 procent. Riksbankschefen Erik Thedéen anser att det är rimligt att höja då, medan Aino Bunge vill vänta.",
+      "label": "Omstritt",
+      "sources": [
+        11,
+        16,
+        2
+      ],
+      "expected": {
+        "date": "2026-11-04",
+        "event": "Riksbankens räntebesked"
+      }
+    },
+    {
+      "id": "drivmedel-december",
+      "question": "Hur mycket dyrare blir bensin och diesel när skattesänkningen upphör?",
+      "status": "Den sänkta koldioxidskatten gäller till och med den 30 november. Enligt EFN stiger priset då med omkring 3 kronor per liter.",
+      "label": "Uppskattning",
+      "sources": [
+        7,
+        15
+      ],
+      "expected": {
+        "date": "2026-12-01",
+        "event": "Skatten på bensin och diesel höjs"
+      }
+    },
+    {
+      "id": "inflationen-september",
+      "question": "Hur hög var inflationen i september?",
+      "status": "SCB:s snabbsiffra den 7 oktober visade 1,5 procent.",
+      "sources": [
+        10
+      ],
+      "expected": {
+        "date": "2026-10-14",
+        "event": "SCB:s slutliga siffror för september"
+      },
+      "answer": {
+        "date": "2026-10-14",
+        "text": "1,5 procent mätt som KPIF, samma som snabbsiffran. I augusti var den 0,7 procent.",
+        "sources": [
+          9,
+          5
+        ]
+      }
+    }
+  ],
   "timeline": [
     {
       "date": "28 februari",

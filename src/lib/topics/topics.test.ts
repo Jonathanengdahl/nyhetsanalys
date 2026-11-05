@@ -3,6 +3,7 @@ import { teasers } from "@/content/teasers";
 import { topics } from "@/content/topics";
 import { getPublishedTopics, getTeasers } from ".";
 import { mainFocus } from "./angles";
+import { leadQuestion } from "./cards";
 import { glossaryPattern } from "./glossary";
 import { uncertaintyLabels, type Topic } from "./types";
 
@@ -18,6 +19,7 @@ function sourceRefs(topic: Topic): number[] {
     ...topic.numbers.charts.flatMap((chart) => chart.sources),
     ...topic.missing.flatMap((item) => item.sources),
     ...topic.faq.flatMap((item) => item.sources),
+    ...topic.openQuestions.flatMap((question) => [...question.sources, ...(question.answer?.sources ?? [])]),
     ...topic.sourceGroups.flatMap((group) => group.ids),
   ];
 }
@@ -34,6 +36,7 @@ function sourceLists(topic: Topic): number[][] {
     ...topic.numbers.charts.map((chart) => chart.sources),
     ...topic.missing.map((item) => item.sources),
     ...topic.faq.map((item) => item.sources),
+    ...topic.openQuestions.flatMap((question) => [question.sources, ...(question.answer ? [question.answer.sources] : [])]),
   ];
 }
 
@@ -47,6 +50,7 @@ function glossedText(topic: Topic): string {
     ...topic.numbers.tiles.map((tile) => tile.label),
     ...topic.missing.map((item) => item.text),
     ...topic.faq.map((item) => item.answer),
+    ...topic.openQuestions.flatMap((question) => [question.status, question.answer?.text ?? ""]),
   ].join("\n");
 }
 
@@ -66,6 +70,10 @@ describe.each(topics.map((topic) => [topic.slug, topic] as const))("topic %s", (
     for (const fact of topic.facts) expect(uncertaintyLabels).toContain(fact.label);
     for (const item of topic.card.highlights ?? []) expect(uncertaintyLabels).toContain(item.uncertainty);
     for (const item of topic.faq) if (item.label) expect(uncertaintyLabels).toContain(item.label);
+    for (const question of topic.openQuestions) {
+      if (question.label) expect(uncertaintyLabels).toContain(question.label);
+      if (question.answer?.label) expect(uncertaintyLabels).toContain(question.answer.label);
+    }
   });
 
   it("never lists the same source twice in one place", () => {
@@ -108,10 +116,46 @@ describe.each(topics.map((topic) => [topic.slug, topic] as const))("topic %s", (
     });
   });
 
+  it("opens every media difference with a question, which the cards show", () => {
+    for (const text of topic.media.differ) {
+      const question = leadQuestion(text);
+      expect(question.endsWith("?"), text).toBe(true);
+      expect(question.length, text).toBeLessThan(140);
+    }
+  });
+
   it("has frame shares that add up to about 100 percent", () => {
     const total = topic.media.frames.reduce((sum, frame) => sum + frame.weight, 0);
     expect(total).toBeGreaterThan(98);
     expect(total).toBeLessThan(102);
+  });
+
+  it("has open questions with sources and real days", () => {
+    const ids = topic.openQuestions.map((question) => question.id);
+    expect(new Set(ids).size).toBe(ids.length);
+    const realDay = (day: string) => {
+      expect(day).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      expect(new Date(`${day}T12:00:00Z`).toISOString().slice(0, 10)).toBe(day);
+    };
+    const updated = topic.updatedAt.slice(0, 10);
+    for (const question of topic.openQuestions) {
+      expect(question.id).toMatch(/^[a-z0-9]+(-[a-z0-9]+)*$/);
+      expect(question.question.endsWith("?"), question.id).toBe(true);
+      expect(question.status.length, question.id).toBeGreaterThan(20);
+      expect(question.sources.length, question.id).toBeGreaterThan(0);
+      if (question.expected) {
+        realDay(question.expected.date);
+        expect(question.expected.event.length).toBeGreaterThan(5);
+      }
+      if (question.answer) {
+        expect(question.answer.sources.length, question.id).toBeGreaterThan(0);
+        // An answer is part of the material, so it cannot come after the topic was updated.
+        if (question.answer.date) {
+          realDay(question.answer.date);
+          expect(question.answer.date <= updated, question.id).toBe(true);
+        }
+      }
+    }
   });
 
   it("has valid dates", () => {

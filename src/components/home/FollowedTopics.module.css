@@ -1,0 +1,56 @@
+/* Ämnen du följer: links to the reader's own topics, under the question box. */
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.title {
+  color: var(--color-ink-3);
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--tap-target);
+  padding: 0 var(--space-4);
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-pill);
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-size: var(--text-sm-plus);
+  font-weight: var(--weight-semibold);
+  text-decoration: none;
+}
+
+.link:hover {
+  border-color: var(--color-ink);
+  color: var(--color-ink);
+}
+
+.link[data-fresh] {
+  border-color: var(--color-accent);
+}
+
+.fresh {
+  padding: 1px var(--space-2);
+  border-radius: var(--radius-pill);
+  background: var(--color-accent-soft);
+  color: var(--color-accent-strong);
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-bold);
+}

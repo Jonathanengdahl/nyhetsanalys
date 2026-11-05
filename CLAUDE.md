@@ -81,6 +81,7 @@ Fas 1: betasajten med exempeldata, ingen AI ännu
    - 2026-10-31: AI-chatten tidigarelagd till betan, utan konton: `claude-haiku-5-5`, 10 egna frågor per besökare och dag, dagsbudget 20 kr. Se README.
    - 2026-10-31: Frågor och svar, ordförklaringar (prickig understrykning, förklaring vid tryck, ordlista längst ned), delningsbilder och Tyck till på ämnessidorna. Chattens föreslagna frågor kommer från Frågor och svar och besvaras direkt utan AI-anrop. Tyck till: "Var sidan tydlig?" och förslag på perspektiv som saknas, där en länk till en källa krävs och en människa granskar allt. Tabellerna `topic_feedback` och `topic_suggestions`.
    - 2026-11-01: Så vinklade medierna på ämnessidan (där artiklarna skiljer sig, och huvudfokus, rubrik och vinkel per artikel) och sidan Medierna vi läser (`/medier`) med utgivare, ägare, typ av ägare, finansiering, mediestöd och ledarsidans egen beteckning, varje uppgift med källa. Vi skriver aldrig om ägarnas åsikter eller avsikter.
+   - 2026-11-05: Frågor vi väntar svar på (dag då svaret väntas, nedräkning, Lägg i kalendern, Nu vet vi), Följ ämnet utan konto (sparas bara i webbläsaren, Ämnen du följer på startsidan, Nytt sedan du läste senast) och Kortläget (`/amne/[slug]/kort`, fem kort att svepa mellan). Se `docs/produkt.md`.
 3. SEO- och GEO-grunden enligt `docs/seo-geo.md`. Redan på plats: metadata, kanonisk adress, JSON-LD (organisation, webbplats, ämnessida, brödsmulor), sitemap, 404-sida och delningsbilder (2026-10-31). Kvar: IndexNow, regler för AI-robotar, llms.txt.
 
 Fas 2: riktiga data
@@ -90,7 +91,7 @@ Fas 2: riktiga data
 7. Admin: godkänn, slå ihop och dela ämnen, granska utkast, rättelser, feedback, kostnader.
 
 Fas 3: konton och chatt
-8. Inloggning (Supabase Auth), gratiskonto med 5 egna frågor per dag, chatt som bara svarar utifrån underlaget, feedbackläge i chatten. Chatten finns redan i betan utan konton (se fas 1), så här återstår konton, kvoter per konto och feedbackläget.
+8. Inloggning (Supabase Auth), gratiskonto med 5 egna frågor per dag, chatt som bara svarar utifrån underlaget, feedbackläge i chatten. Chatten finns redan i betan utan konton (se fas 1), så här återstår konton, kvoter per konto och feedbackläget. Följda ämnen sparas i betan i webbläsaren och flyttas då till kontot.
 
 Senare: morgonbrief, läsmeny (ordförklaringar, lättläst, mörkt läge, textstorlek), Premium och betalning, app, företag (B2B), skolor.
 

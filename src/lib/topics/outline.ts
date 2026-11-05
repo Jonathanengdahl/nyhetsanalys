@@ -16,6 +16,12 @@ export type OutlineItem = {
 
 const count = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
 
+/** "2 öppna frågor", or "Alla besvarade" when every question has its answer. */
+function openDetail(topic: Topic): string {
+  const open = topic.openQuestions.filter((question) => !question.answer).length;
+  return open ? count(open, "öppen fråga", "öppna frågor") : "Alla besvarade";
+}
+
 /** The parts of a topic page in reading order, matching the headings in sections.tsx. */
 export function topicOutline(topic: Topic): OutlineItem[] {
   const charts = topic.numbers.charts.length;
@@ -23,6 +29,17 @@ export function topicOutline(topic: Topic): OutlineItem[] {
     { id: "pa-30-sekunder", title: "På 30 sekunder", depth: 0, detail: count(topic.summary.length, "punkt", "punkter"), overview: false },
     { id: "sa-vinklade-medierna", title: "Så vinklade medierna", depth: 0, detail: count(topic.articles.length, "artikel", "artiklar"), overview: true },
     { id: "nytt", title: "Nytt sedan sist", depth: 0, detail: count(topic.updates.items.length, "nyhet", "nyheter"), overview: false },
+    ...(topic.openQuestions.length
+      ? [
+          {
+            id: "vantar-svar",
+            title: "Frågor vi väntar svar på",
+            depth: 0,
+            detail: openDetail(topic),
+            overview: true,
+          } as const,
+        ]
+      : []),
     { id: "vad-har-hant", title: "Vad har hänt", depth: 1, detail: count(topic.timeline.length, "händelse", "händelser"), overview: true },
     { id: "fakta", title: "Fakta och osäkerhet", depth: 1, detail: count(topic.facts.length, "uppgift", "uppgifter"), overview: true },
     { id: "mediebilden", title: "Mediebilden", depth: 1, detail: `${count(topic.articles.length, "artikel", "artiklar")} jämförda`, overview: true },
@@ -44,7 +61,7 @@ export function topicOutline(topic: Topic): OutlineItem[] {
     ...(topic.glossary.length
       ? [{ id: "ordlista", title: "Ordlista", depth: 0, detail: count(topic.glossary.length, "ord", "ord"), overview: false } as const]
       : []),
-    { id: "kallor", title: "Källor", depth: 0, detail: count(topic.sources.length, "källa", "källor"), overview: true },
+    { id: "kallor", title: "Källor", depth: 0, detail: count(topic.sources.length, "källa", "källor"), overview: false },
     { id: "tyck-till", title: "Tyck till", depth: 0, detail: "Förslag med källa", overview: true },
   ];
 }

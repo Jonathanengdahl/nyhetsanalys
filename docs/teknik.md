@@ -20,7 +20,7 @@ Beslut och riktlinjer. Detaljerna bestämmer du (Claude Code) när vi kommer dit
 1. Insamling, var 15:e minut: läs RSS från källistan. Spara rubrik, ingress, länk, källa och publiceringstid. Ingen fulltext. Ta bort dubbletter: samma adress räknas en gång, och samma TT-text i flera tidningar räknas som en källa. Identifiera oss med en egen user agent och följ robots.txt.
 2. Sortering med `claude-haiku-5-5`: kategori, land och genre. Jämför mot listan över bevakade ämnen (kärnfråga och nyckelord) och föreslå ett befintligt ämne eller ett nytt. Embeddings med pgvector kan läggas till senare om träffsäkerheten behöver det.
 3. Hetta, varje timme: räkna oberoende källor, mediehus och rikstäckande medier de senaste 48 timmarna mot tröskeln i `docs/produkt.md`. Uppdatera status och lägg nya heta ämnen i ämneskön i admin.
-4. Analys med `claude-sonnet-5-5`: först varje artikel för sig (åtta delar, politisk placering bara för texter som tar ställning), sedan hela ämnet: sidans delar, vinkeln i varje artikel i en mening, föreslagna frågor med svar, frågor och svar, ord att förklara. Utdata är JSON som valideras mot ett schema innan den sparas. Ogiltig utdata sparas aldrig.
+4. Analys med `claude-sonnet-5-5`: först varje artikel för sig (åtta delar, politisk placering bara för texter som tar ställning), sedan hela ämnet: sidans delar, vinkeln i varje artikel i en mening, föreslagna frågor med svar, frågor och svar, ord att förklara, frågor vi väntar svar på (med dag när den är känd, och svar när det kommer). Varje skillnad i mediebilden börjar med en fråga, som kortläget visar. Utdata är JSON som valideras mot ett schema innan den sparas. Ogiltig utdata sparas aldrig.
 5. Granskning: utkastet visas i admin bredvid den publicerade versionen, med skillnaderna markerade.
 6. Publicering: sparas som ny version och sidan byggs om direkt (on-demand revalidation).
 
@@ -45,7 +45,9 @@ Analysen körs när något viktigt har ändrats (högst var 2–3 timme per ämn
 - `topic_articles`: koppling mellan ämne och artikel, huvudämne ja/nej
 - `article_analyses`: analys per artikel, med politisk placering och motivering när den görs
 - `topic_versions`: hela ämnessidans innehåll som JSON per version, status (utkast, publicerad, tillbakadragen), modell, kostnad, granskad av, tider
-- `topic_updates`: punkterna i "Nytt sedan ditt senaste besök", med tid
+- `topic_updates`: punkterna i "Nytt sedan ditt senaste besök", med tid (`at`), så att sidan kan märka det som är nytt för den som följer ämnet
+- Frågor vi väntar svar på ligger i ämnets JSON (`openQuestions`): id, fråga, läget hittills, märkning, källor, väntad dag och händelse, och svaret med datum och källor. Kalenderfilen byggs från samma data på `/amne/[slug]/kalender/[id]` (2026-11-05).
+- Följda ämnen sparas under betan bara i läsarens webbläsare (`localStorage`, nyckeln `nyhetsanalys:folj`): slug, när läsaren började följa och vilken version (`updatedAt`) läsaren läste senast. Med konton flyttas det till en tabell `follows` med RLS.
 - `redirects`: gammal slug till ny slug (301)
 - `topic_feedback`: ämne, om sidan var tydlig (ja eller nej), frivillig kommentar. Byggd i fas 1 (2026-10-31).
 - `topic_suggestions`: ämne, perspektiv som saknas, länk till källa (krävs), status (ny, godkänd, avböjd), granskad, anteckning. Byggd i fas 1 (2026-10-31). Gruppering av liknande förslag kommer med admin.

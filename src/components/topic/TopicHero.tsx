@@ -2,10 +2,11 @@ import Link from "next/link";
 import { ViewTransition, type CSSProperties } from "react";
 import { ChatButton } from "@/components/chat/ChatButton";
 import { topicTitleTransition } from "@/components/home/TopicIndex";
-import { ComingSoonButton } from "@/components/ui/ComingSoonButton";
 import { Odometer } from "@/components/ui/Odometer";
 import { formatDateTime } from "@/lib/format";
+import { topicCardsPath } from "@/lib/topics";
 import type { Topic } from "@/lib/topics/types";
+import { FollowButton } from "./FollowButton";
 import styles from "./TopicHero.module.css";
 
 const delay = (ms: number) => ({ animationDelay: `${ms}ms` }) as CSSProperties;
@@ -65,12 +66,14 @@ export function TopicHero({ topic }: { topic: Topic }) {
             </svg>
             Fråga om ämnet
           </ChatButton>
-          <ComingSoonButton feature="follow" className={styles.follow}>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true">
-              <path d="M12 5v14M5 12h14" />
+          <FollowButton slug={topic.slug} updatedAt={topic.updatedAt} className={styles.follow} />
+          <Link href={topicCardsPath(topic.slug)} className={styles.follow} transitionTypes={["nav-forward"]}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <rect x="3" y="6" width="13" height="15" rx="2.5" />
+              <path d="M8 3h10.5A2.5 2.5 0 0 1 21 5.5V17" />
             </svg>
-            Följ ämnet
-          </ComingSoonButton>
+            Läs i fem kort
+          </Link>
         </div>
 
         <dl className={`odo-load rise ${styles.stats}`} style={delay(760)}>

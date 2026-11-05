@@ -261,6 +261,39 @@
   background: var(--color-mark);
 }
 
+/* For readers who follow the topic: new since they last read it. */
+.followNote {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-ink-3);
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+}
+
+.followNote[data-new] {
+  color: var(--color-ink);
+  font-weight: var(--weight-semibold);
+}
+
+.followDot {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+.newMark {
+  align-self: flex-start;
+  padding: 1px var(--space-2);
+  border-radius: var(--radius-pill);
+  background: var(--color-accent-soft);
+  color: var(--color-accent-strong);
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-bold);
+}
+
 /* ---------- Vad har hänt ---------- */
 
 .timeline {

@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { ViewTransition, type CSSProperties } from "react";
+import type { ExpectedEvent } from "@/lib/topics/questions";
 import type { Accent, TopicCategory } from "@/lib/topics/types";
+import { NextEvent } from "./NextEvent";
 import styles from "./TopicIndex.module.css";
 
 export type TopicIndexItem = {
@@ -14,6 +16,8 @@ export type TopicIndexItem = {
   tags: string[];
   status?: string;
   detail: string;
+  /** Days the topic waits for an answer, and the day it was updated (YYYY-MM-DD). */
+  next?: { events: ExpectedEvent[]; from: string };
 };
 
 /** Name shared by a topic's title in this list and on its page, so the title can fly between them. */
@@ -50,6 +54,7 @@ export function TopicIndex({ items }: { items: TopicIndexItem[] }) {
                     <span className={styles.title}>{item.title}</span>
                   </ViewTransition>
                   <span className={styles.detail}>{item.detail}</span>
+                  {item.next && <NextEvent events={item.next.events} from={item.next.from} />}
                 </span>
                 <svg className={styles.arrow} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M5 12h14M13 6l6 6-6 6" />

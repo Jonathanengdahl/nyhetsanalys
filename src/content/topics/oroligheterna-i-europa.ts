@@ -68,7 +68,7 @@ export const oroligheternaIEuropa: Topic = {
     }
   ],
   "updates": {
-    "intro": "Sedan ditt senaste besök den 16 oktober",
+    "intro": "Sedan den 16 oktober",
     "items": [
       {
         "text": "Två dagar av kravaller i Milano den 17 och 18 oktober. Butiker plundrades, och polisen använde tårgas och vattenkanoner.",
@@ -99,6 +99,48 @@ export const oroligheternaIEuropa: Topic = {
       }
     ]
   },
+  "openQuestions": [
+    {
+      "id": "italiens-parlament",
+      "question": "Godkänner Italiens parlament de hårdare reglerna?",
+      "status": "Parlamentet måste godkänna regeringens beslut inom 60 dagar.",
+      "sources": [
+        7
+      ]
+    },
+    {
+      "id": "spridningen",
+      "question": "Sprider sig protesterna till fler länder?",
+      "status": "Nya protester planerades i flera europeiska länder den 24 oktober. Om protesterna hänger ihop är omstritt.",
+      "label": "Omstritt",
+      "sources": [
+        16,
+        1,
+        11
+      ]
+    },
+    {
+      "id": "italiens-beslut",
+      "question": "Vad gör Italiens regering efter kravallerna i Milano?",
+      "status": "Milano hade kravaller den 17 och 18 oktober.",
+      "sources": [
+        13,
+        14,
+        6
+      ],
+      "expected": {
+        "date": "2026-10-20",
+        "event": "Regeringens beslut"
+      },
+      "answer": {
+        "date": "2026-10-20",
+        "text": "Regeringen beslutade om 500 extra soldater i Milano året ut, ett nytt brott för våldsamt deltagande i demonstrationer med upp till fem års fängelse och ansvar för föräldrar när minderåriga orsakar skador.",
+        "sources": [
+          7
+        ]
+      }
+    }
+  ],
   "timeline": [
     {
       "date": "Mitten av september",

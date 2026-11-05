@@ -70,7 +70,7 @@ export const regeringsbildningen: Topic = {
     }
   ],
   "updates": {
-    "intro": "Sedan ditt senaste besök i måndags, 19 oktober",
+    "intro": "Sedan måndagen den 19 oktober",
     "items": [
       {
         "text": "Partiledarna reagerade på talmannens beslut. Ulf Kristersson (M) kallade det logiskt, Daniel Helldén (MP) kallade mittenalternativet en återvändsgränd och Ebba Busch (KD) efterlyste färre röda linjer.",
@@ -98,6 +98,78 @@ export const regeringsbildningen: Topic = {
       }
     ]
   },
+  "openQuestions": [
+    {
+      "id": "sonderingen",
+      "question": "Vad kommer Elisabeth Thand Ringqvist fram till?",
+      "status": "Hon prövar om en regering över mitten är möjlig. Hon säger att ett sådant alternativ finns rent matematiskt, men MP kallar det en återvändsgränd och varken KD eller L har ställt sig bakom det.",
+      "label": "Omstritt",
+      "sources": [
+        2,
+        7,
+        3,
+        19
+      ],
+      "expected": {
+        "date": "2026-10-26",
+        "event": "Thand Ringqvist rapporterar till talmannen"
+      }
+    },
+    {
+      "id": "budgeten",
+      "question": "Vem lägger fram budgeten för 2027?",
+      "status": "Finns ingen ny regering lägger övergångsregeringen fram en budget den 12 november.",
+      "sources": [
+        16,
+        21
+      ],
+      "expected": {
+        "date": "2026-11-12",
+        "event": "Budgeten för 2027 läggs fram"
+      }
+    },
+    {
+      "id": "budgetomrostningen",
+      "question": "Röstar riksdagen igenom budgeten?",
+      "status": "Riksdagen röstar om budgeten för 2027 den 9 december.",
+      "sources": [
+        16,
+        21
+      ],
+      "expected": {
+        "date": "2026-12-09",
+        "event": "Riksdagen röstar om budgeten"
+      }
+    },
+    {
+      "id": "extra-val",
+      "question": "Blir det extra val?",
+      "status": "Bara om riksdagen röstar nej till fyra förslag till statsminister. Då ska ett extra val hållas inom tre månader. Ett förslag har hittills röstats ned.",
+      "sources": [
+        20
+      ]
+    },
+    {
+      "id": "andersson",
+      "question": "Blir Magdalena Andersson statsminister?",
+      "status": "Talmannen föreslog Magdalena Andersson (S) som statsminister i en S-regering.",
+      "sources": [
+        20
+      ],
+      "expected": {
+        "date": "2026-10-15",
+        "event": "Omröstning om statsminister"
+      },
+      "answer": {
+        "date": "2026-10-15",
+        "text": "Nej. Riksdagen röstade nej, 248 mot 99. Bara S röstade ja.",
+        "sources": [
+          20,
+          22
+        ]
+      }
+    }
+  ],
   "timeline": [
     {
       "date": "13 september",

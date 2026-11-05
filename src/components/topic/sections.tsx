@@ -9,6 +9,7 @@ import { formatDate } from "@/lib/format";
 import type { Accent, Chart, Topic } from "@/lib/topics/types";
 import { depthInputId } from "./DepthSwitch";
 import { glosser } from "./Glossary";
+import { NewMark, UpdatesNote } from "./UpdatesNote";
 import styles from "./sections.module.css";
 
 /** Sets --accent and --accent-tint for one named colour. */
@@ -35,28 +36,38 @@ export function SummarySection({ topic }: { topic: Topic }) {
   );
 }
 
-export function UpdatesSection({ topic }: { topic: Topic }) {
+/** At 30 sek: the way on to the overview, after the last part shown at that depth. */
+export function DepthMore({ topic }: { topic: Topic }) {
+  return (
+    <label htmlFor={depthInputId(topic.slug, 1)} className={`${styles.primaryButton} ${styles.onlyAt}`} data-only="0">
+      Visa överblicken, 5 min
+    </label>
+  );
+}
+
+/** `more` adds the way on to the overview, when no part at 30 sek follows. */
+export function UpdatesSection({ topic, more = true }: { topic: Topic; more?: boolean }) {
   const gloss = glosser(topic, "nytt");
   return (
     <section className={styles.section}>
       <SectionHeading id="nytt" size="medium">
         Nytt sedan ditt senaste besök
       </SectionHeading>
+      <UpdatesNote slug={topic.slug} updatedAt={topic.updatedAt} />
       <p className={styles.small}>{topic.updates.intro}</p>
       <ul className={styles.updates}>
         {topic.updates.items.map((item) => (
           <li key={item.text} className={`reveal ${styles.update}`}>
             <span className={styles.updateMark} aria-hidden="true" />
             <div className={styles.stack1}>
+              {item.at && <NewMark slug={topic.slug} at={item.at} />}
               <span className={styles.bodyText}>{gloss(item.text)}</span>
               <SourceChips refs={item.sources} sources={topic.sources} />
             </div>
           </li>
         ))}
       </ul>
-      <label htmlFor={depthInputId(topic.slug, 1)} className={`${styles.primaryButton} ${styles.onlyAt}`} data-only="0">
-        Visa överblicken, 5 min
-      </label>
+      {more && <DepthMore topic={topic} />}
     </section>
   );
 }

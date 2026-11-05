@@ -105,6 +105,24 @@ export interface FaqItem {
   sources: SourceRef[];
 }
 
+/**
+ * Something the topic is waiting for: a question we cannot answer yet, often
+ * with a date when an answer is expected. When the answer comes it is added
+ * under `answer`, and the page shows it as "Nu vet vi".
+ */
+export interface OpenQuestion {
+  /** Stable id, used in addresses and calendar files. */
+  id: string;
+  question: string;
+  /** What we know so far. */
+  status: string;
+  label?: UncertaintyLabel;
+  sources: SourceRef[];
+  /** When an answer is expected, if a date is known. ISO date (YYYY-MM-DD). */
+  expected?: { date: string; event: string };
+  answer?: { text: string; date?: string; label?: UncertaintyLabel; sources: SourceRef[] };
+}
+
 /** A word explained on the page. `match` is the start of the word in the text, when it differs from `term`. */
 export interface GlossaryItem {
   term: string;
@@ -141,7 +159,9 @@ export interface Topic {
   card: TopicCard;
   stats: TopicStat[];
   summary: { key: string; text: string }[];
-  updates: { intro: string; items: { text: string; sources: SourceRef[] }[] };
+  /** `at` (ISO time) lets the page mark an item as new for a reader who follows the topic. */
+  updates: { intro: string; items: { text: string; sources: SourceRef[]; at?: string }[] };
+  openQuestions: OpenQuestion[];
   timeline: { date: string; text: string; sources: SourceRef[]; tag?: string }[];
   facts: { label: UncertaintyLabel; title: string; text: string; sources: SourceRef[] }[];
   media: {

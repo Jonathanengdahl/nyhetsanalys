@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { chatConfig } from "@/config/ai";
 import { site } from "@/config/site";
 import styles from "../prose.module.css";
@@ -55,6 +56,12 @@ export default function PrivacyPage() {
         varken om dig själv eller om andra. En människa läser allt som kommer in.
       </p>
 
+      <h2 id="folja">Ämnen du följer</h2>
+      <p>
+        Vilka ämnen du följer sparas bara i din webbläsare och skickas aldrig till oss. Vi kan därför inte se vilka
+        ämnen du följer. Läs mer på sidan om <Link href="/kakor#i-webblasaren">kakor</Link>.
+      </p>
+
       <h2 id="varfor">Varför</h2>
       <p>
         Vi använder e-postadressen för att kontakta dig om betan och, om du valt det, för att skicka
@@ -87,7 +94,10 @@ export default function PrivacyPage() {
       </p>
 
       <h2 id="kakor">Kakor</h2>
-      <p>Sajten sätter inga kakor under betan.</p>
+      <p>
+        Sajten sätter inga kakor under betan. Det enda vi sparar i din webbläsare är vilka ämnen du följer, om du väljer
+        att följa något.
+      </p>
     </article>
   );
 }

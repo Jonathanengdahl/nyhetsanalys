@@ -10,6 +10,7 @@ import { DepthSwitch } from "@/components/topic/DepthSwitch";
 import { FaqSection } from "@/components/topic/Faq";
 import { GlossaryList } from "@/components/topic/Glossary";
 import { MediaSection } from "@/components/topic/MediaSection";
+import { OpenQuestionsSection } from "@/components/topic/OpenQuestions";
 import {
   BlameSection,
   FactsSection,
@@ -114,7 +115,8 @@ export default async function TopicPage({ params }: PageProps<"/amne/[slug]">) {
               </div>
               <SummarySection topic={topic} />
               <AnglesSection topic={topic} />
-              <UpdatesSection topic={topic} />
+              <UpdatesSection topic={topic} more={topic.openQuestions.length === 0} />
+              <OpenQuestionsSection topic={topic} />
               <TimelineSection topic={topic} data-depth="1" />
               <FactsSection topic={topic} data-depth="1" />
               <MediaSection topic={topic} data-depth="1" />

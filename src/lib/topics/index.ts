@@ -59,3 +59,8 @@ export const categoryLabels: Record<TopicCategory, string> = {
 export function topicPath(slug: string) {
   return `/amne/${slug}`;
 }
+
+/** The topic in five cards: a short version to swipe through. */
+export function topicCardsPath(slug: string) {
+  return `${topicPath(slug)}/kort`;
+}

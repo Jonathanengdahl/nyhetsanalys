@@ -1,5 +1,6 @@
 import { formatDateTime } from "@/lib/format";
 import { topicPath } from "@/lib/topics";
+import { formatDay, sortQuestions } from "@/lib/topics/questions";
 import type { SourceRef, Topic } from "@/lib/topics/types";
 
 /**
@@ -23,6 +24,39 @@ const cite = (refs: SourceRef[], number: Numbering) => (refs.length ? ` ${refs.m
 
 const bullets = (lines: string[]) => lines.map((line) => `- ${line}`).join("\n");
 
+const fullDay = (day: string) => `${formatDay(day)} ${day.slice(0, 4)}`;
+
+/** Open questions with the day an answer is expected, and the answered ones. As the material stood when the topic was updated. */
+function questionLines(topic: Topic, number: Numbering): string[] {
+  if (topic.openQuestions.length === 0) return [];
+  const { open, answered } = sortQuestions(topic.openQuestions);
+  const lines = [
+    "",
+    "FRÅGOR VI VÄNTAR SVAR PÅ (läget när ämnet uppdaterades, märkningen står inom parentes)",
+    bullets(
+      open.map((question) => {
+        const when = question.expected
+          ? ` Svaret väntas ${fullDay(question.expected.date)}: ${question.expected.event}.`
+          : " Det finns inget datum för svaret.";
+        return `${question.question} ${question.label ? `(${question.label}) ` : ""}${question.status}${when}${cite(question.sources, number)}`;
+      }),
+    ),
+  ];
+  if (answered.length) {
+    lines.push(
+      "Besvarade frågor:",
+      bullets(
+        answered.map(({ question, answer }) => {
+          if (!answer) return question;
+          const day = answer.date ? ` ${fullDay(answer.date)}` : "";
+          return `${question} Besvarad${day}: ${answer.label ? `(${answer.label}) ` : ""}${answer.text}${cite(answer.sources, number)}`;
+        }),
+      ),
+    );
+  }
+  return lines;
+}
+
 function topicSections(topic: Topic, number: Numbering, full: boolean): string {
   const parts: string[] = [
     `ÄMNE: ${topic.title}`,
@@ -38,6 +72,7 @@ function topicSections(topic: Topic, number: Numbering, full: boolean): string {
     "NYTT",
     topic.updates.intro,
     bullets(topic.updates.items.map((item) => `${item.text}${cite(item.sources, number)}`)),
+    ...questionLines(topic, number),
     "",
     "NYCKELTAL",
     bullets(topic.stats.map((stat) => `${stat.value} ${stat.label}`)),

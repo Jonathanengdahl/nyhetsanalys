@@ -85,6 +85,38 @@ a.row:hover {
   font-size: var(--text-sm);
 }
 
+/* The next day the topic waits for. One line, so the list keeps its height when the reader's day is filled in. */
+.next {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1-5);
+  min-width: 0;
+  margin-top: 2px;
+  color: var(--color-ink-3);
+  font-size: var(--text-xs);
+}
+
+.next svg {
+  flex: none;
+  color: var(--color-accent-strong);
+}
+
+.nextText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nextWhen {
+  color: var(--color-accent-strong);
+  font-weight: var(--weight-semibold);
+}
+
+.next[data-passed] svg,
+.next[data-passed] .nextWhen {
+  color: var(--color-ink-3);
+}
+
 .static .title {
   color: var(--color-ink-2);
 }
