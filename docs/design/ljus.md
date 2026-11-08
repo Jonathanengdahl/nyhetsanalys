@@ -41,12 +41,26 @@ Målet är att det ska vara lugnt att läsa och lätt att skumma. Texten är huv
 
 ## Rörelse
 
-- Animationerna visar vad som händer: rubriken avkodas, artiklar samlas till ämnen, siffror rullar fram, staplar växer och avsnitt glider in när man scrollar.
+- Animationerna visar vad som händer: orden i rubriken landar ett i taget från oskärpa, artiklar samlas till ämnen, siffror rullar fram, staplar växer och avsnitt glider in när man scrollar.
 - På ämnessidorna loopar ingenting. På startsidan loopar bara ljuset bakom rubriken, Live-pricken, medieremsan och bilden där artiklar samlas till ämnen. Knappen i medieremsan pausar alla, och remsan stannar när man pekar på den.
 - Bilden där artiklar samlas till ämnen spelas upp när den scrollas fram.
 - Sidbyten glider framåt eller bakåt (React `ViewTransition`), och sidhuvudet står still. Ämnets rubrik flyger från listan på startsidan till ämnessidan.
 - Chattpanelen glider in från sidan på datorn och nerifrån på mobilen. En liten lysande prick andas medan svaret skrivs.
 - Grundstilen är slutläget, så allt syns när animationer är avstängda. Med `prefers-reduced-motion` stängs all rörelse av.
+
+## Sidan svarar på läsaren (2026-11-08)
+
+Målet är att sidan ska kännas levande utan att störa läsningen. Allt här är kort, händer en gång eller följer läsarens egen rörelse.
+
+- Ljuset bakom rubriken på startsidan lutar långsamt mot muspekaren. Bara med mus, aldrig på pekskärm.
+- "Live"-raden säger "uppdaterad för 12 min sedan" så länge uppdateringen är yngre än ett dygn, annars datum och tid. Räknas på läsarens enhet, aldrig vid bygget.
+- Siffrorna högst upp på ämnessidan skiner till i ämnets färg när de rullat klart. En gång.
+- Menyn bredvid texten har en markör som glider till den del som läses, och delen får ett svagt sken.
+- Byter läsaren djup tonar de nya delarna in och lyfter en aning (`@starting-style`). Att dölja går direkt, så sidan aldrig väntar.
+- Kort lyfter några pixlar vid hover, med en mjuk skugga i ämnets färg. Länkar i löpande text får en accentlinje som växer från vänster.
+- I chatten andas en lysande punkt efter det senaste ordet medan svaret skrivs, och varje källhänvisning pulserar till en gång när den dyker upp.
+- På breda skärmar är brödtexten 18 px med radavstånd 1,6, och delarna på ämnessidan har mer luft emellan.
+- Hettakurvor per ämne i listan väntar tills insamlingen ger riktiga tidpunkter för artiklarna. Vi ritar inga påhittade kurvor.
 
 ## Var det finns
 

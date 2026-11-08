@@ -174,6 +174,8 @@
   --space-12: 3rem;
   --space-14: 3.5rem;
   --space-16: 4rem;
+  /* Between the parts of a topic page */
+  --space-section: var(--space-16);
   --space-24: 6rem;
 
   /* Radii */
@@ -212,5 +214,14 @@
 @media (min-width: 768px) {
   :root {
     --gutter: var(--space-8);
+  }
+}
+
+/* Reading on a large screen: a step larger text with more air, so it is easy to keep going. */
+@media (min-width: 900px) {
+  :root {
+    --text-md: 1.125rem;
+    --leading-body: 1.6;
+    --space-section: 5rem;
   }
 }

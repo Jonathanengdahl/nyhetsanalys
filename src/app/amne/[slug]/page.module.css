@@ -59,7 +59,7 @@
 .body {
   display: flex;
   flex-direction: column;
-  gap: var(--space-16);
+  gap: var(--space-section);
   min-width: 0;
 }
 
