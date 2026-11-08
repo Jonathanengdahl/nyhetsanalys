@@ -1,5 +1,6 @@
 import "server-only";
 import { getSupabaseAdmin } from "@/lib/supabase/admin";
+import { safeErrorMessage } from "@/lib/secrets";
 
 /**
  * Daily question quota and AI cost log. In production they live in Supabase
@@ -56,5 +57,5 @@ export async function logUsage(row: UsageRow): Promise<void> {
     return;
   }
   const { error } = await getSupabaseAdmin().from("ai_usage").insert(row);
-  if (error) console.error("ai_usage insert failed:", error.message);
+  if (error) console.error("ai_usage insert failed:", safeErrorMessage(error.message));
 }

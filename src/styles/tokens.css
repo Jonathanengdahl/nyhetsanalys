@@ -35,9 +35,11 @@
   --color-accent-soft: #f1eeff;
   --color-on-accent: #ffffff;
   --color-mark: var(--color-accent);
-  --logo-1: #5b3fd9;
-  --logo-2: #8c79e8;
-  --logo-3: #c2b8f3;
+  /* Logo: two overlapping cards (docs/brand/) */
+  --logo-back: var(--color-ink);
+  --logo-front: var(--color-accent);
+  --logo-overlap: #c2b8f3;
+  --logo-size: 28px;
 
   /* Data colours, in a validated order for a white surface. Always shown with labels. */
   --series-1: #2a78d6;

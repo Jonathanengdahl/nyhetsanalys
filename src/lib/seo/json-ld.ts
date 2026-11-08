@@ -13,6 +13,7 @@ export function organizationJsonLd() {
     "@type": "NewsMediaOrganization",
     name: site.name,
     url: absolute("/"),
+    logo: { "@type": "ImageObject", url: absolute("/logo.png"), width: 512, height: 512 },
     email: site.contact.email,
     publishingPrinciples: absolute("/metod"),
     verificationFactCheckingPolicy: absolute("/metod#osakerhet"),

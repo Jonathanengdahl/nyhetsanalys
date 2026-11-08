@@ -1,31 +1,20 @@
 .mark {
-  display: flex;
-  flex: none;
-  flex-direction: column;
-  gap: var(--radius-xs);
-  width: 24px;
-}
-
-.bar {
   display: block;
-  height: 5px;
-  border-radius: var(--radius-xs);
+  flex: none;
+  width: auto;
+  aspect-ratio: 48 / 60;
+  height: var(--logo-size);
+  overflow: visible;
 }
 
-.mark > .one {
-  width: 24px;
-  background: var(--logo-1);
-  animation-delay: 0ms;
+.back {
+  fill: var(--logo-back);
 }
 
-.mark > .two {
-  width: 16px;
-  background: var(--logo-2);
-  animation-delay: 120ms;
+.front {
+  fill: var(--logo-front);
 }
 
-.mark > .three {
-  width: 10px;
-  background: var(--logo-3);
-  animation-delay: 240ms;
+.overlap {
+  fill: var(--logo-overlap);
 }

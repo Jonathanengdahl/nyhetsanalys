@@ -7,6 +7,7 @@ import { startMaterial, topicMaterial, type ChatMaterial } from "@/lib/chat/mate
 import { chatInstructions } from "@/lib/chat/prompt";
 import { chatRequestSchema, trimHistory } from "@/lib/chat/schema";
 import { clientIp, visitorId } from "@/lib/chat/visitor";
+import { looksLikeAnthropicKey, safeErrorMessage } from "@/lib/secrets";
 import { getPublishedTopics, getTopic } from "@/lib/topics";
 
 /*
@@ -64,8 +65,13 @@ export async function POST(request: Request) {
   const material = await materialFor(parsed.data.scope);
   if (!material) return fail(404, "not_found", "Vi har inte analyserat det ämnet.");
 
-  const apiKey = process.env.ANTHROPIC_API_KEY;
+  const apiKey = process.env.ANTHROPIC_API_KEY?.trim();
   if (!apiKey && !mockMode()) {
+    return fail(503, "not_configured", "Chatten är inte påslagen än. Prova igen senare.");
+  }
+  if (apiKey && !looksLikeAnthropicKey(apiKey)) {
+    // Never log the value itself: it may still be a working key with text around it.
+    console.error("ANTHROPIC_API_KEY does not look like an API key (expected sk-ant-…, no spaces). Check the variable in Vercel.");
     return fail(503, "not_configured", "Chatten är inte påslagen än. Prova igen senare.");
   }
 
@@ -79,7 +85,7 @@ export async function POST(request: Request) {
     }
     remaining = await takeQuestion(day, visitorId(clientIp(request.headers), day), chatConfig.questionsPerDay);
   } catch (error) {
-    console.error("Chat limits unavailable:", error instanceof Error ? error.message : error);
+    console.error("Chat limits unavailable:", safeErrorMessage(error));
     return fail(503, "unavailable", "Chatten fungerar inte just nu. Prova igen senare.");
   }
   if (remaining < 0) {
@@ -155,7 +161,7 @@ export async function POST(request: Request) {
         })
         .catch((error: unknown) => {
           if (!stream.aborted) {
-            console.error("Chat answer failed:", error instanceof Error ? error.message : error);
+            console.error("Chat answer failed:", safeErrorMessage(error));
           }
           resolveFirst("error");
           if (started && !stream.aborted) {

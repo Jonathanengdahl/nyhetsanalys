@@ -99,7 +99,7 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, var(--logo-3), var(--color-accent));
+  background: radial-gradient(circle at 35% 35%, var(--logo-overlap), var(--color-accent));
   box-shadow: 0 0 0 0 var(--glow-edge);
 }
 

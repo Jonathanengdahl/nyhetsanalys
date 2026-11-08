@@ -1,6 +1,7 @@
 import "server-only";
 import type { ReactNode } from "react";
 import { site } from "@/config/site";
+import { symbol, symbolSvg } from "@/lib/brand/symbol";
 import { formatDate } from "@/lib/format";
 import type { Topic } from "@/lib/topics/types";
 import { token } from "./tokens";
@@ -15,6 +16,12 @@ function rgba(hex: string, alpha: number) {
   const value = hex.replace("#", "");
   const [r, g, b] = [0, 2, 4].map((i) => parseInt(value.slice(i, i + 2), 16));
   return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+
+/** The logo symbol as an image, in the colours of the tokens. */
+function logoSrc() {
+  const svg = symbolSvg({ back: token("--logo-back"), front: token("--logo-front"), overlap: token("--logo-overlap") });
+  return `data:image/svg+xml;base64,${Buffer.from(svg).toString("base64")}`;
 }
 
 function Frame({ children }: { children: ReactNode }) {
@@ -34,11 +41,8 @@ function Frame({ children }: { children: ReactNode }) {
       }}
     >
       <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-        <div style={{ display: "flex", flexDirection: "column", gap: 5 }}>
-          <div style={{ width: 34, height: 8, borderRadius: 4, backgroundColor: token("--logo-1") }} />
-          <div style={{ width: 25, height: 8, borderRadius: 4, backgroundColor: token("--logo-2") }} />
-          <div style={{ width: 16, height: 8, borderRadius: 4, backgroundColor: token("--logo-3") }} />
-        </div>
+        {/* eslint-disable-next-line @next/next/no-img-element -- the image renderer only takes plain img */}
+        <img src={logoSrc()} width={symbol.width * 0.75} height={symbol.height * 0.75} alt="" />
         <div style={{ fontSize: 34, fontWeight: 800, letterSpacing: -0.6 }}>{site.name}</div>
         <div
           style={{

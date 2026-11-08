@@ -195,6 +195,11 @@ summary::-webkit-details-marker {
   animation: rise 0.9s var(--ease-out) both;
 }
 
+/* The logo's front card slides out from behind the back card, once. */
+.deal {
+  animation: deal 0.9s var(--ease-out) 0.15s both;
+}
+
 .lineup {
   animation: lineup 1s var(--ease-out) both;
 }
@@ -293,6 +298,12 @@ details[open] > summary .chev {
 @keyframes draw {
   from {
     transform: scaleX(0);
+  }
+}
+
+@keyframes deal {
+  from {
+    transform: translate(-15.5px, -9px);
   }
 }
 
