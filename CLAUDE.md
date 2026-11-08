@@ -92,6 +92,7 @@ Fas 2: riktiga data
 5. Insamling via RSS, sortering med Haiku, beräkning av hetta, ämneskö. Supabase Cron startar jobben (beslut 2026-10-31), så Vercel kan stå kvar på Hobby.
 6. Analys med Sonnet, utkast, granskning, publicering.
 7. Admin: godkänn, slå ihop och dela ämnen, granska utkast, rättelser, feedback, kostnader.
+   - 2026-11-08: varje godkänt ämne får ett delningspaket för sociala medier (bilder i tre format ritade från ämnets data, bildtexter för Instagram och X, bildprompter för Gemini), hämtas på granskningssidan och uppdateras med ämnet. Se `docs/produkt.md`.
 
 Fas 3: konton och chatt
 8. Inloggning (Supabase Auth), gratiskonto med 5 egna frågor per dag, chatt som bara svarar utifrån underlaget, feedbackläge i chatten. Chatten finns redan i betan utan konton (se fas 1), så här återstår konton, kvoter per konto och feedbackläget. Följda ämnen sparas i betan i webbläsaren och flyttas då till kontot.

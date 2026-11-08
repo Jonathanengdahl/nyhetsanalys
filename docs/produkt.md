@@ -158,6 +158,16 @@ Utkast till instruktion, från prototypen:
 5. Jonathan godkänner varje nytt ämne. Uppdateringar av godkända ämnen publiceras automatiskt om de klarar kontrollerna och går att backa.
 6. Läsarnas synpunkter och rapporterade fel går till en kö, och rättelser syns med datum.
 
+## Delningspaket för sociala medier (beslut 2026-11-08)
+
+Varje godkänt ämne får ett delningspaket som skapas automatiskt och hämtas på granskningssidan. Målet är att Jonathan ska kunna lägga ut ett ämne på Instagram och X på en minut, utan att skriva något själv.
+
+1. **Färdiga bilder** i tre format (kvadrat 1080 × 1080, stående 1080 × 1350 och story 1080 × 1920), ritade av oss från ämnets data med samma mall och tokens som delningsbilderna på sajten: rubriken, de viktigaste siffrorna med osäkerhetsmärkning, "så skiljer sig medierna" och källorna. Alltid loggan, alltid "Skrivet av AI, granskat av en människa" och alltid länken. Inga medieloggor.
+2. **Texter** till inlägget: en bildtext för Instagram och en kortare för X, båda neutrala och utan värdeladdade ord, med de tre viktigaste punkterna och länken till ämnet. Samma regler som på sajten: inga påståenden utan källa.
+3. **Bildprompter** för ett bildverktyg (till exempel Gemini) när Jonathan vill ha en illustration i stället för en infografik: en prompt per bild, med motiv, stil och färger som matchar designen, utan text i bilden (texten lägger vi på själva så att den blir rätt) och aldrig igenkännbara personer.
+4. Paketet uppdateras när ämnet uppdateras, märkt med datum, så att gamla bilder inte sprids med gamla siffror.
+5. Senare: inlägget publiceras direkt från granskningssidan via Instagrams och X:s API:er, med Jonathans godkännande per inlägg. Byggs när kontona finns och piloten är igång.
+
 ## Feedback och rättelser
 
 1. Läsaren säger till i chatten eller via Tyck till längst ned på ämnessidan: "Var sidan tydlig?" (ja eller nej, frivillig kommentar) och "Saknas ett perspektiv?". Ett förslag på perspektiv går inte att skicka utan en länk till en källa (beslut 2026-10-31). Inget läggs till automatiskt, och vi lovar aldrig att sidan ändras.
