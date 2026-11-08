@@ -79,6 +79,21 @@ export function TopicNav({ items, variant }: { items: OutlineItem[]; variant: "o
     };
   }, [items, variant]);
 
+  // One marker slides to the part being read. Its place is set as CSS variables on the list.
+  useEffect(() => {
+    if (variant !== "rail") return;
+    const list = rootRef.current?.querySelector<HTMLElement>("ol");
+    const link = active ? rootRef.current?.querySelector<HTMLElement>(`a[href="#${active}"]`) : null;
+    if (!list) return;
+    if (!link) {
+      list.style.removeProperty("--mark-top");
+      list.style.removeProperty("--mark-height");
+      return;
+    }
+    list.style.setProperty("--mark-top", `${link.offsetTop + 8}px`);
+    list.style.setProperty("--mark-height", `${Math.max(link.offsetHeight - 16, 8)}px`);
+  }, [active, variant]);
+
   // When the rail is taller than the window, keep the marked part in view.
   useEffect(() => {
     if (variant !== "rail" || !active) return;

@@ -176,6 +176,28 @@
   line-height: var(--leading-none);
 }
 
+/* Once a number has rolled into place it shines briefly in the topic colour. Once, never a loop. */
+.stat:nth-child(1) .statValue { --shine-delay: 2.5s; }
+.stat:nth-child(2) .statValue { --shine-delay: 2.65s; }
+.stat:nth-child(3) .statValue { --shine-delay: 2.8s; }
+.stat:nth-child(4) .statValue { --shine-delay: 2.95s; }
+
+.statValue {
+  animation: shine 1.1s var(--ease-out) var(--shine-delay, 2.5s) both;
+}
+
+@keyframes shine {
+  0%,
+  100% {
+    color: var(--color-ink);
+    text-shadow: 0 0 0 transparent;
+  }
+  35% {
+    color: var(--topic-accent);
+    text-shadow: 0 0 28px color-mix(in srgb, var(--topic-accent) 45%, transparent);
+  }
+}
+
 .statLabel {
   color: var(--color-ink-3);
   font-size: var(--text-sm);

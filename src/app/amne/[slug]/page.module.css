@@ -107,3 +107,22 @@
 .topic:has(input[data-depth-choice="1"]:checked) [data-only="1"] {
   display: flex;
 }
+
+/*
+ * A part that appears when the reader picks a deeper level fades and rises
+ * in. Hiding is instant, so the page never waits. The transition only runs
+ * on the first style after display changes (@starting-style), so the base
+ * style is still the end state.
+ */
+.topic [data-depth] {
+  transition:
+    opacity 0.5s var(--ease-out),
+    translate 0.5s var(--ease-out);
+}
+
+@starting-style {
+  .topic [data-depth] {
+    opacity: 0;
+    translate: 0 12px;
+  }
+}
