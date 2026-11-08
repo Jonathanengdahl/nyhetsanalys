@@ -3,7 +3,9 @@ import { ViewTransition } from "react";
 import { ChatProvider } from "@/components/chat/ChatProvider";
 import { AskForm } from "@/components/home/AskForm";
 import { ClusterField } from "@/components/home/ClusterField";
-import { DecodeHeadline } from "@/components/home/DecodeHeadline";
+import { Headline } from "@/components/home/Headline";
+import { PointerLight } from "@/components/home/PointerLight";
+import { UpdatedTime } from "@/components/home/UpdatedTime";
 import { FollowedTopics } from "@/components/home/FollowedTopics";
 import { Ticker, type TickerItem } from "@/components/home/Ticker";
 import { FeaturedTopic, TopicTile } from "@/components/home/TopicCards";
@@ -13,7 +15,7 @@ import { AskFab } from "@/components/ui/AskFab";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { site } from "@/config/site";
 import { startMaterial } from "@/lib/chat/material";
-import { countTopics, formatDayAndTime } from "@/lib/format";
+import { countTopics } from "@/lib/format";
 import { categoryLabels, getLatestUpdate, getPublishedTopics, getTeasers, topicPath } from "@/lib/topics";
 import { expectedEvents } from "@/lib/topics/questions";
 import type { Topic, TopicCategory } from "@/lib/topics/types";
@@ -109,12 +111,13 @@ export default async function HomePage() {
     <ChatProvider scope="start" label={chat.label} suggestions={SUGGESTIONS} sources={chat.sources}>
       <ViewTransition enter={TRANSITION.enter} exit={TRANSITION.exit} default="none">
         <div className={styles.home} data-motion="running">
-          <div className={styles.backdrop} aria-hidden="true">
+          <div className={styles.backdrop} data-backdrop aria-hidden="true">
             <span className={styles.grid} />
             <span className={`anim-aurora ${styles.light} ${styles.lightOne}`} />
             <span className={`anim-aurora ${styles.light} ${styles.lightTwo}`} />
             <span className={`anim-aurora ${styles.light} ${styles.lightThree}`} />
           </div>
+          <PointerLight target="[data-backdrop]" />
 
           <div className={`container-wide ${styles.hero}`}>
             <section className={styles.heroMain} aria-label="Om tjänsten">
@@ -124,12 +127,10 @@ export default async function HomePage() {
                     <span className="pulse" aria-hidden="true" />
                     Live
                   </span>
-                  <time dateTime={latest} className="mono">
-                    {formatDayAndTime(latest)}
-                  </time>
+                  <UpdatedTime iso={latest} />
                 </p>
               )}
-              <DecodeHeadline text={site.shortDescription} lines={headline} />
+              <Headline text={site.shortDescription} lines={headline} />
               <p className={`rise ${styles.lead}`} style={{ animationDelay: "900ms" }}>
                 Vi samlar artiklarna om samma händelse, jämför hur medierna beskriver den och visar vad som saknas.
                 Neutralt och alltid med källor.

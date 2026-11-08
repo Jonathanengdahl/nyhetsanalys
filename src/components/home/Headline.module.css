@@ -1,0 +1,38 @@
+.headline {
+  font-family: var(--font-display);
+  font-size: var(--display-hero);
+  font-weight: var(--display-weight-strong);
+  letter-spacing: var(--display-tracking);
+  line-height: var(--display-leading-tight);
+}
+
+.line {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0 0.28em;
+  white-space: nowrap;
+}
+
+.word {
+  display: inline-block;
+  animation: land 0.7s var(--ease-out) both;
+  will-change: transform, filter, opacity;
+}
+
+@keyframes land {
+  from {
+    opacity: 0;
+    transform: translateY(0.35em);
+    filter: blur(6px);
+  }
+  60% {
+    filter: blur(0);
+  }
+}
+
+/* Only transform and filter animate, so the text is always real text. */
+@media (prefers-reduced-motion: reduce) {
+  .word {
+    animation: none;
+  }
+}

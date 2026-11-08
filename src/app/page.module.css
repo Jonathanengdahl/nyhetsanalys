@@ -19,6 +19,7 @@
 .grid {
   position: absolute;
   inset: 0;
+  translate: calc(var(--lean-x, 0) * -10px) calc(var(--lean-y, 0) * -8px);
   background-image:
     linear-gradient(var(--grid-line) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
@@ -30,9 +31,12 @@
 .light {
   position: absolute;
   border-radius: 50%;
+  /* Leans towards the pointer on the desktop (set by PointerLight), on top of the slow drift. */
+  translate: calc(var(--lean-x, 0) * var(--lean, 40px)) calc(var(--lean-y, 0) * var(--lean, 40px) * 0.7);
 }
 
 .lightOne {
+  --lean: 64px;
   --drift-x: 8%;
   --drift-y: 6%;
   top: -180px;
@@ -43,6 +47,7 @@
 }
 
 .lightTwo {
+  --lean: -48px;
   --drift-x: -10%;
   --drift-y: 8%;
   top: -120px;
@@ -54,6 +59,7 @@
 }
 
 .lightThree {
+  --lean: 84px;
   --drift-x: 6%;
   --drift-y: -10%;
   top: 220px;
