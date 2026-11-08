@@ -30,6 +30,10 @@ a.row:hover {
   color: var(--color-ink);
 }
 
+a.row:hover .rank {
+  color: var(--row-accent);
+}
+
 .rank {
   align-self: start;
   padding-top: 3px;

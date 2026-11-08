@@ -215,6 +215,27 @@
   scroll-margin-left: var(--gutter);
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .tile,
+  .featured {
+    /* `translate`, not `transform`: the entrance animation owns transform. */
+    transition:
+      translate 0.35s var(--ease-out),
+      box-shadow 0.35s var(--ease-out),
+      border-color 0.35s;
+  }
+
+  /* Lifts a little, with a soft shadow in the topic colour. */
+  .tile:hover,
+  .featured:hover {
+    translate: 0 -3px;
+    border-color: color-mix(in srgb, var(--card-accent) 35%, var(--color-line));
+    box-shadow:
+      0 14px 34px color-mix(in srgb, var(--card-accent) 14%, transparent),
+      var(--shadow-soft);
+  }
+}
+
 .tileTitle {
   font-family: var(--font-display);
   font-size: var(--display-md);

@@ -60,6 +60,34 @@ a:hover {
   color: var(--color-ink);
 }
 
+/* Links in running text: the thin underline stays, and an accent line grows from the left on hover. */
+main p a,
+main dd a,
+main li > a:not([class]) {
+  text-decoration: none;
+  background-image:
+    linear-gradient(currentColor, currentColor),
+    linear-gradient(var(--color-accent), var(--color-accent));
+  background-repeat: no-repeat;
+  background-size:
+    100% 1px,
+    0 2px;
+  background-position:
+    0 100%,
+    0 100%;
+  transition:
+    background-size 0.35s var(--ease-out),
+    color 0.2s;
+}
+
+main p a:hover,
+main dd a:hover,
+main li > a:not([class]):hover {
+  background-size:
+    100% 1px,
+    100% 2px;
+}
+
 button,
 a {
   -webkit-tap-highlight-color: transparent;
