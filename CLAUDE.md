@@ -92,6 +92,7 @@ Fas 2: riktiga data
 4. Supabase: tabeller, RLS, migrationer och seed med exempeldatan.
 5. Insamling via RSS, sortering med Haiku, beräkning av hetta, ämneskö. Supabase Cron startar jobben (beslut 2026-10-31), så Vercel kan stå kvar på Hobby.
    - 2026-11-05: insamlingen är byggd. Elva aktiva flöden från tio medier i `src/content/feeds.ts` (ledarflödena från SvD och Expressen är avstängda tills vi också läser ledarsidor från andra håll), robots.txt och förbehåll mot textutvinning kontrolleras före varje hämtning, tabellerna `feed_status`, `articles` och `job_runs`. Supabase Cron anropar `/api/jobs/collect` var 15:e minut. Kvar: sortering, hetta och ämneskö.
+   - 2026-11-09: insamlingen är igång i produktion. Första körningen: alla elva flöden svarade `ok`, cirka 400 artiklar. Kontrollera att Aftonbladet Debatt inte bara ger samma artiklar som nyhetsflödet (båda gav 39).
 6. Analys med Sonnet, utkast, granskning, publicering.
 7. Admin: godkänn, slå ihop och dela ämnen, granska utkast, rättelser, feedback, kostnader.
    - 2026-11-08: varje godkänt ämne får ett delningspaket för sociala medier (bilder i tre format ritade från ämnets data, bildtexter för Instagram och X, bildprompter för Gemini), hämtas på granskningssidan och uppdateras med ämnet. Se `docs/produkt.md`.
