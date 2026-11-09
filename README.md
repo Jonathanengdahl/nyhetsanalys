@@ -75,6 +75,35 @@ Tabeller:
 
 Tabellerna för läsarnas synpunkter sparar inte namn, e-post eller IP-adress. Utan Supabase lokalt skriver formulären bara en rad i loggen, så att de går att prova.
 
+## Insamlingen (piloten)
+
+Var 15:e minut hämtar `/api/jobs/collect` nya artiklar från medierna i `src/content/feeds.ts`: rubrik, ingress och länk, aldrig hela texten. Före varje hämtning kontrolleras robots.txt och förbehåll mot textutvinning (huvudet `tdm-reservation` och `/.well-known/tdmrep.json`). Ett medium som inte tillåter oss hoppas över. Vi presenterar oss som `NyhetsanalysBot` med en länk till Om oss. Koden finns i `src/lib/collect/` och inställningarna i `src/config/collect.ts`.
+
+Tabeller (migrationen `20261106090000_collection.sql`):
+
+- `feed_status`: senaste svaret per flöde, till exempel `ok`, `blocked_robots` (stoppat av robots.txt), `reserved_tdm` (förbehåll mot textutvinning) eller ett fel. Ett flöde som misslyckas tre gånger i rad prövas bara en gång per dygn.
+- `articles`: en rad per artikel med rubrik, ingress, länk, medium, tid och ett fingeravtryck. Samma text i flera medier, till exempel från TT, får samma fingeravtryck.
+- `job_runs`: varje körning med antal och fel.
+
+Så startar du insamlingen:
+
+1. Kör migrationen (`npx supabase db push` eller klistra in den i SQL Editor).
+2. Skapa en hemlighet och lägg in den som `CRON_SECRET` i Vercel (Production). Gör nya deploy.
+
+```bash
+openssl rand -hex 32
+```
+
+3. Slå på `pg_cron` och `pg_net` under Database > Extensions i Supabase.
+4. Spara hemligheten och adressen i Vault och kör `supabase/cron/schedule-collect.sql` i SQL Editor. Instruktionerna står överst i filen.
+5. Titta i `job_runs` och `feed_status` efter en kvart.
+
+Att prova en körning för hand (hemligheten ligger i en miljövariabel, inte i kommandot):
+
+```bash
+curl -X POST -H "Authorization: Bearer $CRON_SECRET" https://nyhetsanalys.vercel.app/api/jobs/collect
+```
+
 ## AI-chatten
 
 Chatten finns på startsidan (om dagens ämnen) och på varje ämnessida (om det ämnet). Den svarar med `claude-haiku-5-5` och bara utifrån samma underlag som sidorna visar (`src/lib/chat/material.ts`). Reglerna står i `src/lib/chat/prompt.ts`.
@@ -95,6 +124,8 @@ Chatten finns på startsidan (om dagens ämnen) och på varje ämnessida (om det
 - `src/lib/og/`: delningsbilderna (`opengraph-image.tsx` på startsidan och ämnessidorna). De byggs i förväg och läser färgerna från `tokens.css`.
 - `src/lib/feedback/`: Tyck till på ämnessidorna (schema och Server Actions).
 - `src/lib/topics/questions.ts` och `src/lib/calendar/`: Frågor vi väntar svar på, nedräkningen och kalenderfilerna. Varje ämne har `openQuestions`.
+- `src/content/feeds.ts` och `src/lib/collect/`: insamlingen från mediernas RSS-flöden.
+- `docs/brand/`: loggan för Crossread (symbol, liggande och stående) och skriptet som bygger den med Onest.
 - `src/lib/follow/store.ts`: Följ ämnet. Sparas bara i webbläsaren (`localStorage`, nyckeln `nyhetsanalys:folj`), och först när läsaren trycker på knappen.
 - `src/content/media.ts` och `src/lib/media/`: medieregistret bakom Medierna vi läser. Varje uppgift pekar på sina källor, och `checked` är datumet då uppgifterna kontrollerades. Samma form som tabellen `sources` får i Supabase.
 - `src/components/`: komponenter. `src/app/`: sidor.
