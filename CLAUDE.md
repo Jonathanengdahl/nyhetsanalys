@@ -28,7 +28,7 @@ En svensk webbtjänst (app senare) som bevakar nyhetsmedier, hittar dagens heta 
 2. Vi bedömer artiklar, aldrig hela medier. Politisk placering görs bara för texter som tar ställning (ledare, debatt, krönika), alltid med motivering, på två axlar: ekonomisk vänster–höger och GAL–TAN. Nyhetsartiklar placeras aldrig. En tidnings egen beteckning för sin ledarsida får visas på Medierna vi läser, i tidningens egna ord och med källa (beslut 2026-11-01). Det är inte vår placering.
 3. Vi sammanfattar och länkar. Vi återpublicerar aldrig artiklar och visar aldrig fulltext. Korta citat med källa är okej.
 4. Varje uppgift har källa och osäkerhetsmärkning: Bekräftat, Siffror skiljer sig, Ändras över tid, Uppskattning, Omstritt, Obekräftat, Falskt. Hellre "det vet vi inte än" än en gissning.
-5. Allt AI-skrivet märks som AI-skrivet. En människa godkänner nya ämnen och ansvarar för det som publiceras.
+5. Allt AI-skrivet märks som AI-skrivet. En människa ansvarar för det som publiceras. Under piloten godkänner Jonathan varje nytt ämne i två veckor. Därefter publiceras ämnen automatiskt när alla kontroller går igenom, och Jonathan kan stoppa eller ta bort ett ämne med ett klick (beslut 2026-11-12, se `docs/produkt.md`).
 6. AI:n svarar bara utifrån vårt underlag och fyller aldrig i med egen kunskap.
 7. Inga privatpersoner som ämnen. Bara allmänintresse: politik, ekonomi, samhälle, utrikes.
 8. Ingen som betalar, varken läsare, företag eller annonsörer, kan påverka innehållet på ämnessidorna.

@@ -155,7 +155,8 @@ Utkast till instruktion, från prototypen:
 2. Varje uppgift har en källa, annars publiceras den inte.
 3. En andra AI-körning granskar utkastet uppgift för uppgift mot källorna. Det som inte håller stryks eller märks Obekräftat.
 4. Samma kontroller som testerna för exempeldatan (källor finns, giltig märkning, ord i ordlistan används, tal delas inte) är en spärr före publicering.
-5. Jonathan godkänner varje nytt ämne. Uppdateringar av godkända ämnen publiceras automatiskt om de klarar kontrollerna och går att backa.
+5. Jonathan godkänner varje nytt ämne under piloten första två veckor, så att vi ser hur bra sorteringen och analysen är. Uppdateringar av godkända ämnen publiceras automatiskt om de klarar kontrollerna och går att backa.
+7. Efter de två veckorna (beslut 2026-11-12) publiceras nya ämnen automatiskt när alla kontroller går igenom: tröskeln, att ämnet är av allmänintresse och inte handlar om privatpersoner, faktakontrollen uppgift för uppgift och spärrarna i punkt 4. Jonathan får en daglig sammanfattning och kan stoppa eller ta bort ett ämne med ett klick. Ett ämne som stoppas försvinner från sajten direkt och loggas.
 6. Läsarnas synpunkter och rapporterade fel går till en kö, och rättelser syns med datum.
 
 ## Delningspaket för sociala medier (beslut 2026-11-08)
