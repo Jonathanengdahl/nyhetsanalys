@@ -5,5 +5,6 @@ import { inflationen } from "./inflationen";
 import { oroligheternaIEuropa } from "./oroligheterna-i-europa";
 import { granskontrollen } from "./granskontrollen";
 import { overgangsbudgeten } from "./overgangsbudgeten";
+import { arbetslosheten } from "./arbetslosheten";
 
-export const topics: Topic[] = [protesternaIFrankrike, regeringsbildningen, inflationen, oroligheternaIEuropa, granskontrollen, overgangsbudgeten];
+export const topics: Topic[] = [protesternaIFrankrike, regeringsbildningen, inflationen, oroligheternaIEuropa, granskontrollen, overgangsbudgeten, arbetslosheten];

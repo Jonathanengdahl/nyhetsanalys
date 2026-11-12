@@ -168,7 +168,8 @@ export function ModelsSection({ topic, ...depth }: { topic: Topic } & Depth) {
 }
 
 function ChartFigure({ chart, topic }: { chart: Chart; topic: Topic }) {
-  const max = chart.max ?? Math.max(...chart.rows.map((row) => row.value));
+  // Decreases are drawn as bars of the same length; the label carries the sign.
+  const max = chart.max ?? Math.max(...chart.rows.map((row) => Math.abs(row.value)));
   const refLeft = chart.refLine ? `${((chart.refLine.value / max) * 100).toFixed(1)}%` : undefined;
   return (
     <figure className={`reveal ${styles.box} ${styles.gap10}`}>
@@ -181,7 +182,7 @@ function ChartFigure({ chart, topic }: { chart: Chart; topic: Topic }) {
               <th scope="row">{row.name}</th>
               <td className={styles.chartTrackCell}>
                 <span className={styles.chartTrack} aria-hidden="true">
-                  <span className={`fill ${styles.chartFill}`} style={{ width: `${Math.min(100, (row.value / max) * 100).toFixed(1)}%` }} />
+                  <span className={`fill ${styles.chartFill}`} style={{ width: `${Math.min(100, (Math.abs(row.value) / max) * 100).toFixed(1)}%` }} />
                 </span>
               </td>
               <td className={styles.chartValue}>{row.label}</td>

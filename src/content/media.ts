@@ -683,4 +683,16 @@ export const media: MediaOutlet[] = [
     sources: [{ name: "Nordic Defence Sector", title: "About Nordic Defence Sector", url: "https://nordicdefencesector.com/en/about" }],
     checked: "2026-11-12",
   },
+  {
+    slug: "bulletin",
+    name: "Bulletin",
+    aliases: [],
+    country: "Sverige",
+    kind: "Nyhetsmedium",
+    publisher: { text: "Inte kontrollerat än. Sajten anger inget bolag på sidan Om Bulletin.", sources: [1] },
+    owner: { text: "Inte kontrollerat än.", sources: [1] },
+    funding: { text: "Inte kontrollerat än.", sources: [1] },
+    sources: [{ name: "Bulletin", title: "Om Bulletin, läst 12 november 2026", url: "https://bulletin.nu/om-bulletin" }],
+    checked: "2026-11-12",
+  },
 ];
