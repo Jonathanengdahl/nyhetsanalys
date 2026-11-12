@@ -9,7 +9,7 @@ import { safeErrorMessage } from "@/lib/secrets";
  */
 
 export type UsageRow = {
-  job: "chat";
+  job: "chat" | "sort" | "analysis";
   scope: string;
   model: string;
   input_tokens: number;
@@ -25,13 +25,18 @@ const hasSupabase = () => Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && proces
 const memoryQuota = new Map<string, number>();
 const memoryUsage: { at: number; cost: number }[] = [];
 
-/** Kronor spent on AI since the given moment. */
+/** Kronor spent on the chat since the given moment. */
 export async function spentSince(sinceIso: string): Promise<number> {
   if (!hasSupabase()) {
     const since = Date.parse(sinceIso);
     return memoryUsage.filter((row) => row.at >= since).reduce((sum, row) => sum + row.cost, 0);
   }
-  const { data, error } = await getSupabaseAdmin().rpc("ai_cost_sek_since", { p_since: sinceIso });
+  // The chat's budget counts only the chat. The background jobs have their own (src/config/sort.ts).
+  const db = getSupabaseAdmin();
+  const own = await db.rpc("ai_cost_sek_for_jobs", { p_since: sinceIso, p_jobs: ["chat"] });
+  if (!own.error) return Number(own.data ?? 0);
+  // Before the migration 20261112120000_sorting.sql has been run: everything counts.
+  const { data, error } = await db.rpc("ai_cost_sek_since", { p_since: sinceIso });
   if (error) throw new Error(`ai_cost_sek_since failed: ${error.message}`);
   return Number(data ?? 0);
 }

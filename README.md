@@ -104,6 +104,24 @@ Att prova en körning för hand (hemligheten ligger i en miljövariabel, inte i 
 curl -X POST -H "Authorization: Bearer $CRON_SECRET" https://nyhetsanalys.vercel.app/api/jobs/collect
 ```
 
+## Sorteringen (piloten)
+
+Var 15:e minut, fem minuter efter insamlingen, sorterar `/api/jobs/sort` nya artiklar till ämnen. `claude-haiku-5-5` läser bara rubrik och ingress och avgör två saker: om artikeln hör till vårt område (politik, ekonomi, samhälle, utrikes) och vilket ämne den handlar om, ett befintligt eller ett nytt. Allt annat räknar servern själv. Koden finns i `src/lib/sort/` och inställningarna i `src/config/sort.ts`.
+
+- **Hetta** räknas för varje öppet ämne vid varje körning (`src/lib/sort/heat.ts`). Ett ämne är över tröskeln med minst 5 oberoende källor från minst 3 mediehus inom 48 timmar, varav minst ett rikstäckande. Samma TT-text räknas som en källa (samma fingeravtryck).
+- **Status:** `watching` (bevakas), `hot` (över tröskeln, kandidat), `approved` och `rejected`. Jonathans beslut skrivs aldrig över av sorteringen.
+- **Kostnad:** varje anrop loggas i `ai_usage` med jobbet `sort`. Bakgrundsjobben har en egen dagsbudget på 40 kr. Når den taket pausar sorteringen till midnatt. Chatten har kvar sin egen budget.
+- **Kandidaterna** syns på `/admin/kandidater`, skyddad med lösenordet i `ADMIN_PASSWORD` (vilket användarnamn som helst). Utan variabeln finns sidan inte.
+
+Tabeller (migrationen `20261112120000_sorting.sql`): `topic_clusters` med ämnen, hetta och status, och tre nya kolumner i `articles` (`sorted_at`, `in_scope`, `cluster_id`).
+
+Så startar du sorteringen:
+
+1. Kör migrationen i SQL Editor.
+2. Lägg in `ADMIN_PASSWORD` i Vercel (Production, Secret) och gör ny deploy.
+3. Kör `supabase/cron/schedule-sort.sql` i SQL Editor.
+4. Öppna `/admin/kandidater` efter en kvart.
+
 ## AI-chatten
 
 Chatten finns på startsidan (om dagens ämnen) och på varje ämnessida (om det ämnet). Den svarar med `claude-haiku-5-5` och bara utifrån samma underlag som sidorna visar (`src/lib/chat/material.ts`). Reglerna står i `src/lib/chat/prompt.ts`.

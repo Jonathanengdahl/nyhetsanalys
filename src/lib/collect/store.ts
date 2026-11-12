@@ -1,7 +1,7 @@
 import "server-only";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { CollectStore } from "./run";
-import type { CollectStats, FeedState } from "./types";
+import type { FeedState } from "./types";
 
 /** The collector's tables in Supabase: feed_status, articles and job_runs. Server only. */
 export function supabaseCollectStore(db: SupabaseClient): CollectStore {
@@ -36,7 +36,7 @@ export async function startRun(db: SupabaseClient, job: string): Promise<number 
   return (data as { id: number }).id;
 }
 
-export async function finishRun(db: SupabaseClient, id: number | null, result: { stats?: CollectStats; error?: string }) {
+export async function finishRun(db: SupabaseClient, id: number | null, result: { stats?: object; error?: string }) {
   if (id === null) return;
   const { error } = await db
     .from("job_runs")

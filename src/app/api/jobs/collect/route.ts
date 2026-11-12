@@ -1,7 +1,7 @@
-import { timingSafeEqual } from "node:crypto";
 import { feeds } from "@/content/feeds";
 import { collect } from "@/lib/collect/run";
 import { finishRun, startRun, supabaseCollectStore } from "@/lib/collect/store";
+import { hasJobSecret } from "@/lib/jobs/auth";
 import { getSupabaseAdmin } from "@/lib/supabase/admin";
 
 /*
@@ -13,17 +13,10 @@ export const maxDuration = 60;
 
 const json = (status: number, body: unknown) => Response.json(body, { status, headers: { "Cache-Control": "no-store" } });
 
-/** Compares the Authorization header with the secret in constant time. */
-function authorized(request: Request, secret: string): boolean {
-  const given = Buffer.from(request.headers.get("authorization") ?? "");
-  const expected = Buffer.from(`Bearer ${secret}`);
-  return given.length === expected.length && timingSafeEqual(given, expected);
-}
-
 export async function POST(request: Request) {
   const secret = process.env.CRON_SECRET;
   if (!secret) return json(503, { ok: false, message: "Insamlingen är inte påslagen: CRON_SECRET saknas." });
-  if (!authorized(request, secret)) return json(401, { ok: false, message: "Ingen behörighet." });
+  if (!hasJobSecret(request, secret)) return json(401, { ok: false, message: "Ingen behörighet." });
 
   let db: ReturnType<typeof getSupabaseAdmin>;
   try {
