@@ -1,0 +1,486 @@
+import type { Topic } from "@/lib/topics/types";
+
+// Pilot topic, researched and fact-checked 12 November 2026.
+export const strejkenISpanien: Topic = {
+  slug: "strejken-i-spanien",
+  rank: 13,
+  title: "Storstrejk mot bostadskrisen i Spanien",
+  titleLines: ["Storstrejk mot", "bostadskrisen i Spanien"],
+  titleSize: "large",
+  accent: "coral",
+  tags: ["Utrikes", "Ekonomi"],
+  categories: ["utrikes", "ekonomi", "politik"],
+  status: "Efter strejken",
+  dek: "Spaniens första generalstrejk på 14 år gällde bostäder och löner. Fackförbunden och arbetsgivarna ger helt olika bilder av hur många som deltog, och strejken har blivit en fråga i valrörelsen inför valet den 29 november.",
+  publishedAt: "2026-11-12T21:00:00+01:00",
+  updatedAt: "2026-11-12T21:00:00+01:00",
+  counts: "4 artiklar från 4 medier, 6 källor",
+  card: {
+    tags: ["Utrikes", "Ekonomi"],
+    summary:
+      "Fackförbunden UGT och CCOO strejkade i ett dygn för lägre hyror och högre löner. De säger att runt 4 miljoner deltog, arbetsgivarna säger under 5 procent. Val hålls den 29 november.",
+    highlights: [
+      { value: "4 miljoner", label: "deltog enligt facken", uncertainty: "Omstritt" },
+      { value: "+87 %", label: "hyror 2015–2025, enligt El País", uncertainty: "Siffror skiljer sig" },
+    ],
+    sourceLine: "Källor: SVT, TIME och Dagens PS",
+  },
+  stats: [
+    { value: "14 år", label: "sedan förra generalstrejken i Spanien" },
+    { value: "300+", label: "inställda flyg under onsdagen, enligt Europa Press" },
+    { value: "75", label: "gripna enligt polisen" },
+    { value: "29 nov", label: "nyval till parlamentet" },
+  ],
+  summary: [
+    {
+      key: "Vad",
+      text: "Onsdagen den 11 november hölls Spaniens första generalstrejk på 14 år. De två största fackförbunden UGT och CCOO, hyresgäströrelsen och flera andra förbund krävde högre löner och åtgärder mot bostadskrisen.",
+    },
+    {
+      key: "Varför",
+      text: "Hyrorna har stigit mycket snabbare än lönerna. Enligt El País steg hyrorna med 87 procent mellan 2015 och 2025, medan lönerna steg med ungefär 30 procent.",
+    },
+    {
+      key: "Omstritt",
+      text: "Facken säger att runt 4 miljoner arbetare deltog. Arbetsgivarorganisationen CEOE säger att färre än 5 procent deltog och kallar strejken ett misslyckande.",
+    },
+    {
+      key: "Valet",
+      text: "Strejken hölls 18 dagar före nyvalet den 29 november. Oppositionspartierna PP och Vox säger att den gynnar regeringen, och regeringen säger att den inte riktar sig mot någon.",
+    },
+  ],
+  updates: {
+    intro: "Onsdagen den 11 november",
+    items: [
+      {
+        text: "Strejken började vid midnatt. Kollektivtrafiken stod i stort sett still, och skolor och universitet var stängda eller höll bara grundläggande verksamhet.",
+        sources: [1],
+        at: "2026-11-11T00:00:00+01:00",
+      },
+      {
+        text: "Tunnelbanan i Madrid hade 42 procent mindre trafik fram till klockan 10 än onsdagen innan.",
+        sources: [3],
+        at: "2026-11-11T10:00:00+01:00",
+      },
+      {
+        text: "Klockan 18 hade över 300 flyg till och från Spanien ställts in, ungefär 7 procent av dagens planerade flyg, enligt nyhetsbyrån Europa Press.",
+        sources: [2],
+        at: "2026-11-11T18:00:00+01:00",
+      },
+      {
+        text: "Polisen rapporterade minst 75 gripna och över 1 000 händelser kopplade till strejken.",
+        sources: [3],
+        at: "2026-11-11T20:00:00+01:00",
+      },
+    ],
+  },
+  openQuestions: [
+    {
+      id: "valet",
+      question: "Vem vinner valet den 29 november?",
+      status: "Opinionsmätningar publicerade den 9 november visade att Socialistpartiet låg efter det konservativa PP, och att PP och Vox tillsammans kunde få majoritet.",
+      label: "Ändras över tid",
+      sources: [3],
+      expected: { date: "2026-11-29", event: "Nyval till det spanska parlamentet" },
+    },
+    {
+      id: "dekreten",
+      question: "Blir regeringens nya bostadsregler kvar?",
+      status: "Parlamentet röstade ned regeringens två bostadsdekret den 2 oktober. Regeringen har lagt fram en ändrad version, som enligt TIME skulle röstas om den 12 november. Vi har inte sett utfallet än.",
+      label: "Obekräftat",
+      sources: [3, 1],
+    },
+    {
+      id: "deltagandet",
+      question: "Hur många strejkade?",
+      status: "Det finns ingen oberoende siffra. Facken säger runt 4 miljoner, alltså ungefär 17 procent av arbetskraften. Arbetsgivarna säger under 5 procent.",
+      label: "Omstritt",
+      sources: [3],
+    },
+  ],
+  timeline: [
+    {
+      date: "23 september",
+      text: "En 87-årig hyresgäst vräks i Madrid efter mer än 70 år i samma lägenhet. Fallet blir en symbol för protesterna. Hon dör på sjukhus den 7 oktober.",
+      sources: [1, 4, 3],
+    },
+    {
+      date: "2 oktober",
+      text: "Parlamentet röstar ned regeringens två bostadsdekret. PP, Vox och det katalanska partiet Junts röstar emot.",
+      sources: [1, 3],
+    },
+    {
+      date: "5 oktober",
+      text: "Premiärminister Pedro Sánchez utlyser nyval till den 29 november. UGT och CCOO kommer överens om en generalstrejk.",
+      sources: [6, 5],
+    },
+    {
+      date: "11 november",
+      text: "Generalstrejk i hela Spanien under ett dygn.",
+      sources: [1, 3],
+      tag: "Nytt",
+    },
+    {
+      date: "29 november",
+      text: "Nyval till parlamentet.",
+      sources: [5],
+      tag: "Kommande",
+    },
+  ],
+  facts: [
+    {
+      label: "Bekräftat",
+      title: "Vilka strejkade",
+      text: "Strejken utlystes av UGT och CCOO, med stöd av hyresgäströrelsen och flera mindre förbund. Den gällde bland annat transporter, energi, avfallshantering och köttindustrin.",
+      sources: [1, 4],
+    },
+    {
+      label: "Bekräftat",
+      title: "Kraven",
+      text: "Lönehöjningar som tar igen förlorad köpkraft, billigare hyror, fler bostäder som ägs av det allmänna och begränsningar för uthyrning till turister.",
+      sources: [4, 1],
+    },
+    {
+      label: "Omstritt",
+      title: "Deltagandet",
+      text: "Facken säger att runt 4 miljoner arbetare deltog. Arbetsgivarorganisationen CEOE säger att under 5 procent deltog.",
+      sources: [3],
+    },
+    {
+      label: "Siffror skiljer sig",
+      title: "Hyrorna",
+      text: "Enligt El País steg hyrorna med 87 procent mellan 2015 och 2025, medan lönerna steg med ungefär 30 procent. SVT skriver att hyrorna har mer än fördubblats på tio år.",
+      sources: [3, 1],
+    },
+    {
+      label: "Uppskattning",
+      title: "Bostadsbristen",
+      text: "Spaniens centralbank uppskattar att det saknas ungefär 750 000 bostäder, och att bristen kan bli över 1 miljon till 2028.",
+      sources: [3],
+    },
+    {
+      label: "Bekräftat",
+      title: "De unga",
+      text: "Snittåldern när unga flyttar hemifrån har stigit till 30 år. Enligt det spanska ungdomsrådet motsvarar en genomsnittlig hyra nästan hela snittlönen för den som är 16 till 29 år.",
+      sources: [3, 2],
+    },
+  ],
+  media: {
+    intro:
+      "Vi har läst 4 artiklar från 4 medier, publicerade 10 till 12 november. Analysen gäller de enskilda artiklarna, inte mediernas samlade bevakning. Spanska medier som El País och El Mundo saknas i urvalet, eftersom vi inte kunde läsa deras texter.",
+    agree: [
+      "Det är Spaniens första generalstrejk på 14 år.",
+      "Strejken gäller både bostäder och löner.",
+      "Vräkningen av en 87-årig kvinna i Madrid blev en utlösande händelse.",
+    ],
+    differ: [
+      "Hur många deltog? Infobae och SVT återger fackens bild, TIME ställer fackens och arbetsgivarnas siffror mot varandra och Dagens PS anger ingen siffra.",
+      "Är strejken en del av valrörelsen? TIME gör politiken till huvudsak, SVT nämner PP och Vox kort och Dagens PS tar inte upp valet.",
+      "Vad betyder strejken för svenskar? Bara Dagens PS skriver om resenärer och Sveriges ambassads råd.",
+    ],
+    framesMeta: "Andel av omnämnandena i alla 4 artiklar. Huvudfokus räknas dubbelt.",
+    frames: [
+      { name: "Bostadskrisen", percent: 24, weight: 23.8, accent: "coral" },
+      { name: "Störningar", percent: 19, weight: 19, accent: "sky" },
+      { name: "Hur många deltog", percent: 19, weight: 19, accent: "sun" },
+      { name: "Valet", percent: 14, weight: 14.3, accent: "lime" },
+      { name: "De unga", percent: 14, weight: 14.3, accent: "pink" },
+      { name: "Lönerna", percent: 10, weight: 9.5, accent: "mint" },
+    ],
+    framesNote:
+      "Lönerna, som var ett av de två huvudkraven, får minst utrymme. Ingen artikel redovisar hur lönerna har utvecklats i kronor eller euro.",
+    matrixColumns: [
+      { short: "Bostad", full: "Bostadskrisen", accent: "coral" },
+      { short: "Störning", full: "Störningar", accent: "sky" },
+      { short: "Antal", full: "Hur många deltog", accent: "sun" },
+      { short: "Val", full: "Valet", accent: "lime" },
+      { short: "Unga", full: "De unga", accent: "pink" },
+      { short: "Lön", full: "Lönerna", accent: "mint" },
+    ],
+    matrix: [
+      { name: "SVT", values: [2, 1, 1, 1, 1, 1] },
+      { name: "Dagens PS", values: [1, 2, 0, 0, 1, 0] },
+      { name: "TIME", values: [1, 1, 1, 2, 1, 0] },
+      { name: "Infobae", values: [1, 0, 2, 0, 0, 1] },
+    ],
+    matrixKey:
+      "Bostad: bostadskrisen. Störning: störningar. Antal: hur många deltog. Val: valet. Unga: de unga. Lön: lönerna.",
+    matrixNote: "SVT tar upp flest delar. Dagens PS utgår från resenärerna och TIME från valrörelsen.",
+  },
+  articles: [
+    {
+      outlet: "SVT",
+      genre: "Nyhet",
+      title: "Storstrejk i Spanien mot bostadskrisen",
+      meta: "SVT Nyheter, 11 november",
+      angle: "Bostadskrisen som orsak, med vräkningen i Madrid och regeringens stoppade förslag som bakgrund.",
+      rows: [
+        { key: "Röster", text: "En 36-årig strejkande i en bildtext. Inga företrädare för facken, arbetsgivarna eller partierna citeras." },
+        { key: "Språk och rubrik", text: "Saklig rubrik. Texten skriver att miljoner deltog, utan att säga vem som har räknat." },
+        { key: "Siffror och källor", text: "Hyrorna har mer än fördubblats på tio år, utan källa. Uppgifter från Reuters om starten i Barcelona." },
+        { key: "Saknas", text: "Arbetsgivarnas bild av deltagandet och valdatumet." },
+      ],
+      placement: "Ej placerad, eftersom det är nyhetsrapportering.",
+      basis: "hela texten",
+      url: "https://www.svt.se/nyheter/utrikes/storstrejk-i-spanien-mot-bostadskrisen",
+      linkLabel: "Läs originalet",
+    },
+    {
+      outlet: "Dagens PS",
+      genre: "Nyhet",
+      title: "Spanien – hundratals flyg inställda när bostadskrisen utlöser storstrejk",
+      meta: "Johan Augustin, 12 november",
+      angle: "Vad strejken betydde för resenärer, och varför unga spanjorer inte får del av den starka ekonomin.",
+      rows: [
+        { key: "Röster", text: "Två unga spanjorer, citerade via Al Jazeera, och Sveriges ambassad i Madrid." },
+        { key: "Språk och rubrik", text: "Rubriken lyfter de inställda flygen. Texten handlar till stor del om unga och bostäder." },
+        { key: "Siffror och källor", text: "Europa Press, Eurostat, Handelsblatt och den spanska statistikmyndigheten INE. Hyror räknas om till kronor." },
+        { key: "Saknas", text: "Facken, arbetsgivarna, regeringen och valet." },
+      ],
+      placement: "Ej placerad, eftersom det är nyhetsrapportering.",
+      basis: "hela texten",
+      url: "https://www.dagensps.se/varlden/spanien-hundratals-flyg-installda-nar-bostadskrisen-utloser-storstrejk/",
+      linkLabel: "Läs originalet",
+    },
+    {
+      outlet: "TIME",
+      genre: "Nyhet",
+      title: "Millions of Spanish Workers Stage First General Strike in 14 Years",
+      meta: "Miranda Jeyaretnam, 12 november",
+      angle: "Strejken som en fråga i valrörelsen, med regeringens och oppositionens bilder sida vid sida.",
+      rows: [
+        { key: "Röster", text: "PP, Vox, premiärministern, två ministrar och hyresgäströrelsen. Inga arbetsgivare citeras, men deras siffra redovisas." },
+        { key: "Språk och rubrik", text: "Rubriken använder fackens siffra, miljoner. Texten ställer den mot arbetsgivarnas." },
+        { key: "Siffror och källor", text: "El País, det spanska ungdomsrådet, Spaniens centralbank och opinionsmätningar. Flest siffror av artiklarna." },
+        { key: "Saknas", text: "Vad lönekraven gäller." },
+      ],
+      placement: "Ej placerad, eftersom det är nyhetsrapportering.",
+      basis: "hela texten",
+      url: "https://time.com/article/2026/11/12/spain-general-strike-housing-crisis-national-election-sanchez/",
+      linkLabel: "Läs originalet",
+    },
+    {
+      outlet: "Infobae",
+      genre: "Nyhet",
+      title: "Los sindicatos prevén una respuesta masiva a la huelga general por la vivienda y los salarios",
+      meta: "María García Arenales, 10 november",
+      angle: "Inför strejken: vad facken kräver och hur många de räknar med.",
+      rows: [
+        { key: "Röster", text: "Ledare för fyra fackförbund. Inga arbetsgivare eller politiker." },
+        { key: "Språk och rubrik", text: "Rubriken återger fackens förväntan om ett massivt deltagande." },
+        { key: "Siffror och källor", text: "Fackens egna uppgifter. Inga siffror om hyror eller löner." },
+        { key: "Saknas", text: "Arbetsgivarnas och oppositionens syn, och valet." },
+      ],
+      placement: "Ej placerad, eftersom det är nyhetsrapportering.",
+      basis: "hela texten",
+      url: "https://www.infobae.com/espana/2026/11/10/los-sindicatos-preven-una-respuesta-masiva-a-la-huelga-general-por-la-vivienda-y-los-salarios-14-anos-despues-de-la-ultima-va-a-haber-una-gran-movilizacion/",
+      linkLabel: "Läs originalet",
+    },
+  ],
+  blame: {
+    title: "Vad säger parterna?",
+    intro: "Parterna ger olika bilder av både strejken och vem den gynnar. Citaten är översatta från spanska via TIME.",
+    items: [
+      {
+        who: "Facken",
+        role: "UGT, CCOO och hyresgäströrelsen",
+        text: "Kräver högre löner och lägre hyror. Säger att runt 4 miljoner deltog. Hyresgäströrelsen i Madrid säger att den inte skiljer på politiska sympatier.",
+      },
+      {
+        who: "Arbetsgivarna",
+        role: "Arbetsgivarorganisationen CEOE",
+        text: "Säger att färre än 5 procent deltog och kallar strejken ett misslyckande.",
+      },
+      {
+        who: "Regeringen",
+        role: "Socialistpartiet och Sumar",
+        text: "Premiärminister Pedro Sánchez säger att strejken inte riktar sig mot någon. Arbetsmarknadsminister Yolanda Díaz och socialminister Pablo Bustinduy stöder den.",
+      },
+      {
+        who: "Oppositionen",
+        role: "PP och Vox",
+        text: "PP kallar den en valstrejk och en strejk mot oppositionen. Vox säger att den är en kampanj för Sánchez.",
+      },
+    ],
+    sources: [3, 4],
+  },
+  models: {
+    items: [
+      {
+        name: "Begränsa hyrorna",
+        pro: "Hyrorna har stigit mycket snabbare än lönerna, och tak för hyror i hårt belastade områden kan ge snabb lättnad.",
+        con: "Kritiker, bland dem PP, menar att hyrestak minskar utbudet när hyresvärdar lämnar marknaden.",
+        by: "facken, hyresgäströrelsen och regeringen.",
+      },
+      {
+        name: "Bygg fler bostäder",
+        pro: "Centralbanken uppskattar att det saknas runt 750 000 bostäder, så fler bostäder angriper själva bristen.",
+        con: "Det tar flera år innan nya bostäder står klara.",
+        by: "Spaniens centralbank och OECD.",
+      },
+      {
+        name: "Begränsa turistuthyrning",
+        pro: "Lägenheter som hyrs ut till turister kan i stället hyras ut till dem som bor i staden.",
+        con: "Turismen är en stor del av Spaniens ekonomi.",
+        by: "hyresgäströrelsen och facken.",
+      },
+    ],
+    sources: [3, 1, 4, 6],
+  },
+  numbers: {
+    intro: "Siffrorna om hyror och bostäder kommer från de källor som artiklarna hänvisar till. Vi har inte kunnat kontrollera dem i original.",
+    tiles: [
+      { value: "+87 %", label: "Hyror 2015–2025", sub: "Lönerna steg ungefär 30 procent, enligt El País", sources: [3] },
+      { value: "1 176 €", label: "Genomsnittlig hyra per månad", sub: "Nästan hela snittlönen för unga 16–29 år", sources: [3] },
+      { value: "30 år", label: "Snittålder när unga flyttar hemifrån", sub: "Enligt Eurostat", sources: [2, 3] },
+      { value: "750 000", label: "Bostäder som saknas", sub: "Uppskattning från Spaniens centralbank", sources: [3] },
+    ],
+    charts: [
+      {
+        title: "Hur många deltog? Två bilder",
+        note: "Facken anger ungefär 4 miljoner av 23 miljoner i arbetskraften. Arbetsgivarna anger under 5 procent. Det finns ingen oberoende siffra.",
+        sources: [3],
+        max: 20,
+        rows: [
+          { name: "Enligt facken", value: 17, label: "cirka 17 %", accent: "sun" },
+          { name: "Enligt arbetsgivarna", value: 5, label: "under 5 %", accent: "sky" },
+        ],
+      },
+    ],
+    note: "Siffrorna för deltagandet kommer från parterna själva. Ingen myndighet har redovisat en egen siffra i det vi har läst.",
+  },
+  missing: [
+    {
+      title: "En oberoende siffra för deltagandet",
+      text: "Alla artiklar bygger på fackens eller arbetsgivarnas uppgifter. Ingen artikel hänvisar till en myndighet eller ett annat oberoende mått.",
+      sources: [3, 4],
+    },
+    {
+      title: "Lönerna",
+      text: "Löner var ett av de två huvudkraven, men ingen artikel redovisar hur lönerna har utvecklats jämfört med priserna.",
+      sources: [4, 1],
+    },
+    {
+      title: "Vad partierna vill göra",
+      text: "Artiklarna återger vad PP och Vox säger om strejken, men inte vad de själva föreslår mot bostadskrisen.",
+      sources: [3, 1],
+    },
+    {
+      title: "Hyresvärdarnas syn",
+      text: "Ingen artikel låter hyresvärdar eller fastighetsägare förklara hur de ser på hyrestak och bristen på bostäder.",
+      sources: [1, 2, 3, 4],
+    },
+  ],
+  panel: {
+    intro:
+      "Fyra fiktiva arketyper läser samma vecka. De representerar inga verkliga personer eller partier, utan typiska hållningar på två axlar som används inom statsvetenskapen: ekonomisk vänster–höger och GAL–TAN. Alla får lika mycket utrymme, och var och en har sin egen blinda fläck.",
+    items: [
+      {
+        name: "Den rödgröna",
+        axes: "Ekonomisk vänster, GAL",
+        x: "27%",
+        y: "29%",
+        accent: "mint",
+        quote: "När hyran äter upp hela lönen är en strejk det enda språk som hörs.",
+        up: "Att hyrorna har stigit nästan tre gånger så snabbt som lönerna.",
+        down: "Att arbetsgivarna säger att färre än 5 procent deltog.",
+      },
+      {
+        name: "Liberalen",
+        axes: "Ekonomisk höger, GAL",
+        x: "73%",
+        y: "29%",
+        accent: "sky",
+        quote: "Problemet är att det byggs för lite. Hyrestak löser inte det.",
+        up: "Att centralbanken uppskattar bristen till 750 000 bostäder.",
+        down: "Att hyrorna har stigit mycket snabbare än lönerna.",
+      },
+      {
+        name: "Den konservativa",
+        axes: "Ekonomisk höger, TAN",
+        x: "73%",
+        y: "71%",
+        accent: "sun",
+        quote: "En strejk 18 dagar före valet är svår att se som opolitisk.",
+        up: "Att PP kallar den en valstrejk.",
+        down: "Att hyresgäströrelsen säger att den inte skiljer på politiska sympatier.",
+      },
+      {
+        name: "Nationalpopulisten",
+        axes: "Ekonomisk vänster, TAN",
+        x: "27%",
+        y: "71%",
+        accent: "pink",
+        quote: "Turistlägenheterna tränger ut de unga från sina egna städer.",
+        up: "Att unga bor hemma till 30 års ålder och att turistuthyrning ska begränsas.",
+        down: "Att bostadsbristen enligt centralbanken främst handlar om att det byggs för lite.",
+      },
+    ],
+  },
+  method: [
+    "Det här är ett ämne från piloten. Analysen är skriven med AI utifrån 4 artiklar och 6 källor, men har inte granskats av en redaktör.",
+    "Vi har inte kunnat läsa spanska myndigheters statistik i original. Siffrorna om hyror och bostäder kommer från de källor som artiklarna anger.",
+    "Den vräkta kvinnan i Madrid är en privatperson, och därför skriver vi inte ut hennes namn.",
+  ],
+  faq: [
+    {
+      question: "Varför strejkade spanjorerna?",
+      answer: "För högre löner och åtgärder mot bostadskrisen. Hyrorna har stigit mycket snabbare än lönerna, och många unga har inte råd att flytta hemifrån.",
+      label: "Bekräftat",
+      sources: [1, 3, 4],
+    },
+    {
+      question: "Hur många deltog?",
+      answer: "Det är omstritt. Facken säger runt 4 miljoner, arbetsgivarorganisationen CEOE säger färre än 5 procent. Det finns ingen oberoende siffra.",
+      label: "Omstritt",
+      sources: [3],
+    },
+    {
+      question: "Vad har strejken med valet att göra?",
+      answer: "Regeringens bostadsdekret röstades ned den 2 oktober, och tre dagar senare utlyste premiärministern nyval till den 29 november. PP och Vox säger att strejken gynnar regeringen, och regeringen säger att den inte riktar sig mot någon.",
+      label: "Bekräftat",
+      sources: [3, 5, 1],
+    },
+    {
+      question: "Påverkas resor till Spanien?",
+      answer: "Generalstrejken gällde bara onsdagen, då över 300 flyg ställdes in. Lokförarförbundet SEMAF har en egen strejk som kunde påverka tågen även på torsdagen.",
+      label: "Bekräftat",
+      sources: [2],
+    },
+  ],
+  glossary: [
+    {
+      term: "Generalstrejk",
+      match: "generalstrejk",
+      explanation: "En strejk där arbetare i många olika branscher lägger ned arbetet samtidigt, ofta i hela landet.",
+    },
+    {
+      term: "Bostadsdekret",
+      match: "bostadsdekret",
+      explanation: "En lag som regeringen beslutar direkt. I Spanien måste parlamentet godkänna den inom en månad, annars upphör den.",
+    },
+    {
+      term: "Nyval",
+      match: "nyval",
+      explanation: "Ett val som hålls före den ordinarie tiden, till exempel när en regering inte får igenom sin politik.",
+    },
+    {
+      term: "Köpkraft",
+      match: "köpkraft",
+      explanation: "Hur mycket man kan köpa för sin lön. Om priserna stiger snabbare än lönen minskar köpkraften.",
+    },
+  ],
+  sources: [
+    { name: "SVT", title: "Storstrejk i Spanien mot bostadskrisen, 11 november", url: "https://www.svt.se/nyheter/utrikes/storstrejk-i-spanien-mot-bostadskrisen" },
+    { name: "Dagens PS", title: "Spanien – hundratals flyg inställda när bostadskrisen utlöser storstrejk, 12 november", url: "https://www.dagensps.se/varlden/spanien-hundratals-flyg-installda-nar-bostadskrisen-utloser-storstrejk/" },
+    { name: "TIME", title: "Millions of Spanish Workers Stage First General Strike in 14 Years, 12 november", url: "https://time.com/article/2026/11/12/spain-general-strike-housing-crisis-national-election-sanchez/" },
+    { name: "Infobae", title: "Los sindicatos prevén una respuesta masiva a la huelga general, 10 november", url: "https://www.infobae.com/espana/2026/11/10/los-sindicatos-preven-una-respuesta-masiva-a-la-huelga-general-por-la-vivienda-y-los-salarios-14-anos-despues-de-la-ultima-va-a-haber-una-gran-movilizacion/" },
+    { name: "TT via TV4", title: "Storstrejk i Spanien inför nyvalet, 7 oktober", url: "https://www.tv4.se/artikel/tt-261007-spanienbostadskrisstrejk1-b2475a22/storstrejk-i-spanien-infor-nyvalet" },
+    { name: "Wikipedia", title: "2026 Spanish housing protests", url: "https://en.wikipedia.org/wiki/2026_Spanish_housing_protests" },
+  ],
+  sourceGroups: [
+    { title: "Analyserade artiklar", ids: [1, 2, 3, 4] },
+    { title: "Bakgrund", ids: [5, 6] },
+  ],
+  corrections: [],
+};
