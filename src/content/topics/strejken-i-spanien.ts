@@ -3,7 +3,7 @@ import type { Topic } from "@/lib/topics/types";
 // Pilot topic, researched and fact-checked 12 November 2026.
 export const strejkenISpanien: Topic = {
   slug: "strejken-i-spanien",
-  rank: 13,
+  rank: 5,
   title: "Storstrejk mot bostadskrisen i Spanien",
   titleLines: ["Storstrejk mot", "bostadskrisen i Spanien"],
   titleSize: "large",

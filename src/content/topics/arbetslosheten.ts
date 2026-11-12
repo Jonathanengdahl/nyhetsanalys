@@ -3,7 +3,7 @@ import type { Topic } from "@/lib/topics/types";
 // Pilot topic, researched and fact-checked 12 November 2026.
 export const arbetslosheten: Topic = {
   slug: "arbetslosheten",
-  rank: 12,
+  rank: 4,
   title: "Arbetslösheten lägst sedan 2023",
   titleLines: ["Arbetslösheten", "lägst sedan 2023"],
   titleSize: "large",

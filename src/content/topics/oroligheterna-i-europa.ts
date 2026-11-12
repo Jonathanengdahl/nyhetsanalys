@@ -3,7 +3,7 @@ import type { Topic } from "@/lib/topics/types";
 // Example data from the prototype, fact-checked 29 October 2026.
 export const oroligheternaIEuropa: Topic = {
   "slug": "oroligheterna-i-europa",
-  "rank": 4,
+  "rank": 7,
   "title": "Oroligheterna sprids i Europa",
   "titleLines": [
     "Oroligheterna",

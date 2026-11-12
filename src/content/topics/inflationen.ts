@@ -3,7 +3,7 @@ import type { Topic } from "@/lib/topics/types";
 // Example data from the prototype, fact-checked 29 October 2026.
 export const inflationen: Topic = {
   "slug": "inflationen",
-  "rank": 3,
+  "rank": 6,
   "title": "Inflationen stiger igen",
   "titleLines": [
     "Inflationen",

@@ -1,9 +1,9 @@
 import type { Topic } from "@/lib/topics/types";
 
-// Example data from the prototype, fact-checked 29 October 2026.
+// Example data from the prototype, fact-checked 29 October 2026. Updated with the state on 12 November 2026.
 export const regeringsbildningen: Topic = {
   "slug": "regeringsbildningen",
-  "rank": 2,
+  "rank": 1,
   "title": "Regeringsbildningen",
   "titleLines": [
     "Regerings-",
@@ -19,19 +19,19 @@ export const regeringsbildningen: Topic = {
     "inrikes",
     "politik"
   ],
-  "status": "Sondering pågår",
-  "dek": "Sex veckor efter valet saknar Sverige ny regering. Nu prövar C-ledaren Elisabeth Thand Ringqvist om en regering över mitten är möjlig. Här är läget, siffrorna och hur medierna beskriver det.",
+  "status": "Totalpaket på fredag",
+  "dek": "Två månader efter valet saknar Sverige ny regering, och riksdagen har röstat nej till två förslag till statsminister. Nu ska Magdalena Andersson och Ulf Kristersson lägga fram varsitt paket till Centerpartiet, senast fredag klockan 17.",
   "publishedAt": "2026-10-24T17:40:00+02:00",
-  "updatedAt": "2026-10-24T17:40:00+02:00",
-  "counts": "8 artiklar från 5 medier, 22 källor",
+  "updatedAt": "2026-11-12T22:00:00+01:00",
+  "counts": "8 artiklar från 5 medier, 31 källor",
   "card": {
     "tags": [
       "Inrikes",
       "Politik"
     ],
-    "summary": "Talmannen har gett C-ledaren Elisabeth Thand Ringqvist ett sonderingsuppdrag. Hon vill bidra till en mittenregering, men inte leda den.",
+    "summary": "Riksdagen har röstat nej till två förslag till statsminister. C vill ha ett totalpaket från både Andersson och Kristersson senast fredag den 13 november, och ska sedan välja.",
     "uncertainty": "Bekräftat",
-    "sourceLine": "Källor: Placera/Finwire och EFN"
+    "sourceLine": "Källor: riksdagen, SVT och GP"
   },
   "stats": [
     {
@@ -39,66 +39,118 @@ export const regeringsbildningen: Topic = {
       "label": "mandat för oppositionen och för Tidöpartierna"
     },
     {
-      "value": "99–248",
-      "label": "ja och nej i statsministeromröstningen den 15 oktober"
-    },
-    {
-      "value": "1 av 4",
+      "value": "2 av 4",
       "label": "förslag till statsminister har röstats ned, efter fyra blir det extra val"
     },
     {
-      "value": "41 dagar",
+      "value": "25–324",
+      "label": "ja och nej till Elisabeth Thand Ringqvist den 3 november"
+    },
+    {
+      "value": "60 dagar",
       "label": "sedan valet utan ny regering"
     }
   ],
   "summary": [
     {
       "key": "Vad",
-      "text": "Sex veckor efter valet har Sverige ingen ny regering. Oppositionen fick 176 mandat och Tidöpartierna 173, men ingen sida har kunnat enas om en regering."
+      "text": "Två månader efter valet har Sverige ingen ny regering. Riksdagen har röstat nej till både Magdalena Andersson (S) och Elisabeth Thand Ringqvist (C) som statsminister."
     },
     {
       "key": "Senast",
-      "text": "Den 15 oktober röstade riksdagen nej till Magdalena Andersson (S) som statsminister, 248 mot 99. Nu prövar C-ledaren Elisabeth Thand Ringqvist ett mittenalternativ."
+      "text": "SD har släppt kravet på ministerposter och kan släppa fram en regering med M, C, KD och L under Ulf Kristersson. Andersson vill i stället regera med C och MP, med V som stödparti."
     },
     {
       "key": "Låst",
-      "text": "C säger nej till V i regeringen och nej till SD-ministrar. V kräver inflytande för att stödja Andersson, och SD vill sitta i regeringen eller gå i opposition."
+      "text": "C säger nej till V i regeringen. V säger att det är uteslutet att släppa kravet på ministerposter."
     },
     {
       "key": "Nu",
-      "text": "Thand Ringqvist ska rapportera till talmannen senast den 26 oktober. Röstar riksdagen nej till fyra statsministerförslag blir det extra val inom tre månader."
+      "text": "C vill ha ett totalpaket från både Andersson och Kristersson senast fredag den 13 november klockan 17. Kristersson rapporterar till talmannen senast den 17 november."
     }
   ],
   "updates": {
-    "intro": "Sedan måndagen den 19 oktober",
+    "intro": "Sedan tisdagen den 3 november",
     "items": [
       {
-        "text": "Partiledarna reagerade på talmannens beslut. Ulf Kristersson (M) kallade det logiskt, Daniel Helldén (MP) kallade mittenalternativet en återvändsgränd och Ebba Busch (KD) efterlyste färre röda linjer.",
+        "text": "Riksdagen röstade nej till Elisabeth Thand Ringqvist (C) som statsminister, 324 mot 25. Bara C röstade ja.",
         "sources": [
-          7
-        ]
+          23
+        ],
+        "at": "2026-11-03T12:00:00+01:00"
       },
       {
-        "text": "Thand Ringqvist sade att ett mittenalternativ finns rent matematiskt och att någon kommer att behöva släppa sina röda linjer. C:s egna röda linjer ligger fast, sade hon.",
+        "text": "SD meddelade att partiet släpper kravet på ministerposter för att släppa fram en regering under Ulf Kristersson (M) med M, C, KD och L.",
         "sources": [
-          2
-        ]
+          24,
+          25
+        ],
+        "at": "2026-11-06T12:00:00+01:00"
       },
       {
-        "text": "Hon upprepade att C inte kommer att sitta i en regering med V eller släppa fram en sådan.",
+        "text": "C bad Magdalena Andersson och Ulf Kristersson att lägga fram varsitt totalpaket med politik, samarbetspartier och stöd i riksdagen.",
         "sources": [
-          2
-        ]
+          26,
+          25
+        ],
+        "at": "2026-11-06T15:00:00+01:00"
       },
       {
-        "text": "Thand Ringqvist ska bjuda in alla partiledare till samtal och återkoppla till talmannen senast måndag den 26 oktober.",
+        "text": "Talmannen gav Kristersson en vecka till för sin sondering. Andersson sade att det är bäst att inte hålla en tredje statsministeromröstning nu.",
         "sources": [
-          5
-        ]
+          29,
+          28
+        ],
+        "at": "2026-11-10T12:00:00+01:00"
+      },
+      {
+        "text": "V ställde in torsdagens möten med S, C och MP. V:s vice ordförande Ida Gabrielsson sade att partiet inte släpper kravet på ministerposter.",
+        "sources": [
+          30
+        ],
+        "at": "2026-11-12T16:30:00+01:00"
       }
     ]
   },
   "openQuestions": [
+    {
+      "id": "totalpaketen",
+      "question": "Vilket paket väljer Centerpartiet?",
+      "status": "C vill ha ett totalpaket från både Magdalena Andersson och Ulf Kristersson och ska sedan välja. C säger nej till en regering med V eller som är beroende av SD.",
+      "label": "Ändras över tid",
+      "sources": [
+        26,
+        30,
+        28
+      ],
+      "expected": {
+        "date": "2026-11-13",
+        "event": "Sista tid för paketen, klockan 17"
+      }
+    },
+    {
+      "id": "kristerssons-sondering",
+      "question": "Vad kommer Ulf Kristersson fram till?",
+      "status": "Han sonderar om en regering med M, C, KD och L, som SD har sagt att partiet släpper fram. Han ska rapportera till talmannen senast den 17 november.",
+      "sources": [
+        29,
+        25,
+        24
+      ],
+      "expected": {
+        "date": "2026-11-17",
+        "event": "Kristersson rapporterar till talmannen"
+      }
+    },
+    {
+      "id": "v-kravet",
+      "question": "Släpper V kravet på ministerposter?",
+      "status": "Nej, enligt V:s vice ordförande Ida Gabrielsson. V säger att partiet går med i samtal med S, MP och C om C ställer sig bakom Anderssons paket.",
+      "label": "Ändras över tid",
+      "sources": [
+        30
+      ]
+    },
     {
       "id": "sonderingen",
       "question": "Vad kommer Elisabeth Thand Ringqvist fram till?",
@@ -113,6 +165,14 @@ export const regeringsbildningen: Topic = {
       "expected": {
         "date": "2026-10-26",
         "event": "Thand Ringqvist rapporterar till talmannen"
+      },
+      "answer": {
+        "date": "2026-11-03",
+        "text": "Talmannen föreslog henne som statsminister, men riksdagen röstade nej den 3 november, 324 mot 25. Bara C röstade ja.",
+        "label": "Bekräftat",
+        "sources": [
+          23
+        ]
       }
     },
     {
@@ -126,13 +186,22 @@ export const regeringsbildningen: Topic = {
       "expected": {
         "date": "2026-11-12",
         "event": "Budgeten för 2027 läggs fram"
+      },
+      "answer": {
+        "date": "2026-11-12",
+        "text": "Övergångsregeringen. Den lade fram en budget utan ny politik den 12 november.",
+        "label": "Bekräftat",
+        "sources": [
+          31
+        ]
       }
     },
     {
       "id": "budgetomrostningen",
       "question": "Röstar riksdagen igenom budgeten?",
-      "status": "Riksdagen röstar om budgeten för 2027 den 9 december.",
+      "status": "Riksdagen röstar om budgetens ramar den 9 december. Partierna kan lägga egna budgetar till den 27 november.",
       "sources": [
+        31,
         16,
         21
       ],
@@ -144,8 +213,9 @@ export const regeringsbildningen: Topic = {
     {
       "id": "extra-val",
       "question": "Blir det extra val?",
-      "status": "Bara om riksdagen röstar nej till fyra förslag till statsminister. Då ska ett extra val hållas inom tre månader. Ett förslag har hittills röstats ned.",
+      "status": "Bara om riksdagen röstar nej till fyra förslag till statsminister. Då ska ett extra val hållas inom tre månader. Två förslag har hittills röstats ned.",
       "sources": [
+        23,
         20
       ]
     },
@@ -250,22 +320,63 @@ export const regeringsbildningen: Topic = {
       "text": "Thand Ringqvist vädjar om tålamod och varnar för extra val om inget händer.",
       "sources": [
         2
+      ]
+    },
+    {
+      "date": "3 november",
+      "text": "Riksdagen röstar nej till Elisabeth Thand Ringqvist (C) som statsminister, 324 mot 25. Det är det andra av högst fyra försök.",
+      "sources": [
+        23
+      ]
+    },
+    {
+      "date": "6 november",
+      "text": "SD släpper kravet på ministerposter. C ber Andersson och Kristersson om varsitt totalpaket.",
+      "sources": [
+        24,
+        25,
+        26
+      ]
+    },
+    {
+      "date": "10 november",
+      "text": "Talmannen förlänger Ulf Kristerssons sondering till den 17 november. Andersson säger att hon är redo för ett nytt sonderingsuppdrag.",
+      "sources": [
+        29,
+        28
+      ]
+    },
+    {
+      "date": "12 november",
+      "text": "Övergångsregeringen lägger fram budgeten för 2027. V ställer in mötena med S, C och MP.",
+      "sources": [
+        31,
+        30
       ],
       "tag": "Nytt"
     },
     {
-      "date": "26 oktober",
-      "text": "Sista dag för Thand Ringqvist att rapportera till talmannen.",
+      "date": "13 november",
+      "text": "Sista tid för Anderssons och Kristerssons paket till C, klockan 17.",
       "sources": [
-        5
+        30,
+        27
       ],
       "tag": "Kommande"
     },
     {
-      "date": "12 november",
-      "text": "Sista dag för budgetpropositionen för 2027. Finns ingen ny regering lägger övergångsregeringen fram en budget.",
+      "date": "17 november",
+      "text": "Kristersson rapporterar till talmannen.",
       "sources": [
-        16,
+        29
+      ],
+      "tag": "Kommande"
+    },
+    {
+      "date": "9 december",
+      "text": "Riksdagen röstar om budgetens ramar.",
+      "sources": [
+        31,
         21
       ],
       "tag": "Kommande"
@@ -295,6 +406,14 @@ export const regeringsbildningen: Topic = {
     },
     {
       "label": "Bekräftat",
+      "title": "Omröstningen den 3 november",
+      "text": "Förslaget om Elisabeth Thand Ringqvist som statsminister fick 25 ja och 324 nej. Bara C röstade ja, och alla andra partier röstade nej.",
+      "sources": [
+        23
+      ]
+    },
+    {
+      "label": "Bekräftat",
       "title": "Regeln om extra val",
       "text": "Talmannen kan lägga fram högst fyra förslag till statsminister. Röstar riksdagen nej till alla fyra ska ett extra val hållas inom tre månader.",
       "sources": [
@@ -312,21 +431,21 @@ export const regeringsbildningen: Topic = {
     {
       "label": "Bekräftat",
       "title": "Budgeten för 2027",
-      "text": "Finns ingen ny regering lägger övergångsregeringen fram en budget den 12 november. Riksdagen röstar om budgeten den 9 december.",
+      "text": "Övergångsregeringen lade fram en budget utan ny politik den 12 november. Riksdagen röstar om budgetens ramar den 9 december.",
       "sources": [
-        16,
+        31,
         21
       ]
     },
     {
-      "label": "Omstritt",
-      "title": "Finns det en majoritet över mitten?",
-      "text": "Thand Ringqvist säger att ett mittenalternativ finns rent matematiskt. MP kallar det en återvändsgränd, och varken KD eller L har ställt sig bakom det.",
+      "label": "Ändras över tid",
+      "title": "Två paket",
+      "text": "C vill välja mellan ett paket från Andersson och ett från Kristersson. Andersson vill ha S, C och MP i regeringen med V som stödparti. Kristersson sonderar en regering med M, C, KD och L, som SD har sagt att partiet släpper fram.",
       "sources": [
-        2,
-        7,
-        3,
-        19
+        26,
+        27,
+        24,
+        25
       ]
     },
     {
@@ -340,7 +459,7 @@ export const regeringsbildningen: Topic = {
     }
   ],
   "media": {
-    "intro": "Vi har analyserat 8 artiklar från 5 svenska medier, publicerade 19 och 20 oktober. Analysen gäller de enskilda artiklarna, inte mediernas samlade bevakning. Public service och de stora morgontidningarna saknas i urvalet, eftersom vi inte kunde läsa deras texter när exemplet togs fram.",
+    "intro": "Vi har analyserat 8 artiklar från 5 svenska medier, publicerade 19 och 20 oktober. Analysen gäller de enskilda artiklarna, inte mediernas samlade bevakning. Public service och de stora morgontidningarna saknas i urvalet, eftersom vi inte kunde läsa deras texter när exemplet togs fram. Medieanalysen gäller artiklarna från oktober. Läget, frågorna och tidslinjen är uppdaterade den 12 november.",
     "agree": [
       "Sverige saknar ny regering sex veckor efter valet, och låsningen beror på partiernas röda linjer.",
       "Flera artiklar återger Thand Ringqvists bedömning att Magdalena Andersson är den mest sannolika statsministern i ett mittenalternativ.",
@@ -752,17 +871,17 @@ export const regeringsbildningen: Topic = {
   ],
   "blame": {
     "title": "Vad säger partierna?",
-    "intro": "Partierna är oense om vem som måste ge sig. Här är deras senaste besked, med talmannen först och partierna i bokstavsordning.",
+    "intro": "Partierna är oense om vem som måste ge sig. Här är deras senaste besked, med talmannen först och partierna i bokstavsordning. Besked från KD, L och MP är från oktober.",
     "items": [
       {
         "who": "Talmannen",
         "role": "Andreas Norlén",
-        "text": "Vill pröva mittenalternativet och ringer partiledarna i stället för att hålla nya talmansrundor. Säger att han inte vill vara bunden av hur han gjorde 2018."
+        "text": "Har förlängt Ulf Kristerssons sondering till den 17 november. Ska sedan tala med alla partiledare innan han meddelar nästa steg."
       },
       {
         "who": "Centerpartiet",
         "role": "Elisabeth Thand Ringqvist",
-        "text": "Säger nej till V i regeringen och nej till SD-ministrar. Ser Magdalena Andersson som mest sannolik statsminister i ett mittenalternativ."
+        "text": "Vill ha ett totalpaket från både Andersson och Kristersson senast fredag den 13 november klockan 17, och ska sedan välja. Säger nej till en regering med V eller som är beroende av SD."
       },
       {
         "who": "Kristdemokraterna",
@@ -782,34 +901,40 @@ export const regeringsbildningen: Topic = {
       {
         "who": "Moderaterna",
         "role": "Ulf Kristersson",
-        "text": "Kallar talmannens beslut logiskt. Menar att alternativen till vänster ska prövas först, eftersom de partierna har 176 mandat."
+        "text": "Ulf Kristersson sonderar om en regering med M, C, KD och L. Säger att SD:s och C:s besked gör uppgiften lite mindre svår."
       },
       {
         "who": "Socialdemokraterna",
         "role": "Magdalena Andersson",
-        "text": "Säger att det är viktigt att alla alternativ prövas och lovar att agera konstruktivt."
+        "text": "Vill regera med C och MP, med V som stödparti. Säger att C behöver bjuda till och att det är bäst att inte hålla en tredje statsministeromröstning nu."
       },
       {
         "who": "Sverigedemokraterna",
         "role": "Jimmie Åkesson",
-        "text": "Bjuder in C-ledaren till samtal men pekar ut C:s röda linjer som hinder. SD vill sitta i regeringen eller gå i opposition."
+        "text": "Släpper kravet på ministerposter och kan släppa fram en regering under Kristersson med M, C, KD och L. Avser att vara i opposition."
       },
       {
         "who": "Vänsterpartiet",
         "role": "Nooshi Dadgostar",
-        "text": "Säger att det är bra att Thand Ringqvist får undersöka om mittenalternativet finns, så att frågan kan få ett svar. V kräver att få ingå i en kommande regering."
+        "text": "Släpper inte kravet på ministerposter. Går med i samtal med S, MP och C om C ställer sig bakom Anderssons paket."
       }
     ],
     "sources": [
-      6,
       1,
       2,
-      7,
       5,
+      6,
+      7,
       8,
       11,
       15,
-      17
+      17,
+      24,
+      25,
+      27,
+      28,
+      29,
+      30
     ]
   },
   "models": {
@@ -879,7 +1004,7 @@ export const regeringsbildningen: Topic = {
         ]
       },
       {
-        "value": "41",
+        "value": "60",
         "label": "Dagar sedan valet",
         "sub": "Valet hölls den 13 september",
         "sources": [
@@ -1005,8 +1130,9 @@ export const regeringsbildningen: Topic = {
     },
     {
       "title": "Budgeten för 2027",
-      "text": "Saknas ny regering lägger övergångsregeringen fram en budget den 12 november. Enligt övergångsregeringen är huvudprincipen att tillfälliga stöd då löper ut, om inte alla åtta partier är överens. Det betyder bland annat att bränsleskatterna höjs automatiskt. Det tas inte upp i de analyserade artiklarna.",
+      "text": "Övergångsregeringen lade fram budgeten den 12 november. Tillfälliga stöd löper ut, om inte alla åtta partier är överens. Det betyder bland annat att den sänkta skatten på bensin och diesel upphör. Det tas inte upp i de analyserade artiklarna från oktober.",
       "sources": [
+        31,
         16,
         21
       ]
@@ -1073,7 +1199,7 @@ export const regeringsbildningen: Topic = {
     ]
   },
   "method": [
-    "Det här är ett exempel från betan. Analysen är AI-genererad utifrån 8 artiklar och 22 källor och har inte granskats av en redaktör.",
+    "Det här ämnet togs fram som exempel i betan och uppdaterades i piloten den 12 november. Läget, frågorna och tidslinjen bygger på 31 källor. Medieanalysen gäller fortfarande 8 artiklar från oktober. Texterna är skrivna med AI och har inte granskats av en redaktör.",
     "Varje artikel bedöms för sig på genre, fakta, urval, röster, språk, rubrik mot brödtext, siffror och källkvalitet. Politisk placering görs bara när en text tar ställning, och alltid med motivering. Axlarna är ekonomisk vänster–höger och GAL–TAN.",
     "Nyhetsbyråtexter som publiceras i flera tidningar räknas som en källa. SVT, Sveriges Radio, DN och SvD saknas i urvalet eftersom vi inte kunde läsa deras texter om sonderingen när exemplet togs fram. Det begränsar analysen."
   ],
@@ -1099,29 +1225,29 @@ export const regeringsbildningen: Topic = {
     },
     {
       "question": "Blir det extra val?",
-      "answer": "Det kan bli det. Talmannen kan lägga fram högst fyra förslag till statsminister. Röstar riksdagen nej till alla fyra ska ett extra val hållas inom tre månader. Ett förslag har hittills röstats ned.",
+      "answer": "Det kan bli det. Talmannen kan lägga fram högst fyra förslag till statsminister. Röstar riksdagen nej till alla fyra ska ett extra val hållas inom tre månader. Två förslag har hittills röstats ned.",
       "label": "Bekräftat",
       "sources": [
-        20
+        20,
+        23
       ]
     },
     {
       "question": "Vad gör Elisabeth Thand Ringqvist nu?",
-      "answer": "Talmannen har gett C-ledaren i uppdrag att pröva om en regering över mitten är möjlig. Hon säger att ett mittenalternativ finns rent matematiskt, men MP kallar det en återvändsgränd och varken KD eller L har ställt sig bakom det. Hon ska rapportera till talmannen senast den 26 oktober.",
-      "label": "Omstritt",
+      "answer": "Riksdagen röstade nej till henne som statsminister den 3 november. Nu vill C ha ett totalpaket från både Magdalena Andersson och Ulf Kristersson senast fredag den 13 november, och ska sedan välja mellan dem.",
+      "label": "Bekräftat",
       "sources": [
-        2,
-        7,
-        3,
-        19
+        23,
+        26,
+        30
       ]
     },
     {
       "question": "Vad händer med budgeten för 2027?",
-      "answer": "Finns ingen ny regering lägger övergångsregeringen fram en budget den 12 november. Riksdagen röstar om budgeten den 9 december.",
+      "answer": "Övergångsregeringen lade fram en budget utan ny politik den 12 november. Partierna kan lägga egna budgetar till den 27 november, och riksdagen röstar om budgetens ramar den 9 december.",
       "label": "Bekräftat",
       "sources": [
-        16,
+        31,
         21
       ]
     }
@@ -1268,6 +1394,51 @@ export const regeringsbildningen: Topic = {
       "name": "Reuters via Oman Observer",
       "title": "Swedish parliament rejects Andersson as prime minister",
       "url": "https://www.omanobserver.om/article/1197877/world/europe/swedish-parliament-rejects-andersson-as-prime-minister"
+    },
+    {
+      "name": "Riksdagen",
+      "title": "Nej till Elisabeth Thand Ringqvist (C) som statsminister, 3 november",
+      "url": "https://www.riksdagen.se/sv/aktuellt/aktuelltnotiser/2026/nov/3/nej-till-elisabeth-thand-ringqvist-c-som_cms6afacb7c-be00-432a-b75e-37e169872323sv/"
+    },
+    {
+      "name": "HurBra",
+      "title": "SD släpper regeringskravet, 6 november",
+      "url": "https://hurbra.se/?p=45302"
+    },
+    {
+      "name": "GP",
+      "title": "Centerpartiet kräver ”totalpaket” av M och S, 6 november",
+      "url": "https://www.gp.se/politik/centerpartiet-kraver-totalpaket-av-m-och-s-pa-en-vecka.a68c2af2-bf70-5dbf-9b26-035f90283906"
+    },
+    {
+      "name": "Centerpartiet",
+      "title": "Nu behöver statsministeralternativen lägga sina totalpaket på bordet, 6 november",
+      "url": "https://www.centerpartiet.se/nyheter/arkiv-2026/2026-11-06-centerpartiet-nu-behover-statsministeralternativen-lagga-sina-totalpaket-pa-bordet"
+    },
+    {
+      "name": "SVT",
+      "title": "Andersson (S): Centerpartiet behöver ”bjuda till” nu, 10 november",
+      "url": "https://www.svt.se/nyheter/inrikes/andersson-s-centerpartiet-behover-bjuda-till-nu"
+    },
+    {
+      "name": "TT via GP",
+      "title": "Andersson redo för nytt regeringsförsök, 10 november",
+      "url": "https://www.gp.se/nyheter/sverige/andersson-det-ror-pa-sig-behover-mer-tid.60f3bdc7-e7b2-5cb8-976a-9a3b6037d5e1"
+    },
+    {
+      "name": "TV4",
+      "title": "Kristersson får en vecka till, 10 november",
+      "url": "https://www.tv4.se/artikel/rNVZzMXpbK2nIp4Psmd7Y/kristersson-far-en-vecka-till-skyldighet-gentemot-medborgarna"
+    },
+    {
+      "name": "SVT",
+      "title": "V utesluter att backa efter C-ledarens nya deadline, 12 november",
+      "url": "https://svt.se/nyheter/inrikes/v-utesluter-att-backa-efter-c-ledarens-nya-deadline"
+    },
+    {
+      "name": "Regeringskansliet",
+      "title": "Budgetpropositionen för 2027 på fem minuter, 12 november",
+      "url": "https://www.regeringen.se/artiklar/2026/11/budgetpropositionen-for-2027-pa-fem-minuter/"
     }
   ],
   "sourceGroups": [
@@ -1298,14 +1469,23 @@ export const regeringsbildningen: Topic = {
         18,
         19,
         21,
-        22
+        22,
+        24,
+        25,
+        27,
+        28,
+        29,
+        30
       ]
     },
     {
       "title": "Primärkällor",
       "ids": [
         10,
-        20
+        20,
+        23,
+        26,
+        31
       ]
     }
   ],

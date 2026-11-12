@@ -3,7 +3,7 @@ import type { Topic } from "@/lib/topics/types";
 // Pilot topic, researched and fact-checked 12 November 2026.
 export const overgangsbudgeten: Topic = {
   slug: "overgangsbudgeten",
-  rank: 11,
+  rank: 2,
   title: "Övergångsbudgeten för 2027",
   titleLines: ["Övergångs-", "budgeten"],
   titleSize: "large",
@@ -378,10 +378,10 @@ export const overgangsbudgeten: Topic = {
   numbers: {
     intro: "Siffrorna kommer från regeringens sammanfattning av budgetpropositionen. Beloppen gäller utgiftsramarna, i miljarder kronor.",
     tiles: [
-      { value: "1 573 mdr", label: "Utgiftsområdena 2027", sub: "29,9 miljarder mer än 2026", sources: [7] },
-      { value: "234,6 mdr", label: "Försvar och civilt försvar", sub: "9,5 miljarder mer än 2026", sources: [7] },
-      { value: "101,0 mdr", label: "Rättsväsendet", sub: "6,3 miljarder mer än 2026", sources: [7] },
-      { value: "4 mkr", label: "Kronprinsessans 50-årsdag", sub: "Det enda helt nya anslaget", sources: [12, 1] },
+      { value: "1 573", label: "Miljarder kronor till utgiftsområdena 2027", sub: "29,9 miljarder mer än 2026", sources: [7] },
+      { value: "234,6", label: "Miljarder kronor till försvar och civilt försvar", sub: "9,5 miljarder mer än 2026", sources: [7] },
+      { value: "101,0", label: "Miljarder kronor till rättsväsendet", sub: "6,3 miljarder mer än 2026", sources: [7] },
+      { value: "4 mkr", label: "Kronprinsessans 50-årsdag", sub: "Anslag till firandet", sources: [12, 1] },
     ],
     charts: [
       {

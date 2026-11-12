@@ -44,7 +44,7 @@ export const site = {
   beta: {
     enabled: true,
     label: "Beta",
-    notice: "Beta med exempel från 24 oktober. Texterna är skrivna av AI och har inte granskats av en redaktör.",
+    notice: "Beta. De nyaste ämnena är från 12 november, de äldre är exempel från oktober. Texterna är skrivna av AI och har inte granskats av en redaktör.",
   },
 } as const;
 

@@ -3,7 +3,7 @@ import type { Topic } from "@/lib/topics/types";
 // Pilot topic, researched and fact-checked 12 November 2026.
 export const granskontrollen: Topic = {
   slug: "granskontrollen",
-  rank: 10,
+  rank: 3,
   title: "Gränskontrollen förlängs",
   titleLines: ["Gränskontrollen", "förlängs"],
   titleSize: "medium",
