@@ -3,5 +3,6 @@ import { protesternaIFrankrike } from "./protesterna-i-frankrike";
 import { regeringsbildningen } from "./regeringsbildningen";
 import { inflationen } from "./inflationen";
 import { oroligheternaIEuropa } from "./oroligheterna-i-europa";
+import { granskontrollen } from "./granskontrollen";
 
-export const topics: Topic[] = [protesternaIFrankrike, regeringsbildningen, inflationen, oroligheternaIEuropa];
+export const topics: Topic[] = [protesternaIFrankrike, regeringsbildningen, inflationen, oroligheternaIEuropa, granskontrollen];
