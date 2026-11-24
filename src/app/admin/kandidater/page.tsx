@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { categoryLabels, sortConfig } from "@/config/sort";
 import { formatDayAndTime } from "@/lib/format";
 import { getCandidates, type Candidate } from "@/lib/sort/admin";
+import { AdminNav } from "../AdminNav";
 import { decide } from "./actions";
 import styles from "./page.module.css";
 
@@ -163,7 +164,7 @@ async function Overview() {
 
       <h2>Godkända ({data.approved.length})</h2>
       <p className={styles.help}>
-        Godkända ämnen ska bli ämnessidor. Analysjobbet som skriver dem är inte byggt än, så i dag skriver Claude sidorna för hand utifrån den här listan.
+        Analysjobbet skriver ett utkast för varje godkänt ämne. Utkasten granskar och publicerar du under Utkast och sidor.
       </p>
       {data.approved.length === 0 ? (
         <p className={styles.empty}>Inga godkända ämnen än.</p>
@@ -205,6 +206,7 @@ async function Overview() {
 export default function CandidatesPage() {
   return (
     <article className={`container-wide ${styles.page}`}>
+      <AdminNav current="kandidater" />
       <h1>Kandidater</h1>
       <p className={styles.lead}>Det sorteringen har hittat i medierna. Bara du ser den här sidan.</p>
       <Suspense fallback={<p className={styles.empty}>Hämtar …</p>}>

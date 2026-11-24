@@ -122,6 +122,27 @@ Så startar du sorteringen:
 3. Kör `supabase/cron/schedule-sort.sql` i SQL Editor.
 4. Öppna `/admin/kandidater` efter en kvart.
 
+## Analysen (piloten)
+
+Analysjobbet gör ett godkänt ämne till ett utkast till ämnessida. Inget publiceras av sig självt: Jonathan förhandsvisar och publicerar under `/admin/utkast`.
+
+- **Två anrop till `claude-sonnet-5-5`.** Först söker modellen fakta hos primärkällor (myndigheter, riksdagen, regeringen, SCB med flera, listan finns i `src/config/analysis.ts`) med Claude API:s webbsökning. Bara sidor som modellen citerar blir källor. Sedan skriver modellen utkastet som JSON enligt ett schema (`src/lib/analysis/draft.ts`).
+- **Servern sätter allt som går att räkna.** Källor, länkar, antal artiklar, andelar, färger, datum och metodtexten kommer från koden, aldrig från modellen. Nyheter placeras aldrig politiskt.
+- **Samma kontroller som för handskrivna ämnen** (`src/lib/topics/validate.ts`), plus några till för AI-utkast. Ett utkast med fel kan inte publiceras.
+- **Bara rubrik och ingress** från medierna, som i insamlingen.
+- **Kostnad:** ungefär 2 till 6 kr per utkast. Analysen delar dagsbudgeten på 40 kr med sorteringen och startar bara när minst 8 kr finns kvar. Allt loggas i `ai_usage` med jobbet `analysis`.
+- **Avstängd som standard.** Jobbet gör inget förrän `ANALYSIS_ENABLED` är `true` i Vercel.
+- **Publicerade sidor** ligger i tabellen `topic_pages` och visas tillsammans med ämnena i `src/content/topics/`. Sajten fungerar som vanligt om tabellen saknas.
+
+Slå på analysen:
+
+1. Kör migrationen `supabase/migrations/20261124120000_topic_pages.sql` i Supabase SQL Editor.
+2. Kör `supabase/cron/schedule-analyze.sql` i samma editor. Jobbet startar kl. :10 och :40 varje timme.
+3. Lägg till `ANALYSIS_ENABLED` med värdet `true` i Vercel (Production) och gör en ny deploy.
+4. Godkänn ett ämne på `/admin/kandidater`. Inom en halvtimme finns ett utkast på `/admin/utkast`.
+
+Stäng av: sätt `ANALYSIS_ENABLED` till `false`, eller kör `select cron.unschedule('analyze');`.
+
 ## AI-chatten
 
 Chatten finns på startsidan (om dagens ämnen) och på varje ämnessida (om det ämnet). Den svarar med `claude-haiku-5-5` och bara utifrån samma underlag som sidorna visar (`src/lib/chat/material.ts`). Reglerna står i `src/lib/chat/prompt.ts`.

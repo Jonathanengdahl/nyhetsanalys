@@ -1,6 +1,7 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { isAdminRequest, passwordFrom } from "./auth";
 import { decisionInput, statusAfter } from "@/lib/sort/decide";
+import { allowedDecisions } from "./decisions";
 
 const basic = (user: string, password: string) => `Basic ${btoa(`${user}:${password}`)}`;
 
@@ -40,5 +41,14 @@ describe("decisions", () => {
     expect(statusAfter("reject", true)).toBe("rejected");
     expect(statusAfter("reopen", true)).toBe("hot");
     expect(statusAfter("reopen", false)).toBe("watching");
+  });
+});
+
+describe("draft decisions", () => {
+  it("never offers to publish a draft with problems", () => {
+    expect(allowedDecisions({ status: "draft", problems: [], data: {} as never })).toEqual(["publish", "retry"]);
+    expect(allowedDecisions({ status: "draft", problems: ["Källa 4 finns inte."], data: {} as never })).toEqual(["retry"]);
+    expect(allowedDecisions({ status: "published", problems: [], data: {} as never })).toEqual(["withdraw"]);
+    expect(allowedDecisions({ status: "failed", problems: ["x"], data: null })).toEqual(["retry"]);
   });
 });

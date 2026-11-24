@@ -6,6 +6,7 @@ import { mainFocus } from "./angles";
 import { leadQuestion } from "./cards";
 import { glossaryPattern } from "./glossary";
 import { uncertaintyLabels, type Topic } from "./types";
+import { topicProblems } from "./validate";
 
 // The same checks must hold for AI-generated topics later, before they are published.
 function sourceRefs(topic: Topic): number[] {
@@ -156,6 +157,10 @@ describe.each(topics.map((topic) => [topic.slug, topic] as const))("topic %s", (
         }
       }
     }
+  });
+
+  it("passes the same checks as AI drafts", () => {
+    expect(topicProblems(topic)).toEqual([]);
   });
 
   it("has valid dates", () => {
