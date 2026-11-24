@@ -32,7 +32,9 @@ export interface Candidate {
 
 export interface CandidateOverview {
   hot: Candidate[];
+  approved: Candidate[];
   watching: Candidate[];
+  rejected: Candidate[];
   lastRun: { started_at: string; ok: boolean | null; stats: Record<string, unknown>; error: string | null } | null;
   spentTodaySek: number;
   articlesLast24h: number;
@@ -50,10 +52,9 @@ export async function getCandidates(): Promise<CandidateOverview> {
     db
       .from("topic_clusters")
       .select("id, label, category, status, heat, score, hot_since, first_article_at, last_article_at")
-      .or(`last_article_at.gte.${since},status.eq.hot`)
-      .neq("status", "rejected")
+      .or(`last_article_at.gte.${since},status.in.(hot,approved)`)
       .order("score", { ascending: false })
-      .limit(60),
+      .limit(80),
     db.from("job_runs").select("started_at, ok, stats, error").eq("job", "sort").order("started_at", { ascending: false }).limit(1).maybeSingle(),
     db.rpc("ai_cost_sek_for_jobs", { p_since: startOfSwedishDay(), p_jobs: [...sortConfig.budgetJobs] }),
     db.from("articles").select("id", { count: "exact", head: true }).gte("fetched_at", day),
@@ -83,8 +84,10 @@ export async function getCandidates(): Promise<CandidateOverview> {
   const candidates = rows.map((row) => ({ ...row, articles: byTopic.get(row.id) ?? [] }));
 
   return {
-    hot: candidates.filter((candidate) => candidate.status === "hot" || candidate.status === "approved"),
+    hot: candidates.filter((candidate) => candidate.status === "hot"),
+    approved: candidates.filter((candidate) => candidate.status === "approved"),
     watching: candidates.filter((candidate) => candidate.status === "watching").slice(0, 30),
+    rejected: candidates.filter((candidate) => candidate.status === "rejected").slice(0, 20),
     lastRun: (lastRun.data as CandidateOverview["lastRun"]) ?? null,
     spentTodaySek: Number(spent.data ?? 0),
     articlesLast24h: recent.count ?? 0,

@@ -111,7 +111,7 @@ Var 15:e minut, fem minuter efter insamlingen, sorterar `/api/jobs/sort` nya art
 - **Hetta** räknas för varje öppet ämne vid varje körning (`src/lib/sort/heat.ts`). Ett ämne är över tröskeln med minst 5 oberoende källor från minst 3 mediehus inom 48 timmar, varav minst ett rikstäckande. Samma TT-text räknas som en källa (samma fingeravtryck).
 - **Status:** `watching` (bevakas), `hot` (över tröskeln, kandidat), `approved` och `rejected`. Jonathans beslut skrivs aldrig över av sorteringen.
 - **Kostnad:** varje anrop loggas i `ai_usage` med jobbet `sort`. Bakgrundsjobben har en egen dagsbudget på 40 kr. Når den taket pausar sorteringen till midnatt. Chatten har kvar sin egen budget.
-- **Kandidaterna** syns på `/admin/kandidater`, skyddad med lösenordet i `ADMIN_PASSWORD` (vilket användarnamn som helst). Utan variabeln finns sidan inte.
+- **Kandidaterna** syns på `/admin/kandidater`, skyddad med lösenordet i `ADMIN_PASSWORD` (minst 12 tecken, vilket användarnamn som helst). Utan variabeln finns sidan inte. Där godkänner, avböjer och ångrar man ämnen.
 
 Tabeller (migrationen `20261112120000_sorting.sql`): `topic_clusters` med ämnen, hetta och status, och tre nya kolumner i `articles` (`sorted_at`, `in_scope`, `cluster_id`).
 
