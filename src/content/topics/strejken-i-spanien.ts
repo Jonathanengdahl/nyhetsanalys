@@ -10,11 +10,11 @@ export const strejkenISpanien: Topic = {
   accent: "coral",
   tags: ["Utrikes", "Ekonomi"],
   categories: ["utrikes", "ekonomi", "politik"],
-  status: "Efter strejken",
+  status: "Val 29 november",
   dek: "Spaniens första generalstrejk på 14 år gällde bostäder och löner. Fackförbunden och arbetsgivarna ger helt olika bilder av hur många som deltog, och strejken har blivit en fråga i valrörelsen inför valet den 29 november.",
   publishedAt: "2026-11-12T21:00:00+01:00",
-  updatedAt: "2026-11-12T21:00:00+01:00",
-  counts: "4 artiklar från 4 medier, 6 källor",
+  updatedAt: "2026-11-24T21:00:00+01:00",
+  counts: "4 artiklar från 4 medier, 9 källor",
   card: {
     tags: ["Utrikes", "Ekonomi"],
     summary:
@@ -78,17 +78,22 @@ export const strejkenISpanien: Topic = {
     {
       id: "valet",
       question: "Vem vinner valet den 29 november?",
-      status: "Opinionsmätningar publicerade den 9 november visade att Socialistpartiet låg efter det konservativa PP, och att PP och Vox tillsammans kunde få majoritet.",
-      label: "Ändras över tid",
-      sources: [3],
+      status: "Mätningarna skiljer sig. Ett snitt av opinionsmätningar den 18 november gav PP 128 mandat, Socialistpartiet 111 och Vox 65, alltså egen majoritet för PP och Vox. Det statliga mätinstitutet CIS gav i stället Socialistpartiet flest mandat och PP och Vox högst 171, fem under majoritet. PP, Vox och flera statsvetare ifrågasätter CIS metod.",
+      label: "Siffror skiljer sig",
+      sources: [8, 9, 3],
       expected: { date: "2026-11-29", event: "Nyval till det spanska parlamentet" },
     },
     {
       id: "dekreten",
       question: "Blir regeringens nya bostadsregler kvar?",
-      status: "Parlamentet röstade ned regeringens två bostadsdekret den 2 oktober. Regeringen har lagt fram en ändrad version, som enligt TIME skulle röstas om den 12 november. Vi har inte sett utfallet än.",
-      label: "Obekräftat",
+      status: "Parlamentet röstade ned regeringens två bostadsdekret den 2 oktober, och regeringen lade fram nya versioner.",
       sources: [3, 1],
+      answer: {
+        date: "2026-11-12",
+        text: "Delvis. Parlamentets ständiga utskott godkände det breda bostadsdekretet med 35 röster mot 34. Det ger bland annat skydd mot vissa vräkningar och ett tak på 2 procent för årliga hyreshöjningar till och med 2027. Dekretet om hyresavtal som förlängs automatiskt röstades ned. Frågan väntas tas upp igen efter valet.",
+        label: "Bekräftat",
+        sources: [7],
+      },
     },
     {
       id: "deltagandet",
@@ -118,6 +123,11 @@ export const strejkenISpanien: Topic = {
       date: "11 november",
       text: "Generalstrejk i hela Spanien under ett dygn.",
       sources: [1, 3],
+    },
+    {
+      date: "12 november",
+      text: "Parlamentets ständiga utskott godkänner det breda bostadsdekretet med 35 röster mot 34, men röstar ned dekretet om hyresavtal som förlängs automatiskt.",
+      sources: [7],
       tag: "Nytt",
     },
     {
@@ -418,7 +428,7 @@ export const strejkenISpanien: Topic = {
     ],
   },
   method: [
-    "Det här är ett ämne från piloten. Analysen är skriven med AI utifrån 4 artiklar och 6 källor, men har inte granskats av en redaktör.",
+    "Det här är ett ämne från piloten. Analysen är skriven med AI utifrån 4 artiklar och 9 källor, men har inte granskats av en redaktör.",
     "Vi har inte kunnat läsa spanska myndigheters statistik i original. Siffrorna om hyror och bostäder kommer från de källor som artiklarna anger.",
     "Den vräkta kvinnan i Madrid är en privatperson, och därför skriver vi inte ut hennes namn.",
   ],
@@ -477,10 +487,13 @@ export const strejkenISpanien: Topic = {
     { name: "Infobae", title: "Los sindicatos prevén una respuesta masiva a la huelga general, 10 november", url: "https://www.infobae.com/espana/2026/11/10/los-sindicatos-preven-una-respuesta-masiva-a-la-huelga-general-por-la-vivienda-y-los-salarios-14-anos-despues-de-la-ultima-va-a-haber-una-gran-movilizacion/" },
     { name: "TT via TV4", title: "Storstrejk i Spanien inför nyvalet, 7 oktober", url: "https://www.tv4.se/artikel/tt-261007-spanienbostadskrisstrejk1-b2475a22/storstrejk-i-spanien-infor-nyvalet" },
     { name: "Wikipedia", title: "2026 Spanish housing protests", url: "https://en.wikipedia.org/wiki/2026_Spanish_housing_protests" },
+    { name: "Idealista", title: "La Diputación Permanente convalida el decreto de vivienda y rechaza el de alquileres indefinidos, 12 november", url: "https://www.idealista.com/news/inmobiliario/vivienda/2026/11/12/923779-la-diputacion-permanente-convalida-el-decreto-de-vivienda-y-rechaza-el-de" },
+    { name: "Demócrata", title: "The survey of surveys of 29N, 18 november", url: "https://www.democrata.es/en/center-of-surveys-and-electoral-polls/general-elections/feijoo-wins-the-opinion-poll-of-the-29n-and-pp-vox-maintains-majority/" },
+    { name: "Ara", title: "Last CIS survey before the elections, 12 november", url: "https://en.ara.cat/politics/last-cis-poll-before-the-elections-the-psoe-would-win-and-pp-and-vox-would-not-add-up-to-an-absolute-majority_1_5908467.html" },
   ],
   sourceGroups: [
     { title: "Analyserade artiklar", ids: [1, 2, 3, 4] },
-    { title: "Bakgrund", ids: [5, 6] },
+    { title: "Bakgrund", ids: [5, 6, 7, 8, 9] },
   ],
   corrections: [],
 };

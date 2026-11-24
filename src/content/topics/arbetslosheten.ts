@@ -13,23 +13,23 @@ export const arbetslosheten: Topic = {
   status: "Ny statistik",
   dek: "Arbetsförmedlingens siffror för oktober visar den lägsta arbetslösheten sedan hösten 2023. Men de som varit arbetslösa längst får inte del av förbättringen, och SCB:s mätning visar en högre nivå.",
   publishedAt: "2026-11-12T20:00:00+01:00",
-  updatedAt: "2026-11-12T20:00:00+01:00",
-  counts: "3 artiklar från 3 medier, 8 källor",
+  updatedAt: "2026-11-24T21:00:00+01:00",
+  counts: "3 artiklar från 3 medier, 9 källor",
   card: {
     tags: ["Inrikes", "Ekonomi"],
     summary:
-      "6,3 procent var inskrivna som arbetslösa i slutet av oktober, den lägsta nivån sedan hösten 2023. SCB:s mätning, som räknar på ett annat sätt, låg på 8,7 procent under tredje kvartalet.",
+      "6,3 procent var inskrivna som arbetslösa i slutet av oktober, den lägsta nivån sedan hösten 2023. SCB:s mätning, som räknar på ett annat sätt, låg på 8,6 procent i oktober.",
     highlights: [
       { value: "6,3 %", label: "inskrivna arbetslösa i oktober", uncertainty: "Bekräftat" },
-      { value: "8,7 %", label: "arbetslösa enligt SCB", uncertainty: "Siffror skiljer sig" },
+      { value: "8,6 %", label: "arbetslösa enligt SCB i oktober", uncertainty: "Siffror skiljer sig" },
     ],
     sourceLine: "Källor: Arbetsförmedlingen, SCB och TT",
   },
   stats: [
     { value: "6,3 %", label: "inskrivna arbetslösa i slutet av oktober, mot 6,8 procent för ett år sedan" },
     { value: "339 000", label: "personer inskrivna som arbetslösa, ungefär 18 000 färre än för ett år sedan" },
-    { value: "8,7 %", label: "arbetslösa enligt SCB:s mätning under tredje kvartalet" },
-    { value: "20 nov", label: "kommer SCB:s nästa siffror" },
+    { value: "8,6 %", label: "arbetslösa enligt SCB:s mätning för oktober" },
+    { value: "−69 000", label: "färre arbetslösa än för ett år sedan, enligt SCB:s mätning för oktober" },
   ],
   summary: [
     {
@@ -46,7 +46,7 @@ export const arbetslosheten: Topic = {
     },
     {
       key: "Två mått",
-      text: "SCB mäter arbetslösheten med en urvalsundersökning och får en högre siffra, 8,7 procent under tredje kvartalet. Båda måtten visar att utvecklingen går åt samma håll.",
+      text: "SCB mäter arbetslösheten med en urvalsundersökning och får en högre siffra, 8,6 procent i oktober. Båda måtten visar att utvecklingen går åt samma håll.",
     },
   ],
   updates: {
@@ -72,6 +72,12 @@ export const arbetslosheten: Topic = {
       label: "Siffror skiljer sig",
       sources: [7],
       expected: { date: "2026-11-20", event: "SCB publicerar nya siffror från arbetskraftsundersökningen" },
+      answer: {
+        date: "2026-11-20",
+        text: "Ja, båda måtten går åt samma håll. Enligt SCB var arbetslösheten 8,6 procent i oktober, säsongsrensat och utjämnat. Utan säsongsrensning var den 7,7 procent, mot 8,9 procent ett år tidigare.",
+        label: "Bekräftat",
+        sources: [9],
+      },
     },
     {
       id: "langtidsarbetslosa",
@@ -107,13 +113,12 @@ export const arbetslosheten: Topic = {
       date: "12 november",
       text: "Arbetsförmedlingens statistik för oktober: 6,3 procent, den lägsta nivån sedan hösten 2023.",
       sources: [1, 3],
-      tag: "Nytt",
     },
     {
       date: "20 november",
-      text: "SCB publicerar nya siffror från arbetskraftsundersökningen.",
-      sources: [7],
-      tag: "Kommande",
+      text: "SCB:s siffror för oktober: 8,6 procent arbetslösa, säsongsrensat och utjämnat, och 69 000 färre arbetslösa än ett år tidigare.",
+      sources: [9],
+      tag: "Nytt",
     },
   ],
   facts: [
@@ -144,8 +149,8 @@ export const arbetslosheten: Topic = {
     {
       label: "Siffror skiljer sig",
       title: "Två mått",
-      text: "Arbetsförmedlingen räknar dem som är inskrivna, 16 till 66 år. SCB:s arbetskraftsundersökning, AKU, frågar ett urval av befolkningen 15 till 74 år och kom fram till 8,7 procent under tredje kvartalet.",
-      sources: [8, 7],
+      text: "Arbetsförmedlingen räknar dem som är inskrivna, 16 till 66 år. SCB:s arbetskraftsundersökning, AKU, frågar ett urval av befolkningen 15 till 74 år och kom fram till 8,6 procent i oktober.",
+      sources: [8, 9],
     },
     {
       label: "Bekräftat",
@@ -290,7 +295,7 @@ export const arbetslosheten: Topic = {
     intro: "Siffrorna kommer från Arbetsförmedlingen, som räknar inskrivna arbetslösa, och från SCB:s arbetskraftsundersökning.",
     tiles: [
       { value: "6,3 %", label: "Inskrivna arbetslösa, oktober", sub: "Arbetsförmedlingen, 16–66 år", sources: [1, 3] },
-      { value: "8,7 %", label: "Arbetslösa enligt SCB, tredje kvartalet", sub: "Säsongsrensat och utjämnat, 15–74 år", sources: [7] },
+      { value: "8,6 %", label: "Arbetslösa enligt SCB, oktober", sub: "Säsongsrensat och utjämnat, 15–74 år", sources: [9] },
       { value: "146 076", label: "Utan arbete i minst ett år", sub: "151 807 ett år tidigare", sources: [2] },
       { value: "+74 000", label: "Fler sysselsatta på ett år", sub: "SCB, tredje kvartalet", sources: [7] },
     ],
@@ -322,8 +327,8 @@ export const arbetslosheten: Topic = {
   missing: [
     {
       title: "SCB:s siffra",
-      text: "Ingen artikel anger SCB:s arbetslöshet, som var 8,7 procent under tredje kvartalet. TT nämner bara att SCB mäter på ett annat sätt.",
-      sources: [7, 8],
+      text: "Ingen av de analyserade artiklarna anger SCB:s arbetslöshet, som var 8,7 procent under tredje kvartalet och 8,6 procent i oktober. TT nämner bara att SCB mäter på ett annat sätt.",
+      sources: [7, 9, 8],
     },
     {
       title: "Hur många som varit arbetslösa i två år",
@@ -363,7 +368,7 @@ export const arbetslosheten: Topic = {
         accent: "sky",
         quote: "Företagen anställer igen. Fler i jobb är det som räknas.",
         up: "Att 74 000 fler har jobb enligt SCB.",
-        down: "Att SCB:s arbetslöshet fortfarande är 8,7 procent.",
+        down: "Att SCB:s arbetslöshet fortfarande är 8,6 procent.",
       },
       {
         name: "Den konservativa",
@@ -388,16 +393,16 @@ export const arbetslosheten: Topic = {
     ],
   },
   method: [
-    "Det här är ett ämne från piloten. Analysen är skriven med AI utifrån 3 artiklar och 8 källor och har granskats mot Arbetsförmedlingens och SCB:s statistik, men inte av en redaktör.",
+    "Det här är ett ämne från piloten. Analysen är skriven med AI utifrån 3 artiklar och 9 källor och har granskats mot Arbetsförmedlingens och SCB:s statistik, men inte av en redaktör.",
     "Arbetsförmedlingens pressmeddelande för oktober har vi inte kunnat läsa i original. Siffrorna för oktober kommer därför från artiklarna, och de stämmer överens med varandra.",
     "Varje artikel bedöms för sig på genre, fakta, urval, röster, språk, rubrik mot brödtext, siffror och källkvalitet. Politisk placering görs bara när en text tar ställning, och alltid med motivering.",
   ],
   faq: [
     {
       question: "Hur hög är arbetslösheten?",
-      answer: "6,3 procent av arbetskraften var inskrivna som arbetslösa hos Arbetsförmedlingen i slutet av oktober, eller knappt 339 000 personer. Enligt SCB:s mätning var arbetslösheten 8,7 procent under tredje kvartalet.",
+      answer: "6,3 procent av arbetskraften var inskrivna som arbetslösa hos Arbetsförmedlingen i slutet av oktober, eller knappt 339 000 personer. Enligt SCB:s mätning var arbetslösheten 8,6 procent i oktober.",
       label: "Siffror skiljer sig",
-      sources: [1, 7],
+      sources: [1, 9],
     },
     {
       question: "Varför skiljer sig siffrorna?",
@@ -454,10 +459,11 @@ export const arbetslosheten: Topic = {
     { name: "Arbetsförmedlingen", title: "Arbetsmarknadsläget kvartal 3 2026, 29 oktober", url: "https://arbetsformedlingen.se/statistik/analyser-och-prognoser/analys-och-utvardering/2026/arbetsmarknadslaget-kvartal-3-2026" },
     { name: "SCB", title: "Arbetskraftsundersökningarna (AKU), tredje kvartalet 2026, 3 november", url: "https://www.scb.se/hitta-statistik/statistik-efter-amne/arbetsmarknad/utbud-av-arbetskraft/arbetskraftsundersokningarna-aku/pong/statistiknyhet/arbetskraftsundersokningarna-aku-tredje-kvartalet-2026/" },
     { name: "TT via Börskollen", title: "Arbetslösheten når lägsta nivån sedan 2023 – men långtidsarbetslösheten ökar", url: "https://www.borskollen.se/nyheter/27/arbetslosheten-nar-lagsta-nivan-sedan-2023-men-langtidsarbetslosheten-okar" },
+    { name: "SCB", title: "Arbetskraftsundersökningarna (AKU), oktober 2026, 20 november", url: "https://www.scb.se/hitta-statistik/statistik-efter-amne/arbetsmarknad/utbud-av-arbetskraft/arbetskraftsundersokningarna-aku/pong/statistiknyhet/arbetskraftsundersokningarna-aku-oktober-2026" },
   ],
   sourceGroups: [
     { title: "Analyserade artiklar", ids: [1, 2, 3] },
-    { title: "Primärkällor", ids: [4, 5, 6, 7] },
+    { title: "Primärkällor", ids: [4, 5, 6, 7, 9] },
     { title: "Bakgrund", ids: [8] },
   ],
   corrections: [],
